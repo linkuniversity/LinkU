@@ -1,0 +1,12 @@
+codecov==2.0.5
+coverage==4.3.4
+Django==1.10
+django-filter==1.0.1
+djangorestframework==3.5.4
+httpie==0.9.9
+Markdown==2.6.8
+py==1.4.32
+Pygments==2.2.0
+pytest==3.0.6
+pytest-cov==2.4.0
+requests==2.13.0
