@@ -1,0 +1,11 @@
+dependencies:
+  pre:
+    - pip install -r requirements.txt
+  post:
+    - ./prepare_server.sh :
+        background: true
+test:
+  override:
+    - pytest --cov=./linku_backend ./linku_backend
+  post:
+    - codecov
