@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from rest_framework import routers
+from meeting import views
 
 router = routers.DefaultRouter()
+router.register(r'meetings', views.MeetingViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
