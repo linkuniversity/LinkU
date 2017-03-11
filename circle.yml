@@ -1,8 +1,8 @@
 dependencies:
   pre:
-    - pip install -r requirements.txt
+    - pip install -r ./linku_backend/requirements.txt
   post:
-    - ./prepare_server.sh :
+    - ./linku_backend/prepare_server.sh :
         background: true
 test:
   override:
