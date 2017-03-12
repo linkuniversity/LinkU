@@ -1,8 +1,10 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Meeting(models.Model):
-    maker = models.CharField(max_length=30)
-
+    maker = models.TextField()
+    name = models.TextField()
+    start_time = models.DateTimeField()
+    image_path = models.ImageField(blank=True)
+    distance_near_univ = models.TextField()
+    price_range = models.TextField()

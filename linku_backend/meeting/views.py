@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from meeting.models import Meeting
-from meeting.serializer import MeetingSerializer
+from .models import Meeting
+from .serializer import MeetingSerializer
 
 
 class MeetingViewSet(viewsets.ModelViewSet):
