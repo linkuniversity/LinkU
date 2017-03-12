@@ -2,6 +2,8 @@ dependencies:
   pre:
     - pip install -r ./linku_backend/requirements.txt
   post:
+    - ./linku_frontend/prepare_server.sh:
+        background: true
     - ./linku_backend/prepare_server.sh :
         background: true
 test:
