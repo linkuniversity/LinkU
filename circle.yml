@@ -1,4 +1,6 @@
 dependencies:
+  cache_directories:
+      - "linku_frontend/linku/node_module"
   pre:
     - pip install -r ./linku_backend/requirements.txt
   post:
@@ -9,5 +11,6 @@ dependencies:
 test:
   override:
     - pytest --cov=./linku_backend ./linku_backend
+    - ./linku_frontend/run_tests.sh
   post:
     - codecov
