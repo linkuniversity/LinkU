@@ -3,6 +3,7 @@ dependencies:
       - "linku_frontend/linku/node_module"
   pre:
     - pip install -r ./linku_backend/requirements.txt
+    - ./linku_frontend/npm_install.sh
   post:
     - ./linku_frontend/prepare_server.sh:
         background: true
