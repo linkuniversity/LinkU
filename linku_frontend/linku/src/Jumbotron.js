@@ -5,7 +5,7 @@ export default class Jumbotron extends React.Component{
     let jumboStyle = {
       width: "1300px",
       height: "400px",
-      backgroundImage: 'url('+"http://cfile7.uf.tistory.com/image/0162D4405074F78D30C589"+')'
+      backgroundImage: "url(" + "http://cfile7.uf.tistory.com/image/0162D4405074F78D30C589" + ")"
     };
 
     return(
