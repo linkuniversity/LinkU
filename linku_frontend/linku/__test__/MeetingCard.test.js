@@ -19,8 +19,9 @@ describe('<MeetingCard />', () => {
   });
 
   it( 'renders title & place & start_time', () => {
-    expect(
-      
-    );
+    expect(wrapper.text()).toContain(tmpMeetingInfo.title);
+    expect(wrapper.text()).toContain(tmpMeetingInfo.start_time);
+    expect(wrapper.text()).toContain(tmpMeetingInfo.place);
   });
+  
 });

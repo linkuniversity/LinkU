@@ -60,19 +60,7 @@ export default class MeetingCardBox extends React.Component{
   }
 
   _fetchInfosFromApi(){
-    jQuery.ajax({
-      method: 'GET',
-      url: 'http://localhost:8000/meetings/',
-      crossDomain: true,
-      dataType: 'jsonp',
-      success: (meeting_infos) => {
-        console.log(meeting_infos);
-        this.setState({ meeting_infos });
-      },
-      error: (request,status,error) => {
-        console.log(request.responseText);
-      }
-    });
+    
   }
   render(){
     const mapToComponents = (data) => {
