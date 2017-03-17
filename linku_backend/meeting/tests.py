@@ -1,7 +1,7 @@
 import pytest
 import datetime
 import json
-from meeting.models import Meeting
+from meeting.models import Meeting, User, Comment
 from meeting.serializer import MeetingSerializer
 
 
@@ -27,6 +27,31 @@ def test_create_meeting_model():
                            category='tes category',
                            specific_link='test specific_link')
     Meeting.objects.get(maker_name='test maker_name')
+
+
+@pytest.mark.django_db
+def test_create_user_model():
+    User.objects.create(name="test name",
+                        email='test email',
+                        password='test password',
+                        gender='test gender',
+                        nickname='test nickname',
+                        phone_number='test phone_number',
+                        is_authenticated_university_student=False)
+    User.objects.get(name='test name')
+
+
+@pytest.mark.django_db
+def test_create_comment_model():
+    user = User.objects.create(name="test name",
+                               email='test email',
+                               password='test password',
+                               gender='test gender',
+                               nickname='test nickname',
+                               phone_number='test phone_number',
+                               is_authenticated_university_student=False)
+    Comment.objects.create(user=user, comment='test comment')
+    Comment.objects.get(user=user)
 
 
 @pytest.mark.django_db
