@@ -1,12 +1,11 @@
 import pytest
 import datetime
-import os
 
 from django.conf import settings
 from meeting.models import Meeting, User, Comment
 from meeting.serializer import MeetingSerializer
 
-SAVED_TEST_IMAGE_NAME = settings.MEDIA_ROOT + 'test_image.jpg'
+SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
 
 
 @pytest.mark.django_db
