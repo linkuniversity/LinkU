@@ -1,4 +1,9 @@
+import os
+
+from django.conf import settings
 from django.db import models
+
+SAVED_MEETING_DEFAULT_IMAGE_NAME = settings.MEDIA_ROOT + 'meeting_default_image.jpg'
 
 
 class User(models.Model):
@@ -16,7 +21,7 @@ class Meeting(models.Model):
     maker_name = models.CharField(max_length=20)
     title = models.CharField(max_length=30)
     start_time = models.DateTimeField()
-    image_paths = models.TextField(blank=True)
+    main_image = models.ImageField(default=SAVED_MEETING_DEFAULT_IMAGE_NAME)
     place = models.CharField(max_length=30)
     price = models.IntegerField(blank=True)
     num_of_joined_members = models.IntegerField()
