@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import Login from './login/Login';
+import MeetingCardBox from './MeetingCardBox';
+import Jumbotron from './Jumbotron';
 
 export default class App extends Component {
     render() {
         return (
-            <Login />
+            <div>
+                <Jumbotron />
+                <MeetingCardBox />
+            </div>
         );
     }
 }
