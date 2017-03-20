@@ -1,9 +1,6 @@
-import os
-
-from django.conf import settings
 from django.db import models
 
-SAVED_MEETING_DEFAULT_IMAGE_NAME = settings.MEDIA_ROOT + 'meeting_default_image.jpg'
+SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
 
 class User(models.Model):

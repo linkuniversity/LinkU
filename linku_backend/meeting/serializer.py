@@ -3,6 +3,7 @@ from .models import Meeting
 
 
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
+    main_image = serializers.ImageField(use_url=True)
 
     class Meta:
         model = Meeting
