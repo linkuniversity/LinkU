@@ -9,7 +9,6 @@ import MeetingInfo from './specific_page/MeetingInfo';
 import Maker from './specific_page/Maker';
 import Place from './specific_page/Place';
 import Appliers from './specific_page/Appliers';
-import MeetingComment from './specific_page/MeetingComment';
 
 
 class App extends Component {
@@ -22,7 +21,6 @@ class App extends Component {
                 <Maker/>
                 <Place/>
                 <Appliers/>
-                <MeetingComment/>
             </div>
         );
     }
