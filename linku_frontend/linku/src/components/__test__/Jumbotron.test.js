@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Jumbotron from '../src/Jumbotron';
+import Jumbotron from '../mainpage/Jumbotron';
 
 describe('<Jumbotron />', () => {
     it( 'renders without exploding', () => {
