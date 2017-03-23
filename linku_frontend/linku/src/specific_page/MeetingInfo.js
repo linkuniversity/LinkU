@@ -4,17 +4,15 @@ class MeetingInfo extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            place: '홍대',
-            time: "2017-02-25T18:00:00+09:00",
-            title : "홍대 3대 라멘 중 하나 <부탄츄> 여긴 꼭 가야해!!"
         };
+        this.getMeetingDateInfo = this.getMeetingDateInfo.bind(this);
     }
 
     getMeetingDateInfo(){
-        var date = new Date("2017-02-25T18:00:00+09:00");
+        var date = new Date(this.props.info.time);
 
         return "" + (date.getMonth()+1) + "." + date.getDate() + " " + "(Day)"
-         + " " + this.state.place + " " + "" + date.getHours() + ":"
+         + " " + this.props.info.place + " " + "" + date.getHours() + ":"
          + date.getMinutes();
     }
 
@@ -23,7 +21,7 @@ class MeetingInfo extends React.Component{
             <div>
                 <p>{this.getMeetingDateInfo()}</p>
                 <span >신고 그림</span>
-                <p>{this.state.title}</p>
+                <p>{this.props.info.title}</p>
             </div>
         );
     }
