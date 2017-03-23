@@ -1,12 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.conf import settings
 
 SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
 
-class User(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=40)
+class User(AbstractUser):
     gender = models.CharField(max_length=1)
     nickname = models.CharField(max_length=20)
     profile_image_path = models.ImageField(blank=True)
@@ -27,9 +26,4 @@ class Meeting(models.Model):
     restaurant_name = models.CharField(max_length=20)
     category = models.CharField(max_length=30)
     specific_link = models.CharField(max_length=30)
-    appliers = models.ManyToManyField(User)
-
-
-class Comment(models.Model):
-    user = models.ForeignKey(User)
-    comment = models.TextField()
+    appliers = models.ManyToManyField(settings.AUTH_USER_MODEL)
