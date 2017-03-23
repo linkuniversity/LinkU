@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import MeetingCard from '../src/MeetingCard';
+import MeetingCard from '../mainpage/MeetingCard';
 
 describe('<MeetingCard />', () => {
     const meetingCardInfo = {

@@ -1,8 +1,8 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import MeetingCardBox from '../src/MeetingCardBox';
-import MeetingCard from '../src/MeetingCard';
-import CategoriesInMainPage from '../src/CategoriesInMainPage';
+import MeetingCardBox from '../mainpage/MeetingCardBox';
+import MeetingCard from '../mainpage/MeetingCard';
+import CategoriesInMainPage from '../mainpage/CategoriesInMainPage';
 
 describe('<MeetingCardBox />', () => {
 
