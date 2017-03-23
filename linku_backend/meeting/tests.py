@@ -2,7 +2,7 @@ import pytest
 import datetime
 
 from django.conf import settings
-from meeting.models import Meeting, User, Comment
+from meeting.models import Meeting, User
 from meeting.serializer import MeetingSerializer
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
@@ -35,27 +35,14 @@ def test_create_meeting_model():
 
 @pytest.mark.django_db
 def test_create_user_model():
-    User.objects.create(name="test name",
+    User.objects.create(username="test name",
                         email='test email',
                         password='test password',
                         gender='test gender',
                         nickname='test nickname',
                         phone_number='test phone_number',
                         is_authenticated_university_student=False)
-    User.objects.get(name='test name')
-
-
-@pytest.mark.django_db
-def test_create_comment_model():
-    user = User.objects.create(name="test name",
-                               email='test email',
-                               password='test password',
-                               gender='test gender',
-                               nickname='test nickname',
-                               phone_number='test phone_number',
-                               is_authenticated_university_student=False)
-    Comment.objects.create(user=user, comment='test comment')
-    Comment.objects.get(user=user)
+    User.objects.get(username='test name')
 
 
 @pytest.mark.django_db
