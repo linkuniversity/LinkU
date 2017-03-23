@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import Login from '../src/login/Login';
-import SimpleLogin from '../src/login/SimpleLogin';
-import SimpleLoginButton from '../src/login/SimpleLoginButton';
+import Login from '../login/Login';
+import SimpleLogin from '../login/SimpleLogin';
+import SimpleLoginButton from '../login/SimpleLoginButton';
 
 
 describe('<Login />', () => {
