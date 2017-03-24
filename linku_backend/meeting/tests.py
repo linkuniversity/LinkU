@@ -1,9 +1,9 @@
 import pytest
 import datetime
 
-from django.conf import settings
 from meeting.models import Meeting, User
 from meeting.serializer import MeetingSerializer
+from rest_framework.test import APITestCase
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
 
@@ -35,14 +35,14 @@ def test_create_meeting_model():
 
 @pytest.mark.django_db
 def test_create_user_model():
-    User.objects.create(username="test name",
-                        email='test email',
+    User.objects.create(email='test email',
+                        authenticated_university_email='authenticated@university.com',
                         password='test password',
                         gender='test gender',
                         nickname='test nickname',
                         phone_number='test phone_number',
                         is_authenticated_university_student=False)
-    User.objects.get(username='test name')
+    User.objects.get(email='test email')
 
 
 @pytest.mark.django_db
@@ -107,3 +107,17 @@ def test_correct_json_data_when_meeting_GET_request(client):
             assert origin_data[key] in api_response_data[key]
         else:
             assert origin_data[key] == api_response_data[key]
+
+
+class SignupTests(APITestCase):
+    def test_sign_up_POST_request(self):
+        signup_data = {
+            'nickname': 'test nickname',
+            'gender': 'M',
+            'email': 'test@test.com',
+            'password': 'test password',
+            'authenticated_university_email': 'authenticated@university.com'
+        }
+        response = self.client.post('/signup/', signup_data)
+
+        assert response.status_code == 200
