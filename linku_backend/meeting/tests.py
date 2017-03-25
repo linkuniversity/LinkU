@@ -116,8 +116,12 @@ class SignupTests(APITestCase):
             'gender': 'M',
             'email': 'test@test.com',
             'password': 'test password',
-            'authenticated_university_email': 'authenticated@university.com'
+            'authenticated_university_email': 'authenticated@university.com',
+            'is_authenticated_university_student': True,
         }
-        response = self.client.post('/signup/', signup_data)
+        response = self.client.post('/users/', signup_data)
 
-        assert response.status_code == 200
+        assert response.status_code == 201
+        assert User.objects.count() == 1
+        user = User.objects.get(email='test@test.com')
+        assert user.nickname == 'test nickname'
