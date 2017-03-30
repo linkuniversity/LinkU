@@ -7,6 +7,8 @@ import Place from './specific_page/Place';
 import Appliers from './specific_page/Appliers';
 
 import Login from './login/Login';
+import Jumbotron from './mainpage/Jumbotron';
+import MeetingCardBox from './mainpage/MeetingCardBox';
 
 export default class App extends Component {
     render() {
