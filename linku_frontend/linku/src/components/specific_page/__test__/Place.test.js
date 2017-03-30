@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Place from '../specific_page/Place';
+import Place from '../Place';
 
 describe('<Place />', () => {
 

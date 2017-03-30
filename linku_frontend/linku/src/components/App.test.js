@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../App';
+import App from './App';
 
 import configureStore from 'redux-mock-store';
-import { reducers } from '../../reducers';
+import { reducers } from '../reducers';
 import { Provider } from 'react-redux';
 
 const middlewares = []

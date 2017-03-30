@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import MeetingCard from '../mainpage/MeetingCard';
+import MeetingCard from '../MeetingCard';
 
 import configureStore from 'redux-mock-store';
-import { reducers } from '../../reducers';
+import { reducers } from '../../../reducers';
 import { Provider } from 'react-redux';
 
 describe('<MeetingCard />', () => {

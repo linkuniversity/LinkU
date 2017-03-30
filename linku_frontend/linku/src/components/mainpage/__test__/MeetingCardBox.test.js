@@ -1,11 +1,11 @@
 import React from 'react';
 import {shallow, mount, render} from 'enzyme';
-import MeetingCardBox from '../mainpage/MeetingCardBox';
-import MeetingCard from '../mainpage/MeetingCard';
-import CategoriesInMainPage from '../mainpage/CategoriesInMainPage';
+import MeetingCardBox from '../MeetingCardBox';
+import MeetingCard from '../MeetingCard';
+import CategoriesInMainPage from '../CategoriesInMainPage';
 
 import configureStore from 'redux-mock-store';
-import { reducers } from '../../reducers';
+import { reducers } from '../../../reducers';
 import { Provider } from 'react-redux';
 
 const middlewares = []

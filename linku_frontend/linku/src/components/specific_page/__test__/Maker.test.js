@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Maker from '../specific_page/Maker';
+import Maker from '../Maker';
 
 describe('<Maker />', () => {
 
