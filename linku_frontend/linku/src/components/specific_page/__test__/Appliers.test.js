@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import Appliers from '../specific_page/Appliers';
+import Appliers from '../Appliers';
 
 describe('<Appliers/>', ()=>{
 

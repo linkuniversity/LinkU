@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import RightPanel from '../specific_page/RightPanel';
+import RightPanel from '../RightPanel';
 
 describe('<RightPanel />', () => {
 

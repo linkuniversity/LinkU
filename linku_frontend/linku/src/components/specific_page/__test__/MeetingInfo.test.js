@@ -1,6 +1,6 @@
 import React from 'react';
 import {mount} from 'enzyme';
-import MeetingInfo from '../specific_page/MeetingInfo';
+import MeetingInfo from '../MeetingInfo';
 
 describe('<MeetingInfo />', () => {
 

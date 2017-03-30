@@ -1,12 +1,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import CategoriesInMainPage from '../mainpage/CategoriesInMainPage';
+import Jumbotron from '../Jumbotron';
 
-describe('<CategoriesInMainPage />', () => {
+describe('<Jumbotron />', () => {
     it( 'renders without exploding', () => {
         expect(
             shallow(
-                <CategoriesInMainPage />
+                <Jumbotron />
             ).length
         ).toEqual(1);
     });

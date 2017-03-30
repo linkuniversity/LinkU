@@ -2,13 +2,13 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import Login from '../login/Login';
-import SimpleLogin from '../login/SimpleLogin';
-import SimpleLoginButton from '../login/SimpleLoginButton';
-import CloseButton from '../login/CloseButton';
+import Login from '../Login';
+import SimpleLogin from '../SimpleLogin';
+import SimpleLoginButton from '../SimpleLoginButton';
+import CloseButton from '../CloseButton';
 
 import configureStore from 'redux-mock-store';
-import { reducers } from '../../reducers';
+import { reducers } from '../../../reducers';
 import { Provider } from 'react-redux';
 
 const middlewares = []
