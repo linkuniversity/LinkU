@@ -1,6 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default class MeetingCard extends React.Component
+import { bindActionCreators } from 'redux';
+
+import * as actions from '../../actions/Common';
+
+class MeetingCard extends React.Component
 {
     render() {
         let cardStyle = {
@@ -16,14 +21,25 @@ export default class MeetingCard extends React.Component
             height: '100px'
         };
         return(
-            <span style={cardStyle}>
-                {this.props.meetingInfo.start_time} {this.props.meetingInfo.place}
+            <span
+                style={cardStyle}
+                onClick={this.props.alertLogin}
+                >
+                {this.props.meetingInfo.start_time}
+                {this.props.meetingInfo.place}
                 <br/>
                 {this.props.meetingInfo.title}
             <img
                 style={profStyle}
-                src={this.props.meetingInfo.prof_img_path}/>
+                src={this.props.meetingInfo.prof_img_path}
+                />
             </span>
         );
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actions, dispatch);
+}
+
+export default connect(null , mapDispatchToProps)(MeetingCard);

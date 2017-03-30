@@ -5,10 +5,28 @@ import sinon from 'sinon';
 import Login from '../login/Login';
 import SimpleLogin from '../login/SimpleLogin';
 import SimpleLoginButton from '../login/SimpleLoginButton';
+import CloseButton from '../login/CloseButton';
 
+import configureStore from 'redux-mock-store';
+import { reducers } from '../../reducers';
+import { Provider } from 'react-redux';
+
+const middlewares = []
+const mockStore = configureStore(middlewares);
+
+const initialState = {
+    login : {
+        isVisible : false
+    }
+};
+const store = mockStore(initialState);
 
 describe('<Login />', () => {
-    const wrapper = shallow(<Login />);
+    const wrapper = mount(
+        <Provider store = {store}>
+            <Login />
+        </Provider>
+    );
 
     it('renders without exploding', () => {
         expect(wrapper.length).toEqual(1);
@@ -22,6 +40,24 @@ describe('<Login />', () => {
 
     it('renders simple login children', () => {
         expect(wrapper.find(SimpleLogin)).toHaveLength(1);
+    });
+
+    it('renders a CloseButton component', () => {
+        expect(wrapper.find(CloseButton)).toHaveLength(1);
+    });
+});
+
+describe('<CloseButton />',() => {
+    it('can be clicked by user', () => {
+        const wrapper = mount(
+            <Provider store = {store}>
+                <CloseButton />
+            </Provider>
+        );
+
+        wrapper.find(CloseButton).simulate('click');
+        const actions = store.getActions();
+        expect(actions).toEqual([{"type": "HIDE_LOGIN_ALERT"}]);
     });
 });
 
