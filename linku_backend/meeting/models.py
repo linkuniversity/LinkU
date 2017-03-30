@@ -9,8 +9,9 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1)
     nickname = models.CharField(max_length=20)
     profile_image_path = models.ImageField(blank=True)
-    phone_number = models.CharField(max_length=11)
-    is_authenticated_university_student = models.BooleanField()
+    phone_number = models.CharField(blank=True, max_length=11)
+    authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
+    is_authenticated_university_student = models.BooleanField(blank=True)
 
 
 class Meeting(models.Model):
