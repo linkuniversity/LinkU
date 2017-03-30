@@ -7,7 +7,6 @@ export function alertLogin(){
 }
 
 export function hideLoginAlert(){
-    console.log("hide!!");
     return {
         type: types.HIDE_LOGIN_ALERT
     }

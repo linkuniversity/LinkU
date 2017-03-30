@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import SimpleLogin from './SimpleLogin';
+
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
+import SimpleLogin from './SimpleLogin';
+import CloseButton from './CloseButton';
 
 import * as actions from '../../actions/Common';
 
@@ -12,9 +14,7 @@ class Login extends Component {
         }
         return (
             <div style={style}>
-                <div onClick={this.props.hideLoginAlert}>
-                    로그인 창 닫기
-                </div>
+                <CloseButton />
                 <h>링쿠 로그인</h>
                 <SimpleLogin />
             </div>
@@ -27,8 +27,5 @@ const mapStateToProps = (state) => {
         isVisible : state.login.isVisible
     };
 }
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(actions, dispatch);
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps)(Login);
