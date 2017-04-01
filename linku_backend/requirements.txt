@@ -1,6 +1,7 @@
 codecov==2.0.5
 coverage==4.3.4
 Django==1.10
+django-cors-headers==2.0.2
 django-filter==1.0.1
 djangorestframework==3.5.4
 httpie==0.9.9
