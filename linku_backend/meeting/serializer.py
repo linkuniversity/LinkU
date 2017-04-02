@@ -22,4 +22,4 @@ class MeetingSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'nickname', 'gender', 'password', 'authenticated_university_email')
+        fields = ('username', 'nickname', 'gender', 'password', 'phone_number', 'authenticated_university_email')

@@ -145,6 +145,7 @@ def test_sign_up_POST_request(client):
         'nickname': 'test nickname',
         'gender': 'M',
         'password': 'test password',
+        'phone_number': '01012341234',
         'authenticated_university_email': 'authenticated@university.com',
     }
     response = client.post('/users/', signup_data)
@@ -165,10 +166,10 @@ def test_sign_up_fail_with_existent_username(client):
 
     signup_data = {
         'username': 'test@email.com',
-        'nickname': 'test nickname2',
+        'nickname': 'test nickname',
         'gender': 'F',
         'password': 'test password',
-        'authenticated_university_email': 'test@authenticated2.ac.kr'
+        'authenticated_university_email': 'test@authenticated.ac.kr'
     }
 
     response = client.post('/users/', signup_data)
@@ -181,10 +182,10 @@ def test_sign_up_fail_with_existent_username(client):
 def test_sign_up_username_field_email_validation(client):
     signup_data = {
         'username': 'test',
-        'nickname': 'test nickname2',
+        'nickname': 'test nickname',
         'gender': 'F',
         'password': 'test password',
-        'authenticated_university_email': 'test@authenticated2.ac.kr'
+        'authenticated_university_email': 'test@authenticated.ac.kr'
     }
 
     response = client.post('/users/', signup_data)
@@ -197,13 +198,36 @@ def test_sign_up_username_field_email_validation(client):
 def test_sign_up_gender_field_validation(client):
     signup_data = {
         'username': 'test@email.com',
-        'nickname': 'test nickname2',
+        'nickname': 'test nickname',
         'gender': 'A',
         'password': 'test password',
-        'authenticated_university_email': 'test@authenticated2.ac.kr'
+        'authenticated_university_email': 'test@authenticated.ac.kr'
     }
 
     response = client.post('/users/', signup_data)
 
     assert response.status_code == 400
     assert '"A" is not a valid choice.' in response.data['gender']
+
+
+@pytest.mark.django_db
+def test_sign_up_phone_number_field_validation(client):
+    signup_data = {
+        'username': 'test@email.com',
+        'nickname': 'test nickname',
+        'gender': 'M',
+        'password': 'test password',
+        'phone_number': '010123424',
+        'authenticated_university_email': 'test@authenticated.ac.kr'
+    }
+
+    response = client.post('/users/', signup_data)
+
+    assert response.status_code == 400
+    assert 'Phone length has to be 11 & Only number' in response.data['phone_number']
+
+    signup_data['phone_number'] = '0101234123a'
+    response = client.post('/users/', signup_data)
+
+    assert response.status_code == 400
+    assert 'Phone length has to be 11 & Only number' in response.data['phone_number']
