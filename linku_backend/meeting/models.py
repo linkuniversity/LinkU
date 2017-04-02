@@ -28,3 +28,9 @@ class Meeting(models.Model):
     category = models.CharField(max_length=30)
     specific_link = models.CharField(max_length=30)
     appliers = models.ManyToManyField(settings.AUTH_USER_MODEL)
+
+
+class SubImage(models.Model):
+    image = models.ImageField(default=SAVED_MEETING_DEFAULT_IMAGE_NAME)
+    name = models.CharField(max_length=30)
+    meeting = models.ForeignKey('Meeting', related_name='sub_images', on_delete=models.CASCADE)
