@@ -6,8 +6,13 @@ SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
 
 class User(AbstractUser):
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+
     username = models.EmailField(unique=True, null=False, max_length=254)
-    gender = models.CharField(max_length=1)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     nickname = models.CharField(max_length=20)
     profile_image_path = models.ImageField(blank=True)
     phone_number = models.CharField(blank=True, max_length=11)

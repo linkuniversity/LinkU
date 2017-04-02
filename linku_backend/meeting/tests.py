@@ -191,3 +191,19 @@ def test_sign_up_username_field_email_validation(client):
 
     assert response.status_code == 400
     assert 'Enter a valid email address.' in response.data['username']
+
+
+@pytest.mark.django_db
+def test_sign_up_gender_field_validation(client):
+    signup_data = {
+        'username': 'test@email.com',
+        'nickname': 'test nickname2',
+        'gender': 'A',
+        'password': 'test password',
+        'authenticated_university_email': 'test@authenticated2.ac.kr'
+    }
+
+    response = client.post('/users/', signup_data)
+
+    assert response.status_code == 400
+    assert '"A" is not a valid choice.' in response.data['gender']
