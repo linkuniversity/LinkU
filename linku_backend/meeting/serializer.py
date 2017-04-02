@@ -1,14 +1,16 @@
 from rest_framework import serializers
-from .models import Meeting, User
+from .models import Meeting, User, SubImage
+
+
+class SubImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = SubImage
+        fields = ('path', )
 
 
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
     main_image = serializers.ImageField(use_url=True)
-    sub_images = serializers.SlugRelatedField(
-        many=True,
-        read_only=True,
-        slug_field='name',
-    )
+    sub_images = SubImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Meeting

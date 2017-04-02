@@ -124,19 +124,19 @@ class MeetingImageTests(APITestCase):
                                          specific_link='test specific_link')
 
         sub_images = []
-        sub_images.append(SubImage.objects.create(image=SAVED_TEST_IMAGE_NAME, name=SAVED_TEST_IMAGE_NAME, meeting=meeting))
-        sub_images.append(SubImage.objects.create(image=SAVED_TEST_IMAGE_NAME2, name=SAVED_TEST_IMAGE_NAME2, meeting=meeting))
-        sub_images.append(SubImage.objects.create(image=SAVED_TEST_IMAGE_NAME, name=SAVED_TEST_IMAGE_NAME, meeting=meeting))
+        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
+        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=meeting))
+        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
 
         response = self.client.get('/meetings/%d/' % meeting.id)
         assert response.status_code == 200
 
         api_response_data = response.data
         assert 'sub_images' in api_response_data.keys()
-        for key in api_response_data.keys():
-            if key == 'sub_images':
-                for sub_image in sub_images:
-                    assert sub_image.name in api_response_data[key]
+
+        response_sub_images = api_response_data['sub_images']
+        for i in range(3):
+            assert sub_images[i].path.url in response_sub_images[i]['path']
 
 
 class SignupTests(APITestCase):
