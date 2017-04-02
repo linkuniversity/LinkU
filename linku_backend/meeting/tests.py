@@ -1,12 +1,12 @@
 import pytest
 import datetime
 
-from meeting.models import Meeting, User
+from meeting.models import Meeting, User, SubImage
 from meeting.serializer import MeetingSerializer
 from rest_framework.test import APITestCase
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
-
+SAVED_TEST_IMAGE_NAME2 = 'test_image2.jpg'
 
 @pytest.mark.django_db
 def test_json_header_when_meetings_GET_request(client):
@@ -109,6 +109,36 @@ def test_correct_json_data_when_meeting_GET_request(client):
             assert origin_data[key] == api_response_data[key]
 
 
+class MeetingImageTests(APITestCase):
+    def test_meeting_has_many_sub_images(self):
+        meeting = Meeting.objects.create(maker_name='test maker_name',
+                                         title='test title',
+                                         start_time=datetime.datetime.now(),
+                                         place='test place',
+                                         price=5000,
+                                         num_of_joined_members=1,
+                                         max_num_of_members=6,
+                                         meeting_specific_info='test meeting_specific_info',
+                                         restaurant_name='test restaurant_name',
+                                         category='tes category',
+                                         specific_link='test specific_link')
+
+        sub_images = []
+        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
+        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=meeting))
+        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
+
+        response = self.client.get('/meetings/%d/' % meeting.id)
+        assert response.status_code == 200
+
+        api_response_data = response.data
+        assert 'sub_images' in api_response_data.keys()
+
+        response_sub_images = api_response_data['sub_images']
+        for i in range(3):
+            assert sub_images[i].path.url in response_sub_images[i]['path']
+
+
 class SignupTests(APITestCase):
     def test_sign_up_POST_request(self):
         signup_data = {
@@ -125,3 +155,4 @@ class SignupTests(APITestCase):
         assert User.objects.count() == 1
         user = User.objects.get(email='test@test.com')
         assert user.nickname == 'test nickname'
+
