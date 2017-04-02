@@ -22,6 +22,7 @@ from meeting import views
 router = routers.DefaultRouter()
 router.register(r'meetings', views.MeetingViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'subimages', views.SubImageViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

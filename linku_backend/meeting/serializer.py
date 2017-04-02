@@ -5,7 +5,7 @@ from .models import Meeting, User, SubImage
 class SubImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SubImage
-        fields = ('path', )
+        fields = ('path', 'meeting')
 
 
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
