@@ -40,8 +40,7 @@ def test_create_user_model():
                         password='test password',
                         gender='test gender',
                         nickname='test nickname',
-                        phone_number='test phone_number',
-                        is_authenticated_university_student=False)
+                        phone_number='test phone_number')
     User.objects.get(email='test email')
 
 
@@ -142,17 +141,37 @@ def test_meeting_has_many_sub_images(client):
 @pytest.mark.django_db
 def test_sign_up_POST_request(client):
     signup_data = {
+        'username': 'test@email.com',
         'nickname': 'test nickname',
         'gender': 'M',
-        'email': 'test@test.com',
         'password': 'test password',
         'authenticated_university_email': 'authenticated@university.com',
-        'is_authenticated_university_student': True,
     }
     response = client.post('/users/', signup_data)
 
     assert response.status_code == 201
     assert User.objects.count() == 1
-    user = User.objects.get(email='test@test.com')
+    user = User.objects.get(username='test@email.com')
     assert user.nickname == 'test nickname'
 
+
+@pytest.mark.django_db
+def test_sign_up_fail_with_existent_username(client):
+    User.objects.create(username='test@email.com',
+                               nickname='test nickname',
+                               gender='M',
+                               password='test password',
+                               authenticated_university_email='test@authenticated.ac.kr')
+
+    signup_data = {
+        'username': 'test@email.com',
+        'nickname': 'test nickname2',
+        'gender': 'F',
+        'password': 'test password',
+        'authenticated_university_email': 'test@authenticated2.ac.kr'
+    }
+
+    response = client.post('/users/', signup_data)
+
+    assert response.status_code == 400
+    assert 'A user with that username already exists.' in response.data['username']

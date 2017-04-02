@@ -11,7 +11,6 @@ class User(AbstractUser):
     profile_image_path = models.ImageField(blank=True)
     phone_number = models.CharField(blank=True, max_length=11)
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
-    is_authenticated_university_student = models.BooleanField(blank=True)
 
 
 class Meeting(models.Model):
