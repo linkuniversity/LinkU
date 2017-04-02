@@ -105,6 +105,11 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:3000'
 )
 
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',  # Use application/json instead of multipart/form-data requests in tests.
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 

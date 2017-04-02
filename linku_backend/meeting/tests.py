@@ -72,7 +72,7 @@ def test_correct_json_data_when_meetings_GET_request(client):
                                            category='tes category2',
                                            specific_link='test specific_link2'))
 
-    response = client.get('/meetings/' + "?format=json")
+    response = client.get('/meetings/')
 
     for index, meeting in enumerate(meetings):
         origin_data = MeetingSerializer(meeting).data
@@ -98,7 +98,7 @@ def test_correct_json_data_when_meeting_GET_request(client):
                                      category='tes category',
                                      specific_link='test specific_link')
 
-    response = client.get('/meetings/' + str(meeting.id) + "/?format=json")
+    response = client.get('/meetings/%d/' % meeting.id)
 
     origin_data = MeetingSerializer(meeting).data
     api_response_data = response.data
@@ -109,50 +109,50 @@ def test_correct_json_data_when_meeting_GET_request(client):
             assert origin_data[key] == api_response_data[key]
 
 
-class MeetingImageTests(APITestCase):
-    def test_meeting_has_many_sub_images(self):
-        meeting = Meeting.objects.create(maker_name='test maker_name',
-                                         title='test title',
-                                         start_time=datetime.datetime.now(),
-                                         place='test place',
-                                         price=5000,
-                                         num_of_joined_members=1,
-                                         max_num_of_members=6,
-                                         meeting_specific_info='test meeting_specific_info',
-                                         restaurant_name='test restaurant_name',
-                                         category='tes category',
-                                         specific_link='test specific_link')
+@pytest.mark.django_db
+def test_meeting_has_many_sub_images(client):
+    meeting = Meeting.objects.create(maker_name='test maker_name',
+                                     title='test title',
+                                     start_time=datetime.datetime.now(),
+                                     place='test place',
+                                     price=5000,
+                                     num_of_joined_members=1,
+                                     max_num_of_members=6,
+                                     meeting_specific_info='test meeting_specific_info',
+                                     restaurant_name='test restaurant_name',
+                                     category='tes category',
+                                     specific_link='test specific_link')
 
-        sub_images = []
-        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
-        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=meeting))
-        sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
+    sub_images = []
+    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
+    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=meeting))
+    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
 
-        response = self.client.get('/meetings/%d/' % meeting.id)
-        assert response.status_code == 200
+    response = client.get('/meetings/%d/' % meeting.id)
+    assert response.status_code == 200
 
-        api_response_data = response.data
-        assert 'sub_images' in api_response_data.keys()
+    api_response_data = response.data
+    assert 'sub_images' in api_response_data.keys()
 
-        response_sub_images = api_response_data['sub_images']
-        for i in range(3):
-            assert sub_images[i].path.url in response_sub_images[i]['path']
+    response_sub_images = api_response_data['sub_images']
+    for i in range(3):
+        assert sub_images[i].path.url in response_sub_images[i]['path']
 
 
-class SignupTests(APITestCase):
-    def test_sign_up_POST_request(self):
-        signup_data = {
-            'nickname': 'test nickname',
-            'gender': 'M',
-            'email': 'test@test.com',
-            'password': 'test password',
-            'authenticated_university_email': 'authenticated@university.com',
-            'is_authenticated_university_student': True,
-        }
-        response = self.client.post('/users/', signup_data)
+@pytest.mark.django_db
+def test_sign_up_POST_request(client):
+    signup_data = {
+        'nickname': 'test nickname',
+        'gender': 'M',
+        'email': 'test@test.com',
+        'password': 'test password',
+        'authenticated_university_email': 'authenticated@university.com',
+        'is_authenticated_university_student': True,
+    }
+    response = client.post('/users/', signup_data)
 
-        assert response.status_code == 201
-        assert User.objects.count() == 1
-        user = User.objects.get(email='test@test.com')
-        assert user.nickname == 'test nickname'
+    assert response.status_code == 201
+    assert User.objects.count() == 1
+    user = User.objects.get(email='test@test.com')
+    assert user.nickname == 'test nickname'
 
