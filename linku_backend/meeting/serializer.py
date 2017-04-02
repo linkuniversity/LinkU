@@ -11,6 +11,7 @@ class SubImageSerializer(serializers.HyperlinkedModelSerializer):
 class MeetingSerializer(serializers.HyperlinkedModelSerializer):
     main_image = serializers.ImageField(use_url=True)
     sub_images = SubImageSerializer(many=True, read_only=True)
+    appliers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = Meeting

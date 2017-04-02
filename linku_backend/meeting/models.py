@@ -32,4 +32,4 @@ class Meeting(models.Model):
 
 class SubImage(models.Model):
     path = models.ImageField(default=SAVED_MEETING_DEFAULT_IMAGE_NAME)
-    meeting = models.ForeignKey('Meeting', related_name='sub_images', on_delete=models.CASCADE)
+    meeting = models.ForeignKey('Meeting', related_name='sub_images', on_delete=models.CASCADE, blank=True)
