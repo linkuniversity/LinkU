@@ -11,6 +11,7 @@ import Jumbotron from './mainpage/Jumbotron';
 import MeetingCardBox from './mainpage/MeetingCardBox';
 
 export default class App extends Component {
+
     render() {
         return (
             <div>
