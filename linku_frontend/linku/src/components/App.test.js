@@ -2,19 +2,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import configureStore from 'redux-mock-store';
 import { reducers } from '../reducers';
 import { Provider } from 'react-redux';
 
-const middlewares = []
-const mockStore = configureStore(middlewares);
+import createSagaMiddleware from 'redux-saga';
 
-const initialState = {
-    login : {
-        isVisible : false
-    }
-};
-const store = mockStore(initialState);
+import rootSaga from '../sagas';
+import {createStore, applyMiddleware} from 'redux';
+
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
+
+const store = createStore(
+    reducers,
+    applyMiddleware(...middleware),
+);
+
+sagaMiddleware.run(rootSaga);
 
 it('renders without crashing', () => {
     const div = document.createElement('div');

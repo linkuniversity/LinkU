@@ -4,34 +4,44 @@ import MeetingCardBox from '../MeetingCardBox';
 import MeetingCard from '../MeetingCard';
 import CategoriesInMainPage from '../CategoriesInMainPage';
 
-import configureStore from 'redux-mock-store';
+import configureMockStore from 'redux-mock-store';
 import { reducers } from '../../../reducers';
 import { Provider } from 'react-redux';
 
-const middlewares = []
-const mockStore = configureStore(middlewares);
+import createSagaMiddleware from 'redux-saga';
 
-const initialState = {};
-const store = mockStore(initialState);
+import rootSaga from '../../../sagas';
+import {createStore, applyMiddleware} from 'redux';
+
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
+
+const store = createStore(
+    reducers,
+    applyMiddleware(...middleware),
+);
+
+sagaMiddleware.run(rootSaga);
 
 describe('<MeetingCardBox />', () => {
 
     it('renders without exploding', () => {
-        const wrapper = shallow(
-            <Provider store = {store}>
-                <MeetingCardBox />
-            </Provider>);
-
-        expect(wrapper.dive().length).toEqual(1);
-    });
-
-
-    it('renders a CategoriesInMainPage component', () => {
-        const wrapper = shallow(
+        const wrapper = mount(
             <Provider store = {store}>
                 <MeetingCardBox />
             </Provider>
         );
-        expect(wrapper.dive().find(CategoriesInMainPage)).toHaveLength(1);
+
+        expect(wrapper.length).toEqual(1);
+    });
+
+
+    it('renders a CategoriesInMainPage component', () => {
+        const wrapper = mount(
+            <Provider store = {store}>
+                <MeetingCardBox />
+            </Provider>
+        );
+        expect(wrapper.find(CategoriesInMainPage)).toHaveLength(1);
     });
 });
