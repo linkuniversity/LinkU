@@ -13,7 +13,7 @@ class MeetingCard extends React.Component
             height: "400px",
             display: 'inline-block',
             margin: '20px',
-            backgroundImage: 'url(' + this.props.meetingInfo.food_img_path + ')'
+            backgroundImage: 'url(' + this.props.meetingInfo.main_image + ')'
         };
 
         let profStyle = {
@@ -26,9 +26,14 @@ class MeetingCard extends React.Component
                 onClick={this.props.alertLogin}
                 >
                 {this.props.meetingInfo.start_time}
-                {this.props.meetingInfo.place}
+                <br/>
+                {this.props.meetingInfo.maker_name}
+                <br/>
+                {this.props.meetingInfo.price}
                 <br/>
                 {this.props.meetingInfo.title}
+                <br />
+                {this.props.meetingInfo.place}
             <img
                 style={profStyle}
                 src={this.props.meetingInfo.prof_img_path}

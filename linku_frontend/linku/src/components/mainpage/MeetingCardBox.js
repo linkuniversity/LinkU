@@ -20,14 +20,14 @@ class MeetingCardBox extends React.Component {
             });
         };
 
+        let receivedData;
         let boxStyle = {
             maxWidth: '1500px',
         };
         return (
             <div style= { boxStyle }>
                 <CategoriesInMainPage />
-                {console.log(this.props.all_meeting_infos)}
-                {mapToComponents(this.props.all_meeting_infos)}
+                {mapToComponents(this.props.all_meeting_infos.data ? this.props.all_meeting_infos.data : [])}
             </div>
         );
     }
@@ -36,7 +36,7 @@ class MeetingCardBox extends React.Component {
 const mapStateToProps = (state) => {
     return {
         fetching: state.meetingCardInfos.fetching,
-        all_meeting_infos: [...state.meetingCardInfos.meeting_infos]
+        all_meeting_infos: state.meetingCardInfos.meeting_infos
     }
 };
 
