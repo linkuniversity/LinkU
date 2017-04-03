@@ -2,29 +2,15 @@ import React from 'react';
 import MeetingCard from './MeetingCard';
 import jQuery from 'jquery';
 import CategoriesInMainPage from './CategoriesInMainPage';
-import * as infos from '../../axios/meeting';
+import {fetchMeetingCardInfos} from '../../actions/meetingcard';
+import { connect } from 'react-redux';
 
-export default class MeetingCardBox extends React.Component {
+class MeetingCardBox extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            meeting_infos : []
-        };
-        this._fetchInfosFromApi = this._fetchInfosFromApi.bind(this);
     }
-    componentWillMount() {
-        this._fetchInfosFromApi();
-    }
-
-    _fetchInfosFromApi = async (postId) => {
-        const info = await Promise.all([
-            infos.getMeetingInfos()
-        ]);
-        this.setState({
-            ...this.state,
-            meeting_infos : info
-        });
+    componentDidMount() {
+        this.props.fetchMeetingCardInfos();
     }
 
     render() {
@@ -40,8 +26,20 @@ export default class MeetingCardBox extends React.Component {
         return (
             <div style= { boxStyle }>
                 <CategoriesInMainPage />
-            {mapToComponents(this.state.meeting_infos)}
+                {console.log(this.props.all_meeting_infos)}
+                {mapToComponents(this.props.all_meeting_infos)}
             </div>
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        fetching: state.meetingCardInfos.fetching,
+        all_meeting_infos: [...state.meetingCardInfos.meeting_infos]
+    }
+};
+
+export default connect(mapStateToProps, {
+  fetchMeetingCardInfos
+})(MeetingCardBox);
