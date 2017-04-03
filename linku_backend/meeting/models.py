@@ -1,17 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
+from django.core.validators import RegexValidator
 
 SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
 
 class User(AbstractUser):
-    gender = models.CharField(max_length=1)
-    nickname = models.CharField(max_length=20)
-    profile_image_path = models.ImageField(blank=True)
-    phone_number = models.CharField(blank=True, max_length=11)
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    phone_regex = RegexValidator(regex='^\d{11}$', message='Phone length has to be 11 & Only number')
+
+    username = models.EmailField(unique=True, null=False, max_length=254)
+    nickname = models.CharField(unique=True, max_length=20)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    phone_number = models.CharField(max_length=11, validators=[phone_regex])
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
-    is_authenticated_university_student = models.BooleanField(blank=True)
+    profile_image_path = models.ImageField(blank=True)
 
 
 class Meeting(models.Model):
