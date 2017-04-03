@@ -157,7 +157,7 @@ def test_sign_up_POST_request(client):
 
 
 @pytest.mark.django_db
-def test_sign_up_fail_with_existent_username(client):
+def test_sign_up_fail_with_existent_fields(client):
     User.objects.create(username='test@email.com',
                                nickname='test nickname',
                                gender='M',
@@ -176,6 +176,9 @@ def test_sign_up_fail_with_existent_username(client):
 
     assert response.status_code == 400
     assert 'user with this username already exists.' in response.data['username']
+    assert 'user with this nickname already exists.' in response.data['nickname']
+    assert 'user with this authenticated university email already exists.' in response.data['authenticated_university_email']
+
 
 
 @pytest.mark.django_db

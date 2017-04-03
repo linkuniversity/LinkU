@@ -14,7 +14,7 @@ class User(AbstractUser):
     phone_regex = RegexValidator(regex='^\d{11}$', message='Phone length has to be 11 & Only number')
 
     username = models.EmailField(unique=True, null=False, max_length=254)
-    nickname = models.CharField(max_length=20)
+    nickname = models.CharField(unique=True, max_length=20)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     phone_number = models.CharField(max_length=11, validators=[phone_regex])
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
