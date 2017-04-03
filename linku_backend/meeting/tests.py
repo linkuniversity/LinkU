@@ -180,6 +180,20 @@ def test_sign_up_fail_with_existent_fields(client):
     assert 'user with this authenticated university email already exists.' in response.data['authenticated_university_email']
 
 
+@pytest.mark.django_db
+def test_sign_up_fail_with_empty_fields(client):
+    signup_data = {}
+
+    response = client.post('/users/', signup_data)
+
+    assert response.status_code == 400
+    assert 'This field is required.' in response.data['username']
+    assert 'This field is required.' in response.data['nickname']
+    assert 'This field is required.' in response.data['gender']
+    assert 'This field is required.' in response.data['phone_number']
+    assert 'This field is required.' in response.data['password']
+    assert 'This field is required.' in response.data['authenticated_university_email']
+
 
 @pytest.mark.django_db
 def test_sign_up_username_field_email_validation(client):
