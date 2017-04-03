@@ -3,14 +3,25 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 import Login from './components/login/Login'
+import rootSaga from './sagas';
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { reducers } from './reducers';
 import { Provider } from 'react-redux';
 
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-const store = createStore(reducers);
+import createSagaMiddleware from 'redux-saga';
+
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [sagaMiddleware];
+
+const store = createStore(
+  reducers,
+  applyMiddleware(...middleware),
+);
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store = {store} >
