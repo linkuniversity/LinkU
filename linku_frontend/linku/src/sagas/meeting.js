@@ -4,12 +4,13 @@ import * as actions from '../actions/meetingcard';
 
 function* fetchMeetingCardInfos(action){
     try{
-        yield put(actions.requestMeeting());
+        yield put(actions.requestMeetingCardInfos());
         const [meeting] = yield [
             call(service.getMeetingInfos)
         ];
-        yield put(actions.receiveMeetingCardInfos());
+        yield put(actions.receiveMeetingCardInfos(meeting));
     }catch(e){
+        console.log(e);
         yield put(actions.receiveMeetingCardInfosFailed());
     }
 }

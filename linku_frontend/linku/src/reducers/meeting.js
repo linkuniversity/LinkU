@@ -14,7 +14,7 @@ export default function meetingCardInfos(state = initialState, action){
         return {
             ...state,
             fetching: false,
-            meeting_infos: [...action.meeting_infos]
+            meeting_infos: action.meeting_infos
         };
         case 'RECEIVE_MEETING_CARD_INFOS_FAILED':
         return {
