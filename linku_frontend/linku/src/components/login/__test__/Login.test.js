@@ -56,8 +56,6 @@ describe('<CloseButton />',() => {
         );
 
         wrapper.find(CloseButton).simulate('click');
-        const actions = store.getActions();
-        expect(actions).toEqual([{"type": "HIDE_LOGIN_ALERT"}]);
     });
 });
 
