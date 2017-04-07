@@ -3,6 +3,7 @@ import MeetingCard from './MeetingCard';
 import jQuery from 'jquery';
 import CategoriesInMainPage from './CategoriesInMainPage';
 import {fetchMeetingCardInfos} from '../../actions/meetingcard';
+
 import { connect } from 'react-redux';
 
 class MeetingCardBox extends React.Component {

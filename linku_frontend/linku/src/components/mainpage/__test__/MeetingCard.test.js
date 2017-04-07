@@ -10,7 +10,11 @@ describe('<MeetingCard />', () => {
     const middlewares = []
     const mockStore = configureStore(middlewares);
 
-    const initialState = {}
+    const initialState = {
+        login : {
+            loggedIn : false
+        }
+    }
     const store = mockStore(initialState);
 
     const meetingCardInfo = {
