@@ -1,7 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.conf import settings
 from django.core.validators import RegexValidator
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
@@ -19,6 +22,12 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=11, validators=[phone_regex])
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
     profile_image_path = models.ImageField(blank=True)
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        Token.objects.create(user=instance)
 
 
 class Meeting(models.Model):

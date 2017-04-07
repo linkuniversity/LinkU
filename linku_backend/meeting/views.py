@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer
-from .models import Meeting, User
+from .models import Meeting, User, SubImage
 
 
 class MeetingViewSet(viewsets.ModelViewSet):
@@ -13,6 +13,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 class SubImageViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = SubImage.objects.all()
     serializer_class = SubImageSerializer

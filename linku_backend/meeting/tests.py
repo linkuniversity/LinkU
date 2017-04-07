@@ -248,3 +248,31 @@ def test_sign_up_phone_number_field_validation(client):
 
     assert response.status_code == 400
     assert 'Phone length has to be 11 & Only number' in response.data['phone_number']
+
+
+@pytest.mark.django_db
+def test_correct_login(client):
+    login_data = {
+        'username': 'test@test.com',
+        'password': 'test password',
+    }
+
+    response = client.post('/login/', login_data)
+
+    assert response.status_code == 400
+    assert 'Unable to log in with provided credentials.' in response.data['non_field_errors']
+
+    signup_data = {
+        'username': 'test@test.com',
+        'nickname': 'test nickname',
+        'gender': 'M',
+        'password': 'test password',
+        'phone_number': '01000000000',
+        'authenticated_university_email': 'test@authenticated.ac.kr'
+    }
+
+    client.post('/users/', signup_data)
+    response = client.post('/login/', login_data)
+
+    assert response.status_code == 200
+    assert 'token' in response.data.keys()
