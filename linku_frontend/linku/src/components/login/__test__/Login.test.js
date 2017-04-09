@@ -15,7 +15,7 @@ const middlewares = []
 const mockStore = configureStore(middlewares);
 
 const initialState = {
-    login : {
+    loginAlert : {
         isVisible : false
     }
 };

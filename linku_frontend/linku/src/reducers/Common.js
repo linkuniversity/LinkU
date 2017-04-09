@@ -3,7 +3,7 @@ import * as types from '../actiontypes/Common';
 const alertLoginInitialState = {
     isVisible : false
 }
-export default function login(state = alertLoginInitialState, action){
+export default function loginAlert(state = alertLoginInitialState, action){
     switch(action.type){
         case types.ALERT_LOGIN:
             return {

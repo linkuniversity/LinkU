@@ -20,7 +20,7 @@ export default function meetingCardInfos(state = initialState, action){
         return {
             ...state,
             fetching: false
-        }
+        };
         default:
         return state;
     }

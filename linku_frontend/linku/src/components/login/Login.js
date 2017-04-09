@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import SimpleLogin from './SimpleLogin';
 import CloseButton from './CloseButton';
+import LoginForm from './LoginForm';
 
-import * as actions from '../../actions/Common';
+import { loginRequest } from '../../actions/Login';
+
 import SignUp from '../signup/SignUp';
 import axios from 'axios';
 
 class Login extends Component {
-    handleSubmit = async (values) => {
+    _handleSubmit = async (values) => {
         if( values.password != values.pwd_chk )
             console.log("password is not equal");
         else {
@@ -24,6 +27,10 @@ class Login extends Component {
             ]);
         }
     }
+
+    _handleLoginSubmit = (values) => {
+        this.props.loginRequest(values.id,values.password);
+    }
     render() {
         let style = {
             display: this.props.isVisible ? 'inline-block' : 'none'
@@ -32,8 +39,9 @@ class Login extends Component {
             <div style={style}>
                 <CloseButton />
                 <h>링쿠 로그인</h>
+                <LoginForm onSubmit = {this._handleLoginSubmit}/>
                 <SimpleLogin />
-                <SignUp onSubmit={this.handleSubmit}/>
+                <SignUp onSubmit={this._handleSubmit}/>
             </div>
         );
     }
@@ -41,8 +49,8 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isVisible : state.login.isVisible
+        isVisible : state.loginAlert.isVisible
     };
 }
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps,{loginRequest})(Login);
