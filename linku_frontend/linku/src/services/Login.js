@@ -5,5 +5,8 @@ export function login(id, password){
     {
         "username": id,
         "password" : password
+    })
+    .catch((e) => {
+        console.log(e.response.data);
     });
 }
