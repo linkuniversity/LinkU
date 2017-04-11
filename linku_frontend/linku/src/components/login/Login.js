@@ -29,7 +29,7 @@ class Login extends Component {
     }
 
     _handleLoginSubmit = (values) => {
-        this.props.loginRequest(values.id,values.password);
+        this.props.loginRequest(values.email,values.password);
     }
     render() {
         let style = {
