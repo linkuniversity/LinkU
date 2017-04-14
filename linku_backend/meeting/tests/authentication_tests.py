@@ -13,6 +13,11 @@ def test_create_user_model():
                         phone_number='test phone_number')
     User.objects.get(email='test email')
 
+@pytest.mark.django_db
+def test_return_400_response_when_user_get_request(client):
+    response = client.get('/users/')
+    assert response.status_code == 400
+
 
 @pytest.mark.django_db
 def test_sign_up_POST_request(client):
