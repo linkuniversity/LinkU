@@ -11,3 +11,9 @@ export function hideLoginAlert(){
         type: types.HIDE_LOGIN_ALERT
     }
 }
+
+export function alertSignup(){
+    return {
+        type: types.ALERT_SIGNUP
+    }
+}

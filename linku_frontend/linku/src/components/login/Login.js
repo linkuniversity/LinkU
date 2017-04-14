@@ -8,12 +8,17 @@ import SimpleLogin from './SimpleLogin';
 import LoginForm from './LoginForm';
 
 import { loginRequest } from '../../actions/Login';
-import { hideLoginAlert } from '../../actions/Common';
+import { hideLoginAlert, alertSignup } from '../../actions/Common';
 
-import SignUp from '../signup/SignUp';
 import axios from 'axios';
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onSignupButtonClick = this.onSignupButtonClick.bind(this);
+    }
+
     _handleSubmit = async (values) => {
         if( values.password != values.pwd_chk )
             console.log("password is not equal");
@@ -33,17 +38,21 @@ class Login extends Component {
         this.props.loginRequest(values.email,values.password);
     }
 
+    onSignupButtonClick() {
+        this.props.hideLoginAlert();
+        this.props.alertSignup();
+    }
+
     render() {
         return (
-            <Modal open={this.props.isVisible} size='small'>
+            <Modal open={this.props.loginModalIsVisible} size='small'>
                 <Modal.Header>링쿠 로그인</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
                         <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
                         <LoginForm onSubmit = {this._handleLoginSubmit}/>
-                        <SimpleLogin />
-                        <SignUp onSubmit={this._handleSubmit}/>
-                        <Button onClick={this.props.hideLoginAlert}>취소</Button>
+                        <Button onClick={this.onSignupButtonClick} fluid>회원가입</Button>
+                        <Button onClick={this.props.hideLoginAlert} fluid>취소</Button>
                     </Modal.Description>
                 </Modal.Content>
              </Modal>
@@ -53,10 +62,10 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isVisible : state.loginAlert.isVisible
-
+        loginModalIsVisible : state.loginAlert.loginModalIsVisible
     };
-}
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         loginRequest : (id, password) => {
@@ -64,6 +73,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         hideLoginAlert : () => {
             return dispatch(hideLoginAlert());
+        },
+        alertSignup : () => {
+            return dispatch(alertSignup());
         }
     };
 };
