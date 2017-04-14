@@ -6,8 +6,6 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../actions/Common';
 
-import { requestLogin } from '../../actions/Login';
-
 class MeetingCard extends React.Component
 {
     _loginSuccessed = () => {
