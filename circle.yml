@@ -9,6 +9,11 @@ dependencies:
         background: true
     - ./linku_backend/prepare_server.sh :
         background: true
+        
+machine:
+  node:
+      version: 5.11.0
+      
 test:
   override:
     - pytest --cov=./linku_backend ./linku_backend
