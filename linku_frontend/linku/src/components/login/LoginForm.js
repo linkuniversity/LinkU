@@ -1,21 +1,16 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Button, Form } from 'semantic-ui-react'
 
 const LoginForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="email">이메일</label>
-                <Field name="email" component="input" type="email"/>
-            </div>
-            <div>
-                <label htmlFor="password">비밀번호</label>
-                <Field name="password" component="input" type="password"/>
-            </div>
-            <div>
-                <button type="submit">로그인</button>
-            </div>
-        </form>
+        <Form onSubmit={handleSubmit}>
+            <label htmlFor="email">이메일</label>
+            <Field name="email" component="input" type="email"/>
+            <label htmlFor="password">비밀번호</label>
+            <Field name="password" component="input" type="password"/>
+            <Button type="submit" fluid>로그인</Button>
+        </Form>
     );
 }
 
