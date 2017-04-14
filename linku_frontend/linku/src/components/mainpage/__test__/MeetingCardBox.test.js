@@ -34,14 +34,4 @@ describe('<MeetingCardBox />', () => {
 
         expect(wrapper.length).toEqual(1);
     });
-
-
-    it('renders a CategoriesInMainPage component', () => {
-        const wrapper = mount(
-            <Provider store = {store}>
-                <MeetingCardBox />
-            </Provider>
-        );
-        expect(wrapper.find(CategoriesInMainPage)).toHaveLength(1);
-    });
 });
