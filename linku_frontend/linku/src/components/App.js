@@ -9,11 +9,13 @@ import Appliers from './specific_page/Appliers';
 import Login from './login/Login';
 import Jumbotron from './mainpage/Jumbotron';
 import MeetingCardBox from './mainpage/MeetingCardBox';
+import LinkUHeader from './mainpage/LinkUHeader'
 
 export default class App extends Component {
     render() {
         return (
             <div>
+                <LinkUHeader/>
                 <Login />
                 <Jumbotron />
                 <MeetingCardBox />
