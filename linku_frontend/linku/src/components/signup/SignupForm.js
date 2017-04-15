@@ -1,9 +1,10 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Button, Form } from 'semantic-ui-react';
 
 const SignupForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <div>
                 링쿠 회원가입 페이지
             </div>
@@ -46,9 +47,9 @@ const SignupForm = ({handleSubmit}) => {
                 <Field name="authenticated_university_email" component="input" type="email"/>
             </div>
             <div>
-                <button type="submit">가입 완료</button>
+                <Button type="submit" fluid>가입 완료</Button>
             </div>
-        </form>
+        </Form>
     );
 }
 

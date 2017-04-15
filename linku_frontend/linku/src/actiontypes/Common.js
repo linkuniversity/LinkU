@@ -1,3 +1,4 @@
 export const ALERT_LOGIN = "ALERT_LOGIN";
 export const HIDE_LOGIN_ALERT = "HIDE_LOGIN_ALERT";
 export const ALERT_SIGNUP = "ALERT_SIGNUP";
+export const HIDE_SIGNUP_ALERT = "HIDE_SIGNUP_ALERT";

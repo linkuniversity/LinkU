@@ -1,7 +1,7 @@
 import * as types from '../actiontypes/Common';
 
 const alertSignupInitialState = {
-    SignupModalIsVisible : false
+    signupModalIsVisible : false
 }
 
 export default function signupAlert(state = alertSignupInitialState, action){
@@ -9,8 +9,13 @@ export default function signupAlert(state = alertSignupInitialState, action){
         case types.ALERT_SIGNUP:
             return {
                 ...state,
-                SignupModalIsVisible : true
-            }
+                signupModalIsVisible : true
+            };
+        case types.HIDE_SIGNUP_ALERT:
+            return {
+                ...state,
+                signupModalIsVisible : false
+            };
         default:
             return state;
     }

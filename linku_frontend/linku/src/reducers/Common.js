@@ -15,7 +15,7 @@ export default function loginAlert(state = alertLoginInitialState, action){
             return {
                 ...state,
                 loginModalIsVisible : false
-            }
+            };
         default:
             return state;
     }
