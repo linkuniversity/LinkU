@@ -40,7 +40,7 @@ class MeetingCard extends React.Component
 
         return(
             <Grid centered style={meetingInfoBackgroundStyle}>
-                <div style={meetingInfoStyle} onClick={(this.props.loggedIn) ? this._loginSuccessed : this.props.alertLogin}>
+                <div style={meetingInfoStyle}>
                     <div style={meetingInfoBackgroundStyle}>
                         <Header as='h1'>Steve Sanders</Header>
                             {this.props.meetingInfo.start_time}
@@ -73,7 +73,7 @@ class MeetingCard extends React.Component
                             {this.props.meetingInfo.place}
                         </Card.Description>
                     </Card.Content>
-                    <Card.Content extra>
+                    <Card.Content extra onClick={(this.props.loggedIn) ? this._loginSuccessed : this.props.alertLogin}>
                         <Button color='blue' fluid>신청하기</Button>
                     </Card.Content>
                 </Card>
