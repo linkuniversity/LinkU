@@ -14,16 +14,17 @@ class IntroOfLinkU extends React.Component {
 
         let promotionWordStyle = {
             width: "100%",
-            textAlign: "center"
+            textAlign: "center",
         };
+
 
         let serviceIntroImageStyle = {
             marginTop: "25%",
             marginBottom: "10%"
         }
 
-        let serviceIntroHeaderStyle = {
-            marginBottom: "10%"
+        let serviceIntroHeaderStyle={
+            marginBottom: "10%",
         }
 
         return (
@@ -31,10 +32,8 @@ class IntroOfLinkU extends React.Component {
             <Container>
                 <div style={promotionWordStyle}>
                     링쿠는 대학생들이 만나서<br/>
-                    어쩌구 저쩌구 하는
-                    <br/>
-                    링쿠에 대한 서비스 소개가 들어갑니다.
-                    <a href="https://twpower.github.io">이용안내 ></a>
+                    어쩌구 저쩌구 하는 <br/>
+                    링쿠에 대한 서비스 소개가 들어갑니다. <a href="https://twpower.github.io">이용안내 ></a>
                 </div>
                 <Grid>
                     <Grid.Row columns={3}>
@@ -47,11 +46,8 @@ class IntroOfLinkU extends React.Component {
                             <div>
                                 대학생 인증을 거친 사람만<br/>
                                 링쿠에 가입하여 모임에 참석할 수 있습니다.<br/>
-                                같은 대학을 벗어나 다른 대학, 다른 전공의
-                                <br/>
-                                친구들과 많은 이야기를 나눠보세요.
-                                <br/>
-
+                                같은 대학을 벗어나 다른 대학, 다른 전공의 <br/>
+                                친구들과 많은 이야기를 나눠보세요. <br/>
                             </div>
 
                         </Grid.Column>
@@ -64,13 +60,9 @@ class IntroOfLinkU extends React.Component {
                             <div>
                                 대학생 인증을 거친 사람만<br/>
                                 링쿠에 가입하여 모임에 참석할 수 있습니다.<br/>
-                                같은 대학을 벗어나 다른 대학, 다른 전공의
-                                <br/>
-                                친구들과 많은 이야기를 나눠보세요.
-                                <br/>
-
+                                같은 대학을 벗어나 다른 대학, 다른 전공의 <br/>
+                                친구들과 많은 이야기를 나눠보세요. <br/>
                             </div>
-
                         </Grid.Column>
                         <Grid.Column textAlign="center">
 
@@ -81,14 +73,17 @@ class IntroOfLinkU extends React.Component {
                             <div>
                                 대학생 인증을 거친 사람만<br/>
                                 링쿠에 가입하여 모임에 참석할 수 있습니다.<br/>
-                                같은 대학을 벗어나 다른 대학, 다른 전공의
-                                <br/>
-                                친구들과 많은 이야기를 나눠보세요.
-                                <br/>
-
+                                같은 대학을 벗어나 다른 대학, 다른 전공의 <br/>
+                                친구들과 많은 이야기를 나눠보세요. <br/>
                             </div>
-
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
             </Container>
+
+        );
+    }
+
+}
+
+export default IntroOfLinkU;

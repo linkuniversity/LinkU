@@ -43,4 +43,4 @@ class IntroVideo extends React.Component {
     }
 }
 
-export default IntroMovie;
+export default IntroVideo;
