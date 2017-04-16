@@ -12,6 +12,7 @@ import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
+import NextMeetingPlan from './mainpage/NextMeetingPlan'
 import Review from './mainpage/Review';
 import Statistics from './mainpage/Statistics';
 
