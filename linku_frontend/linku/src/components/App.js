@@ -14,20 +14,19 @@ import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
 import NextMeetingPlan from './mainpage/NextMeetingPlan'
 import Review from './mainpage/Review';
+import Statistics from './mainpage/Statistics';
 
-export default class App extends Component {
-    render() {
-        return (
-            <div>
-                <Signup />
-                <Login />
-                <LinkUHeader />
-                <IntroVideo />
-                <MeetingCardBox />
-                <IntroOfLinkU />
-                <NextMeetingPlan />
-                <Review />
-            </div>
-        );
-    }
-}
+const App = () => (
+    <div>
+        <Signup />
+        <Login />
+        <LinkUHeader />
+        <IntroVideo />
+        <IntroOfLinkU />
+        <MeetingCardBox />
+        <Review />
+        <Statistics />
+    </div>
+);
+
+export default App;

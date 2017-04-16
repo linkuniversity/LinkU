@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from .models import Meeting, User, SubImage, StatusByDay
+from .models import Meeting, User, SubImage, StatusByDay, Statistics
+
+
+class StatisticsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Statistics
+        fields = ('num_of_applier', 'created_meeting', 'new_meet_person')
 
 
 class SubImageSerializer(serializers.HyperlinkedModelSerializer):
