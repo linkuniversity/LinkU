@@ -12,6 +12,7 @@ import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
+import NextMeetingPlan from './mainpage/NextMeetingPlan'
 import Review from './mainpage/Review';
 
 export default class App extends Component {
@@ -22,8 +23,9 @@ export default class App extends Component {
                 <Login />
                 <LinkUHeader />
                 <IntroVideo />
-                <IntroOfLinkU />
                 <MeetingCardBox />
+                <IntroOfLinkU />
+                <NextMeetingPlan />
                 <Review />
             </div>
         );
