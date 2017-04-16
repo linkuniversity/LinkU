@@ -30,6 +30,12 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
+class Statistics(models.Model):
+    num_of_applier = models.IntegerField(default=0)
+    created_meeting = models.IntegerField(default=0)
+    new_meet_person = models.IntegerField(default=0)
+
+
 class Meeting(models.Model):
     maker_name = models.CharField(max_length=20)
     title = models.CharField(max_length=30)

@@ -27,8 +27,8 @@ const Review = () => {
     }
 
     const mapToComponent = (datas) => {
-        return datas.map( ({title,content}) => (
-            <Grid textAlign="center">
+        return datas.map( ({title,content}, i) => (
+            <Grid textAlign="center" key={i}>
                 <Grid.Row textAlign="center" style={titleStyle}>
                     {title}
                 </Grid.Row>
