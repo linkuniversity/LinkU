@@ -55,7 +55,6 @@ def test_correct_json_data_when_meetings_GET_request(client):
 
     for index, meeting in enumerate(meetings):
         origin_data = MeetingSerializer(instance=meeting).data
-        print(origin_data)
         api_response_data = response.data[index]
         for key in origin_data.keys():
             if key == "main_image":
