@@ -14,6 +14,7 @@ import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
 import NextMeetingPlan from './mainpage/NextMeetingPlan'
 import Review from './mainpage/Review';
+import LinkUGuide from './guide_page/LinkUGuide';
 import Statistics from './mainpage/Statistics';
 
 const App = () => (
