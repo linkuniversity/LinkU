@@ -87,5 +87,6 @@ class Migration(migrations.Migration):
             model_name='meeting',
             name='status_by_days',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='status_by_day', to='meeting.StatusByDay'),
+
         ),
     ]

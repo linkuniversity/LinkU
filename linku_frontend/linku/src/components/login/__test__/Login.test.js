@@ -5,7 +5,6 @@ import sinon from 'sinon';
 import Login from '../Login';
 import SimpleLogin from '../SimpleLogin';
 import SimpleLoginButton from '../SimpleLoginButton';
-import CloseButton from '../CloseButton';
 
 import configureStore from 'redux-mock-store';
 import { reducers } from '../../../reducers';
@@ -30,32 +29,6 @@ describe('<Login />', () => {
 
     it('renders without exploding', () => {
         expect(wrapper.length).toEqual(1);
-    });
-
-    it('confirms correct login title', () => {
-        const homeTitle = "링쿠 로그인";
-
-        expect(wrapper.find('h').text()).toEqual(homeTitle);
-    });
-
-    it('renders simple login children', () => {
-        expect(wrapper.find(SimpleLogin)).toHaveLength(1);
-    });
-
-    it('renders a CloseButton component', () => {
-        expect(wrapper.find(CloseButton)).toHaveLength(1);
-    });
-});
-
-describe('<CloseButton />',() => {
-    it('can be clicked by user', () => {
-        const wrapper = mount(
-            <Provider store = {store}>
-                <CloseButton />
-            </Provider>
-        );
-
-        wrapper.find(CloseButton).simulate('click');
     });
 });
 

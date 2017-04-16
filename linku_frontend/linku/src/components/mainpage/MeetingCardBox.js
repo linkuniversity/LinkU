@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react'
 import MeetingCard from './MeetingCard';
 import jQuery from 'jquery';
 import CategoriesInMainPage from './CategoriesInMainPage';
@@ -22,14 +23,11 @@ class MeetingCardBox extends React.Component {
         };
 
         let receivedData;
-        let boxStyle = {
-            maxWidth: '1500px',
-        };
         return (
-            <div style= { boxStyle }>
-                <CategoriesInMainPage />
+            <Container>
+                <br/>
                 {mapToComponents(this.props.all_meeting_infos.data ? this.props.all_meeting_infos.data : [])}
-            </div>
+            </Container>
         );
     }
 }
@@ -38,7 +36,7 @@ const mapStateToProps = (state) => {
     return {
         fetching: state.meetingCardInfos.fetching,
         all_meeting_infos: state.meetingCardInfos.meeting_infos
-    }
+    };
 };
 
 export default connect(mapStateToProps, {
