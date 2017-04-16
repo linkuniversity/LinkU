@@ -8,12 +8,12 @@ import Appliers from './specific_page/Appliers';
 
 import Signup from './signup/Signup';
 import Login from './login/Login';
-import Jumbotron from './mainpage/Jumbotron';
 import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
 import NextMeetingPlan from './mainpage/NextMeetingPlan'
+import Review from './mainpage/Review';
 
 export default class App extends Component {
     render() {
@@ -26,6 +26,7 @@ export default class App extends Component {
                 <MeetingCardBox />
                 <IntroOfLinkU />
                 <NextMeetingPlan />
+                <Review />
             </div>
         );
     }
