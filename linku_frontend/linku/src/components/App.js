@@ -13,18 +13,13 @@ import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
 import Review from './mainpage/Review';
+import LinkUGuide from './guide_page/LinkUGuide';
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <Signup />
-                <Login />
-                <LinkUHeader />
-                <IntroVideo />
-                <IntroOfLinkU />
-                <MeetingCardBox />
-                <Review />
+                <LinkUGuide />
             </div>
         );
     }
