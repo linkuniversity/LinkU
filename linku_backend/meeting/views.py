@@ -6,6 +6,7 @@ from .models import Meeting, User, SubImage
 from rest_framework.response import Response
 from rest_framework import status
 
+
 class MeetingViewSet(viewsets.ModelViewSet):
     queryset = Meeting.objects.all()
     serializer_class = MeetingSerializer

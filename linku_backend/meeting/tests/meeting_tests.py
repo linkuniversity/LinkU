@@ -1,11 +1,33 @@
 import pytest
 import datetime
 
-from meeting.models import Meeting, User, SubImage
+from meeting.models import Meeting, StatusByDay, SubImage
 from meeting.serializer import MeetingSerializer
+from rest_framework.request import Request
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
 SAVED_TEST_IMAGE_NAME2 = 'test_image2.jpg'
+
+
+@pytest.fixture(scope="module")
+def temp_meeting_data():
+    temp_meeting = Meeting.objects.create(maker_name='test maker_name',
+                                          title='test title',
+                                          place='test place',
+                                          price=5000,
+                                          meeting_specific_info='test meeting_specific_info',
+                                          restaurant_name='test restaurant_name',
+                                          category='tes category',
+                                          specific_link='test specific_link',
+                                          main_image=SAVED_TEST_IMAGE_NAME,
+                                          )
+
+    StatusByDay.objects.create(start_time=datetime.datetime.now(),
+                               num_of_joined_members=1,
+                               max_num_of_members=6,
+                               meeting=temp_meeting)
+
+    return temp_meeting
 
 
 @pytest.mark.django_db
@@ -18,52 +40,22 @@ def test_json_header_when_meetings_GET_request(client):
 
 @pytest.mark.django_db
 def test_create_meeting_model():
-    Meeting.objects.create(maker_name='test maker_name',
-                           title='test title',
-                           start_time=datetime.datetime.now(),
-                           place='test place',
-                           price=5000,
-                           num_of_joined_members=1,
-                           max_num_of_members=6,
-                           meeting_specific_info='test meeting_specific_info',
-                           restaurant_name='test restaurant_name',
-                           category='tes category',
-                           specific_link='test specific_link',
-                           main_image=SAVED_TEST_IMAGE_NAME)
-    Meeting.objects.get(maker_name='test maker_name')
+    Meeting.objects.get(title='test title')
 
 
 @pytest.mark.django_db
 def test_correct_json_data_when_meetings_GET_request(client):
     meetings = []
-    meetings.append(Meeting.objects.create(maker_name='test maker_name1',
-                                           title='test title1',
-                                           start_time=datetime.datetime.now(),
-                                           place='test place1',
-                                           price=5000,
-                                           num_of_joined_members=1,
-                                           max_num_of_members=6,
-                                           meeting_specific_info='test meeting_specific_info1',
-                                           restaurant_name='test restaurant_name1',
-                                           category='tes category1',
-                                           specific_link='test specific_link1'))
 
-    meetings.append(Meeting.objects.create(maker_name='test maker_name2',
-                                           title='test title2',
-                                           start_time=datetime.datetime.now(),
-                                           place='test place2',
-                                           price=6000,
-                                           num_of_joined_members=1,
-                                           max_num_of_members=6,
-                                           meeting_specific_info='test meeting_specific_info2',
-                                           restaurant_name='test restaurant_name2',
-                                           category='tes category2',
-                                           specific_link='test specific_link2'))
+    temp_meeting = Meeting.objects.get(title='test title')
+
+    meetings.append(temp_meeting)
 
     response = client.get('/meetings/')
 
     for index, meeting in enumerate(meetings):
-        origin_data = MeetingSerializer(meeting).data
+        origin_data = MeetingSerializer(instance=meeting).data
+        print(origin_data)
         api_response_data = response.data[index]
         for key in origin_data.keys():
             if key == "main_image":
@@ -74,21 +66,12 @@ def test_correct_json_data_when_meetings_GET_request(client):
 
 @pytest.mark.django_db
 def test_correct_json_data_when_meeting_GET_request(client):
-    meeting = Meeting.objects.create(maker_name='test maker_name',
-                                     title='test title',
-                                     start_time=datetime.datetime.now(),
-                                     place='test place',
-                                     price=5000,
-                                     num_of_joined_members=1,
-                                     max_num_of_members=6,
-                                     meeting_specific_info='test meeting_specific_info',
-                                     restaurant_name='test restaurant_name',
-                                     category='tes category',
-                                     specific_link='test specific_link')
+    temp_meeting = Meeting.objects.get(title='test title')
 
-    response = client.get('/meetings/%d/' % meeting.id)
+    response = client.get('/meetings/%d/' % temp_meeting.id)
 
-    origin_data = MeetingSerializer(meeting).data
+    origin_data = MeetingSerializer(temp_meeting).data
+
     api_response_data = response.data
     for key in origin_data.keys():
         if key == "main_image":
@@ -99,24 +82,15 @@ def test_correct_json_data_when_meeting_GET_request(client):
 
 @pytest.mark.django_db
 def test_meeting_has_many_sub_images(client):
-    meeting = Meeting.objects.create(maker_name='test maker_name',
-                                     title='test title',
-                                     start_time=datetime.datetime.now(),
-                                     place='test place',
-                                     price=5000,
-                                     num_of_joined_members=1,
-                                     max_num_of_members=6,
-                                     meeting_specific_info='test meeting_specific_info',
-                                     restaurant_name='test restaurant_name',
-                                     category='tes category',
-                                     specific_link='test specific_link')
-
     sub_images = []
-    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
-    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=meeting))
-    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=meeting))
 
-    response = client.get('/meetings/%d/' % meeting.id)
+    temp_meeting = Meeting.objects.get(title='test title')
+
+    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=temp_meeting))
+    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=temp_meeting))
+    sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=temp_meeting))
+
+    response = client.get('/meetings/%d/' % temp_meeting.id)
     assert response.status_code == 200
 
     api_response_data = response.data
