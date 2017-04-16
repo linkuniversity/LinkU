@@ -6,6 +6,7 @@ import Maker from './specific_page/Maker';
 import Place from './specific_page/Place';
 import Appliers from './specific_page/Appliers';
 
+import ConfirmModal from './utils/ConfirmModal';
 import Signup from './signup/Signup';
 import Login from './login/Login';
 import MeetingCardBox from './mainpage/MeetingCardBox';
@@ -17,6 +18,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
+                <ConfirmModal />
                 <Signup />
                 <Login />
                 <LinkUHeader />

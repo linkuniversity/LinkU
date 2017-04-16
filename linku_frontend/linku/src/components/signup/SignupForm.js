@@ -6,10 +6,10 @@ const SignupForm = ({handleSubmit}) => {
     return (
         <Form onSubmit={handleSubmit}>
             <div>
-                링쿠 회원가입 페이지
+                링쿠 회원가입
             </div>
             <div>
-                <label htmlFor="username">이름</label>
+                <label htmlFor="username">이메일</label>
                 <Field name="username" component="input" type="text"/>
             </div>
             <div>
@@ -31,16 +31,12 @@ const SignupForm = ({handleSubmit}) => {
                 <Field name="phone_number" component="input" type="number"/>
             </div>
             <div>
-                <label htmlFor="email">이메일</label>
-                <Field name="email" component="input" type="email"/>
-            </div>
-            <div>
                 <label htmlFor="password">비밀번호</label>
                 <Field name="password" component="input" type="password"/>
             </div>
             <div>
-                <label htmlFor="pwd_chk">비밀번호 확인</label>
-                <Field name="pwd_chk" component="input" type="password"/>
+                <label htmlFor="password_check">비밀번호 확인</label>
+                <Field name="password_check" component="input" type="password"/>
             </div>
             <div>
                 <label htmlFor="authenticated_university_email">대학교 이메일을 적어주세요</label>

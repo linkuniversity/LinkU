@@ -4,13 +4,15 @@ import { Modal, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { hideSignupAlert } from '../../actions/Common';
+import { hideSignupAlert, alertConfirm } from '../../actions/Common';
 import SignupForm from './SignupForm';
 
 import axios from 'axios';
 
 class Signup extends Component {
     _handleSignupSubmit = async (values) => {
+        this.props.alertConfirm("회원가입이 완료되었습니다.");
+        this.props.hideSignupAlert();
         if( values.password != values.pwd_chk )
             console.log("password is not equal");
         else {
@@ -51,6 +53,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         hideSignupAlert : () => {
             return dispatch(hideSignupAlert());
+        },
+        alertConfirm : (message) => {
+            return dispatch(alertConfirm(message));
         }
     };
 };
