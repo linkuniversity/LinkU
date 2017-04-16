@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
     return {
         fetching: state.meetingCardInfos.fetching,
         all_meeting_infos: state.meetingCardInfos.meeting_infos
-    }
+    };
 };
 
 export default connect(mapStateToProps, {
