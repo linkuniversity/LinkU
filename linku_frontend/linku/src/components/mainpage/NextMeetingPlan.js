@@ -120,4 +120,11 @@ class NextMeetingPlan extends React.Component{
     }
 }
 
-export default NextMeetingPlan;
+const mapStateToProps = (state) => {
+    return {};
+};
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actions, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NextMeetingPlan);
