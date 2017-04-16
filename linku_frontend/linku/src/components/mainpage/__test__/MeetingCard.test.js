@@ -1,4 +1,6 @@
 import React from 'react';
+import { Grid } from 'semantic-ui-react';
+
 import { mount } from 'enzyme';
 import MeetingCard from '../MeetingCard';
 
@@ -40,11 +42,5 @@ describe('<MeetingCard />', () => {
         expect(wrapper.text()).toContain(meetingCardInfo.title);
         expect(wrapper.text()).toContain(meetingCardInfo.start_time);
         expect(wrapper.text()).toContain(meetingCardInfo.place);
-    });
-
-    it( 'occuer SHOW_LOGIN_ALERT action when user clicked this component', () => {
-        wrapper.find(MeetingCard).simulate('click');
-        const actions = store.getActions();
-        expect(actions).toEqual([{"type": "ALERT_LOGIN"}]);
     });
 });

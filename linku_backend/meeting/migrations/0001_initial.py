@@ -45,6 +45,7 @@ class Migration(migrations.Migration):
                 'verbose_name': 'user',
                 'abstract': False,
                 'verbose_name_plural': 'users',
+                'abstract': False,
             },
             managers=[
                 ('objects', django.contrib.auth.models.UserManager()),
@@ -82,6 +83,17 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('path', models.ImageField(default='meeting_default_image.jpg', upload_to='')),
                 ('meeting', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, related_name='sub_images', to='meeting.Meeting')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='UniversityAuthenticationLog',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('email', models.EmailField(max_length=254)),
+                ('auth_number', models.IntegerField()),
+                ('sent_to_user_time', models.DateTimeField()),
+                ('auth_number_expiration_time', models.DateTimeField()),
+                ('is_authenticated', models.BooleanField(default=False)),
             ],
         ),
     ]

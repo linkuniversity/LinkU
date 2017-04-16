@@ -53,3 +53,12 @@ class StatusByDay(models.Model):
 class SubImage(models.Model):
     path = models.ImageField(default=SAVED_MEETING_DEFAULT_IMAGE_NAME)
     meeting = models.ForeignKey('Meeting', related_name='sub_images', on_delete=models.CASCADE, blank=True)
+
+
+class UniversityAuthenticationLog(models.Model):
+    email = models.EmailField()
+    auth_number = models.IntegerField()
+    sent_to_user_time = models.DateTimeField()
+    auth_number_expiration_time = models.DateTimeField()
+    is_authenticated = models.BooleanField(default=False)
+
