@@ -13,14 +13,19 @@ import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
+import NextMeetingPlan from './mainpage/NextMeetingPlan'
 
 export default class App extends Component {
     render() {
         return (
             <div>
+                <Signup />
+                <Login />
                 <LinkUHeader />
                 <IntroVideo />
+                <MeetingCardBox />
                 <IntroOfLinkU />
+                <NextMeetingPlan />
             </div>
         );
     }
