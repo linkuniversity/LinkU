@@ -19,21 +19,6 @@ class Login extends Component {
         this.onSignupButtonClick = this.onSignupButtonClick.bind(this);
     }
 
-    _handleSubmit = async (values) => {
-        if( values.password != values.pwd_chk )
-            console.log("password is not equal");
-        else {
-            const info = await Promise.all([axios.post('http://127.0.0.1:8000/users/',values)
-                .then(response => {
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.log(error.response.data);
-                })
-            ]);
-        }
-    }
-
     _handleLoginSubmit = (values) => {
         this.props.loginRequest(values.email,values.password);
     }
