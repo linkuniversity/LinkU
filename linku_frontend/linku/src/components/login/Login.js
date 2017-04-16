@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Button, Header, Modal } from 'semantic-ui-react'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import SimpleLogin from './SimpleLogin';
-import CloseButton from './CloseButton';
 import LoginForm from './LoginForm';
 
 import { loginRequest } from '../../actions/Login';
+import { hideLoginAlert } from '../../actions/Common';
 
 import SignUp from '../signup/SignUp';
 import axios from 'axios';
@@ -31,18 +32,21 @@ class Login extends Component {
     _handleLoginSubmit = (values) => {
         this.props.loginRequest(values.email,values.password);
     }
+
     render() {
-        let style = {
-            display: this.props.isVisible ? 'inline-block' : 'none'
-        }
         return (
-            <div style={style}>
-                <CloseButton />
-                <h>링쿠 로그인</h>
-                <LoginForm onSubmit = {this._handleLoginSubmit}/>
-                <SimpleLogin />
-                <SignUp onSubmit={this._handleSubmit}/>
-            </div>
+            <Modal open={this.props.isVisible} size='small'>
+                <Modal.Header>링쿠 로그인</Modal.Header>
+                <Modal.Content>
+                    <Modal.Description>
+                        <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
+                        <LoginForm onSubmit = {this._handleLoginSubmit}/>
+                        <SimpleLogin />
+                        <SignUp onSubmit={this._handleSubmit}/>
+                        <Button onClick={this.props.hideLoginAlert}>취소</Button>
+                    </Modal.Description>
+                </Modal.Content>
+             </Modal>
         );
     }
 }
@@ -50,7 +54,18 @@ class Login extends Component {
 const mapStateToProps = (state) => {
     return {
         isVisible : state.loginAlert.isVisible
+
     };
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginRequest : (id, password) => {
+            return dispatch(loginRequest(id,password));
+        },
+        hideLoginAlert : () => {
+            return dispatch(hideLoginAlert());
+        }
+    };
+};
 
-export default connect(mapStateToProps,{loginRequest})(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
