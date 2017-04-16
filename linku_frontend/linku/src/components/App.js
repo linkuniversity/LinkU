@@ -9,14 +9,17 @@ import Appliers from './specific_page/Appliers';
 import Login from './login/Login';
 import Jumbotron from './mainpage/Jumbotron';
 import MeetingCardBox from './mainpage/MeetingCardBox';
+import LinkUHeader from './mainpage/LinkUHeader'
+import IntroMovie from './mainpage/IntroMovie'
+import IntroOfLinkU from './mainpage/IntroOfLinkU'
 
 export default class App extends Component {
     render() {
         return (
             <div>
-                <Login />
-                <Jumbotron />
-                <MeetingCardBox />
+                <LinkUHeader/>
+                <IntroMovie/>
+                <IntroOfLinkU />
             </div>
         );
     }
