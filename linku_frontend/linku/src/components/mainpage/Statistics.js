@@ -12,33 +12,54 @@ class Statistics extends React.Component{
     }
     render() {
         const containerStyle = {
-            height:'300px',
-            backgroundImage: 'url("http://localhost:8000/media/test_image.jpg")'
+            height:'500px',
+            backgroundImage: 'url("http://localhost:8000/media/container_background.jpg")',
+            marginTop: '100px',
         };
         const cardStyle = {
             width:'200px',
-            align:'center'
+            align:'center',
         };
+        const middleCardStyle = {
+            width:'200px',
+            align:'center',
+        };
+
+        const statisticsNumberStyle = {
+            color : '#FFFFFF',
+            marginTop : '35px',
+            fontSize: '20pt',
+        }
+
+        const statisticsCategoryStyle = {
+            color : '#FFFFFF',
+            marginTop : '20px',
+            fontSize : '20pt',
+        }
+
+
         const mapToComponent = (datas) => {
             return datas.map( (data, i) => {
                 return (
-                    <Grid key = {i} centered>
-                        <Grid.Column width = {3} textAlign="center">
-                            <Image style={cardStyle} src="http://localhost:8000/media/keyword_1.png" />
-                            신청한 사람 수<br />
-                            {data.num_of_applier}명
-                        </Grid.Column>
-                        <Grid.Column width = {3} textAlign="center">
-                            <Image style={cardStyle} src="http://localhost:8000/media/keyword_2.png" />
-                            성사된 모임 수<br />
-                            {data.created_meeting}명
-                        </Grid.Column>
-                        <Grid.Column width = {3} textAlign="center">
-                            <Image style={cardStyle} src="http://localhost:8000/media/keyword_3.png" />
-                            새롭게 만난 사람의 수<br />
-                            {data.new_meet_person}명
-                        </Grid.Column>
-                    </Grid>
+                    <div style={{height: '100%'}}>
+                        <Grid style={{height: '100%'}} key = {i} centered verticalAlign="middle">
+                            <Grid.Column width = {4} textAlign="center">
+                                <Image style={cardStyle} src="http://localhost:8000/media/num_of_appliers.png" centered />
+                                    <div style={statisticsNumberStyle}>{data.num_of_applier}</div>
+                                    <div style={statisticsCategoryStyle}>신청한 사람 수</div>
+                            </Grid.Column>
+                            <Grid.Column width = {4} textAlign="center">
+                                <Image style={middleCardStyle} src="http://localhost:8000/media/num_of_meetings.png" centered/>
+                                    <div style={statisticsNumberStyle}>{data.created_meeting}</div>
+                                    <div style={statisticsCategoryStyle}>성사된 모임수</div>
+                            </Grid.Column>
+                            <Grid.Column width = {4} textAlign="center">
+                                <Image style={cardStyle} src="http://localhost:8000/media/num_of_new_faces.png" centered/>
+                                    <div style={statisticsNumberStyle}>{data.new_meet_person}</div>
+                                    <div style={statisticsCategoryStyle}>새롭게 만난 사람수</div>
+                            </Grid.Column>
+                        </Grid>
+                    </div>
                 );
             });
         }

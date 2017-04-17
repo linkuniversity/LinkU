@@ -23,10 +23,12 @@ const App = () => (
         <Login />
         <LinkUHeader />
         <IntroVideo />
-        <IntroOfLinkU />
         <MeetingCardBox />
+        <IntroOfLinkU />
+        <NextMeetingPlan />
         <Review />
         <Statistics />
+        <LinkUGuide />
     </div>
 );
 

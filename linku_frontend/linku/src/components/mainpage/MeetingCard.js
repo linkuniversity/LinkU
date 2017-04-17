@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, Button, Dropdown, Menu, Grid, Header } from 'semantic-ui-react'
+import { Container,Card, Button, Dropdown, Menu, Grid, Header } from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux';
 
@@ -13,24 +13,28 @@ class MeetingCard extends React.Component
     };
     render() {
         let meetingInfoBackgroundStyle = {
-            backgroundImage: 'url(' + this.props.meetingInfo.main_image + ')'
+            backgroundColor: '#F8F8F9',
         };
         let meetingDetailButtonStyle = {
-            backgroundColor: 'blue',
+            backgroundColor: '#5FA1D7',
             textAlign: 'center',
-            marginTop: '50%'
+            width : '100%',
+            fontSize : '14pt',
+            height : '45px' ,
         };
         let meetingInfoStyle = {
-            margin: '2%',
-            width: '500px',
-            height: '500px',
+            width: '620px',
+            height: '360px',
+            marginTop: '43px',
+            marginBottom: '43px',
             textAlign: 'left',
+            backgroundImage: 'url(http://localhost:8000/media/meeting_card.jpg)',
         };
         let meetingApplyStyle = {
-            margin: '2%',
+            margin: '43px',
             width: '225px',
             height: '300px',
-            textAlign: 'left'
+            textAlign: 'left',
         };
         const meetingDateOptions = [
             { key: 1, text: '목요일', value: 1 },
@@ -39,45 +43,40 @@ class MeetingCard extends React.Component
         ]
 
         return(
-            <Grid centered style={meetingInfoBackgroundStyle}>
-                <div style={meetingInfoStyle}>
-                    <div style={meetingInfoBackgroundStyle}>
-                        <Header as='h1'>Steve Sanders</Header>
-                            {this.props.meetingInfo.start_time}
-                            {this.props.meetingInfo.maker_name}
-                            <br/>
-                            {this.props.meetingInfo.price}
-                            <br/>
-                            {this.props.meetingInfo.title}
-                            <br/>
-                            {this.props.meetingInfo.place}
+            <Container style={meetingInfoBackgroundStyle}>
+                <Grid centered>
+                    <div style={meetingInfoStyle}>
+                        <div style={{color: "#FFFFFF"}}>
+                            <Header style={{color: '#FFFFFF'}} as='h1'>문화예술의 동네 혜화</Header>
+                            <div style={{marginTop: '22px'}}>{this.props.meetingInfo.meeting_specific_info}</div>
+                        </div>
+                        <div style={meetingDetailButtonStyle} color='grey'><span style={{marginTop: '50%', fontColor: '#FFFFFF'}}>상세 보기</span></div>
                     </div>
-                    <Header style={meetingDetailButtonStyle} as='h1' inverted color='grey'>상세 보기</Header>
-                </div>
-                <Card style={meetingApplyStyle}>
-                    <Card.Content>
-                        <Card.Header>
-                            <Menu compact>
-                                <Dropdown placeholder='클릭해서 시간 선택하기' selection options={meetingDateOptions} />
-                            </Menu>
-                        </Card.Header>
-                        <Card.Description>
-                            {this.props.meetingInfo.start_time}
-                            <br/>
-                            {this.props.meetingInfo.maker_name}
-                            <br/>
-                            {this.props.meetingInfo.price}
-                            <br/>
-                            {this.props.meetingInfo.title}
-                            <br/>
-                            {this.props.meetingInfo.place}
-                        </Card.Description>
-                    </Card.Content>
-                    <Card.Content extra onClick={(this.props.loggedIn) ? this._loginSuccessed : this.props.alertLogin}>
-                        <Button color='blue' fluid>신청하기</Button>
-                    </Card.Content>
-                </Card>
-            </Grid>
+                    <Card style={meetingApplyStyle}>
+                        <Card.Content>
+                            <Card.Header>
+                                <Menu compact>
+                                    <Dropdown placeholder='클릭해서 시간 선택하기' selection options={meetingDateOptions} />
+                                </Menu>
+                            </Card.Header>
+                            <Card.Description>
+                                {this.props.meetingInfo.start_time}
+                                <br/>
+                                {this.props.meetingInfo.maker_name}
+                                <br/>
+                                {this.props.meetingInfo.price}
+                                <br/>
+                                {this.props.meetingInfo.title}
+                                <br/>
+                                {this.props.meetingInfo.place}
+                            </Card.Description>
+                        </Card.Content>
+                        <Card.Content extra onClick={(this.props.loggedIn) ? this._loginSuccessed : this.props.alertLogin}>
+                            <Button color='blue' fluid>신청하기</Button>
+                        </Card.Content>
+                    </Card>
+                </Grid>
+            </Container>
         );
     }
 }
