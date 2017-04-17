@@ -20,7 +20,6 @@ import Statistics from './mainpage/Statistics';
 const App = () => (
     <div>
         <ConfirmModal />
-        <Signup />
         <LinkUHeader />
         <IntroVideo />
         <IntroOfLinkU />
