@@ -1,37 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Container, Image, Button} from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { alertSignup, alertLogin } from '../../actions/Common';
+import Signup from '../signup/Signup.js'
+import Login from '../login/Login.js'
 
-class LinkUHeader extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const LinkUHeader = () => (
+    <Container>
+        <Image src='http://localhost:8000/media/logo_top.png' verticalAlign='top'/>
+        <span>Link U Link University</span>
+        <Signup triggerButton={<Button basic content="회원가입" floated="right"/>}/>
+        <Login triggerButton={<Button basic content="로그인" floated="right"/>}/>
+    </Container>
+);
 
-    render() {
-        return (
-            <Container>
-                <Image src='http://localhost:8000/media/logo_top.png' verticalAlign='top'/>
-                <span>Link U Link University
-                </span>
-                <Button basic content="회원가입" floated="right" onClick={this.props.alertSignup}/>
-                <Button basic content="로그인" floated="right" onClick={this.props.alertLogin}/>
-            </Container>
-        );
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        alertSignup : () => {
-            return dispatch(alertSignup());
-        },
-        alertLogin : () => {
-            return dispatch(alertLogin());
-        }
-    };
-};
-
-export default connect(undefined, mapDispatchToProps)(LinkUHeader);
+export default LinkUHeader;

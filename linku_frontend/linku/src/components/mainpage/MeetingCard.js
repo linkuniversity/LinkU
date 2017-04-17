@@ -6,12 +6,14 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../actions/Common';
 
+import Apply from './Apply';
+import Login from '../login/Login';
+
 class MeetingCard extends React.Component
 {
-    _loginSuccessed = () => {
-        console.log("successed");
-    };
     render() {
+        const button = (<Button color='blue' fluid>신청하기</Button>);
+
         let meetingInfoBackgroundStyle = {
             backgroundImage: 'url(' + this.props.meetingInfo.main_image + ')'
         };
@@ -73,8 +75,13 @@ class MeetingCard extends React.Component
                             {this.props.meetingInfo.place}
                         </Card.Description>
                     </Card.Content>
-                    <Card.Content extra onClick={(this.props.loggedIn) ? this._loginSuccessed : this.props.alertLogin}>
-                        <Button color='blue' fluid>신청하기</Button>
+                    <Card.Content extra>
+                        {
+                            (localStorage.getItem('token')) ?
+                            (<Apply triggerButton={button}/>)
+                            :
+                            (<Login triggerButton={button}/>)
+                        }
                     </Card.Content>
                 </Card>
             </Grid>
