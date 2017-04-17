@@ -24,10 +24,11 @@ export function hideSignupAlert(){
     };
 }
 
-export function alertConfirm(message) {
+export function alertConfirm(message, color) {
     return {
         type: types.ALERT_CONFIRM,
-        message
+        message,
+        color
     };
 }
 

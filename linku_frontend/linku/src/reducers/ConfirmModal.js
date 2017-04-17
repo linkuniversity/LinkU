@@ -2,7 +2,8 @@ import * as types from '../actiontypes/Common';
 
 const alertConfirmInitialState = {
     confirmModalIsVisible : false,
-    confirmMessage : undefined
+    confirmMessage : undefined,
+    buttonColor : "blue"
 };
 
 export default function confirmAlert(state = alertConfirmInitialState, action) {
@@ -11,7 +12,8 @@ export default function confirmAlert(state = alertConfirmInitialState, action) {
             return {
                 ...state,
                 confirmModalIsVisible : true,
-                confirmMessage : action.message
+                confirmMessage : action.message,
+                buttonColor : action.color
             };
         case types.HIDE_CONFIRM_ALERT:
             return {

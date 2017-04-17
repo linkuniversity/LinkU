@@ -8,7 +8,7 @@ const ConfirmModal = (props) => (
     <Modal id="confirm_modal" open={props.confirmModalIsVisible} size='small'>
         <Modal.Header>{props.message}</Modal.Header>
         <Modal.Actions>
-            <Button color='blue' onClick={props.hideConfirmAlert} inverted>
+            <Button color={props.color} onClick={props.hideConfirmAlert} inverted>
                 <Icon name='checkmark' /> Got it
             </Button>
         </Modal.Actions>
@@ -18,7 +18,8 @@ const ConfirmModal = (props) => (
 const mapStateToProps = (state) => {
     return {
         confirmModalIsVisible : state.confirmAlert.confirmModalIsVisible,
-        message : state.confirmAlert.confirmMessage
+        message : state.confirmAlert.confirmMessage,
+        color : state.confirmAlert.buttonColor
     };
 };
 

@@ -5,7 +5,7 @@ import os
 
 from selenium import webdriver
 import pytest
-
+import time
 
 BASE_URL = "http://localhost:3000"
 
@@ -46,9 +46,8 @@ def test_authentication(browser):
     browser.find_element_by_xpath("//input[@name='password']").send_keys('test password')
     browser.find_element_by_xpath("//input[@name='password_check']").send_keys('test password')
     browser.find_element_by_xpath("//input[@name='authenticated_university_email']").send_keys('test@univ.ac.kr')
-    browser.find_element_by_xpath("//button[@type='submit' and text()='가입 완료']").click()
+    browser.find_element_by_xpath("//button[text()='가입 완료']").click()
+    time.sleep(2)
 
     confirm_element = browser.find_element_by_xpath("//div[@id='confirm_modal']/div[@class='header']")
     assert confirm_element.text == "회원가입이 완료되었습니다."
-
-    
