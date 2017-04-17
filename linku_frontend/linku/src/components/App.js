@@ -6,6 +6,7 @@ import Maker from './specific_page/Maker';
 import Place from './specific_page/Place';
 import Appliers from './specific_page/Appliers';
 
+import ConfirmModal from './utils/ConfirmModal';
 import Signup from './signup/Signup';
 import Login from './login/Login';
 import MeetingCardBox from './mainpage/MeetingCardBox';
@@ -19,6 +20,7 @@ import Statistics from './mainpage/Statistics';
 
 const App = () => (
     <div>
+        <ConfirmModal />
         <Signup />
         <Login />
         <LinkUHeader />
