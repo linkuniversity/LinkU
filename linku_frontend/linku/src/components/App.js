@@ -13,19 +13,23 @@ import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
+import NextMeetingPlan from './mainpage/NextMeetingPlan'
+import Review from './mainpage/Review';
+import LinkUGuide from './guide_page/LinkUGuide';
+import Statistics from './mainpage/Statistics';
 
-export default class App extends Component {
-    render() {
-        return (
-            <div>
-                <ConfirmModal />
-                <Signup />
-                <Login />
-                <LinkUHeader />
-                <IntroVideo />
-                <IntroOfLinkU />
-                <MeetingCardBox />
-            </div>
-        );
-    }
-}
+const App = () => (
+    <div>
+        <ConfirmModal />
+        <Signup />
+        <Login />
+        <LinkUHeader />
+        <IntroVideo />
+        <IntroOfLinkU />
+        <MeetingCardBox />
+        <Review />
+        <Statistics />
+    </div>
+);
+
+export default App;

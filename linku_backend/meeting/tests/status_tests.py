@@ -1,0 +1,22 @@
+import pytest
+from meeting.models import Statistics
+
+@pytest.mark.django_db
+def test_create_status_model():
+    Statistics.objects.get(num_of_applier=5, created_meeting=10, new_meet_person=20)
+
+
+@pytest.mark.django_db
+def test_GET_request_status(client):
+    response = client.get('/statistics/')
+
+    assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_response_when_user_GET_request(client):
+    response = client.get('/statistics/')
+
+    expect_data = '[{"num_of_applier":5,"created_meeting":10,"new_meet_person":20}]'
+
+    assert expect_data == response.content.decode('utf-8')

@@ -2,8 +2,8 @@
 
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
-from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer
-from .models import Meeting, User, SubImage, UniversityAuthenticationLog
+from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer, StatisticsSerializer
+from .models import Meeting, User, SubImage, UniversityAuthenticationLog, Statistics
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -14,6 +14,12 @@ import json
 
 from rest_framework.response import Response
 from rest_framework import status
+
+
+class StatisticsViewSet(viewsets.ModelViewSet):
+    queryset = Statistics.objects.all()
+    serializer_class = StatisticsSerializer
+
 
 class MeetingViewSet(viewsets.ModelViewSet):
     queryset = Meeting.objects.all()
