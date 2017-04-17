@@ -3,7 +3,7 @@ import {Container, Image, Button} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { alertSignup } from '../../actions/Common';
+import { alertSignup, alertLogin } from '../../actions/Common';
 
 class LinkUHeader extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class LinkUHeader extends React.Component {
                 <span>Link U Link University
                 </span>
                 <Button basic content="회원가입" floated="right" onClick={this.props.alertSignup}/>
-                <Button basic content="로그인" floated="right"/>
+                <Button basic content="로그인" floated="right" onClick={this.props.alertLogin}/>
             </Container>
         );
     }
@@ -27,6 +27,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         alertSignup : () => {
             return dispatch(alertSignup());
+        },
+        alertLogin : () => {
+            return dispatch(alertLogin());
         }
     };
 };
