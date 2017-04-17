@@ -77,7 +77,7 @@ class MeetingCard extends React.Component
                     </Card.Content>
                     <Card.Content extra>
                         {
-                            (localStorage.getItem('token')) ?
+                            (localStorage.getItem('token') && this.props.loggedIn) ?
                             (<Apply triggerButton={button}/>)
                             :
                             (<Login triggerButton={button}/>)
