@@ -1,5 +1,11 @@
 import * as types from '../actiontypes/Login';
 
+export function logout(){
+    localStorage.setItem('token',undefined);
+    return {
+        type : types.LOGOUT
+    }
+}
 export function loginRequest(id, password){
     return {
         type : types.REQUEST_LOGIN,
