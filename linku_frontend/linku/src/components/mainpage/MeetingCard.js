@@ -6,12 +6,14 @@ import { bindActionCreators } from 'redux';
 
 import * as actions from '../../actions/Common';
 
+import Apply from './Apply';
+import Login from '../login/Login';
+
 class MeetingCard extends React.Component
 {
-    _loginSuccessed = () => {
-        console.log("successed");
-    };
     render() {
+        const button = (<Button color='blue' fluid>신청하기</Button>);
+
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
         };
@@ -52,28 +54,33 @@ class MeetingCard extends React.Component
                         </div>
                         <div style={meetingDetailButtonStyle} color='grey'><span style={{marginTop: '50%', fontColor: '#FFFFFF'}}>상세 보기</span></div>
                     </div>
-                    <Card style={meetingApplyStyle}>
-                        <Card.Content>
-                            <Card.Header>
-                                <Menu compact>
-                                    <Dropdown placeholder='클릭해서 시간 선택하기' selection options={meetingDateOptions} />
-                                </Menu>
-                            </Card.Header>
-                            <Card.Description>
-                                {this.props.meetingInfo.start_time}
-                                <br/>
-                                {this.props.meetingInfo.maker_name}
-                                <br/>
-                                {this.props.meetingInfo.price}
-                                <br/>
-                                {this.props.meetingInfo.title}
-                                <br/>
-                                {this.props.meetingInfo.place}
-                            </Card.Description>
-                        </Card.Content>
-                        <Card.Content extra onClick={(this.props.loggedIn) ? this._loginSuccessed : this.props.alertLogin}>
-                            <Button color='blue' fluid>신청하기</Button>
-                        </Card.Content>
+                <Card style={meetingApplyStyle}>
+                    <Card.Content>
+                        <Card.Header>
+                            <Menu compact>
+                                <Dropdown placeholder='클릭해서 시간 선택하기' selection options={meetingDateOptions} />
+                            </Menu>
+                        </Card.Header>
+                        <Card.Description>
+                            {this.props.meetingInfo.start_time}
+                            <br/>
+                            {this.props.meetingInfo.maker_name}
+                            <br/>
+                            {this.props.meetingInfo.price}
+                            <br/>
+                            {this.props.meetingInfo.title}
+                            <br/>
+                            {this.props.meetingInfo.place}
+                        </Card.Description>
+                    </Card.Content>
+                    <Card.Content extra>
+                        {
+                            (localStorage.getItem('token') && this.props.loggedIn) ?
+                            (<Apply triggerButton={button}/>)
+                            :
+                            (<Login triggerButton={button}/>)
+                        }
+                    </Card.Content>
                     </Card>
                 </Grid>
             </Container>
@@ -82,9 +89,7 @@ class MeetingCard extends React.Component
 }
 
 const mapStateToProps = (state) => {
-    return {
-        loggedIn : state.login.loggedIn
-    }
+    return {loggedIn : state.login.loggedIn}
 };
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(actions, dispatch);

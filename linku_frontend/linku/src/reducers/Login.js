@@ -10,6 +10,11 @@ const loginInitialState = {
 
 export default function login(state = loginInitialState, action){
     switch(action.type){
+        case types.LOGOUT:
+            return {
+                ...state,
+                loggedIn : false
+            }
         case types.REQUEST_LOGIN:
             return {
                 ...state,
