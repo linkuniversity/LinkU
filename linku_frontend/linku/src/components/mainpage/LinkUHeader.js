@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Container, Image, Button} from 'semantic-ui-react'
 import Signup from '../signup/Signup.js'
+import Login from '../login/Login.js'
+
 import { connect } from 'react-redux';
 import { logout } from '../../actions/Login';
 
@@ -19,7 +21,7 @@ class LinkUHeader extends Component{
                     (
                         <span>
                             <Signup triggerButton={<Button basic content="회원가입" floated="right"/>}/>
-                            <Button basic content="로그인" floated="right"/>
+                            <Login triggerButton={<Button basic content="로그인" floated="right"/>}/>
                         </span>
                     )
                 }
