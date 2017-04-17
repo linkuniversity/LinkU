@@ -2,5 +2,5 @@
 
 BASEDIR=$(dirname "$0")
 
-$BASEDIR/manage.py migrate
-$BASEDIR/manage.py runserver 0.0.0.0:8000
+python $BASEDIR/manage.py migrate
+python $BASEDIR/manage.py runserver 0.0.0.0:8000

@@ -1,3 +1,11 @@
+machine:
+  pre:
+    - cd /opt/circleci/.pyenv; git pull
+  python:
+    version: 3.5.2
+  node:
+    version: 5.11.0
+
 dependencies:
   cache_directories:
       - "linku_frontend/linku/node_module"
@@ -7,12 +15,8 @@ dependencies:
   post:
     - ./linku_frontend/prepare_server.sh:
         background: true
-    - ./linku_backend/prepare_server.sh :
+    - ./linku_backend/prepare_server.sh:
         background: true
-        
-machine:
-  node:
-      version: 5.11.0
       
 test:
   override:
