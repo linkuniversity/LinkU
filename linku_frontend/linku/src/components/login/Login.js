@@ -30,14 +30,13 @@ class Login extends Component {
 
     render() {
         return (
-            <Modal open={this.props.loginModalIsVisible} size='small'>
+            <Modal trigger = {this.props.triggerButton} size='small'>
                 <Modal.Header>링쿠 로그인</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
                         <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
                         <LoginForm onSubmit = {this._handleLoginSubmit}/>
                         <Button onClick={this.onSignupButtonClick} fluid>회원가입</Button>
-                        <Button onClick={this.props.hideLoginAlert} fluid>취소</Button>
                     </Modal.Description>
                 </Modal.Content>
              </Modal>
@@ -45,19 +44,10 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        loginModalIsVisible : state.loginAlert.loginModalIsVisible
-    };
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         loginRequest : (id, password) => {
             return dispatch(loginRequest(id,password));
-        },
-        hideLoginAlert : () => {
-            return dispatch(hideLoginAlert());
         },
         alertSignup : () => {
             return dispatch(alertSignup());
@@ -65,4 +55,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

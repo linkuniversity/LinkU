@@ -7,7 +7,6 @@ import Place from './specific_page/Place';
 import Appliers from './specific_page/Appliers';
 
 import Signup from './signup/Signup';
-import Login from './login/Login';
 import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
@@ -19,7 +18,6 @@ export default class App extends Component {
         return (
             <div>
                 <Signup />
-                <Login />
                 <LinkUHeader />
                 <IntroVideo />
                 <IntroOfLinkU />
