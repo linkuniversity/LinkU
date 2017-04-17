@@ -22,9 +22,13 @@ class MeetingCardBox extends React.Component {
             });
         };
 
+        let containerStyle = {
+            marginTop: '67px',
+        }
+
         let receivedData;
         return (
-            <Container>
+            <Container style={containerStyle}>
                 <br/>
                 {mapToComponents(this.props.all_meeting_infos.data ? this.props.all_meeting_infos.data : [])}
             </Container>
