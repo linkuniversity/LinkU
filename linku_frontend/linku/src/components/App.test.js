@@ -20,6 +20,13 @@ const store = createStore(
 
 sagaMiddleware.run(rootSaga);
 
+if (!global.window.localStorage) {
+    global.window.localStorage = {
+        getItem() { return '{}'; },
+        setItem() {}
+    };
+}
+
 it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
