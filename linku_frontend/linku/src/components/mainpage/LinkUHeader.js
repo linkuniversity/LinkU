@@ -59,8 +59,8 @@ class LinkUHeader extends Component {
                     ):
                     (
                         <span style={signWrapperStyle}>
-                            <Signup triggerButton={<a style={signInStyle}>로그인</a>}/>
-                            <Login triggerButton={<a style={signUpStyle}>회원가입</a>}/>
+                            <Login triggerButton={<a style={signInStyle}>로그인</a>}/>
+                            <Signup triggerButton={<a style={signUpStyle}>회원가입</a>}/>
                         </span>
                     )
                 }
