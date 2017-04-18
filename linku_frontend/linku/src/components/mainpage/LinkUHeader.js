@@ -6,20 +6,60 @@ import { logout } from '../../actions/Login';
 import { connect } from 'react-redux';
 
 class LinkUHeader extends Component {
+    constructor(props) {
+        super(props);
+    };
+
     render() {
+
+        let containerStyle = {
+            marginTop: "40px",
+        };
+
+        let titleStyle = {
+            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
+            fontSize: '14pt',
+            marginLeft: '12px',
+            color: '#60a2d9'
+        };
+
+        let signWrapperStyle = {
+            float: 'right',
+        }
+
+        let signInStyle = {
+            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
+            fontSize: '14pt',
+            color: '#5d5d5d',
+        }
+
+        let signUpStyle={
+            marginLeft: '20px',
+            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
+            fontSize: '14pt',
+            color: '#5d5d5d',
+        }
+
+        let signOutStyle={
+            float: 'right',
+            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
+            fontSize: '14pt',
+            color: '#5d5d5d',
+        }
+
         return (
-            <Container>
+            <Container style={containerStyle}>
                 <Image src='http://localhost:8000/media/logo_top.png' verticalAlign='top'/>
-                <span>Link U Link University</span>
+                <span style={titleStyle}>Link U Link University</span>
                 {
                     (localStorage.getItem('token') && this.props.loggedIn) ?
                     (
-                        <Button basic content="로그아웃" floated="right" onClick={this.props.logout}/>
+                        <a style={signOutStyle} onClick={this.props.logout}>로그아웃</a>
                     ):
                     (
-                        <span>
-                            <Signup />
-                            <Login triggerButton={<Button basic content="로그인" floated="right"/>}/>
+                        <span style={signWrapperStyle}>
+                            <Login triggerButton={<a style={signInStyle}>로그인</a>}/>
+                            <Signup buttonStyle={signUpStyle}/>
                         </span>
                     )
                 }
