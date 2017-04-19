@@ -36,7 +36,7 @@ class MeetingCard extends React.Component
             })
         ]);
     }
-    componentDidMount(){
+    componentWillReceiveProps(props){
         const token = localStorage.getItem('token');
 
         if(token == undefined)
@@ -211,7 +211,7 @@ class MeetingCard extends React.Component
                         </Card.Content>
                         <Card.Content extra>
                             {
-                            (this.state.isParticipated) ?
+                            (this.state.isParticipated && this.props.loggedIn) ?
                                 <Button disabled color='blue' fluid>신청완료</Button> :
                             (
                                 (localStorage.getItem('token') && this.props.loggedIn) ?
