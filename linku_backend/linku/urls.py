@@ -33,8 +33,10 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login/', obtain_auth_token),
+    url(r'^isparticipated/', views.is_participated, name='is_participated'),
     url(r'^university-verification-email/', views.send_verification_email, name="send_verification_email"),
-    url(r'^university-verification-number/', views.check_university_verification_auth_number, name="check_university_verification_auth_number")
+    url(r'^university-verification-number/', views.check_university_verification_auth_number,
+        name="check_university_verification_auth_number")
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

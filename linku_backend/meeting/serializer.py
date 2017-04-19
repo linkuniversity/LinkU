@@ -43,7 +43,6 @@ class MeetingSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-
     def create(self, validated_data):
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
@@ -55,4 +54,5 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'nickname', 'gender', 'password', 'phone_number', 'authenticated_university_email')
+        fields = ('username', 'nickname', 'gender', 'password', 'phone_number', 'authenticated_university_email',
+                  'is_participated')
