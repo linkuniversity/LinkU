@@ -3,7 +3,8 @@ import {Container, Image, Button} from 'semantic-ui-react'
 import Signup from '../signup/Signup.js'
 import Login from '../login/Login.js'
 import { connect } from 'react-redux';
-import { logout } from '../../actions/Login';
+import * as actions from '../../actions/Login';
+import { bindActionCreators } from 'redux';
 
 class LinkUHeader extends Component {
     constructor(props) {
@@ -75,4 +76,8 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect( mapStateToProps, {logout} )(LinkUHeader);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(actions, dispatch);
+};
+
+export default connect( mapStateToProps, mapDispatchToProps )(LinkUHeader);
