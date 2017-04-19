@@ -12,7 +12,6 @@ class LinkUHeader extends Component {
     };
 
     render() {
-
         let containerStyle = {
             marginTop: "40px",
         };
@@ -28,17 +27,21 @@ class LinkUHeader extends Component {
             float: 'right',
         }
 
-        let signInStyle = {
+        let signInButtonStyle = {
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
             color: '#5d5d5d',
+            backgroundColor: '#FFFFFF',
+            border: '0px'
         }
 
-        let signUpStyle={
+        let signUpButtonStyle={
             marginLeft: '20px',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
             color: '#5d5d5d',
+            backgroundColor: '#FFFFFF',
+            border: '0px'
         }
 
         let signOutStyle={
@@ -59,8 +62,8 @@ class LinkUHeader extends Component {
                     ):
                     (
                         <span style={signWrapperStyle}>
-                            <Login triggerButton={<a style={signInStyle}>로그인</a>}/>
-                            <Signup buttonStyle={signUpStyle}/>
+                            <Login triggerButton={<button style={signInButtonStyle}>로그인</button>}/>
+                            <Signup buttonStyle={signUpButtonStyle}/>
                         </span>
                     )
                 }

@@ -88,16 +88,17 @@ class MeetingCard extends React.Component
             marginBottom: '30px',
             color: '#61a1d8',
             fontSize: '24px'
-
         };
         let meetingDetailPlanStyle = {
             marginTop: '50px',
         };
         let meetingDetailButtonStyle = {
+            padding: '20px',
             backgroundColor: '#5FA1D7',
-            textAlign: 'center',
             fontSize: '14pt',
             height: '60px' ,
+            color: '#FFFFFF',
+            textAlign: 'center'
         };
         let meetingApplyStyle = {
             marginTop: '43px',
@@ -191,9 +192,9 @@ class MeetingCard extends React.Component
                                 </div>
                             </div>
                         </div>
-                        <div style={meetingDetailButtonStyle} color='grey'>
-                            <span style={{marginTop: '50%', fontColor: '#FFFFFF'}}>상세 보기</span>
-                        </div>
+                        <Button style={meetingDetailButtonStyle} fluid>
+                            상세 보기 ▽
+                        </Button>
                     </div>
                     <Card style={meetingApplyStyle}>
                         <Card.Content>
