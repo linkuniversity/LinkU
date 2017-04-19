@@ -26,7 +26,6 @@ class LinkUHeader extends Component {
 
         let signWrapperStyle = {
             float: 'right',
-
         }
 
         let signInStyle = {
@@ -36,7 +35,7 @@ class LinkUHeader extends Component {
         }
 
         let signUpStyle={
-            marginLeft: '40px',
+            marginLeft: '20px',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
             color: '#5d5d5d',
@@ -60,8 +59,8 @@ class LinkUHeader extends Component {
                     ):
                     (
                         <span style={signWrapperStyle}>
-                            <Signup triggerButton={<a style={signInStyle}>로그인</a>}/>
-                            <Login triggerButton={<a style={signUpStyle}>회원가입</a>}/>
+                            <Login triggerButton={<a style={signInStyle}>로그인</a>}/>
+                            <Signup buttonStyle={signUpStyle}/>
                         </span>
                     )
                 }

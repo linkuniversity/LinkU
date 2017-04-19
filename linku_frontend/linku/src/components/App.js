@@ -16,6 +16,7 @@ import NextMeetingPlan from './mainpage/NextMeetingPlan'
 import Review from './mainpage/Review';
 import LinkUGuide from './guide_page/LinkUGuide';
 import Statistics from './mainpage/Statistics';
+import LinkUFooter from './mainpage/LinkUFooter'
 
 const App = () => (
     <div>
@@ -27,6 +28,7 @@ const App = () => (
         <NextMeetingPlan />
         <Review />
         <Statistics />
+        <LinkUFooter />
         <LinkUGuide />
     </div>
 );
