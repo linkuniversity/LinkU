@@ -29,9 +29,9 @@ describe('<MeetingCard />', () => {
     const meetingCardInfo = {
         food_img_path : "https://avatars1.githubusercontent.com/u/8240556?v=3&s=88",
         prof_img_path : "http://pngimg.com/upload_small/face/face_PNG5668.png",
-        title : "test title",
-        start_time : "test time",
-        place : "test place"
+        title : "",
+        start_time : "",
+        place : ""
     };
     const wrapper = mount(
         <Provider store = { store }>
