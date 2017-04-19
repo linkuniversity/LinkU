@@ -28,14 +28,14 @@ class Statistics extends React.Component{
         const statisticsNumberStyle = {
             color : '#FFFFFF',
             marginTop : '35px',
-            fontSize: '20pt',
-        }
+            fontSize: '20pt'
+        };
 
         const statisticsCategoryStyle = {
             color : '#FFFFFF',
             marginTop : '20px',
-            fontSize : '20pt',
-        }
+            fontSize : '20pt'
+        };
 
 
         const mapToComponent = (datas) => {

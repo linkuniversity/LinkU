@@ -41,7 +41,7 @@ class Signup extends Component {
     render() {
         let triggerButton = <Button onClick={this.handleOpen} content="회원가입" fluid />;
         if(this.props.buttonStyle!=null) {
-            triggerButton = <a onClick={this.handleOpen} style={this.props.buttonStyle}>회원가입</a>;
+            triggerButton = <button onClick={this.handleOpen} style={this.props.buttonStyle}>회원가입</button>;
         }
         return (
             <Modal trigger={triggerButton} open={this.state.modalOpen} onClose={this.handleClose} size='small'>
