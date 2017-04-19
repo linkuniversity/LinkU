@@ -8,9 +8,43 @@ import * as actions from '../../actions/Common';
 
 import Apply from './Apply';
 import Login from '../login/Login';
+import axios from 'axios';
 
 class MeetingCard extends React.Component
 {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            isParticipated : false
+        };
+    }
+
+    _fetchIsParticipatedInfo = async(token) => {
+        const config = {
+            headers: { 'Authorization': token }
+        };
+
+        const info = await Promise.all([axios.post('http://127.0.0.1:8000/isparticipated/',{},config )
+            .then(response => {
+                this.setState({
+                    isParticipated : response.data
+                });
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            })
+        ]);
+    }
+    componentDidMount(){
+        const token = localStorage.getItem('token');
+
+        if(token == undefined)
+            return;
+        else {
+            this._fetchIsParticipatedInfo(token);
+        }
+    }
     render() {
         const button = (<Button color='blue' fluid>신청하기</Button>);
 
@@ -75,10 +109,14 @@ class MeetingCard extends React.Component
                     </Card.Content>
                     <Card.Content extra>
                         {
-                            (localStorage.getItem('token') && this.props.loggedIn) ?
-                            (<Apply triggerButton={button}/>)
-                            :
-                            (<Login triggerButton={button}/>)
+                            (this.state.isParticipated) ?
+                                <Button disabled color='blue' fluid>신청완료</Button> :
+                            (
+                                (localStorage.getItem('token') && this.props.loggedIn) ?
+                                (<Apply triggerButton={button}/>)
+                                :
+                                (<Login triggerButton={button}/>)
+                            )
                         }
                     </Card.Content>
                     </Card>

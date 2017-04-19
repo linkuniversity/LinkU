@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
-from django.db import migrations, models
-import datetime
+from django.db import migrations
 
 
 def forwards_func(apps, schema_editor):

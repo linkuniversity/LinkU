@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
@@ -8,12 +8,17 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from random import randint
-from rest_framework.response import Response
 import datetime
 import json
 
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authtoken.models import Token
+
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework import permissions
 
 
 class StatisticsViewSet(viewsets.ModelViewSet):
@@ -60,9 +65,9 @@ def send_verification_email(request):
             body['From'] = from_addr
             body['To'] = to_addr
 
-            html = "<div> 안녕하세요 LinkU입니다. <br> 다음 아래 번호를 입력 시간내에 입력해주세요. <br><br>"\
+            html = "<div> 안녕하세요 LinkU입니다. <br> 다음 아래 번호를 입력 시간내에 입력해주세요. <br><br>" \
                    + str(auth_number) \
-                   +"<br><br> LinkU 드림 </div>"
+                   + "<br><br> LinkU 드림 </div>"
             msg = MIMEText(html, 'html')
             body.attach(msg)
 
@@ -73,11 +78,24 @@ def send_verification_email(request):
             server.quit()
 
             UniversityAuthenticationLog.objects.create(email=email
-                                               ,auth_number=auth_number
-                                               ,sent_to_user_time=datetime.datetime.now()
-                                               ,auth_number_expiration_time=datetime.datetime.now() + datetime.timedelta(minutes=2))
+                                                       , auth_number=auth_number
+                                                       , sent_to_user_time=datetime.datetime.now()
+                                                       ,
+                                                       auth_number_expiration_time=datetime.datetime.now() + datetime.timedelta(
+                                                           minutes=2))
 
             return Response({"message": "Success"})
+
+
+@api_view(['POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((permissions.AllowAny,))
+def is_participated(request, format=None):
+    token = request.META['HTTP_AUTHORIZATION'].replace('Token ','')
+
+    user_is_participated = Token.objects.get(key=token).user.is_participated
+
+    return Response(user_is_participated)
 
 
 @api_view(['POST'])
