@@ -12,6 +12,7 @@ import Login from '../login/Login';
 class MeetingCard extends React.Component
 {
     render() {
+
         const button = (<Button color='blue' fluid>신청하기</Button>);
 
         let meetingInfoBackgroundStyle = {
@@ -38,11 +39,11 @@ class MeetingCard extends React.Component
             height: '300px',
             textAlign: 'left',
         };
-        const meetingDateOptions = [
-            { key: 1, text: '목요일', value: 1 },
-            { key: 2, text: '금요일', value: 2 },
-            { key: 3, text: '토요일', value: 3 },
-        ]
+
+        let meetingDateOptions = [];
+        for(let [index, status] of this.props.meetingInfo.status_by_days.entries()) {
+            meetingDateOptions[index] = { key: index, text: status.meeting_status, value: index };
+        }
 
         return(
             <Container style={meetingInfoBackgroundStyle}>
