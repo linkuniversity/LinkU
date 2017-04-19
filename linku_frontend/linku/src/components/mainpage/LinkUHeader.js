@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Container, Image, Button} from 'semantic-ui-react'
 import Signup from '../signup/Signup.js'
 import Login from '../login/Login.js'
-import { connect } from 'react-redux';
 import { logout } from '../../actions/Login';
+import { connect } from 'react-redux';
 
 class LinkUHeader extends Component {
     constructor(props) {
@@ -25,7 +25,6 @@ class LinkUHeader extends Component {
 
         let signWrapperStyle = {
             float: 'right',
-
         }
 
         let signInStyle = {
@@ -35,7 +34,7 @@ class LinkUHeader extends Component {
         }
 
         let signUpStyle={
-            marginLeft: '40px',
+            marginLeft: '20px',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
             color: '#5d5d5d',
@@ -60,7 +59,7 @@ class LinkUHeader extends Component {
                     (
                         <span style={signWrapperStyle}>
                             <Login triggerButton={<a style={signInStyle}>로그인</a>}/>
-                            <Signup triggerButton={<a style={signUpStyle}>회원가입</a>}/>
+                            <Signup buttonStyle={signUpStyle}/>
                         </span>
                     )
                 }
