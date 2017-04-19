@@ -21,8 +21,13 @@ class Signup extends Component {
     })
 
     _handleSignupSubmit = async (values) => {
-        if( values.password != values.password_check )
+        if(values.gender == undefined) {
+            values.gender = 'F'
+        }
+        if(values.password != values.password_check) {
+            this.props.alertConfirm("비밀번호가 다릅니다.", "red");
             console.log("password is not equal");
+        }
         else {
             const info = await Promise.all([axios.post('http://127.0.0.1:8000/users/',values)
                 .then(response => {
@@ -31,8 +36,11 @@ class Signup extends Component {
                     console.log(response.data);
                 })
                 .catch(error => {
-                    this.props.alertConfirm("회원가입에 실패했습니다.", "red");
                     console.log(error.response.data);
+                    if(error.response.data['username'][0] == 'user with this username already exists.')
+                        this.props.alertConfirm("이미 존재하는 이메일 입니다.", "red");
+                    else
+                        this.props.alertConfirm("회원가입에 실패했습니다.", "red");
                 })
             ]);
         }
