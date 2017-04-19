@@ -15,6 +15,7 @@ class Statistics extends React.Component{
             height:'500px',
             backgroundImage: 'url("http://localhost:8000/media/container_background.jpg")',
             marginTop: '100px',
+            width: '100%'
         };
         const cardStyle = {
             width:'200px',
