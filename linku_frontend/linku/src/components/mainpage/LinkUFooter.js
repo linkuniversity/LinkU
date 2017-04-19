@@ -1,18 +1,16 @@
 import React, {Component} from 'react';
-import {Container, Grid, Image} from 'semantic-ui-react'
+import {Container, Grid, Image, Item} from 'semantic-ui-react'
 
 
 let leftPartBottomStyle = {
     marginTop: "7%",
     marginLeft: "45%",
-    overflow: "auto",
 }
 
 let leftPartStyle = {
-    position: 'relative',
     float: "left",
-    width: "40%",
-    marginLeft: "11%"
+    marginLeft: "11%",
+    width: "360px"
 }
 
 let rightPartStyle = {
@@ -27,12 +25,14 @@ const LinkUFooter = () => (
                 <div style={{width: "100%" , marginTop: "10%", marginBottom: "5%"}}>
                     <div style={leftPartStyle}>
                         <Image style={{width: "108", height: "78"}} src='http://localhost:8000/media/logo_bottom.png' floated="left"/>
-                        <div style={{marginLeft: "45%"}}>
-                            <a>이용안내</a> <a style={{marginLeft: "6%"}}>리얼후기</a>
-                        </div>
-                        <div style={leftPartBottomStyle}>
-                            대학생이 놀고 웃고 친해질 수 있는 곳 링쿠<br/>
-                            대학생들의 새로운 문화를 선도합니다
+                        <div style={{marginLeft: "25%"}}>
+                            <p>
+                                <a>이용안내</a> <a style={{marginLeft: "6%"}}>리얼후기</a>
+                            </p>
+                            <p>
+                                대학생이 놀고 웃고 친해질 수 있는 곳 링쿠<br/>
+                                대학생들의 새로운 문화를 선도합니다
+                            </p>
                         </div>
                     </div>
                     <div style={rightPartStyle}>
@@ -41,8 +41,6 @@ const LinkUFooter = () => (
                             team.uniculture@gmail.com<br/>
                             카카오톡 플러스 친구 :
                         </p>
-                        <p></p>
-
                         <p>문의 사항있으시면 여기로 연락주시면 됩니다.</p>
                     </div>
                 </div>
