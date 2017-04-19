@@ -1,7 +1,7 @@
 import pytest
 from rest_framework.test import APIClient
 import base64
-
+import json
 
 @pytest.mark.django_db
 def test_isparticipated_POST_request(client):
@@ -12,7 +12,7 @@ def test_isparticipated_POST_request(client):
         'password': 'test password',
         'phone_number': '01000000000',
         'authenticated_university_email': 'test@authenticated.ac.kr',
-        'is_participated': True
+        'participated_ids': json.dumps([1, 3])
     }
 
     client.post('/users/', signup_data)
@@ -30,6 +30,6 @@ def test_isparticipated_POST_request(client):
         'HTTP_AUTHORIZATION': 'Token ' + token
     }
 
-    isparticipated_response = client.post('/isparticipated/', login_data, **auth_headers)
+    participated_response = client.post('/participated-ids/', login_data, **auth_headers)
 
-    assert 'true' == isparticipated_response.content.decode('utf-8')
+    assert '[1, 3]' == json.loads(participated_response.content.decode('utf-8'))
