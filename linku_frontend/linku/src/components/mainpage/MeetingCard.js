@@ -16,6 +16,7 @@ class MeetingCard extends React.Component
         super(props);
 
         this.state = {
+            participatedIds : [],
             isParticipated : false
         };
     }
@@ -25,10 +26,10 @@ class MeetingCard extends React.Component
             headers: { 'Authorization': token }
         };
 
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/isparticipated/',{},config )
+        const info = await Promise.all([axios.post('http://127.0.0.1:8000/participated-ids/',{},config )
             .then(response => {
                 this.setState({
-                    isParticipated : response.data
+                    participatedIds : JSON.parse(response.data)
                 });
             })
             .catch(error => {
@@ -36,6 +37,21 @@ class MeetingCard extends React.Component
             })
         ]);
     }
+    _participatedSelectionCheck = (e, data) => {
+        if(this.state.participatedIds.indexOf(data.value) > -1){
+            this.setState({
+                ...this.state,
+                isParticipated : true
+            });
+        }
+        else {
+            this.setState({
+                ...this.state,
+                isParticipated : false
+            });
+        }
+    }
+
     componentWillReceiveProps(props){
         const token = localStorage.getItem('token');
 
@@ -200,7 +216,7 @@ class MeetingCard extends React.Component
                         <Card.Content>
                             <Card.Header>
                                 <Menu compact style={{marginBottom: '10px', width: '240px'}}>
-                                    <Dropdown placeholder='클릭해서 날짜 선택하기' selection options={meetingDateOptions} fluid/>
+                                    <Dropdown placeholder='클릭해서 날짜 선택하기' onChange = { this._participatedSelectionCheck }selection options={meetingDateOptions} fluid/>
                                 </Menu>
                             </Card.Header>
                             <Card.Description>
