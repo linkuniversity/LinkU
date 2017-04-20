@@ -1,6 +1,7 @@
 import { call, put, takeEvery, fork } from 'redux-saga/effects';
 import * as service from '../services/Login';
 import * as actions from '../actions/Login';
+import {alertConfirm} from '../actions/Common'
 
 function* requestLogin(action){
     try{
@@ -11,6 +12,7 @@ function* requestLogin(action){
     }catch(e){
         console.log(e);
         yield put(actions.loginFailure(e));
+        yield put(alertConfirm("이메일 혹은 비밀번호가 올바르지 않습니다.","red"));
     }
 }
 
