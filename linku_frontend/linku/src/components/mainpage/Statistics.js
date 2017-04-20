@@ -47,17 +47,17 @@ class Statistics extends React.Component{
                             <Grid.Column width = {4} textAlign="center">
                                 <Image style={cardStyle} src="http://localhost:8000/media/num_of_appliers.png" centered />
                                     <div style={statisticsNumberStyle}>{data.num_of_applier}</div>
-                                    <div style={statisticsCategoryStyle}>신청한 사람 수</div>
+                                    <div style={statisticsCategoryStyle}>지금까지 신청한 사람</div>
                             </Grid.Column>
                             <Grid.Column width = {4} textAlign="center">
                                 <Image style={middleCardStyle} src="http://localhost:8000/media/num_of_meetings.png" centered/>
                                     <div style={statisticsNumberStyle}>{data.created_meeting}</div>
-                                    <div style={statisticsCategoryStyle}>성사된 모임수</div>
+                                    <div style={statisticsCategoryStyle}>진행된 모임 수</div>
                             </Grid.Column>
                             <Grid.Column width = {4} textAlign="center">
                                 <Image style={cardStyle} src="http://localhost:8000/media/num_of_new_faces.png" centered/>
                                     <div style={statisticsNumberStyle}>{data.new_meet_person}</div>
-                                    <div style={statisticsCategoryStyle}>새롭게 만난 사람수</div>
+                                    <div style={statisticsCategoryStyle}>새롭게 만난 사람 수</div>
                             </Grid.Column>
                         </Grid>
                     </div>

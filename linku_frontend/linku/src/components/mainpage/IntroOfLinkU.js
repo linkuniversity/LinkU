@@ -36,7 +36,7 @@ class IntroOfLinkU extends React.Component {
         }
 
         let guideButtonStyle = {
-            color: '#0000FF',
+            color: '#5fa1d7',
             backgroundColor: '#FFFFFF',
             border: '0px',
             fontSize: '23px'

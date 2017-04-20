@@ -4,7 +4,7 @@ from django.db import migrations
 
 def forwards_func(apps, schema_editor):
     Status = apps.get_model("meeting", "Status")
-    Status.objects.create(num_of_applier=5, created_meeting=10, new_meet_person=20)
+    Status.objects.create(num_of_applier=154, created_meeting=24, new_meet_person=117)
 
 
 def reverse_func(apps, schema_editor):

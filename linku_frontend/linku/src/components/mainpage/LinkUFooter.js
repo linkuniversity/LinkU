@@ -38,10 +38,11 @@ const LinkUFooter = () => (
                     <div style={rightPartStyle}>
                         <p style={{fontSize: "20", color: "#5fa1d7"}}>문의</p>
                         <p>
-                            team.uniculture@gmail.com<br/>
-                            카카오톡 플러스 친구 :
+                            <Image src="http://localhost:8000/media/facebook_icon.png" href="https://www.facebook.com/LinkUandU/"/>
+                            <Image style={{marginLeft: '20px'}} src="http://localhost:8000/media/kakaotalk_icon.png" href="http://plus.kakao.com/home/@linku"/><br/>
+                            <h5 style={{marginTop: '10px'}}>team.uniculture@gmail.com</h5>
                         </p>
-                        <p>문의 사항있으시면 여기로 연락주시면 됩니다.</p>
+                        <p>취소, 환불, 모임 날짜 변경 혹은 문의사항 있으시면 여기로 연락주시면 됩니다.</p>
                     </div>
                 </div>
             </Grid.Row>

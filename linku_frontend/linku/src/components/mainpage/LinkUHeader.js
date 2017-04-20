@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 class LinkUHeader extends Component {
     constructor(props) {
         super(props);
-    };
+    }
 
     render() {
         let containerStyle = {
@@ -25,7 +25,7 @@ class LinkUHeader extends Component {
 
         let signWrapperStyle = {
             float: 'right',
-        }
+        };
 
         let signInButtonStyle = {
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
@@ -33,7 +33,7 @@ class LinkUHeader extends Component {
             color: '#5d5d5d',
             backgroundColor: '#FFFFFF',
             border: '0px'
-        }
+        };
 
         let signUpButtonStyle={
             marginLeft: '20px',
@@ -42,14 +42,16 @@ class LinkUHeader extends Component {
             color: '#5d5d5d',
             backgroundColor: '#FFFFFF',
             border: '0px'
-        }
+        };
 
-        let signOutStyle={
+        let signOutButtonStyle={
             float: 'right',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
             color: '#5d5d5d',
-        }
+            backgroundColor: '#FFFFFF',
+            border: '0px'
+        };
 
         return (
             <Container style={containerStyle}>
@@ -58,7 +60,7 @@ class LinkUHeader extends Component {
                 {
                     (localStorage.getItem('token') && this.props.loggedIn) ?
                     (
-                        <a style={signOutStyle} onClick={this.props.logout}>로그아웃</a>
+                        <button style={signOutButtonStyle} onClick={this.props.logout}>로그아웃</button>
                     ):
                     (
                         <span style={signWrapperStyle}>

@@ -203,7 +203,8 @@ class MeetingCard extends React.Component
                                             17:00 ~ 18:30
                                         </Grid.Column>
                                         <Grid.Column width={95}>
-                                            호호식당 /or/ 키친랩 /or/ 정돈(수요미식회) 에서 식사를 합니다.
+                                            호호식당
+                                            <a src="https://store.naver.com/restaurants/detail?id=85806567&tab=main">호호식당</a>
                                         </Grid.Column>
                                         <Grid.Column width={5}>
                                             18:30 ~ 19:30
