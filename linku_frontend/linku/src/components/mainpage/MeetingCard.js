@@ -224,7 +224,7 @@ class MeetingCard extends React.Component
                         </Card.Content>
                         <Card.Content extra>
                             {
-                            (!(this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn) ?
+                            ((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn) ?
                                 <Button disabled color='blue' fluid>신청완료</Button> :
                             (
                                 (localStorage.getItem('token') && this.props.loggedIn) ?

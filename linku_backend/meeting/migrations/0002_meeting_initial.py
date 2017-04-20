@@ -17,7 +17,7 @@ def forwards_func(apps, schema_editor):
                                meeting=meeting),
 
     StatusByDay.objects.create(start_time=datetime.datetime.now(),
-                               num_of_joined_members=1,
+                               num_of_joined_members=6,
                                max_num_of_members=6,
                                meeting=meeting)
 
