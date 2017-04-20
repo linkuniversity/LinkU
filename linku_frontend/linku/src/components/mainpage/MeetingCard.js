@@ -130,7 +130,9 @@ class MeetingCard extends React.Component
         if(this.props.meetingInfo.status_by_days)
         {
             meetingDateOptions = this.props.meetingInfo.status_by_days.map((status, index) => {
-                return { key: index, text: status.meeting_status, value: index };
+                const button_message = status.meeting_status + " (" + status.num_of_joined_members
+                                        + "/" + status.max_num_of_members + ")명";
+                return { key: index, text: button_message, value: index };
             });
         }
 
