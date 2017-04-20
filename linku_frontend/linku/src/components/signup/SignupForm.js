@@ -13,6 +13,8 @@ const phoneCorrectForm = value =>
     "'-' 을 제외하고 11자리를 입력해주세요" : undefined
 const passwordRequired = value => value ? undefined : '비밀번호를 입력해주세요'
 const genderRequired = value => value ? undefined : '성별을 선택해주세요'
+const universityEmailFormRequired = value =>
+    value.substr(value.length - 5) == "ac.kr" ? undefined : '대학교 메일을 입력해주세요.'
 
 
 const spanErrorStyle ={
@@ -54,7 +56,7 @@ const SignupForm = ({handleSubmit}) => {
                 <label htmlFor="password_check">비밀번호 확인</label>
                 <Field name="password_check" component="input" type="password"/>
             </Form.Field>
-            <Field name="authenticated_university_email" component={renderField} htmlFor="authenticated_university_email" labelText="대학교 이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
+            <Field name="authenticated_university_email" component={renderField} htmlFor="authenticated_university_email" labelText="대학교 이메일" type="text" validate={[emailRequired, emailCorrectForm, universityEmailFormRequired]}/>
             <Form.Button fluid>가입 완료</Form.Button>
         </Form>
     );
