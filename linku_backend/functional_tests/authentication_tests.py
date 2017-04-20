@@ -26,24 +26,25 @@ def browser():
     else:
         driver = webdriver.Firefox()
     yield driver
+    if 'CIRCLE_ARTIFACTS' in os.environ:
+        driver.get_screenshot_as_file(os.environ['CIRCLE_ARTIFACTS'] + '/test.png')
     driver.close()
 
 
 @pytest.mark.django_db
 def test_authentication(browser):
-    pass
-    # browser.get(BASE_URL)
-    # browser.find_element_by_xpath("//button[text()='회원가입']").click() # assert "링쿠 회원가입" in browser.page_source
-    #
-    # browser.find_element_by_xpath("//input[@name='username']").send_keys('test@gmail.com')
-    # browser.find_element_by_xpath("//input[@name='nickname']").send_keys('test nickname')
-    # browser.find_element_by_xpath("//input[@name='gender' and @value='M']").click()
-    # browser.find_element_by_xpath("//input[@name='phone_number']").send_keys('01012341234')
-    # browser.find_element_by_xpath("//input[@name='password']").send_keys('test password')
-    # browser.find_element_by_xpath("//input[@name='password_check']").send_keys('test password')
-    # browser.find_element_by_xpath("//input[@name='authenticated_university_email']").send_keys('test@univ.ac.kr')
-    # browser.find_element_by_xpath("//button[text()='가입 완료']").click()
-    # time.sleep(1)
-    #
-    # confirm_element = browser.find_element_by_xpath("//div[@id='confirm_modal']/div[@class='header']")
-    # assert confirm_element.text == "회원가입이 완료되었습니다."
+    browser.get(BASE_URL)
+    browser.find_element_by_xpath("//button[text()='회원가입']").click() # assert "링쿠 회원가입" in browser.page_source
+
+    browser.find_element_by_xpath("//input[@name='username']").send_keys('test@gmail.com')
+    browser.find_element_by_xpath("//input[@name='nickname']").send_keys('test nickname')
+    browser.find_element_by_xpath("//input[@name='gender' and @value='M']").click()
+    browser.find_element_by_xpath("//input[@name='phone_number']").send_keys('01012341234')
+    browser.find_element_by_xpath("//input[@name='password']").send_keys('test password')
+    browser.find_element_by_xpath("//input[@name='password_check']").send_keys('test password')
+    browser.find_element_by_xpath("//input[@name='authenticated_university_email']").send_keys('test@univ.ac.kr')
+    browser.find_element_by_xpath("//button[text()='가입 완료']").click()
+    time.sleep(1)
+
+    confirm_element = browser.find_element_by_xpath("//div[@id='confirm_modal']/div[@class='header']")
+    assert confirm_element.text == "회원가입이 완료되었습니다."
