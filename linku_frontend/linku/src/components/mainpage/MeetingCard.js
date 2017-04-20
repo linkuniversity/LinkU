@@ -16,19 +16,26 @@ class MeetingCard extends React.Component
         super(props);
 
         this.state = {
-            isParticipated : false
+            participatedIds : [],
+            selectedValue : 0
         };
     }
 
-    _fetchIsParticipatedInfo = async(token) => {
+    _fetchIsParticipatedInfo = async() => {
+        const token = localStorage.getItem('token');
+
+        if(token == undefined)
+            return;
+
         const config = {
             headers: { 'Authorization': token }
         };
 
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/isparticipated/',{},config )
+        const info = await Promise.all([axios.post('http://127.0.0.1:8000/participated-ids/',{},config )
             .then(response => {
                 this.setState({
-                    isParticipated : response.data
+                    ...this.state,
+                    participatedIds : JSON.parse(response.data)
                 });
             })
             .catch(error => {
@@ -36,14 +43,18 @@ class MeetingCard extends React.Component
             })
         ]);
     }
-    componentDidMount(){
-        const token = localStorage.getItem('token');
+    _participatedSelectionChange = (e, data) => {
+        this.setState({
+            ...this.state,
+            selectedValue : data.value
+        });
+    }
 
-        if(token == undefined)
-            return;
-        else {
-            this._fetchIsParticipatedInfo(token);
-        }
+    componentWillMount(){
+        this._fetchIsParticipatedInfo();
+    }
+    componentWillReceiveProps(props){
+        this._fetchIsParticipatedInfo();
     }
     render() {
         const statisticsNumberStyle = {
@@ -200,7 +211,7 @@ class MeetingCard extends React.Component
                         <Card.Content>
                             <Card.Header>
                                 <Menu compact style={{marginBottom: '10px', width: '240px'}}>
-                                    <Dropdown placeholder='클릭해서 날짜 선택하기' selection options={meetingDateOptions} fluid/>
+                                    <Dropdown placeholder='클릭해서 날짜 선택하기' onChange = { this._participatedSelectionChange } selection options={meetingDateOptions} fluid/>
                                 </Menu>
                             </Card.Header>
                             <Card.Description>
@@ -211,7 +222,7 @@ class MeetingCard extends React.Component
                         </Card.Content>
                         <Card.Content extra>
                             {
-                            (this.state.isParticipated) ?
+                            (!(this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn) ?
                                 <Button disabled color='blue' fluid>신청완료</Button> :
                             (
                                 (localStorage.getItem('token') && this.props.loggedIn) ?

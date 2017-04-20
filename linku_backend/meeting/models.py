@@ -22,7 +22,8 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=11, validators=[phone_regex])
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
     profile_image_path = models.ImageField(blank=True)
-    is_participated = models.BooleanField(default=False)
+    # participated_ids example: [0,1,3]
+    participated_ids = models.CharField(max_length=200, default='[]')
 
 
 @receiver(post_save, sender=User)
