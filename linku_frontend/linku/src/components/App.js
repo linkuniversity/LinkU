@@ -29,7 +29,6 @@ const App = () => (
         <Review />
         <Statistics />
         <LinkUFooter />
-        <LinkUGuide />
     </div>
 );
 

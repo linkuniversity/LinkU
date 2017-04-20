@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Container, Grid, Card, Image} from 'semantic-ui-react'
+import {Container, Grid, Card, Image, Button} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/Common';
+import LinkUGuide from '../guide_page/LinkUGuide';
 
 class IntroOfLinkU extends React.Component {
     constructor(props) {
@@ -34,15 +35,24 @@ class IntroOfLinkU extends React.Component {
             fontSize: '20pt',
         }
 
+        let guideButtonStyle = {
+            color: '#0000FF',
+            backgroundColor: '#FFFFFF',
+            border: '0px',
+            fontSize: '23px'
+        }
+
         return (
 
             <Container style={containerStyle}>
                 <div style={promotionWordStyle}>
                     <div> 링쿠는 <b>대학생</b>들이 만나서</div>
                     <div style={{marginTop: '16px'}}><b>놀고 웃고 친해질 수 있는</b></div>
-                    <div style={{marginTop: '16px'}}><b>대학생 놀이모임</b> 연결서비스입니다 <a href="https://twpower.github.io">이용안내 ></a> </div>
+                    <div style={{marginTop: '16px'}}><b>대학생 놀이모임</b> 연결서비스입니다<br/><br/>
+                         <LinkUGuide modalTrigger = {<Button style={guideButtonStyle}>이용안내 ></Button>} />
+                    </div>
                 </div>
-                <Grid style={{marginTop: '18px'}}>
+                <Grid style={{marginTop: '1px'}}>
                     <Grid.Row columns={3}>
                         <Grid.Column textAlign="center">
 
