@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Grid, Card, Image} from 'semantic-ui-react'
+import {Container, Grid, Card, Image, Modal} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 class LinkUGuide extends React.Component{
@@ -38,6 +38,9 @@ class LinkUGuide extends React.Component{
         }
 
         return(
+            <Modal trigger={this.props.modalTrigger}>
+            <Modal.Header>이용안내</Modal.Header>
+            <Modal.Content>
             <Container>
                 <Container style={containerStyle}>
                     <Grid style={{width: '100%'}} centered verticalAlign="middle">
@@ -126,6 +129,8 @@ class LinkUGuide extends React.Component{
                     </Grid>
                 </Container>
             </Container>
+            </Modal.Content>
+            </Modal>
         );
     }
 
