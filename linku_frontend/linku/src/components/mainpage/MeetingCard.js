@@ -136,6 +136,28 @@ class MeetingCard extends React.Component
             });
         }
 
+        const getBtnByState = () => {
+            if(this.props.meetingInfo.status_by_days == undefined || this.props.meetingInfo.status_by_days.length == 0)
+                return;
+
+            const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue]
+
+            if(selectedDays.num_of_joined_members >= selectedDays.max_num_of_members)
+                return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
+
+            if((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn){
+                return (<Button disabled color='blue' fluid>신청완료</Button>);
+            }
+            else {
+                if(localStorage.getItem('token') && this.props.loggedIn){
+                    return (<Apply triggerButton={button}/>);
+                }
+                else {
+                    return (<Login triggerButton={button}/>);
+                }
+            }
+        };
+
         return(
             <Container style={meetingInfoBackgroundStyle}>
                 <Grid centered>
@@ -223,16 +245,7 @@ class MeetingCard extends React.Component
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
-                            {
-                            ((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn) ?
-                                <Button disabled color='blue' fluid>신청완료</Button> :
-                            (
-                                (localStorage.getItem('token') && this.props.loggedIn) ?
-                                (<Apply triggerButton={button}/>)
-                                :
-                                (<Login triggerButton={button}/>)
-                            )
-                        }
+                            {getBtnByState()}
                         </Card.Content>
                     </Card>
                 </Grid>
