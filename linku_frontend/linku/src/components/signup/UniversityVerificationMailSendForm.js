@@ -44,7 +44,7 @@ class UniversityVerificationMailSendForm extends Component{
         }
 
         return (
-            <Form onSubmit={this.props.handleSubmit}>
+            <Form loading={this.props.is_loading} onSubmit={this.props.handleSubmit}>
                 <Field name="university_email" isInActive={this.props.is_university_email_verification_request_done} component={renderField} htmlFor="university_email" labelText="대학교 메일" type="text" validate={[emailRequired, emailCorrectForm, universityEmailFormRequired,]} />
                 {formSubmitButton}
             </Form>
