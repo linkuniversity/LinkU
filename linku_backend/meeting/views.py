@@ -95,6 +95,22 @@ def get_participated_ids(request, format=None):
 
 
 @api_view(['POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def apply_alarm(request, format=None):
+    if request.method == 'POST':
+        apply_alarm_list = json.loads(request.user.apply_alarm_indexes)
+        apply_alarm_list.append(int(request.POST['apply_alarm_index']))
+
+        request.user.apply_alarm_indexes = json.dumps(apply_alarm_list)
+        request.user.save()
+
+        return Response({"Message": "Success"})
+
+    return Response({"Message": "Bad Request"})
+
+
+@api_view(['POST'])
 def check_university_verification_auth_number(request):
     if request.method == 'POST':
         auth_number = int(request.POST['auth_number'])
