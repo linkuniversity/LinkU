@@ -19,7 +19,7 @@ import Statistics from './mainpage/Statistics';
 import LinkUFooter from './mainpage/LinkUFooter'
 
 const App = () => (
-    <div>
+    <div >
         <ConfirmModal />
         <LinkUHeader />
         <IntroVideo />
