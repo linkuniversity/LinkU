@@ -89,13 +89,9 @@ def send_verification_email(request):
 
 @api_view(['POST'])
 @authentication_classes((TokenAuthentication,))
-@permission_classes((permissions.AllowAny,))
+@permission_classes((IsAuthenticated,))
 def get_participated_ids(request, format=None):
-    token = request.META['HTTP_AUTHORIZATION'].replace('Token ','')
-
-    user_participated_ids = Token.objects.get(key=token).user.participated_ids
-
-    return Response(user_participated_ids)
+    return Response(request.user.participated_ids)
 
 
 @api_view(['POST'])

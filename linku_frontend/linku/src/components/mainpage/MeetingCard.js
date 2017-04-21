@@ -28,7 +28,7 @@ class MeetingCard extends React.Component
             return;
 
         const config = {
-            headers: { 'Authorization': token }
+            headers: { 'Authorization': 'Token '+token }
         };
 
         const info = await Promise.all([axios.post('http://127.0.0.1:8000/participated-ids/',{},config )

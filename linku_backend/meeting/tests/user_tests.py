@@ -30,6 +30,6 @@ def test_isparticipated_POST_request(client):
         'HTTP_AUTHORIZATION': 'Token ' + token
     }
 
-    participated_response = client.post('/participated-ids/', login_data, **auth_headers)
+    participated_response = client.post('/participated-ids/', {}, **auth_headers)
 
     assert '[1, 3]' == json.loads(participated_response.content.decode('utf-8'))

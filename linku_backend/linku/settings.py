@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Cors middleware settings
 CORS_ORIGIN_WHITELIST = (
-    'localhost:3000'
+    'localhost:3000',
 )
 
 # REST_FRAMEWORK
