@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider } from 'semantic-ui-react'
+import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon } from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux';
 
@@ -17,7 +17,9 @@ class MeetingCard extends React.Component
 
         this.state = {
             participatedIds : [],
-            selectedValue : 0
+            selectedValue : undefined,
+            participant_man_num : undefined,
+            participant_woman_num : undefined
         };
     }
 
@@ -44,9 +46,12 @@ class MeetingCard extends React.Component
         ]);
     }
     _participatedSelectionChange = (e, data) => {
+        const current_status = this.props.meetingInfo.status_by_days[data.value];
         this.setState({
             ...this.state,
-            selectedValue : data.value
+            selectedValue : data.value,
+            participant_man_num : current_status.participant_num.man,
+            participant_woman_num : current_status.participant_num.woman,
         });
     }
 
@@ -60,8 +65,6 @@ class MeetingCard extends React.Component
         const statisticsNumberStyle = {
             color : '#FFFFFF',
         };
-
-        const button = (<Button color='blue' fluid>신청하기</Button>);
 
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
@@ -122,6 +125,10 @@ class MeetingCard extends React.Component
             textAlign: 'left',
             fontSize: '12pt',
         };
+        let meetingMemberStyle = {
+            paddingTop: '20px',
+            fontSize: '12pt',
+        };
 
         let meetingDateOptions = [];
 
@@ -135,10 +142,13 @@ class MeetingCard extends React.Component
         }
 
         const getBtnByState = () => {
+            if(this.state.selectedValue == undefined)
+                return (<Button disabled color='blue' fluid>날짜를 선택해주세요</Button>);
+
             if(this.props.meetingInfo.status_by_days == undefined || this.props.meetingInfo.status_by_days.length == 0)
                 return;
 
-            const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue]
+            const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue];
 
             if(selectedDays.num_of_joined_members >= selectedDays.max_num_of_members)
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
@@ -147,6 +157,7 @@ class MeetingCard extends React.Component
                 return (<Button disabled color='blue' fluid>신청완료</Button>);
             }
             else {
+                const button = (<Button color='blue' fluid>신청하기</Button>);
                 if(localStorage.getItem('token') && this.props.loggedIn){
                     return (<Apply triggerButton={button}/>);
                 }
@@ -230,13 +241,20 @@ class MeetingCard extends React.Component
                         <Card.Content>
                             <Card.Header>
                                 <Menu compact style={{marginBottom: '10px', width: '240px'}}>
-                                    <Dropdown placeholder='클릭해서 날짜 선택하기' onChange = { this._participatedSelectionChange } selection options={meetingDateOptions} fluid/>
+                                    <Dropdown placeholder='클릭해서 날짜 선택하기' onChange = {this._participatedSelectionChange} selection options={meetingDateOptions} fluid/>
                                 </Menu>
                             </Card.Header>
                             <Card.Description>
                                 <div style={meetingApplyFontStyle}><strong>시간</strong> : 17:00</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
+                                <div style={meetingApplyFontStyle}>
+                                    <strong>현재 참여인원 </strong>
+                                    <div style={meetingMemberStyle}>
+                                        <Icon style={{paddingBottom:'30px'}} name='man' color='blue' size='large'/> {this.state.participant_woman_num} 명 <br/>
+                                        <Icon name='woman' color='pink' size='large'/>  {this.state.participant_man_num} 명
+                                    </div>
+                                </div>
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>

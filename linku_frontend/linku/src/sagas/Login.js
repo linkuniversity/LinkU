@@ -6,7 +6,7 @@ import {alertConfirm} from '../actions/Common'
 function* requestLogin(action){
     try{
         const [response] = yield [
-            call(service.login, action.id, action.password)
+            call(service.login, action.username, action.password)
         ];
         yield put(actions.loginSuccess(response));
     }catch(e){

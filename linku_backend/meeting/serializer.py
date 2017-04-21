@@ -17,16 +17,28 @@ class SubImageSerializer(serializers.HyperlinkedModelSerializer):
 class StatusByDaySerializer(serializers.ModelSerializer):
     appliers = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
     meeting_status = serializers.SerializerMethodField()
+    participant_num = serializers.SerializerMethodField()
 
     class Meta:
         model = StatusByDay
-        fields = ('appliers', 'meeting', 'meeting_status', 'num_of_joined_members', 'max_num_of_members')
+        fields = ('appliers', 'meeting', 'meeting_status', 'num_of_joined_members', 'max_num_of_members', 'participant_num')
 
     def get_meeting_status(self, obj):
         WEEK_DAY = ['월', '화', '수', '목', '금', '토', '일']
         return str(obj.start_time.month) + '월 ' + \
                str(obj.start_time.day) + '일 ' + \
-               WEEK_DAY[obj.start_time.today().weekday()] + '요일'
+               WEEK_DAY[obj.start_time.weekday()] + '요일'
+
+    def get_participant_num(self, obj):
+        man_num = 0
+        woman_num = 0
+        for user in obj.appliers.all():
+            if user.gender == 'M':
+                man_num += 1
+            else:
+                woman_num += 1
+
+        return {'man': man_num, 'woman': woman_num}
 
 
 class MeetingSerializer(serializers.ModelSerializer):

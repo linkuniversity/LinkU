@@ -12,10 +12,10 @@ export function logout(){
         type : types.LOGOUT
     };
 }
-export function loginRequest(id, password){
+export function loginRequest(username, password){
     return {
         type : types.REQUEST_LOGIN,
-        id,
+        username,
         password
     };
 }

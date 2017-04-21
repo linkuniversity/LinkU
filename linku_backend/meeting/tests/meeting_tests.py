@@ -1,9 +1,8 @@
 import pytest
 import datetime
 
-from meeting.models import Meeting, StatusByDay, SubImage
+from meeting.models import Meeting, StatusByDay, SubImage, User
 from meeting.serializer import MeetingSerializer
-from rest_framework.request import Request
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
 SAVED_TEST_IMAGE_NAME2 = 'test_image2.jpg'
@@ -98,3 +97,41 @@ def test_meeting_has_many_sub_images(client):
     response_sub_images = api_response_data['sub_images']
     for i in range(3):
         assert sub_images[i].path.url in response_sub_images[i]['path']
+
+
+@pytest.mark.django_db
+def test_update_participation_info_when_someone_apply_meeting(client):
+    meeting = Meeting.objects.get(title='test title')
+
+    response = client.get('/meetings/%d/' % meeting.id)
+    status_by_days_data_list = response.data['status_by_days']
+    for status_by_days_data in status_by_days_data_list:
+        assert status_by_days_data['participant_num']['man'] == 0
+        assert status_by_days_data['participant_num']['woman'] == 0
+
+    signup_data = {
+        'username': 'test@test.com',
+        'nickname': 'test nickname',
+        'gender': 'M',
+        'password': 'test password',
+        'phone_number': '01000000000',
+        'authenticated_university_email': 'test@authenticated.ac.kr'
+    }
+    client.post('/users/', signup_data)
+
+    MEETING_STATUS_INDEX = 1
+    statusByDays = StatusByDay.objects.filter(meeting=meeting)
+
+    user = User.objects.get(username='test@test.com')
+    statusByDays[MEETING_STATUS_INDEX].appliers.add(user)
+    statusByDays[MEETING_STATUS_INDEX].save()
+
+    response = client.get('/meetings/%d/' % meeting.id)
+    status_by_days_data_list = response.data['status_by_days']
+    for index, status_by_days_data in enumerate(status_by_days_data_list):
+        if index == MEETING_STATUS_INDEX:
+            assert status_by_days_data['participant_num']['man'] == 1
+            assert status_by_days_data['participant_num']['woman'] == 0
+        else:
+            assert status_by_days_data['participant_num']['man'] == 0
+            assert status_by_days_data['participant_num']['woman'] == 0
