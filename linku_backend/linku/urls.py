@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login/', obtain_auth_token),
     url(r'^participated-ids/', views.get_participated_ids, name='get_participated_ids'),
+    url(r'^apply-alarm/', views.apply_alarm, name='apply_alarm'),
     url(r'^university-verification-email/', views.send_verification_email, name="send_verification_email"),
     url(r'^university-verification-number/', views.check_university_verification_auth_number,
         name="check_university_verification_auth_number")

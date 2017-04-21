@@ -24,6 +24,7 @@ class User(AbstractUser):
     profile_image_path = models.ImageField(blank=True)
     # participated_ids example: [0,1,3]
     participated_ids = models.CharField(max_length=200, default='[]')
+    apply_alarm_indexes = models.CharField(max_length=200, default='[]')
 
 
 @receiver(post_save, sender=User)
