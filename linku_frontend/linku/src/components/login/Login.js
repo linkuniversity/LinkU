@@ -25,7 +25,7 @@ class Login extends Component {
     })
 
     _handleLoginSubmit = (values) => {
-        this.props.loginRequest(values.username,values.password);
+        this.props.loginRequest(values.username, values.password);
     }
 
     render() {
@@ -46,8 +46,8 @@ class Login extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loginRequest : (id, password) => {
-            return dispatch(loginRequest(id,password));
+        loginRequest : (username, password) => {
+            return dispatch(loginRequest(username, password));
         },
     };
 };
