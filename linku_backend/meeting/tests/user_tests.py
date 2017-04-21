@@ -68,14 +68,14 @@ def test_apply_alarm_POST_request(client):
 
 
 @pytest.mark.django_db
-def test_request_user_info_with_authenticated_token(client):
+def test_response_gender_if_request_user_info_with_authenticated_token(client):
     user = create_test_user(client)
 
     auth_headers = {
         'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
     }
 
-    response = client.get('/users/%s/' % user.username, {}, **auth_headers)
+    response = client.get('/user/', {}, **auth_headers)
 
-    assert response.data == 'df'
-
+    assert response.status_code == 200
+    assert response.data['gender'] == user.gender
