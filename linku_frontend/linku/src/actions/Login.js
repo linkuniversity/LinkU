@@ -7,7 +7,8 @@ export function login(){
 }
 
 export function logout(){
-    localStorage.setItem('token',undefined);
+    localStorage.setItem('token', undefined);
+    localStorage.setItem('user_gender', undefined);
     return {
         type : types.LOGOUT
     };
@@ -20,8 +21,9 @@ export function loginRequest(username, password){
     };
 }
 
-export function loginSuccess(payload){
+export function loginSuccess(payload, user_info){
     localStorage.setItem('token', payload.data.token);
+    localStorage.setItem('user_gender', user_info.data.gender);
     return {
         type : types.SUCCESS_LOGIN,
         payload

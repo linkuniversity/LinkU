@@ -5,7 +5,7 @@ const loginInitialState = {
     password : 'undefined',
     fetching : false,
     payload : null,
-    loggedIn : false
+    loggedIn : false,
 };
 
 export default function login(state = loginInitialState, action){

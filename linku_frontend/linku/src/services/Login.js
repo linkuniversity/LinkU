@@ -9,9 +9,7 @@ export function login(username, password){
     });
 }
 
-export function user() {
-    const token = localStorage.getItem('token');
-
+export function user(token) {
     if(token == undefined) {
         console.log('token is undefined');
         return;
