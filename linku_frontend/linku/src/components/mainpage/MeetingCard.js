@@ -18,6 +18,7 @@ class MeetingCard extends React.Component
         this.state = {
             participatedIds : [],
             selectedValue : undefined,
+            participant_num : 0,
             participant_man_num : undefined,
             participant_woman_num : undefined
         };
@@ -50,6 +51,7 @@ class MeetingCard extends React.Component
         this.setState({
             ...this.state,
             selectedValue : data.value,
+            participant_num : current_status.participant_num.man + current_status.participant_num.woman,
             participant_man_num : current_status.participant_num.man,
             participant_woman_num : current_status.participant_num.woman,
         });
@@ -135,7 +137,7 @@ class MeetingCard extends React.Component
         if(this.props.meetingInfo.status_by_days)
         {
             meetingDateOptions = this.props.meetingInfo.status_by_days.map((status, index) => {
-                const button_message = status.meeting_status + " (" + status.num_of_joined_members
+                const button_message = status.meeting_status + " (" + this.state.participant_num
                                         + "/" + status.max_num_of_members + ")명";
                 return { key: index, text: button_message, value: index };
             });
@@ -150,7 +152,7 @@ class MeetingCard extends React.Component
 
             const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue];
 
-            if(selectedDays.num_of_joined_members >= selectedDays.max_num_of_members)
+            if(this.state.participant_num >= selectedDays.max_num_of_members)
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
 
             if((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn){
