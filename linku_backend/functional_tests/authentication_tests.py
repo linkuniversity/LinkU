@@ -34,8 +34,7 @@ def browser():
 @pytest.mark.django_db
 def test_authentication(browser):
     browser.get(BASE_URL)
-    browser.find_element_by_xpath("//button[text()='회원가입']").click() # assert "링쿠 회원가입" in browser.page_source
-
+    browser.find_element_by_xpath("//button[text()='회원가입']").click()
     browser.find_element_by_xpath("//input[@name='username']").send_keys('test@gmail.com')
     browser.find_element_by_xpath("//input[@name='nickname']").send_keys('test nickname')
     browser.find_element_by_xpath("//input[@name='gender' and @value='M']").click()
@@ -48,3 +47,14 @@ def test_authentication(browser):
 
     confirm_element = browser.find_element_by_xpath("//div[@id='confirm_modal']/div[@class='header']")
     assert confirm_element.text == "회원가입이 완료되었습니다."
+
+    browser.find_element_by_xpath("//div[@id='confirm_modal']/div[@class='actions']/button").click()
+
+    browser.find_element_by_xpath("//button[text()='로그인']").click()
+    browser.find_element_by_xpath("//input[@name='username']").send_keys('test@gmail.com')
+    browser.find_element_by_xpath("//input[@name='password']").send_keys('test password')
+    browser.find_element_by_xpath("//button[text()='로그인' and @type='submit']").click()
+
+    time.sleep(1)
+    assert '로그아웃' in browser.page_source
+
