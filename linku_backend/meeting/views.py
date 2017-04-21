@@ -10,6 +10,7 @@ from email.mime.text import MIMEText
 from random import randint
 import datetime
 import json
+import re
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -49,7 +50,18 @@ def send_verification_email(request):
     if request.method == 'POST':
         with open('mail_setting.json') as data_file:
             mail_setting = json.load(data_file)
-            email = request.POST['email']
+            print(request.POST)
+            email = request.POST['university_email']
+            print(email)
+
+            email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+            match_result = email_regex.match(email)
+            if match_result is False:
+                return Response({"message": "Invalid Mail Form"}, status=status.HTTP_400_BAD_REQUEST)
+
+            if email[-6:] != ".ac.kr":
+                return Response({"message": "Invalid University Mail Form"}, status=status.HTTP_400_BAD_REQUEST)
+
             auth_number = randint(1000, 9999)
 
             from_addr = mail_setting['email']
@@ -102,17 +114,17 @@ def get_participated_ids(request, format=None):
 def check_university_verification_auth_number(request):
     if request.method == 'POST':
         auth_number = int(request.POST['auth_number'])
-        email = request.POST['email']
+        email = request.POST['university_email']
 
         logs = UniversityAuthenticationLog.objects.filter(email=email).order_by('-sent_to_user_time')
 
         if len(logs) == 0:
-            return Response({"message": "No such email"})
+            return Response({"message": "No such email"}, status=status.HTTP_400_BAD_REQUEST)
 
         latest_log = logs[0]
 
         if latest_log.auth_number_expiration_time < datetime.datetime.now():
-            return Response({"message": "Time Out"})
+            return Response({"message": "Time Out"}, status=status.HTTP_400_BAD_REQUEST)
 
         else:
 
@@ -122,4 +134,4 @@ def check_university_verification_auth_number(request):
                 return Response({"message": "Success"})
 
             else:
-                return Response({"message": "Wrong Auth Number"})
+                return Response({"message": "Wrong Auth Number"}, status=status.HTTP_400_BAD_REQUEST)

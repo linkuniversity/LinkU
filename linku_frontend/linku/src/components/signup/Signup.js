@@ -6,11 +6,18 @@ import { bindActionCreators } from 'redux';
 
 import { alertConfirm } from '../../actions/Common';
 import SignupForm from './SignupForm';
+import UniversityVerificationMailSendForm from './UniversityVerificationMailSendForm';
+import UniversityVerificationNumberSendForm from './UniversityVerificationNumberSendForm'
 
 import axios from 'axios';
 
 class Signup extends Component {
-    state = { modalOpen: false }
+    state = {
+        modalOpen: false,
+        is_verify_auth_number_done: false,
+        is_university_email_verification_request_done: false,
+        university_email: "",
+    }
 
     handleOpen = (e) => this.setState({
         modalOpen: true,
@@ -18,9 +25,15 @@ class Signup extends Component {
 
     handleClose = (e) => this.setState({
         modalOpen: false,
+        is_verify_auth_number_done: false,
+        is_university_email_verification_request_done: false,
+        university_email: "",
     })
 
     _handleSignupSubmit = async (values) => {
+
+        console.log(values);
+
         if(values.gender == undefined) {
             values.gender = 'F'
         }
@@ -29,6 +42,7 @@ class Signup extends Component {
             console.log("password is not equal");
         }
         else {
+            values['authenticated_university_email'] = this.state.university_email;
             const info = await Promise.all([axios.post('http://127.0.0.1:8000/users/',values)
                 .then(response => {
                     this.props.alertConfirm("회원가입이 완료되었습니다.", "blue");
@@ -46,6 +60,56 @@ class Signup extends Component {
         }
     }
 
+    _handleUniversityVerificationMailSendFormSubmit = async (value) => {
+
+
+        const info = await Promise.all([axios.post('http://127.0.0.1:8000/university-verification-email/',"university_email="+value.university_email)
+            .then(response => {
+                this.setState({
+                    is_university_email_verification_request_done: true,
+                    university_email: value.university_email
+                });
+                this.props.alertConfirm("이메일이 전송되었습니다.", "blue");
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error.response.data);
+                if(error.response.data['message'] == 'Invalid Mail Form')
+                    this.props.alertConfirm("이메일 형식이 맞지 않습니다.", "red");
+                else if (error.response.data['message'] == 'Invalid University Mail Form')
+                    this.props.alertConfirm("대학교 이메일 형식에 맞지 않습니다.", "red");
+                else
+                    this.props.alertConfirm("이메일 전송에 실패했습니다.", "red");
+            })
+        ]);
+
+    }
+
+    _handleUniversityVerificationNumberSendFormSubmit = async (value) => {
+
+        const info = await Promise.all([axios.post('http://127.0.0.1:8000/university-verification-number/',"university_email="+this.state.university_email + "&" + "auth_number=" + value.auth_number)
+            .then(response => {
+                this.setState({
+                    is_verify_auth_number_done: true,
+                });
+                this.props.alertConfirm("인증이 완료되었습니다.", "blue");
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error.response.data);
+                if(error.response.data['message'] == 'No such email')
+                    this.props.alertConfirm("해당 메일로 인증번호가 요청되지 않았습니다.", "red");
+                else if (error.response.data['message'] == 'Time Out')
+                    this.props.alertConfirm("시간이 완료되었습니다 다시 요청해주세요.", "red");
+                else if (error.response.data['message'] == 'Wrong Auth Number')
+                    this.prpops.alertConfirm("인증번호가 틀렸습니다.","red");
+                else
+                    this.props.alertConfirm("인증번호 처리에 실패하였습니다.", "red");
+            })
+        ]);
+
+    }
+
     render() {
         let triggerButton = <Button onClick={this.handleOpen} content="회원가입" fluid />;
         if(this.props.buttonStyle!=null) {
@@ -56,7 +120,13 @@ class Signup extends Component {
                 <Modal.Header>링쿠 회원가입</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
-                        <SignupForm onSubmit={this._handleSignupSubmit}/>
+                        <UniversityVerificationMailSendForm onSubmit={this._handleUniversityVerificationMailSendFormSubmit} is_university_email_verification_request_done={this.state.is_university_email_verification_request_done}/>
+                    </Modal.Description>
+                    <Modal.Description>
+                        {this.state.is_university_email_verification_request_done ? <UniversityVerificationNumberSendForm onSubmit={this._handleUniversityVerificationNumberSendFormSubmit} is_verify_auth_number_done={this.state.is_verify_auth_number_done}/> : null}
+                    </Modal.Description>
+                    <Modal.Description>
+                        {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : null}
                     </Modal.Description>
                 </Modal.Content>
             </Modal>
