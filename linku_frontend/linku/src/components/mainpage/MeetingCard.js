@@ -59,33 +59,29 @@ class MeetingCard extends React.Component
     render() {
         const statisticsNumberStyle = {
             color : '#FFFFFF',
-
         };
 
         const button = (<Button color='blue' fluid>신청하기</Button>);
 
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
+            paddingTop: '3%',
+            paddingBottom: '9%'
         };
         let meetingInfoStyle = {
-            marginTop: '43px',
-            marginBottom: '43px',
             width: '620px',
             textAlign: 'left',
         };
         let meetingMainInfoStyle = {
             backgroundImage: 'url(http://localhost:8000/media/meeting_card.jpg)',
-            height: '360px',
             paddingTop: '35px',
             paddingLeft: '35px',
-            paddingRight: '35px'
+            paddingRight: '35px',
+            paddingBottom: '210px'
         };
         let meetingDetailInfoStyle = {
-            backgroundColor: '#FFFFFF',
-            height: '650px',
-            paddingTop: '35px',
-            paddingLeft: '35px',
-            paddingRight: '35px'
+            margin: '5%',
+            backgroundColor: '#FFFFFF'
         };
         let meetingDetailImageLogoStyle = {
             marginTop: '8px',
@@ -101,7 +97,8 @@ class MeetingCard extends React.Component
             fontSize: '24px'
         };
         let meetingDetailPlanStyle = {
-            marginTop: '50px',
+            marginTop: '30px',
+            marginLeft: '5%'
         };
         let meetingDetailButtonStyle = {
             padding: '20px',
@@ -112,8 +109,9 @@ class MeetingCard extends React.Component
             textAlign: 'center'
         };
         let meetingApplyStyle = {
-            marginTop: '43px',
-            marginBottom: '43px',
+            marginTop: '0px',
+            marginLeft: '1%',
+            marginRight: '1%',
             width: '270px',
             height: '360px',
             textAlign: 'center',
@@ -161,7 +159,8 @@ class MeetingCard extends React.Component
         return(
             <Container style={meetingInfoBackgroundStyle}>
                 <Grid centered>
-                    <div style={meetingInfoStyle}>
+                    <Card style={meetingInfoStyle}>
+                        <Card.Content>
                         <div style={meetingMainInfoStyle}>
                             <div style={{color: "#FFFFFF"}}>
                                 <Header style={{color: '#FFFFFF'}} as='h1'>문화예술의 동네 혜화</Header>
@@ -198,40 +197,35 @@ class MeetingCard extends React.Component
                                     일정
                                 </div>
                                 <div style={meetingDetailPlanStyle}>
-                                    <Grid container columns={2}>
-                                        <Grid.Column width={5}>
-                                            17:00 ~ 18:30
-                                        </Grid.Column>
-                                        <Grid.Column width={95}>
-                                            호호식당
+                                    <Item>
+                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>17:00 ~ 18:30</Item.Header>
+                                        <Item.Description style={{marginLeft: '20px'}}>
                                             <a src="https://store.naver.com/restaurants/detail?id=85806567&tab=main">호호식당</a>
-                                        </Grid.Column>
-                                        <Grid.Column width={5}>
-                                            18:30 ~ 19:30
-                                        </Grid.Column>
-                                        <Grid.Column width={95}>
+                                        </Item.Description>
+                                    </Item>
+                                    <Item>
+                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>18:30 ~ 19:30</Item.Header>
+                                        <Item.Description style={{marginLeft: '20px'}}>
                                             [Yx2 보드게임 카페]로 이동합니다.
-                                        </Grid.Column>
-                                        <Grid.Column width={5}>
-                                            19:30 ~ 20:00
-                                        </Grid.Column>
-                                        <Grid.Column width={95}>
+                                        </Item.Description>
+                                    </Item>
+                                    <Item>
+                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>19:30 ~ 20:00</Item.Header>
+                                        <Item.Description style={{marginLeft: '20px'}}>
                                             [우리 게임랜드]
-                                        </Grid.Column>
-                                        <Grid.Column width={5}>
-                                            20:00 ~
-                                        </Grid.Column>
-                                        <Grid.Column width={95}>
+                                        </Item.Description>
+                                    </Item>
+                                    <Item>
+                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>20:00 ~ </Item.Header>
+                                        <Item.Description style={{marginLeft: '20px'}}>
                                             [심야식당]으로 이동합니다. (조금 멀어도 칵테일이 당긴다면 [인생의 단맛]을 추천드려요.)
-                                        </Grid.Column>
-                                    </Grid>
+                                        </Item.Description>
+                                    </Item>
                                 </div>
                             </div>
                         </div>
-                        <Button style={meetingDetailButtonStyle} fluid>
-                            상세 보기 ▽
-                        </Button>
-                    </div>
+                        </Card.Content>
+                    </Card>
                     <Card style={meetingApplyStyle}>
                         <Card.Content>
                             <Card.Header>
