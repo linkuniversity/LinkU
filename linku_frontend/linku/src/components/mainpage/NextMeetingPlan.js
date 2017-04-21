@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import {Container, Grid, Card, Image} from 'semantic-ui-react'
+import {Container, Grid, Card, Image, Button} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+
 import * as actions from '../../actions/Common';
+
+import ComingSoonModal from './ComingSoonModal';
 
 class NextMeetingPlan extends React.Component{
     constructor(props){
@@ -65,7 +68,8 @@ class NextMeetingPlan extends React.Component{
             right: '0' ,
             marginRight: '22px',
             marginBottom: '25px',
-            color: '#FFFFFF'
+            color: '#FFFFFF',
+            backgroundColor: '#BDBDBD'
         }
 
         let gridStyle = {
@@ -87,9 +91,7 @@ class NextMeetingPlan extends React.Component{
                                     <div style={{fontSize:'16pt'}}>모임의 제목이 들어갑니다.</div>
                                     <div style={{marginTop: '25px'}}>모임에 대한 간략한 설명이 들어갑니다.</div>
                                 </div>
-                                <div style={cardSpecificInfoStyle}>
-                                    자세히보기 >
-                                </div>
+                                <ComingSoonModal triggerButton={<Button style={cardSpecificInfoStyle}>자세히보기></Button>}/>
                             </div>
 
                             <div style={middleCardStyle}>
@@ -97,9 +99,7 @@ class NextMeetingPlan extends React.Component{
                                     <div style={{fontSize:'16pt'}}>모임의 제목이 들어갑니다.</div>
                                     <div style={{marginTop: '25px'}}>모임에 대한 간략한 설명이 들어갑니다.</div>
                                 </div>
-                                <div style={cardSpecificInfoStyle}>
-                                    자세히보기 >
-                                </div>
+                                <ComingSoonModal triggerButton={<Button style={cardSpecificInfoStyle}>자세히보기></Button>}/>
                             </div>
 
                             <div style={cardStyle}>
@@ -107,18 +107,16 @@ class NextMeetingPlan extends React.Component{
                                     <div style={{fontSize:'16pt'}}>모임의 제목이 들어갑니다.</div>
                                     <div style={{marginTop: '25px'}}>모임에 대한 간략한 설명이 들어갑니다.</div>
                                 </div>
-                                <div style={cardSpecificInfoStyle}>
-                                    자세히보기 >
-                                </div>
+                                <ComingSoonModal triggerButton={<Button style={cardSpecificInfoStyle}>자세히보기></Button>}/>
                             </div>
 
                         </Grid>
 
                         <div style={bottomStyle}>
-                            내가 모임장이 되어서 모임을 하고 싶다면? <a href="">모임신청하기 ></a>
+                            내가 모임장이 되어서 모임을 하고 싶다면? <ComingSoonModal triggerButton={<a> 모임장 신청하기 ></a>} />
                         </div>
                         <div style={{marginTop: '22px', textAlign: 'center', fontSize: '16pt', marginBottom: '72px'}}>
-                            링쿠에 대한 소식을 받고 싶다면? <a href="">링쿠 카톡 추가하기 ></a>
+                            링쿠에 대한 소식을 받고 싶다면? <a href="http://plus.kakao.com/home/@linku">링쿠 카톡 추가하기 ></a>
                         </div>
                     </div>
                 </Container>
