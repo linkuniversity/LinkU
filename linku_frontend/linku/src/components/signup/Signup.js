@@ -135,7 +135,7 @@ class Signup extends Component {
                 <Modal.Header>링쿠 회원가입</Modal.Header>
                 <Modal.Content>
                     <Modal.Description >
-                        <Header style={{color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생만 가입이 가능합니다.</Header>
+                        <Header style={{color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</Header>
                     </Modal.Description>
                     <Modal.Description>
                         <UniversityVerificationMailSendForm onSubmit={this._handleUniversityVerificationMailSendFormSubmit} is_university_email_verification_request_done={this.state.is_university_email_verification_request_done} is_loading={this.state.is_loading}/>
