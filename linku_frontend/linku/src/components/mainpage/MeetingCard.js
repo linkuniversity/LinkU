@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider } from 'semantic-ui-react'
+import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon } from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux';
 
@@ -124,6 +124,11 @@ class MeetingCard extends React.Component
             textAlign: 'left',
             fontSize: '12pt',
         };
+        let meetingMemberStyle = {
+            padding: '13px',
+            paddingLeft: '30px',
+            fontSize: '12pt'
+        };
 
         let meetingDateOptions = [];
 
@@ -136,12 +141,17 @@ class MeetingCard extends React.Component
             });
         }
 
+        let participant_man_num = 0;
+        let participant_woman_num = 0;
+
         const getBtnByState = () => {
             if(this.props.meetingInfo.status_by_days == undefined || this.props.meetingInfo.status_by_days.length == 0)
                 return;
 
             const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue]
 
+            this.participant_man_num = selectedDays.participant_num.man;
+            this.participant_woman_num = selectedDays.participant_num.woman;
             if(selectedDays.num_of_joined_members >= selectedDays.max_num_of_members)
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
 
@@ -243,6 +253,16 @@ class MeetingCard extends React.Component
                                 <div style={meetingApplyFontStyle}><strong>시간</strong> : 17:00</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
+                                <div style={meetingApplyFontStyle}>
+                                    <strong>현재 참여인원 : </strong><p style={meetingMemberStyle}>
+                                        <div>
+                                            <Icon style={{paddingBottom:'30px'}} name='man' color='blue' size='large'/> {this.participant_woman_num}명
+                                        </div>
+                                        <div style={{paddingTop:'5px'}} >
+                                            <Icon name='woman' color='pink' size='large'/>  {this.participant_man_num}명
+                                        </div>
+                                    </p>
+                                </div>
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>

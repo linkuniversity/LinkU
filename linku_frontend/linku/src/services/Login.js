@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function login(id, password){
+export function login(username, password){
     return axios.post('http://127.0.0.1:8000/login/',
     {
-        "username": id,
+        "username": username,
         "password" : password
     })
     .catch((e) => {
