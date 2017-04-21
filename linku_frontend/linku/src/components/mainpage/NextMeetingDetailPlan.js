@@ -22,7 +22,6 @@ class NextMeetingDetailPlan extends React.Component{
                 <Modal.Content>
                     <Modal.Description>
                         {this.props.content}
-
                         이 모임에 관심이 가나요? 안내 문자 신청하면 모임이 진행될 때 알려드릴게요!
                         {this._handleApplicationButton(this.props.index)}
                     </Modal.Description>

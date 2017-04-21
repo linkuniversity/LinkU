@@ -46,6 +46,7 @@ class MeetingCard extends React.Component
             })
         ]);
     }
+
     _participatedSelectionChange = (e, data) => {
         const current_status = this.props.meetingInfo.status_by_days[data.value];
         this.setState({
@@ -151,8 +152,14 @@ class MeetingCard extends React.Component
                 return;
 
             const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue];
+            const user_gender = localStorage.getItem('user_gender');
+            let participant_num_by_gender = undefined;
+            if(localStorage.getItem('user_gender')=='F')
+                participant_num_by_gender = this.state.participant_woman_num;
+            else
+                participant_num_by_gender = this.state.participant_man_num;
 
-            if(this.state.participant_num >= selectedDays.max_num_of_members)
+            if(participant_num_by_gender >= selectedDays.max_num_of_members/2)
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
 
             if((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn){

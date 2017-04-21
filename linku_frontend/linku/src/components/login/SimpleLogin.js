@@ -12,7 +12,6 @@ export default class SimpleLogin extends Component {
                 loginFunction: this.facebookLogin
             }]
         };
-
         this.facebookLogin = this.facebookLogin.bind(this);
     }
 

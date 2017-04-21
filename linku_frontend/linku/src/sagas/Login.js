@@ -16,8 +16,21 @@ function* requestLogin(action){
     }
 }
 
+function* requestUser(action){
+    try{
+        const [response] = yield [
+            call(service.user)
+        ];
+        localStorage.setItem('user_gender', response.data['gender']);
+    }catch(e){
+        console.log(e);
+    }
+
+}
+
 function* watchLogin(){
     yield takeEvery('REQUEST_LOGIN', requestLogin);
+    yield takeEvery('SUCCESS_LOGIN', requestUser);
 }
 
 export default function* login(){
