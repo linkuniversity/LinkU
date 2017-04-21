@@ -53,7 +53,6 @@ class Meeting(models.Model):
 
 class StatusByDay(models.Model):
     start_time = models.DateTimeField()
-    num_of_joined_members = models.IntegerField(default=0)
     max_num_of_members = models.IntegerField(default=6)
     appliers = models.ManyToManyField(settings.AUTH_USER_MODEL)
     meeting = models.ForeignKey('Meeting', null=True, related_name="status_by_days", on_delete=models.CASCADE)

@@ -21,7 +21,7 @@ class StatusByDaySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StatusByDay
-        fields = ('appliers', 'meeting', 'meeting_status', 'num_of_joined_members', 'max_num_of_members', 'participant_num')
+        fields = ('appliers', 'meeting', 'meeting_status', 'max_num_of_members', 'participant_num')
 
     def get_meeting_status(self, obj):
         WEEK_DAY = ['월', '화', '수', '목', '금', '토', '일']
