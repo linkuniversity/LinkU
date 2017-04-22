@@ -50,9 +50,7 @@ def send_verification_email(request):
     if request.method == 'POST':
         with open('mail_setting.json') as data_file:
             mail_setting = json.load(data_file)
-            print(request.POST)
             email = request.POST['university_email']
-            print(email)
 
             email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
             match_result = email_regex.match(email)

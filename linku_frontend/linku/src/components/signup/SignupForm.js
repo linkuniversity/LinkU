@@ -42,47 +42,6 @@ const renderField = ({ input, label, type, htmlFor, labelText, ref ,meta: { touc
 class SignupForm extends Component{
     constructor(props) {
         super(props);
-        this.state = {
-           is_university_email_verification_request_done: false,
-           is_verify_auth_number_done: false,
-       };
-    }
-
-
-
-    clickedUnivEmailVerification = ()=>{
-
-        /*
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/users/')
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error.response.data);
-            })
-        ]);
-
-        this.setState({
-            ...this.state,
-            is_university_email_verification_request_done : true
-        });
-        */
-        console.log("clickedUnivEmailVerification" + "    " + this.refs.authenticated_university_email.value);
-
-
-    }
-
-    clickedVerifyAuthNumber = ()=>{
-        this.setState({
-            ...this.state,
-            is_verify_auth_number_done : true
-        });
-        console.log("clickedVerifyAuthNumber");
-    }
-
-    makeLog = () =>{
-        console.log("Log Made");
-        return false;
     }
 
     render() {
