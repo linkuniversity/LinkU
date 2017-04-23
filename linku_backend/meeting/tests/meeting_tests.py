@@ -1,5 +1,6 @@
 import pytest
 import datetime
+import json
 
 from meeting.models import Meeting, StatusByDay, SubImage, User
 from meeting.serializer import MeetingSerializer
@@ -135,3 +136,40 @@ def test_update_participation_info_when_someone_apply_meeting(client):
         else:
             assert status_by_days_data['participant_num']['man'] == 0
             assert status_by_days_data['participant_num']['woman'] == 0
+
+
+@pytest.mark.django_db
+def test_apply_meeting_with_api(client):
+    signup_data = {
+        'username': 'test@test.com',
+        'nickname': 'test nickname',
+        'gender': 'M',
+        'password': 'test password',
+        'phone_number': '01000000000',
+        'authenticated_university_email': 'test@authenticated.ac.kr'
+    }
+    client.post('/users/', signup_data)
+
+    MEETING_STATUS_INDEX = 1
+
+    apply_data = {
+        'username': 'test@test.com',
+        'status_index': MEETING_STATUS_INDEX,
+    }
+
+    meeting = Meeting.objects.get(title='test title')
+    response = client.post('/meetings/%d/apply/' % meeting.id, apply_data)
+    assert response.data == 'success'
+
+    login_data = {
+        'username': 'test@test.com',
+        'password': 'test password',
+    }
+    login_response = client.post('/login/', login_data)
+    login_token = login_response.data['token']
+    auth_headers = {
+        'HTTP_AUTHORIZATION': 'Token ' + login_token
+    }
+
+    participated_response = client.post('/participated-ids/', {}, **auth_headers)
+    assert '[2]' == json.loads(participated_response.content.decode('utf-8'))

@@ -3,7 +3,7 @@
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer, StatisticsSerializer
-from .models import Meeting, User, SubImage, UniversityAuthenticationLog, Statistics
+from .models import Meeting, User, SubImage, UniversityAuthenticationLog, Statistics, StatusByDay
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -14,12 +14,10 @@ import re
 
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.authtoken.models import Token
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import authentication_classes, permission_classes
-from rest_framework import permissions
+from rest_framework.decorators import authentication_classes, permission_classes, detail_route
 
 
 class StatisticsViewSet(viewsets.ModelViewSet):
@@ -30,6 +28,21 @@ class StatisticsViewSet(viewsets.ModelViewSet):
 class MeetingViewSet(viewsets.ModelViewSet):
     queryset = Meeting.objects.all()
     serializer_class = MeetingSerializer
+
+    @detail_route(methods=['post'], url_path='apply')
+    def apply(self, request, pk=None):
+        meeting = Meeting.objects.get(pk=pk)
+        status_list = StatusByDay.objects.filter(meeting=meeting)
+        status_index = int(request.data['status_index'])
+
+        user = User.objects.get(username=request.POST['username'])
+
+        status_list[status_index].appliers.add(user)
+        status_list[status_index].save()
+
+        user.participated_ids = [2]
+        user.save()
+        return Response("success")
 
 
 class UserViewSet(viewsets.ModelViewSet):
