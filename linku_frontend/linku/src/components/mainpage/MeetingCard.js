@@ -161,7 +161,12 @@ class MeetingCard extends React.Component
             else {
                 const button = (<Button color='blue' fluid>신청하기</Button>);
                 if(localStorage.getItem('token') && this.props.loggedIn){
-                    return (<Apply triggerButton={button}/>);
+                    return (
+                        <Apply
+                            selectedValue={this.state.selectedValue}
+                            paymentInfo={this.props.meetingInfo.status_by_days[this.state.selectedValue].meeting_status}
+                        />
+                    );
                 }
                 else {
                     return (<Login triggerButton={button}/>);
