@@ -46,6 +46,7 @@ class MeetingCard extends React.Component
             })
         ]);
     }
+
     _participatedSelectionChange = (e, data) => {
         const current_status = this.props.meetingInfo.status_by_days[data.value];
         this.setState({
@@ -59,6 +60,8 @@ class MeetingCard extends React.Component
 
     componentWillMount(){
         this._fetchIsParticipatedInfo();
+        localStorage.setItem('token', undefined);
+        localStorage.setItem('user_gender', undefined);
     }
     componentWillReceiveProps(props){
         this._fetchIsParticipatedInfo();
@@ -137,7 +140,7 @@ class MeetingCard extends React.Component
         if(this.props.meetingInfo.status_by_days)
         {
             meetingDateOptions = this.props.meetingInfo.status_by_days.map((status, index) => {
-                const button_message = status.meeting_status + " (" + this.state.participant_num
+                const button_message = status.meeting_status + " (" + (status.participant_num.man + status.participant_num.woman)
                                         + "/" + status.max_num_of_members + ")명";
                 return { key: index, text: button_message, value: index };
             });
@@ -151,12 +154,19 @@ class MeetingCard extends React.Component
                 return;
 
             const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue];
-
-            if(this.state.participant_num >= selectedDays.max_num_of_members)
-                return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
+            const user_gender = localStorage.getItem('user_gender');
+            let participant_num_by_gender = undefined;
+            if(localStorage.getItem('user_gender')=='F')
+                participant_num_by_gender = this.state.participant_woman_num;
+            else
+                participant_num_by_gender = this.state.participant_man_num;
 
             if((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn){
                 return (<Button disabled color='blue' fluid>신청완료</Button>);
+            }
+
+            else if(participant_num_by_gender >= selectedDays.max_num_of_members/2 && this.props.loggedIn){
+                return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
             }
             else {
                 const button = (<Button color='blue' fluid>신청하기</Button>);
@@ -253,8 +263,8 @@ class MeetingCard extends React.Component
                                 <div style={meetingApplyFontStyle}>
                                     <strong>현재 참여인원 </strong>
                                     <div style={meetingMemberStyle}>
-                                        <Icon style={{paddingBottom:'30px'}} name='man' color='blue' size='large'/> {this.state.participant_woman_num} 명 <br/>
-                                        <Icon name='woman' color='pink' size='large'/>  {this.state.participant_man_num} 명
+                                        <Icon style={{paddingBottom:'30px'}} name='woman' color='pink' size='large'/> {this.state.participant_woman_num} 명 <br/>
+                                        <Icon name='man' color='blue' size='large'/>  {this.state.participant_man_num} 명
                                     </div>
                                 </div>
                             </Card.Description>
@@ -270,10 +280,12 @@ class MeetingCard extends React.Component
 }
 
 const mapStateToProps = (state) => {
-    return {loggedIn : state.login.loggedIn}
+    return {
+        loggedIn : state.login.loggedIn
+    }
 };
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(actions, dispatch);
 };
 
-export default connect( mapStateToProps, mapDispatchToProps)(MeetingCard);
+export default connect(mapStateToProps, mapDispatchToProps)(MeetingCard);

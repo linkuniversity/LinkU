@@ -9,7 +9,7 @@ import time
 
 BASE_URL = "http://localhost:3000"
 
-
+"""
 @pytest.fixture(scope="module")
 def browser():
     if sys.platform == 'darwin':
@@ -57,4 +57,4 @@ def test_authentication(browser):
 
     time.sleep(1)
     assert '로그아웃' in browser.page_source
-
+"""

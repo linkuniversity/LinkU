@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Form } from 'semantic-ui-react';
+import { Form, Button} from 'semantic-ui-react';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import axios from 'axios';
 
 const emailRequired = value => value ? undefined : '이메일을 입력해주세요'
 const emailCorrectForm = value =>
@@ -13,51 +18,62 @@ const phoneCorrectForm = value =>
     "'-' 을 제외하고 11자리를 입력해주세요" : undefined
 const passwordRequired = value => value ? undefined : '비밀번호를 입력해주세요'
 const genderRequired = value => value ? undefined : '성별을 선택해주세요'
+const universityEmailFormRequired = value =>
+    value.substr(value.length - 5) == "ac.kr" ? undefined : '대학교 메일을 입력해주세요.'
+const verificationNumberLength = value =>
+    (value >= 1000 && value <= 9999) ? undefined: '올바른 숫자를 입력해주세요'
 
 
 const spanErrorStyle ={
     color: "#FF5A5A",
 }
 
-const renderField = ({ input, label, type, htmlFor, labelText, meta: { touched, error, warning } }) => (
+const renderField = ({ input, label, type, htmlFor, labelText, ref ,meta: { touched, error, warning } }) => (
     <div style={{marginTop: "20px"}}>
         <label htmlFor={htmlFor}>{labelText}</label>
         <div>
-            <input {...input} placeholder={label} type={type}/>
+            <input {...input} ref={ref} placeholder={label} type={type}/>
             {touched && ((error && <span style={spanErrorStyle}>{error}</span>) || (warning && <span>{warning}</span>))}
         </div>
     </div>
-)
+);
 
-const SignupForm = ({handleSubmit}) => {
-    return (
-        <Form onSubmit={handleSubmit}>
-            <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
-            <Field name="nickname" component={renderField} htmlFor="nickname" labelText="닉네임" type="text" validate={[nicknameRequired]}/>
-            <Form.Group inline>
-                <label htmlFor="gender">성별</label>
+
+class SignupForm extends Component{
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+
+        return (
+            <Form onSubmit={this.props.handleSubmit}>
+                <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
+                <Field name="nickname" component={renderField} htmlFor="nickname" labelText="닉네임" type="text" validate={[nicknameRequired]}/>
+                <Form.Group inline>
+                    <label htmlFor="gender">성별</label>
+                    <Form.Field>
+                        <Field name="gender" component="input" type="radio" value="F" checked/>
+                        <label htmlFor="gender">여자</label>
+                    </Form.Field>
+                    <Form.Field>
+                        <Field name="gender" component="input" type="radio" value="M"/>
+                        <label htmlFor="gender">남자</label>
+                    </Form.Field>
+                </Form.Group>
+                <Field name="phone_number" component={renderField} htmlFor="nickname" labelText="전화번호" type="number" validate={[phoneRequired, phoneCorrectForm]}/>
                 <Form.Field>
-                    <Field name="gender" component="input" type="radio" value="F" checked/>
-                    <label htmlFor="gender">여자</label>
+                    <label htmlFor="password">비밀번호</label>
+                    <Field name="password" component="input" type="password"/>
                 </Form.Field>
                 <Form.Field>
-                    <Field name="gender" component="input" type="radio" value="M"/>
-                    <label htmlFor="gender">남자</label>
+                    <label htmlFor="password_check">비밀번호 확인</label>
+                    <Field name="password_check" component="input" type="password"/>
                 </Form.Field>
-            </Form.Group>
-            <Field name="phone_number" component={renderField} htmlFor="nickname" labelText="전화번호" type="number" validate={[phoneRequired, phoneCorrectForm]}/>
-            <Form.Field>
-                <label htmlFor="password">비밀번호</label>
-                <Field name="password" component="input" type="password"/>
-            </Form.Field>
-            <Form.Field>
-                <label htmlFor="password_check">비밀번호 확인</label>
-                <Field name="password_check" component="input" type="password"/>
-            </Form.Field>
-            <Field name="authenticated_university_email" component={renderField} htmlFor="authenticated_university_email" labelText="대학교 이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
-            <Form.Button fluid>가입 완료</Form.Button>
-        </Form>
-    );
+                <Form.Button fluid>가입 완료</Form.Button>
+            </Form>
+        );
+    }
 }
 
 export default reduxForm({
