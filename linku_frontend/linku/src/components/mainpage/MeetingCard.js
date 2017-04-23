@@ -16,35 +16,11 @@ class MeetingCard extends React.Component
         super(props);
 
         this.state = {
-            participatedIds : [],
             selectedValue : undefined,
             participant_num : 0,
             participant_man_num : undefined,
             participant_woman_num : undefined
         };
-    }
-
-    _fetchIsParticipatedInfo = async() => {
-        const token = localStorage.getItem('token');
-
-        if(token == undefined)
-            return;
-
-        const config = {
-            headers: { 'Authorization': 'Token '+token }
-        };
-
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/participated-ids/',{},config )
-            .then(response => {
-                this.setState({
-                    ...this.state,
-                    participatedIds : JSON.parse(response.data)
-                });
-            })
-            .catch(error => {
-                console.log(error.response.data);
-            })
-        ]);
     }
 
     _participatedSelectionChange = (e, data) => {
@@ -59,13 +35,11 @@ class MeetingCard extends React.Component
     }
 
     componentWillMount(){
-        this._fetchIsParticipatedInfo();
         localStorage.setItem('token', undefined);
         localStorage.setItem('user_gender', undefined);
+        localStorage.setItem('participated_dates', undefined);
     }
-    componentWillReceiveProps(props){
-        this._fetchIsParticipatedInfo();
-    }
+
     render() {
         const statisticsNumberStyle = {
             color : '#FFFFFF',
@@ -161,7 +135,7 @@ class MeetingCard extends React.Component
             else
                 participant_num_by_gender = this.state.participant_man_num;
 
-            if((this.state.participatedIds.indexOf(this.state.selectedValue) > -1) && this.props.loggedIn){
+            if((localStorage.getItem('participated_dates')==selectedDays.meeting_status) && this.props.loggedIn){
                 return (<Button disabled color='blue' fluid>신청완료</Button>);
             }
 

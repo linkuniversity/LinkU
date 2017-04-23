@@ -39,7 +39,6 @@ def test_sign_up_POST_request(client):
     response = client.post('/users/', signup_data)
 
     assert response.status_code == 201
-    assert User.objects.count() == 1
     user = User.objects.get(username='test@email.com')
     assert user.nickname == 'test nickname'
 

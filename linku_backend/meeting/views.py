@@ -35,7 +35,7 @@ class MeetingViewSet(viewsets.ModelViewSet):
         status_list = StatusByDay.objects.filter(meeting=meeting)
         status_index = int(request.data['status_index'])
 
-        user = User.objects.get(username=request.POST['username'])
+        user = User.objects.get(username=request.data['username'])
 
         status_list[status_index].appliers.add(user)
         status_list[status_index].save()
