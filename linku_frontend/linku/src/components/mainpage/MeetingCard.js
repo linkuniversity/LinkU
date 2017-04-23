@@ -114,8 +114,12 @@ class MeetingCard extends React.Component
         if(this.props.meetingInfo.status_by_days)
         {
             meetingDateOptions = this.props.meetingInfo.status_by_days.map((status, index) => {
-                const button_message = status.meeting_status + " (" + (status.participant_num.man + status.participant_num.woman)
+                const WEEK_DAY = ["일", "월", "화", "수", "목", "금", "토"];
+                const meeting_date = new Date(status.start_time);
+                const meeting_date_str = (meeting_date.getMonth() + 1)+ "월 " + meeting_date.getDate() + "일 " + WEEK_DAY[meeting_date.getDay()] + "요일";
+                const button_message = meeting_date_str + " (" + (status.participant_num.man + status.participant_num.woman)
                                         + "/" + status.max_num_of_members + ")명";
+
                 return { key: index, text: button_message, value: index };
             });
         }
@@ -127,19 +131,23 @@ class MeetingCard extends React.Component
             if(this.props.meetingInfo.status_by_days == undefined || this.props.meetingInfo.status_by_days.length == 0)
                 return;
 
-            const selectedDays = this.props.meetingInfo.status_by_days[this.state.selectedValue];
+            const selected_meeting = this.props.meetingInfo.status_by_days[this.state.selectedValue];
+            const WEEK_DAY = ["일", "월", "화", "수", "목", "금", "토"];
+            const selected_date = new Date(selected_meeting.start_time);
+            const selected_date_str = (selected_date.getMonth() + 1)+ "월 " + selected_date.getDate() + "일 " + WEEK_DAY[selected_date.getDay()] + "요일";
             const user_gender = localStorage.getItem('user_gender');
             let participant_num_by_gender = undefined;
+            
             if(localStorage.getItem('user_gender')=='F')
                 participant_num_by_gender = this.state.participant_woman_num;
             else
                 participant_num_by_gender = this.state.participant_man_num;
 
-            if((localStorage.getItem('participated_dates')==selectedDays.meeting_status) && this.props.loggedIn){
+            if((localStorage.getItem('participated_dates')==selected_meeting.start_time) && this.props.loggedIn){
                 return (<Button disabled color='blue' fluid>신청완료</Button>);
             }
 
-            else if(participant_num_by_gender >= selectedDays.max_num_of_members/2 && this.props.loggedIn){
+            else if(participant_num_by_gender >= selected_meeting.max_num_of_members/2 && this.props.loggedIn){
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
             }
             else {
@@ -148,7 +156,7 @@ class MeetingCard extends React.Component
                     return (
                         <Apply
                             selectedValue={this.state.selectedValue}
-                            paymentInfo={this.props.meetingInfo.status_by_days[this.state.selectedValue].meeting_status}
+                            paymentInfo={selected_date_str}
                         />
                     );
                 }
