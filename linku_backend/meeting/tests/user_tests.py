@@ -1,7 +1,10 @@
 import pytest
 import json
-from meeting.models import User
+
 from rest_framework.authtoken.models import Token
+
+from meeting.models import User, Meeting, StatusByDay
+
 
 @pytest.mark.django_db
 def create_test_user(client):
@@ -19,16 +22,19 @@ def create_test_user(client):
 
 
 def get_login_token(user):
-    token = Token.objects.get(user=user)
-    print(token.key)
-    return token.key
+    return Token.objects.get(user=user).key
 
 
 @pytest.mark.django_db
-def test_isparticipated_POST_request(client):
+def test_get_participated_meeting_list(client):
+    meeting = Meeting.objects.get(title='test title')
     user = create_test_user(client)
-    user.participated_ids = json.dumps([1, 3])
-    user.save()
+    status_list = StatusByDay.objects.filter(meeting=meeting)
+
+    status_list[0].appliers.add(user)
+    status_list[0].save()
+    status_list[2].appliers.add(user)
+    status_list[2].save()
 
     auth_headers = {
         'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
@@ -36,7 +42,8 @@ def test_isparticipated_POST_request(client):
 
     participated_response = client.post('/participated-ids/', {}, **auth_headers)
 
-    assert '[1, 3]' == json.loads(participated_response.content.decode('utf-8'))
+    expected_data = [status_list[0].start_time, status_list[2].start_time]
+    assert expected_data == participated_response.data
 
 
 @pytest.mark.django_db
