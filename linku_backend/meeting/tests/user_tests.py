@@ -1,7 +1,7 @@
 import pytest
 import json
 from meeting.models import User
-
+from rest_framework.authtoken.models import Token
 
 @pytest.mark.django_db
 def create_test_user(client):
@@ -18,17 +18,10 @@ def create_test_user(client):
     return User.objects.get(username='test@test.com')
 
 
-def get_login_token(client):
-    login_data = {
-        'username': 'test@test.com',
-        'password': 'test password',
-    }
-
-    login_response = client.post('/login/', login_data)
-
-    login_token = login_response.data['token']
-
-    return login_token
+def get_login_token(client, user):
+    token = Token.objects.get(user=user)
+    print(token.key)
+    return token.key
 
 
 @pytest.mark.django_db
@@ -38,7 +31,7 @@ def test_isparticipated_POST_request(client):
     user.save()
 
     auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client, user)
     }
 
     participated_response = client.post('/participated-ids/', {}, **auth_headers)
@@ -53,7 +46,7 @@ def test_apply_alarm_POST_request(client):
     user.save()
 
     auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client, user)
     }
 
     apply_alarm_response = client.post('/apply-alarm/', {'apply_alarm_index': 0}, **auth_headers)
@@ -72,7 +65,7 @@ def test_response_gender_if_request_user_info_with_authenticated_token(client):
     user = create_test_user(client)
 
     auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client, user)
     }
 
     response = client.get('/user/', {}, **auth_headers)
