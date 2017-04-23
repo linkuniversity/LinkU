@@ -120,7 +120,7 @@ def get_user_info(request, format=None):
 @api_view(['POST'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
-def get_participated_ids(request, format=None):
+def get_participated_dates(request, format=None):
     status_list = request.user.statusbyday_set.all()
     response_data = []
     for status in status_list:

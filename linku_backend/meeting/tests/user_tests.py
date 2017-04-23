@@ -40,7 +40,7 @@ def test_get_participated_meeting_list(client):
         'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
     }
 
-    participated_response = client.post('/participated-ids/', {}, **auth_headers)
+    participated_response = client.post('/participated-dates/', {}, **auth_headers)
 
     expected_data = [status_list[0].start_time, status_list[2].start_time]
     assert expected_data == participated_response.data
