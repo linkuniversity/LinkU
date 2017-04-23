@@ -1,6 +1,5 @@
 import pytest
 import datetime
-import json
 
 from meeting.models import Meeting, StatusByDay, SubImage, User
 from meeting.serializer import MeetingSerializer
@@ -171,5 +170,7 @@ def test_apply_meeting_with_api(client):
         'HTTP_AUTHORIZATION': 'Token ' + login_token
     }
 
+    user = User.objects.get(username='test@test.com')
+    status = user.statusbyday_set.all()[0]
     participated_response = client.post('/participated-ids/', {}, **auth_headers)
-    assert '[2]' == json.loads(participated_response.content.decode('utf-8'))
+    assert [status.start_time] == participated_response.data

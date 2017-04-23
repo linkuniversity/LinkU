@@ -22,8 +22,6 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=11, validators=[phone_regex])
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
     profile_image_path = models.ImageField(blank=True)
-    # participated_ids example: [0,1,3]
-    participated_ids = models.CharField(max_length=200, default='[]')
     apply_alarm_indexes = models.CharField(max_length=200, default='[]')
 
 
@@ -69,4 +67,3 @@ class UniversityAuthenticationLog(models.Model):
     sent_to_user_time = models.DateTimeField()
     auth_number_expiration_time = models.DateTimeField()
     is_authenticated = models.BooleanField(default=False)
-
