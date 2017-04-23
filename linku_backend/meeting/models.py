@@ -6,6 +6,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
+
 SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
 

@@ -117,7 +117,7 @@ def get_user_info(request, format=None):
     return Response({"gender": request.user.gender})
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
 def get_participated_dates(request, format=None):
