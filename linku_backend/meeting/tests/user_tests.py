@@ -3,7 +3,8 @@ import json
 from meeting.models import User
 
 
-def get_login_token(client):
+@pytest.mark.django_db
+def create_test_user(client):
     signup_data = {
         'username': 'test@test.com',
         'nickname': 'test nickname',
@@ -11,11 +12,13 @@ def get_login_token(client):
         'password': 'test password',
         'phone_number': '01000000000',
         'authenticated_university_email': 'test@authenticated.ac.kr',
-        'participated_ids': json.dumps([1, 3])
     }
 
     client.post('/users/', signup_data)
+    return User.objects.get(username='test@test.com')
 
+
+def get_login_token(client):
     login_data = {
         'username': 'test@test.com',
         'password': 'test password',
@@ -30,6 +33,10 @@ def get_login_token(client):
 
 @pytest.mark.django_db
 def test_isparticipated_POST_request(client):
+    user = create_test_user(client)
+    user.participated_ids = json.dumps([1, 3])
+    user.save()
+
     auth_headers = {
         'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
     }
@@ -41,6 +48,10 @@ def test_isparticipated_POST_request(client):
 
 @pytest.mark.django_db
 def test_apply_alarm_POST_request(client):
+    user = create_test_user(client)
+    user.participated_ids = json.dumps([1, 3])
+    user.save()
+
     auth_headers = {
         'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
     }
@@ -54,3 +65,17 @@ def test_apply_alarm_POST_request(client):
 
     assert apply_alarm_response2.status_code == 200
     assert '[0, 2]' == User.objects.get(username='test@test.com').apply_alarm_indexes
+
+
+@pytest.mark.django_db
+def test_response_gender_if_request_user_info_with_authenticated_token(client):
+    user = create_test_user(client)
+
+    auth_headers = {
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client)
+    }
+
+    response = client.get('/user/', {}, **auth_headers)
+
+    assert response.status_code == 200
+    assert response.data['gender'] == user.gender

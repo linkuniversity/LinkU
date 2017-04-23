@@ -8,12 +8,15 @@ function* requestLogin(action){
         const [response] = yield [
             call(service.login, action.username, action.password)
         ];
-        yield put(actions.loginSuccess(response));
+        const [user_response] = yield [
+            call(service.user, response.data.token)
+        ];
+        yield put(actions.loginSuccess(response, user_response));
     }catch(e){
-        console.log(e);
         yield put(actions.loginFailure(e));
         yield put(alertConfirm("이메일 혹은 비밀번호가 올바르지 않습니다.","red"));
     }
+
 }
 
 function* watchLogin(){

@@ -36,7 +36,10 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-    def list(self, request, pk=None):
+    def list(self, request):
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -95,6 +98,13 @@ def send_verification_email(request):
                                                            minutes=2))
 
             return Response({"message": "Success"})
+
+
+@api_view(['GET'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def get_user_info(request, format=None):
+    return Response({"gender": request.user.gender})
 
 
 @api_view(['POST'])
