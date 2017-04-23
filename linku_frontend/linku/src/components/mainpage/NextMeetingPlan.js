@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react'
+import {Segment, Dimmer, Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -58,12 +58,14 @@ or\
             fontSize: '16pt',
         }
 
-        let cardStyle = {
+        let leftCardStyle = {
             width: '300',
             height: '357',
             backgroundColor: '#BDBDBD',
             position: 'relative',
             marginBottom: '2%',
+            backgroundImage: 'url(http://localhost:8000/media/next_meeting_01.jpeg)',
+            backgroundSize:"cover",
         }
 
         let middleCardStyle = {
@@ -74,22 +76,33 @@ or\
             marginRight: '20px',
             marginLeft: '20px',
             marginBottom: '2%',
+            backgroundImage: 'url(http://localhost:8000/media/next_meeting_02.jpeg)',
+            backgroundSize:"cover",
         }
+        let rightCardStyle = {
+            width: '300',
+            height: '357',
+            backgroundColor: '#BDBDBD',
+            position: 'relative',
+            marginBottom: '2%',
+            backgroundImage: 'url(http://localhost:8000/media/next_meeting_03.jpeg)',
+            backgroundSize:"cover",
+        }
+
 
         let cardInfoStyle = {
             textAlign: 'left',
             color: '#FFFFFF',
             marginTop: '30px',
         }
-
         let cardSpecificInfoStyle = {
             position: 'absolute',
             bottom: '0',
             right: '0' ,
-            marginRight: '22px',
+            marginRight: '0px',
             marginBottom: '25px',
             color: '#FFFFFF',
-            backgroundColor: '#BDBDBD'
+            backgroundColor: 'transparent'
         }
 
         let gridStyle = {
@@ -106,12 +119,12 @@ or\
                         </div>
 
                         <Grid centered style={gridStyle}>
-                            <div style={cardStyle}>
+                            <div style={leftCardStyle}>
                                 <div style={cardInfoStyle}>
                                     <div style={{fontSize:'16pt'}}>외국물 어디까지 먹어봤니</div>
-                                    <div style={{marginTop: '25px'}}>굳이 비행기를 타지 않아도 여행을 다녀온 기분을 느끼고 싶나요?<br />
-                                        구석구석 새로운 곳을 찾아보며 가장 이색적인 이태원으로 함께 가요. <br/>
-                                        이제는 어디가서 “나, 이태원에서 좀 놀아봤다” 할 수 있다!<br />
+                                    <div style={{marginTop: '25px'}}>굳이 비행기를 타지 않아도 <br/> 여행을 다녀온 기분을 느끼고 싶나요?<br />
+                                        구석구석 새로운 곳을 찾아보며 <br/> 가장 이색적인 이태원으로 함께 가요. <br/>
+                                        이제는 어디가서 “나, 이태원에서 좀 놀아봤다”<br/> 할 수 있다!<br />
                                     </div>
                                 </div>
                                 <NextMeetingDetailPlan
@@ -124,7 +137,9 @@ or\
                             <div style={middleCardStyle}>
                                 <div style={cardInfoStyle}>
                                     <div style={{fontSize:'16pt'}}>한복입고 타임슬립</div>
-                                    <div style={{marginTop: '25px'}}>관광객의 입장에서 우리나라를 여행하면 어떤 기분일까요?<br />
+                                    <div style={{marginTop: '25px'}}>
+                                        관광객의 입장에서 우리나라를 여행하면<br/>
+                                        어떤 기분일까요?<br />
                                         사극에서 보던 예쁘고 멋진 한복, 예쁜 고궁…<br />
                                         보기만 하지말고 직접 한 장면을 만들러 가요~<br />
                                     </div>
@@ -136,7 +151,7 @@ or\
                                     />
                             </div>
 
-                            <div style={cardStyle}>
+                            <div style={rightCardStyle}>
                                 <div style={cardInfoStyle}>
                                     <div style={{fontSize:'16pt'}}>아폴로 챱챱 90세대의 추억</div>
                                     <div style={{marginTop: '25px'}}>386세대, X세대, N세대…<br />
