@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Segment, Input, Dimmer, Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react'
+import {Form, Segment, Input, Dimmer, Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import axios from 'axios';
+import { Field,reduxForm } from 'redux-form';
 
 import * as actions from '../../actions/Common';
 import ComingSoonModal from './ComingSoonModal';
@@ -31,9 +32,32 @@ or\
 ",
 "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹ",
 "ㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㄴㅁㅁ뉸뉴뉸"
-            ]
+            ],
+            activity: '',
         };
     }
+
+    activityNeedRequest = async (_contents) => {
+        const info = await Promise.all([axios.post('http://127.0.0.1:8000/activity-needs/','contents='+_contents)
+            .then( response => {
+
+            })
+            .catch(e => {
+                console.log(e);
+            })
+        ]);
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+
+        if(this.state.activity == '')
+            return;
+
+        this.activityNeedRequest(this.state.activity);
+        this.setState({ activity: '' });
+    }
+    handleChange = (e, {name, value} ) => this.setState({activity: value});
 
     render(){
 
@@ -56,8 +80,8 @@ or\
 
         let bottomStyle = {
             textAlign: 'center',
-            marginTop: '55px',
             fontSize: '16pt',
+            marginBottom: '72px',
         }
 
         let leftCardStyle = {
@@ -171,13 +195,20 @@ or\
 
                         </Grid>
 
-                        <div style={bottomStyle}>
-                            내가 새로운 친구들과 함께 하고 싶은 활동은 &nbsp;
-                            <Input type="text" placeholder="ex) 한강에서 자전거타기" color='blue'/>
-                            &nbsp; <ComingSoonModal triggerButton={<Button color='blue' size="big" inverted >보내기</Button>} />
+
+                        <div style={{marginTop: '50px', textAlign: 'center', fontSize: '16pt'}}>
+                            링쿠에 대한 소식을 받고 싶다면?
+                            <p style={{marginTop:'10px'}}><a href="http://plus.kakao.com/home/@linku">링쿠 플러스친구 추가하기 ></a></p>
                         </div>
-                        <div style={{marginTop: '22px', textAlign: 'center', fontSize: '16pt', marginBottom: '72px'}}>
-                            링쿠에 대한 소식을 받고 싶다면? <a href="http://plus.kakao.com/home/@linku">링쿠 플러스친구 추가하기 ></a>
+
+                        <div style={bottomStyle}>
+                            <Form centered onSubmit={this.handleSubmit}>
+                                <p style={{fontSize: '16pt', margin: '10px', marginTop: '20px'}}>내가 새로운 친구들과 함께 하고 싶은 <a>활동</a>은</p>
+                                <Form.Field inline>
+                                    <Input placeholder='ex) 한강에서 자전거타기' name='contents' value={this.state.activity} onChange={this.handleChange} />
+                                    <ComingSoonModal triggerButton = {<Button color='blue' content='보내기'/>} />
+                                </Form.Field>
+                            </Form>
                         </div>
                     </div>
                 </Container>

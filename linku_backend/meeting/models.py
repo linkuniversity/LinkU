@@ -10,6 +10,10 @@ from rest_framework.authtoken.models import Token
 SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
 
 
+class ActivityNeeds(models.Model):
+    contents = models.CharField(max_length=255)
+
+
 class User(AbstractUser):
     GENDER_CHOICES = (
         ('M', 'Male'),
