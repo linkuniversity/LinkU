@@ -50,7 +50,7 @@ class IntroVideo extends React.Component {
                     링쿠에서 새로운 친구들과 새로운 경험
                     </Container>
                 </div>
-                <Embed ref="introVideo" style={videoStyle} id='6ShDKd66TE0' autoplay={true} active={true} source='youtube'/>
+                <Embed ref="introVideo" style={videoStyle} id='KOFAeCZ4tBY' autoplay={true} active={true} source='youtube'/>
                 <div style={promotionBottomWordStyle}>
                     <div style={{marginBottom: '16px'}}>전공, 학력, 성별을 불문 수도권 대학생이면 누구나 가능</div>
                     <div>함께하고 싶다면 지금 신청하세요.</div>
