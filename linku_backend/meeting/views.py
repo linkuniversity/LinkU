@@ -2,8 +2,9 @@
 
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
-from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer, StatisticsSerializer
-from .models import Meeting, User, SubImage, UniversityAuthenticationLog, Statistics, StatusByDay
+from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer, StatisticsSerializer, \
+    ActivityNeedsSerializer
+from .models import Meeting, User, SubImage, UniversityAuthenticationLog, Statistics, StatusByDay, ActivityNeeds
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -40,6 +41,15 @@ class MeetingViewSet(viewsets.ModelViewSet):
         status_list[status_index].appliers.add(user)
         status_list[status_index].save()
         return Response("success")
+
+
+class ActivityNeedsViewSet(viewsets.ModelViewSet):
+    queryset = ActivityNeeds.objects.all()
+    serializer_class = ActivityNeedsSerializer
+
+    def create(self, request):
+        ActivityNeeds.objects.create(contents=request.POST['contents'])
+        return Response({"Message": "Success"})
 
 
 class UserViewSet(viewsets.ModelViewSet):
