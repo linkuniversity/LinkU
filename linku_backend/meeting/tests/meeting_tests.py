@@ -172,5 +172,6 @@ def test_apply_meeting_with_api(client):
 
     user = User.objects.get(username='test@test.com')
     status = user.statusbyday_set.all()[0]
-    participated_response = client.post('/participated-ids/', {}, **auth_headers)
+    participated_response = client.get('/participated-dates/', {}, **auth_headers)
     assert [status.start_time] == participated_response.data
+

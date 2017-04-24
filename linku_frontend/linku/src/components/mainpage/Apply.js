@@ -3,34 +3,37 @@ import { Grid, Button, Header, Modal, Image, Container } from 'semantic-ui-react
 
 const getAccount = (selectedValue) => {
     if(selectedValue == 0)
-        return (<div>신한 110-374-439288 장선혁 <a>3,500원</a></div>);
+        return (<span>신한 110-374-439288 장선혁</span>);
     else if(selectedValue == 1)
-        return (<div>우리 1002-941-021806 김성국 <a>3,500원</a></div>);
+        return (<span>우리 1002-941-021806 김성국</span>);
     else if(selectedValue == 2)
-        return (<div>신한 110-365-994395 이태우 <a>3,500원</a></div>);
+        return (<span>신한 110-365-994395 이태우</span>);
 }
 
 const PaymentApplyContents = ({selectedValue, paymentInfo}) => (
     <Container>
-        <Container text textAlign="center">
-            <br/><br/>
-            결제 정보 : {paymentInfo}
+        <Container text>
             <br/><br/>
             <Image centered src='http://localhost:8000/media/how_to_payment.png' />
             <br/>
             <hr />
             <p style={{padding:'30px'}}>
-                {getAccount(selectedValue)}
+                결제정보<br /><br />
+                모임 일자: {paymentInfo} <br />
+                입금 계좌: {getAccount(selectedValue)}<br />
+                입금 금액: <a>3,500원</a><br/>
             </p>
             <hr />
         </Container>
 
-        <Container style={{padding:'20px'}} text>
+        <Container style={{padding:'30px'}} text>
+            <p>
             이용료 결제 안내<br/>
             1. 참가신청 후 <a>24시간 내로 결제를 완료하셔야 신청승인이 됩니다</a><br/>
             2. 결제는 통장 입금방식으로 진행됩니다<br/>
             3. <a>결제 후 결제가 확인 되면 문자 메시지로 결제 참가 승인 신청 문자 메시지가 전송됩니다</a><br/>
-            4. 환불/취소/변경는 (카톡 링쿠)로 신청하셨던 전화번호로 취소의사와 환급받으실 계좌번호를 보내주시면 환급됩니다.<br/>
+            4. 환불/취소/변경은 해당 모임일자 2일 전 까지 가능하며, 링쿠 카카오톡 플러스 친구(@linku)로 신청하셨던 전화번호와 환급받으실 계좌번호를 보내주시면 환급됩니다.<br/>
+            </p>
         </Container>
     </Container>
 );
