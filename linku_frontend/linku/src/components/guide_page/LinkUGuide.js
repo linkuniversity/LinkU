@@ -10,10 +10,6 @@ class LinkUGuide extends React.Component{
         super(props);
     }
 
-    componentDidMount(){
-        console.log("This is : " + DEFAULT_REQUEST_URL);
-    }
-
     render(){
 
         let descriptionStyle = {
