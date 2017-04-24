@@ -11,7 +11,10 @@ function* requestLogin(action){
         const [user_response] = yield [
             call(service.user, response.data.token)
         ];
-        yield put(actions.loginSuccess(response, user_response));
+        const [participated_dates] = yield [
+            call(service.participated_dates, response.data.token)
+        ];
+        yield put(actions.loginSuccess(response, user_response, participated_dates));
     }catch(e){
         yield put(actions.loginFailure(e));
         yield put(alertConfirm("이메일 혹은 비밀번호가 올바르지 않습니다.","red"));

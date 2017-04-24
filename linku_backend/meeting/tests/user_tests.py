@@ -1,7 +1,10 @@
 import pytest
 import json
-from meeting.models import User
+
 from rest_framework.authtoken.models import Token
+
+from meeting.models import User, Meeting, StatusByDay
+
 
 @pytest.mark.django_db
 def create_test_user(client):
@@ -18,25 +21,29 @@ def create_test_user(client):
     return User.objects.get(username='test@test.com')
 
 
-def get_login_token(client, user):
-    token = Token.objects.get(user=user)
-    print(token.key)
-    return token.key
+def get_login_token(user):
+    return Token.objects.get(user=user).key
 
 
 @pytest.mark.django_db
-def test_isparticipated_POST_request(client):
+def test_get_participated_meeting_list(client):
+    meeting = Meeting.objects.get(title='test title')
     user = create_test_user(client)
-    user.participated_ids = json.dumps([1, 3])
-    user.save()
+    status_list = StatusByDay.objects.filter(meeting=meeting)
+
+    status_list[0].appliers.add(user)
+    status_list[0].save()
+    status_list[2].appliers.add(user)
+    status_list[2].save()
 
     auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client, user)
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
     }
 
-    participated_response = client.post('/participated-ids/', {}, **auth_headers)
+    participated_response = client.get('/participated-dates/', {}, **auth_headers)
 
-    assert '[1, 3]' == json.loads(participated_response.content.decode('utf-8'))
+    expected_data = [status_list[0].start_time, status_list[2].start_time]
+    assert expected_data == participated_response.data
 
 
 @pytest.mark.django_db
@@ -46,7 +53,7 @@ def test_apply_alarm_POST_request(client):
     user.save()
 
     auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client, user)
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
     }
 
     apply_alarm_response = client.post('/apply-alarm/', {'apply_alarm_index': 0}, **auth_headers)
@@ -65,7 +72,7 @@ def test_response_gender_if_request_user_info_with_authenticated_token(client):
     user = create_test_user(client)
 
     auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(client, user)
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
     }
 
     response = client.get('/user/', {}, **auth_headers)

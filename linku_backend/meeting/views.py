@@ -35,13 +35,10 @@ class MeetingViewSet(viewsets.ModelViewSet):
         status_list = StatusByDay.objects.filter(meeting=meeting)
         status_index = int(request.data['status_index'])
 
-        user = User.objects.get(username=request.POST['username'])
+        user = User.objects.get(username=request.data['username'])
 
         status_list[status_index].appliers.add(user)
         status_list[status_index].save()
-
-        user.participated_ids = [2]
-        user.save()
         return Response("success")
 
 
@@ -120,11 +117,16 @@ def get_user_info(request, format=None):
     return Response({"gender": request.user.gender})
 
 
-@api_view(['POST'])
+@api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
 @permission_classes((IsAuthenticated,))
-def get_participated_ids(request, format=None):
-    return Response(request.user.participated_ids)
+def get_participated_dates(request, format=None):
+    status_list = request.user.statusbyday_set.all()
+    response_data = []
+    for status in status_list:
+        response_data.append(status.start_time)
+
+    return Response(response_data)
 
 
 @api_view(['POST'])

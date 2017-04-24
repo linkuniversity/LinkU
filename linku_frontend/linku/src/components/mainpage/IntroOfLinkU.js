@@ -55,8 +55,7 @@ class IntroOfLinkU extends React.Component {
         }
 
         return (
-
-            <Container style={containerStyle}>
+            <Container centered style={containerStyle}>
                 <div style={promotionWordStyle}>
                     <div> 링쿠는 <b>대학생</b>들이 만나서</div>
                     <div style={{marginTop: '16px'}}><b>놀고 웃고 친해질 수 있는</b></div>
@@ -64,10 +63,8 @@ class IntroOfLinkU extends React.Component {
                          <LinkUGuide modalTrigger = {<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내  ></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
                     </div>
                 </div>
-                <Grid style={{marginTop: '1px'}}>
-                    <Grid.Row columns={3}>
-                        <Grid.Column textAlign="center">
-
+                <Grid centered style={{marginTop: '1px'}}>
+                        <Grid.Column textAlign="center" mobile={12} computer={5}>
                             <Image style={serviceIntroImageStyle} src='http://localhost:8000/media/linku_intro_image_1.png' verticalAlign="middle"/>
                             <div style={serviceIntroHeaderStyle}>
                                 대학생
@@ -80,8 +77,7 @@ class IntroOfLinkU extends React.Component {
                             </div>
 
                         </Grid.Column>
-                        <Grid.Column textAlign="center">
-
+                        <Grid.Column textAlign="center" mobile={12} computer={5}>
                             <Image style={serviceIntroImageStyle} src='http://localhost:8000/media/linku_intro_image_2.png' verticalAlign="middle"/>
                             <div style={serviceIntroHeaderStyle}>
                                 놀기
@@ -93,8 +89,7 @@ class IntroOfLinkU extends React.Component {
                                 다양한 테마별 모임을 골라서 같이 놀아요<br/>
                             </div>
                         </Grid.Column>
-                        <Grid.Column textAlign="center">
-
+                        <Grid.Column textAlign="center" mobile={12} computer={5}>
                             <Image style={serviceIntroImageStyle} src='http://localhost:8000/media/linku_intro_image_3.png' verticalAlign="middle"/>
                             <div style={serviceIntroHeaderStyle}>
                                 친구
@@ -106,7 +101,6 @@ class IntroOfLinkU extends React.Component {
                                 혹시 좋은 사람이있르지 누가 알아요? ;)<br/>
                             </div>
                         </Grid.Column>
-                    </Grid.Row>
                 </Grid>
             </Container>
 

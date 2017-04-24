@@ -11,7 +11,6 @@ class Maker extends React.Component{
     render(){
         return(
             <div>
-
                 <p>모임장</p>
                 <br/>
                 <span>
@@ -29,7 +28,6 @@ class Maker extends React.Component{
             </div>
         );
     }
-
 }
 
 
