@@ -1,5 +1,4 @@
 import pytest
-from meeting.models import Statistics
 
 
 @pytest.mark.django_db

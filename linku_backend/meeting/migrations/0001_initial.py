@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
                 ('username', models.EmailField(max_length=254, unique=True)),
-                ('nickname', models.CharField(max_length=20, unique=True)),
+                ('name', models.CharField(max_length=20, unique=True)),
                 ('gender', models.CharField(choices=[('M', 'Male'), ('F', 'Female')], max_length=1)),
                 ('phone_number', models.CharField(max_length=11, validators=[django.core.validators.RegexValidator(message='Phone length has to be 11 & Only number', regex='^\\d{11}$')])),
                 ('authenticated_university_email', models.EmailField(max_length=254, unique=True)),

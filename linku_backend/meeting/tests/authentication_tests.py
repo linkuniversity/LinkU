@@ -9,7 +9,7 @@ def test_create_user_model():
                         authenticated_university_email='authenticated@university.com',
                         password='test password',
                         gender='test gender',
-                        nickname='test nickname',
+                        name='test name',
                         phone_number='test phone_number')
     User.objects.get(email='test email')
 
@@ -30,7 +30,7 @@ def test_return_400_response_when_users_get_request(client):
 def test_sign_up_POST_request(client):
     signup_data = {
         'username': 'test@email.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'M',
         'password': 'test password',
         'phone_number': '01012341234',
@@ -40,20 +40,20 @@ def test_sign_up_POST_request(client):
 
     assert response.status_code == 201
     user = User.objects.get(username='test@email.com')
-    assert user.nickname == 'test nickname'
+    assert user.name == 'test name'
 
 
 @pytest.mark.django_db
 def test_sign_up_fail_with_existent_fields(client):
     User.objects.create(username='test@email.com',
-                        nickname='test nickname',
+                        name='test name',
                         gender='M',
                         password='test password',
                         authenticated_university_email='test@authenticated.ac.kr')
 
     signup_data = {
         'username': 'test@email.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'F',
         'password': 'test password',
         'authenticated_university_email': 'test@authenticated.ac.kr'
@@ -63,7 +63,6 @@ def test_sign_up_fail_with_existent_fields(client):
 
     assert response.status_code == 400
     assert 'user with this username already exists.' in response.data['username']
-    assert 'user with this nickname already exists.' in response.data['nickname']
     assert 'user with this authenticated university email already exists.' in response.data['authenticated_university_email']
 
 
@@ -75,7 +74,7 @@ def test_sign_up_fail_with_empty_fields(client):
 
     assert response.status_code == 400
     assert 'This field is required.' in response.data['username']
-    assert 'This field is required.' in response.data['nickname']
+    assert 'This field is required.' in response.data['name']
     assert 'This field is required.' in response.data['gender']
     assert 'This field is required.' in response.data['phone_number']
     assert 'This field is required.' in response.data['password']
@@ -86,7 +85,7 @@ def test_sign_up_fail_with_empty_fields(client):
 def test_sign_up_username_field_email_validation(client):
     signup_data = {
         'username': 'test',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'F',
         'password': 'test password',
         'authenticated_university_email': 'test@authenticated.ac.kr'
@@ -102,7 +101,7 @@ def test_sign_up_username_field_email_validation(client):
 def test_sign_up_gender_field_validation(client):
     signup_data = {
         'username': 'test@email.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'A',
         'password': 'test password',
         'authenticated_university_email': 'test@authenticated.ac.kr'
@@ -118,7 +117,7 @@ def test_sign_up_gender_field_validation(client):
 def test_sign_up_phone_number_field_validation(client):
     signup_data = {
         'username': 'test@email.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'M',
         'password': 'test password',
         'phone_number': '010123424',
@@ -151,7 +150,7 @@ def test_correct_login(client):
 
     signup_data = {
         'username': 'test@test.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'M',
         'password': 'test password',
         'phone_number': '01000000000',

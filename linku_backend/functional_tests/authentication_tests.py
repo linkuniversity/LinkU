@@ -36,7 +36,7 @@ def test_authentication(browser):
     browser.get(BASE_URL)
     browser.find_element_by_xpath("//button[text()='회원가입']").click()
     browser.find_element_by_xpath("//input[@name='username']").send_keys('test@gmail.com')
-    browser.find_element_by_xpath("//input[@name='nickname']").send_keys('test nickname')
+    browser.find_element_by_xpath("//input[@name='name']").send_keys('test name')
     browser.find_element_by_xpath("//input[@name='gender' and @value='M']").click()
     browser.find_element_by_xpath("//input[@name='phone_number']").send_keys('01012341234')
     browser.find_element_by_xpath("//input[@name='password']").send_keys('test password')
