@@ -11,6 +11,8 @@ import UniversityVerificationNumberSendForm from './UniversityVerificationNumber
 
 import axios from 'axios';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class Signup extends Component {
     state = {
         modalOpen: false,
@@ -45,7 +47,7 @@ class Signup extends Component {
         }
         else {
             values['authenticated_university_email'] = this.state.university_email;
-            const info = await Promise.all([axios.post('http://127.0.0.1:8000/users/',values)
+            const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/users/',values)
                 .then(response => {
                     this.props.alertConfirm("회원가입이 완료되었습니다.", "blue");
                     this.handleClose();
@@ -72,7 +74,7 @@ class Signup extends Component {
 
     __handleUniversityVerificationMailSendFormSubmit = async (value) => {
 
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/university-verification-email/',"university_email="+value.university_email)
+        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/university-verification-email/',"university_email="+value.university_email)
             .then(response => {
                 this.setState({
                     ...this.state,
@@ -102,7 +104,7 @@ class Signup extends Component {
 
     _handleUniversityVerificationNumberSendFormSubmit = async (value) => {
 
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/university-verification-number/',"university_email="+this.state.university_email + "&" + "auth_number=" + value.auth_number)
+        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/university-verification-number/',"university_email="+this.state.university_email + "&" + "auth_number=" + value.auth_number)
             .then(response => {
                 this.setState({
                     is_verify_auth_number_done: true,

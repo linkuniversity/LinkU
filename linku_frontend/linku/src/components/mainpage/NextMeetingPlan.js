@@ -9,6 +9,8 @@ import * as actions from '../../actions/Common';
 import ComingSoonModal from './ComingSoonModal';
 import NextMeetingDetailPlan from './NextMeetingDetailPlan';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class NextMeetingPlan extends React.Component{
     constructor(props){
         super(props);
@@ -64,7 +66,7 @@ or\
             backgroundColor: '#BDBDBD',
             position: 'relative',
             marginBottom: '2%',
-            backgroundImage: 'url(http://localhost:8000/media/next_meeting_01.jpeg)',
+            backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/next_meeting_01.jpeg)',
             backgroundSize:"cover",
         }
 
@@ -76,7 +78,7 @@ or\
             marginRight: '20px',
             marginLeft: '20px',
             marginBottom: '2%',
-            backgroundImage: 'url(http://localhost:8000/media/next_meeting_02.jpeg)',
+            backgroundImage: 'url('+DEFAULT_REQUEST_URL+'/media/next_meeting_02.jpeg)',
             backgroundSize:"cover",
         }
         let rightCardStyle = {
@@ -85,7 +87,7 @@ or\
             backgroundColor: '#BDBDBD',
             position: 'relative',
             marginBottom: '2%',
-            backgroundImage: 'url(http://localhost:8000/media/next_meeting_03.jpeg)',
+            backgroundImage: 'url('+DEFAULT_REQUEST_URL+'/media/next_meeting_03.jpeg)',
             backgroundSize:"cover",
         }
 

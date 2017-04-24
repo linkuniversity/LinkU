@@ -1,5 +1,7 @@
 import React from 'react';
-import {Header, Container, Grid, Image} from 'semantic-ui-react'
+import {Header, Container, Grid, Image} from 'semantic-ui-react';
+
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 const Review = () => {
     const datas = [
@@ -42,7 +44,7 @@ const Review = () => {
         <Container style={{marginTop: '72px'}}>
             <Grid textAlign="left">
                 <Grid.Column mobile={16} computer={8}>
-                    <Image src='http://localhost:8000/media/review.png' verticalAlign="middle"/>
+                    <Image src={DEFAULT_REQUEST_URL+'/media/review.png'} verticalAlign="middle"/>
                 </Grid.Column>
                 <Grid.Column mobile={16} computer={8}>
 

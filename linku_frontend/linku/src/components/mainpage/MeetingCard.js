@@ -10,6 +10,8 @@ import Apply from './Apply';
 import Login from '../login/Login';
 import axios from 'axios';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class MeetingCard extends React.Component
 {
     constructor(props){
@@ -61,7 +63,7 @@ class MeetingCard extends React.Component
             textAlign: 'left',
         };
         let meetingMainInfoStyle = {
-            backgroundImage: 'url(http://localhost:8000/media/meeting_card.jpg)',
+            backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/meeting_card.jpg)',
             height: '360px',
             paddingTop: '35px',
             paddingLeft: '35px',
@@ -193,7 +195,7 @@ class MeetingCard extends React.Component
                                 </div>
                                 <Item.Group>
                                     <Item>
-                                        <Item.Image style={meetingDetailImageLogoStyle} src='http://localhost:8000/media/meeting_leader_profile.png'/>
+                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_profile.png'} />
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>

@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
 import { Grid, Button, Header, Modal, Image, Container } from 'semantic-ui-react';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
+
 const getAccount = (selectedValue) => {
     if(selectedValue == 0)
         return (<span>신한 110-374-439288 장선혁</span>);
@@ -14,7 +17,7 @@ const PaymentApplyContents = ({selectedValue, paymentInfo}) => (
     <Container>
         <Container text>
             <br/><br/>
-            <Image centered src='http://localhost:8000/media/how_to_payment.png' />
+            <Image centered src={DEFAULT_REQUEST_URL+'/media/how_to_payment.png'} />
             <br/>
             <hr />
             <p style={{padding:'30px'}}>
@@ -46,7 +49,7 @@ const textContainerStyle = {
 const PaymentDescription = () => (
     <Container>
         <br/><br/>
-        <Image centered src='http://localhost:8000/media/coffee.png'/>
+        <Image centered src={DEFAULT_REQUEST_URL+'/media/coffee.png'}/>
         <br/><br/>
         <Container style = { {fontSize: '30px'} } text textAlign="center">
             <a>커피 한잔 값으로 새로운 친구들도 만나고 <br/>
