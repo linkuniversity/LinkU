@@ -14,7 +14,7 @@ def forwards_func(apps, schema_editor):
     User.objects.create(username="testman@email.com", password=hashed_password, name="test name", gender="M", phone_number="01099998888", authenticated_university_email="test@univ.ac.kr")
 
     meeting = Meeting.objects.create(title="test title", maker_name="test meeting name", price=3500, place="혜화역 4번 출구",
-                                     meeting_specific_info="대학생이니까 대학로!\n젊음과 문화, 자유를 만끽할 수 있는 대학로에서 모임 시작합니다\n가까운 장소들을 엮어서 피로는 덜하게 맜있는 것도 골라먹고 즐겁게 게임도 하면서\n하루쯤은 시험과 과제로 쌓인 스트레스를 풀어봐요")
+                                     meeting_specific_info="대학생이니까 대학로!\n젊음과 문화, 자유를 만끽할 수 있는 대학로에서 모임 시작합니다\n가까운 장소들을 엮어서 피로는 덜하게 맜있는 것도 골라먹고 즐겁게 게임도 하면서\n하루쯤은 시험과 과제로 쌓인 스트레스를 풀어봐요!")
 
     StatusByDay.objects.create(start_time=datetime.date(2017, 4, 28),
                                num_of_joined_members=0,
