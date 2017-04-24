@@ -22,7 +22,7 @@ class IntroVideo extends React.Component {
             textAlign: "center",
             fontFamily: "../res/assets/KoPubDotumBold",
             color: '#5d5d5d',
-            fontSize: '28pt',
+            fontSize: '2rem',
         };
 
         let promotionBottomWordStyle = {
@@ -31,7 +31,7 @@ class IntroVideo extends React.Component {
             textAlign: "center",
             fontFamily: 'url(http://localhost:8000/static/assets/KoPubDotumLight.ttf)',
             color: '#61a1d8',
-            fontSize: '20pt',
+            fontSize: '1.8rem',
             marginTop: '67px',
         };
 
@@ -42,10 +42,11 @@ class IntroVideo extends React.Component {
         }
 
         return (
-            <Container style={containerStyle}>
+            <Container text style={containerStyle}>
                 <div style={promotionTopWordStyle}>
-                    <div style={{marginBottom: '25px'}}>과제와 취업에 지친 대학생활</div>
-                    <div>링쿠에서 새로운 친구들과 새로운 경험</div>
+                    <Container style={{marginBottom: '25px'}}>과제와 취업에 지친 대학생활<br/>
+                    링쿠에서 새로운 친구들과 새로운 경험
+                    </Container>
                 </div>
                 <Embed ref="introVideo" style={videoStyle} id='6ShDKd66TE0' autoplay={true} active={true} source='youtube'/>
                 <div style={promotionBottomWordStyle}>
