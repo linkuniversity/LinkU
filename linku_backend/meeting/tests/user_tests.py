@@ -10,7 +10,7 @@ from meeting.models import User, Meeting, StatusByDay
 def create_test_user(client):
     signup_data = {
         'username': 'test@test.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'M',
         'password': 'test password',
         'phone_number': '01000000000',

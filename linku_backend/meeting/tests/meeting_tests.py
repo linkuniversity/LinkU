@@ -111,7 +111,7 @@ def test_update_participation_info_when_someone_apply_meeting(client):
 
     signup_data = {
         'username': 'test@test.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'M',
         'password': 'test password',
         'phone_number': '01000000000',
@@ -141,7 +141,7 @@ def test_update_participation_info_when_someone_apply_meeting(client):
 def test_apply_meeting_with_api(client):
     signup_data = {
         'username': 'test@test.com',
-        'nickname': 'test nickname',
+        'name': 'test name',
         'gender': 'M',
         'password': 'test password',
         'phone_number': '01000000000',

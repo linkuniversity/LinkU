@@ -11,7 +11,7 @@ const emailRequired = value => value ? undefined : '이메일을 입력해주세
 const emailCorrectForm = value =>
     value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
     '올바른 이메일 형식이 아닙니다' : undefined
-const nicknameRequired = value => value ? undefined : '닉네임을 입력해주세요'
+const nameRequired = value => value ? undefined : '이름을 입력해주세요'
 const phoneRequired = value => value ? undefined : '전화번호를 입력해주세요'
 const phoneCorrectForm = value =>
     value && value.length != 11 ?
@@ -49,7 +49,7 @@ class SignupForm extends Component{
         return (
             <Form onSubmit={this.props.handleSubmit}>
                 <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
-                <Field name="nickname" component={renderField} htmlFor="nickname" labelText="닉네임" type="text" validate={[nicknameRequired]}/>
+                <Field name="name" component={renderField} htmlFor="name" labelText="이름" type="text" validate={[nameRequired]}/>
                 <Form.Group inline>
                     <label htmlFor="gender">성별</label>
                     <Form.Field>
@@ -61,7 +61,7 @@ class SignupForm extends Component{
                         <label htmlFor="gender">남자</label>
                     </Form.Field>
                 </Form.Group>
-                <Field name="phone_number" component={renderField} htmlFor="nickname" labelText="전화번호" type="number" validate={[phoneRequired, phoneCorrectForm]}/>
+                <Field name="phone_number" component={renderField} htmlFor="name" labelText="전화번호" type="number" validate={[phoneRequired, phoneCorrectForm]}/>
                 <Form.Field>
                     <label htmlFor="password">비밀번호</label>
                     <Field name="password" component="input" type="password"/>
