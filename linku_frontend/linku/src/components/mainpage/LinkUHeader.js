@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/Login';
 import { bindActionCreators } from 'redux';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class LinkUHeader extends Component {
     constructor(props) {
         super(props);
@@ -55,7 +57,7 @@ class LinkUHeader extends Component {
 
         return (
             <Container style={containerStyle}>
-                <Image src='http://localhost:8000/media/logo_top.png' verticalAlign='top'/>
+                <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} verticalAlign='top'/>
                 <span style={titleStyle}>Link U Link University</span>
                 {
                     (localStorage.getItem('token') && this.props.loggedIn) ?

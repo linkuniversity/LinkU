@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/Common';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class IntroVideo extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +31,7 @@ class IntroVideo extends React.Component {
             width: "100%",
             height: "8%",
             textAlign: "center",
-            fontFamily: 'url(http://localhost:8000/static/assets/KoPubDotumLight.ttf)',
+            fontFamily: 'url('+DEFAULT_REQUEST_URL +'/static/assets/KoPubDotumLight.ttf)',
             color: '#61a1d8',
             fontSize: '1.8rem',
             marginTop: '67px',

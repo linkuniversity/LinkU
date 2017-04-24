@@ -2,10 +2,16 @@ import React, {Component} from 'react';
 import {Container, Grid, Card, Image, Modal, Button, Item} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class LinkUGuide extends React.Component{
 
     constructor(props){
         super(props);
+    }
+
+    componentDidMount(){
+        console.log("This is : " + DEFAULT_REQUEST_URL);
     }
 
     render(){
@@ -20,7 +26,6 @@ class LinkUGuide extends React.Component{
         }
 
 
-
         return(
             <Modal trigger={this.props.modalTrigger} closeIcon='close' open={this.props.modalOpen} onClose={this.props.handleClose}>
             <Modal.Header>이용안내</Modal.Header>
@@ -30,7 +35,7 @@ class LinkUGuide extends React.Component{
                     <Grid>
                         <Item.Group style={{padding:"10%"}}>
                             <Item>
-                              <Item.Image src="http://localhost:8000/media/how_to_join_1.png" floated="left"/>
+                              <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_1.png"} floated="left"/>
                               <Item.Content>
                                   <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
                                       <div>
@@ -51,7 +56,7 @@ class LinkUGuide extends React.Component{
                     <Grid>
                         <Item.Group style={{padding:"10%"}}>
                             <Item>
-                              <Item.Image src="http://localhost:8000/media/how_to_join_2.png" floated="left"/>
+                              <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_2.png"} floated="left"/>
                               <Item.Content>
                                   <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
                                       <div>
@@ -73,7 +78,7 @@ class LinkUGuide extends React.Component{
                     <Grid>
                         <Item.Group style={{padding:"10%"}}>
                             <Item>
-                              <Item.Image src="http://localhost:8000/media/how_to_join_3.png" floated="left"/>
+                              <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_3.png"} floated="left"/>
                               <Item.Content>
                                   <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
                                       <div>
@@ -95,7 +100,7 @@ class LinkUGuide extends React.Component{
                     <Grid>
                         <Item.Group style={{padding:"10%"}}>
                             <Item>
-                              <Item.Image src="http://localhost:8000/media/how_to_join_4.png" floated="left"/>
+                              <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_4.png"} floated="left"/>
                               <Item.Content>
                                   <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
                                       <div>

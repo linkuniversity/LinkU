@@ -3,6 +3,8 @@ import {Container, Grid, Image} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { fetchStatisticsInfos } from '../../actions/Statistics';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class Statistics extends React.Component{
     constructor(props){
         super(props);
@@ -12,7 +14,7 @@ class Statistics extends React.Component{
     }
     render() {
         const containerStyle = {
-            backgroundImage: 'url("http://localhost:8000/media/container_background.jpg")',
+            backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/container_background.jpg)',
             marginTop: '100px',
             width: '100%',
             padding: '50px',
@@ -44,17 +46,17 @@ class Statistics extends React.Component{
                     <div style={{height:'100%'}}>
                         <Grid style={{height:'100%'}} key = {i} centered verticalAlign="middle">
                             <Grid.Column mobile={12} computer = {4} textAlign="center">
-                                <Image style={cardStyle} src="http://localhost:8000/media/num_of_appliers.png" centered />
+                                <Image style={cardStyle} src={DEFAULT_REQUEST_URL + '/media/num_of_appliers.png'} centered />
                                     <p style={statisticsNumberStyle}>{data.num_of_applier}</p>
                                     <p style={statisticsCategoryStyle}>지금까지 신청한 사람</p>
                             </Grid.Column>
                             <Grid.Column mobile={12} computer = {4} textAlign="center">
-                                <Image style={middleCardStyle} src="http://localhost:8000/media/num_of_meetings.png" centered/>
+                                <Image style={middleCardStyle} src={DEFAULT_REQUEST_URL + '/media/num_of_meetings.png'} centered/>
                                     <p style={statisticsNumberStyle}>{data.created_meeting}</p>
                                     <p style={statisticsCategoryStyle}>진행된 모임 수</p>
                             </Grid.Column>
                             <Grid.Column mobile={12} computer = {4} textAlign="center">
-                                <Image style={cardStyle} src="http://localhost:8000/media/num_of_new_faces.png" centered/>
+                                <Image style={cardStyle} src={DEFAULT_REQUEST_URL + '/media/num_of_new_faces.png'} centered/>
                                     <p style={statisticsNumberStyle}>{data.new_meet_person}</p>
                                     <p style={statisticsCategoryStyle}>새롭게 만난 사람 수</p>
                             </Grid.Column>

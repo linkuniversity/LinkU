@@ -1,6 +1,8 @@
 import React from 'react';
 import {Container, Grid, Image, Header} from 'semantic-ui-react';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 const containerStyle = {
     marginTop: '5%',
     marginBottom: '5%',
@@ -22,7 +24,7 @@ const LinkUContact = () => (
                 <Grid.Column width={7}>
                     <Grid.Row columns={2}>
                         <Grid.Column>
-                            <Image style={{width: "80px", height: "60px"}} src='http://localhost:8000/media/logo_bottom.png'/>
+                            <Image style={{width: "80px", height: "60px"}} src={DEFAULT_REQUEST_URL+'/media/logo_bottom.png'}/>
                         </Grid.Column>
                         <Grid.Column style={{marginTop: '15px', marginBottom: '10px'}}>
                             <button style={buttonStyle}>이용안내</button>
@@ -34,8 +36,8 @@ const LinkUContact = () => (
                 </Grid.Column>
                 <Grid.Column float='right'>
                     <Header style={{color:'#5fa1d7'}}>문의</Header>
-                    <Image src="http://localhost:8000/media/facebook_icon.png" href="https://www.facebook.com/LinkUandU/"/>
-                    <Image style={{marginLeft: '20px'}} src="http://localhost:8000/media/kakaotalk_icon.png" href="http://plus.kakao.com/home/@linku"/><br/>
+                    <Image src={DEFAULT_REQUEST_URL + '/media/facebook_icon.png'} href="https://www.facebook.com/LinkUandU/"/>
+                    <Image style={{marginLeft: '20px'}} src={DEFAULT_REQUEST_URL + '/media/kakaotalk_icon.png'} href="http://plus.kakao.com/home/@linku"/><br/>
                     <h5 style={{marginTop: '10px'}}>team.uniculture@gmail.com</h5>
                     취소, 환불, 모임 날짜 변경 혹은 문의사항 있으시면 여기로 연락주시면 됩니다.
                 </Grid.Column>

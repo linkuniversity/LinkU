@@ -6,6 +6,8 @@ import {bindActionCreators} from 'redux';
 import * as actions from '../../actions/Common';
 import LinkUGuide from '../guide_page/LinkUGuide';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 class IntroOfLinkU extends React.Component {
 
 
@@ -65,7 +67,7 @@ class IntroOfLinkU extends React.Component {
                 </div>
                 <Grid centered style={{marginTop: '1px'}}>
                         <Grid.Column textAlign="center" mobile={12} computer={5}>
-                            <Image style={serviceIntroImageStyle} src='http://localhost:8000/media/linku_intro_image_1.png' verticalAlign="middle"/>
+                            <Image style={serviceIntroImageStyle} src={DEFAULT_REQUEST_URL+'/media/linku_intro_image_1.png'} verticalAlign="middle"/>
                             <div style={serviceIntroHeaderStyle}>
                                 대학생
                             </div>
@@ -78,7 +80,7 @@ class IntroOfLinkU extends React.Component {
 
                         </Grid.Column>
                         <Grid.Column textAlign="center" mobile={12} computer={5}>
-                            <Image style={serviceIntroImageStyle} src='http://localhost:8000/media/linku_intro_image_2.png' verticalAlign="middle"/>
+                            <Image style={serviceIntroImageStyle} src={DEFAULT_REQUEST_URL+'/media/linku_intro_image_2.png'} verticalAlign="middle"/>
                             <div style={serviceIntroHeaderStyle}>
                                 놀기
                             </div>
@@ -90,7 +92,7 @@ class IntroOfLinkU extends React.Component {
                             </div>
                         </Grid.Column>
                         <Grid.Column textAlign="center" mobile={12} computer={5}>
-                            <Image style={serviceIntroImageStyle} src='http://localhost:8000/media/linku_intro_image_3.png' verticalAlign="middle"/>
+                            <Image style={serviceIntroImageStyle} src={DEFAULT_REQUEST_URL+'/media/linku_intro_image_3.png'} verticalAlign="middle"/>
                             <div style={serviceIntroHeaderStyle}>
                                 친구
                             </div>

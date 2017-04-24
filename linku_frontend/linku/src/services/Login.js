@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import {DEFAULT_REQUEST_URL} from '../components/utils/RequestUrlSetting';
+
 export function login(username, password){
-    return axios.post('http://127.0.0.1:8000/login/', {
+    return axios.post(DEFAULT_REQUEST_URL + '/login/', {
         "username": username,
         "password" : password
     }).catch((e) => {
@@ -19,7 +21,7 @@ export function user(token) {
         headers: { 'Authorization': 'Token '+token }
     };
 
-    return axios.get('http://127.0.0.1:8000/user/', config).catch((e) => {
+    return axios.get(DEFAULT_REQUEST_URL + '/user/', config).catch((e) => {
         console.log(e.response.data);
     });
 }
@@ -35,7 +37,7 @@ export function participated_dates(token) {
         headers: { 'Authorization': 'Token '+token }
     };
 
-    return axios.get('http://127.0.0.1:8000/participated-dates/', config).catch((e) => {
+    return axios.get(DEFAULT_REQUEST_URL + '/participated-dates/', config).catch((e) => {
         console.log(e.response.data);
     });
 }

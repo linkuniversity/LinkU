@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Button, Modal} from 'semantic-ui-react';
 import axios from 'axios';
 
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+
 export default class ApplicationCompletionModal extends Component{
     state = { modalOpen : false }
 
@@ -15,7 +17,7 @@ export default class ApplicationCompletionModal extends Component{
             headers: { 'Authorization': 'Token '+token }
         };
 
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/apply-alarm/','apply_alarm_index='+applicationIndex,config)
+        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL +'/apply-alarm/','apply_alarm_index='+applicationIndex,config)
             .then(response => {
                 console.log(response.data);
             })
