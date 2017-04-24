@@ -1,7 +1,7 @@
 let DEFAULT_REQUEST_URL = "";
 
 const LOCAL_REQUEST_URL = "http://localhost:8000";
-const DEPLOY_REQUEST_URL = "";
+const DEPLOY_REQUEST_URL = "/api";
 
 DEFAULT_REQUEST_URL = DEPLOY_REQUEST_URL;
 
