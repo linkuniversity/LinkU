@@ -12,10 +12,10 @@ class Statistics extends React.Component{
     }
     render() {
         const containerStyle = {
-            height:'500px',
             backgroundImage: 'url("http://localhost:8000/media/container_background.jpg")',
             marginTop: '100px',
-            width: '100%'
+            width: '100%',
+            padding: '50px',
         };
         const cardStyle = {
             width:'200px',
@@ -34,7 +34,6 @@ class Statistics extends React.Component{
 
         const statisticsCategoryStyle = {
             color : '#FFFFFF',
-            marginTop : '20px',
             fontSize : '20pt'
         };
 
@@ -42,22 +41,22 @@ class Statistics extends React.Component{
         const mapToComponent = (datas) => {
             return datas.map( (data, i) => {
                 return (
-                    <div style={{height: '100%'}}>
-                        <Grid style={{height: '100%'}} key = {i} centered verticalAlign="middle">
-                            <Grid.Column width = {4} textAlign="center">
+                    <div style={{height:'100%'}}>
+                        <Grid style={{height:'100%'}} key = {i} centered verticalAlign="middle">
+                            <Grid.Column mobile={12} computer = {4} textAlign="center">
                                 <Image style={cardStyle} src="http://localhost:8000/media/num_of_appliers.png" centered />
-                                    <div style={statisticsNumberStyle}>{data.num_of_applier}</div>
-                                    <div style={statisticsCategoryStyle}>지금까지 신청한 사람</div>
+                                    <p style={statisticsNumberStyle}>{data.num_of_applier}</p>
+                                    <p style={statisticsCategoryStyle}>지금까지 신청한 사람</p>
                             </Grid.Column>
-                            <Grid.Column width = {4} textAlign="center">
+                            <Grid.Column mobile={12} computer = {4} textAlign="center">
                                 <Image style={middleCardStyle} src="http://localhost:8000/media/num_of_meetings.png" centered/>
-                                    <div style={statisticsNumberStyle}>{data.created_meeting}</div>
-                                    <div style={statisticsCategoryStyle}>진행된 모임 수</div>
+                                    <p style={statisticsNumberStyle}>{data.created_meeting}</p>
+                                    <p style={statisticsCategoryStyle}>진행된 모임 수</p>
                             </Grid.Column>
-                            <Grid.Column width = {4} textAlign="center">
+                            <Grid.Column mobile={12} computer = {4} textAlign="center">
                                 <Image style={cardStyle} src="http://localhost:8000/media/num_of_new_faces.png" centered/>
-                                    <div style={statisticsNumberStyle}>{data.new_meet_person}</div>
-                                    <div style={statisticsCategoryStyle}>새롭게 만난 사람 수</div>
+                                    <p style={statisticsNumberStyle}>{data.new_meet_person}</p>
+                                    <p style={statisticsCategoryStyle}>새롭게 만난 사람 수</p>
                             </Grid.Column>
                         </Grid>
                     </div>

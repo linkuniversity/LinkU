@@ -33,7 +33,7 @@ const LinkUContact = () => (
                     대학생들의 새로운 문화를 선도합니다
                 </Grid.Column>
                 <Grid.Column float='right'>
-                    <Header>문의</Header>
+                    <Header style={{color:'#5fa1d7'}}>문의</Header>
                     <Image src="http://localhost:8000/media/facebook_icon.png" href="https://www.facebook.com/LinkUandU/"/>
                     <Image style={{marginLeft: '20px'}} src="http://localhost:8000/media/kakaotalk_icon.png" href="http://plus.kakao.com/home/@linku"/><br/>
                     <h5 style={{marginTop: '10px'}}>team.uniculture@gmail.com</h5>

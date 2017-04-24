@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Grid, Image} from 'semantic-ui-react'
+import {Header, Container, Grid, Image} from 'semantic-ui-react'
 
 const Review = () => {
     const datas = [
@@ -41,14 +41,14 @@ const Review = () => {
     return (
         <Container style={{marginTop: '72px'}}>
             <Grid textAlign="left">
-                <Grid.Column width={8}>
+                <Grid.Column mobile={16} computer={8}>
                     <Image src='http://localhost:8000/media/review.png' verticalAlign="middle"/>
                 </Grid.Column>
-                <Grid.Column width={8}>
+                <Grid.Column mobile={16} computer={8}>
 
-                        <div style={{fontSize: '20pt', color: '#5fa1d7', marginTop: '112px'}}>
+                    <Header style={{fontSize: '20pt', color: '#5fa1d7', marginTop: '112px'}}>
                         링쿠 참여자들이 들려주는 리얼 생생후기
-                        </div>
+                    </Header>
 
                     {mapToComponent(datas)}
 
