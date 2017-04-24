@@ -241,7 +241,7 @@ class MeetingCard extends React.Component
                                         <Item.Description style={{marginLeft: '20px'}}>
                                             근처에 있는 <a style={linkFontStyle} href="https://ko.foursquare.com/v/%EC%9A%B0%EB%A6%AC%EA%B2%8C%EC%9E%84%EB%9E%9C%EB%93%9C/5045b997e4b08a16a4467aac">
                                                 <u>우리 게임랜드 </u>
-                                            </a>에 들려서 <br/>
+                                            </a>에 들러서 <br/>
                                             미션과 함께 오락도 하고 스트레스를 날려봐요!<br/>
                                         </Item.Description>
                                     </Item>
