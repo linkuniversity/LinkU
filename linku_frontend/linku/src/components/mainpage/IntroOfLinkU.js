@@ -7,9 +7,21 @@ import * as actions from '../../actions/Common';
 import LinkUGuide from '../guide_page/LinkUGuide';
 
 class IntroOfLinkU extends React.Component {
+
+
+
     constructor(props) {
         super(props);
+        this.state = { modalOpen: false }
     }
+
+    handleOpen = (e) => this.setState({
+      modalOpen: true,
+    })
+
+    handleClose = (e) => this.setState({
+      modalOpen: false,
+    })
 
     render() {
 
@@ -49,7 +61,7 @@ class IntroOfLinkU extends React.Component {
                     <div> 링쿠는 <b>대학생</b>들이 만나서</div>
                     <div style={{marginTop: '16px'}}><b>놀고 웃고 친해질 수 있는</b></div>
                     <div style={{marginTop: '16px'}}><b>대학생 놀이모임</b> 연결서비스입니다<br/><br/>
-                         <LinkUGuide modalTrigger = {<Button style={guideButtonStyle}>이용안내 ></Button>} />
+                         <LinkUGuide modalTrigger = {<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내  ></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
                     </div>
                 </div>
                 <Grid style={{marginTop: '1px'}}>

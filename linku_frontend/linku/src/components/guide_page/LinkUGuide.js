@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Container, Grid, Card, Image, Modal} from 'semantic-ui-react'
+import {Container, Grid, Card, Image, Modal, Button, Item} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 class LinkUGuide extends React.Component{
+
     constructor(props){
         super(props);
     }
@@ -33,39 +34,39 @@ class LinkUGuide extends React.Component{
             height: "161px",
         }
 
-        let containerStyle = {
-            marginTop: "100px",
+        let gridRowStyle = {
+            marginTop: "100px"
         }
 
         return(
-            <Modal trigger={this.props.modalTrigger}>
+            <Modal trigger={this.props.modalTrigger} closeIcon='close' open={this.props.modalOpen} onClose={this.props.handleClose}>
             <Modal.Header>이용안내</Modal.Header>
             <Modal.Content>
-            <Container>
-                <Container style={containerStyle}>
-                    <Grid style={{width: '100%'}} centered verticalAlign="middle">
-                        <Grid.Column width={3}>
-                            <div>
-                                <Image style={firstGuideImageStyle} src="http://localhost:8000/media/how_to_join_1.png" floated="left"/>
-                            </div>
-                        </Grid.Column>
-                        <Grid.Column width={6}>
-                            <div style={{textAlign:"left"}}>
-                                <div style={{fontSize: '20pt'}}>1단계</div>
-                                <div style={{fontSize: '20pt', marginTop: '10px'}}>대학인증하기</div>
-                                <div style={descriptionStyle}>
-                                    링쿠는 대학생 전용 서비스로 보다 더 좋은 서비스를 위해<br/>
-                                    대학생 메일링 가입으로 대학생을 인증하고 있습니다. <br/>
-                                    대학 메일을 이용하여 자신이 대학생인것을 인증해주세요!<br/>
-                                </div>
-                            </div>
-                        </Grid.Column>
-                    </Grid>
-                </Container>
 
-                <Container style={containerStyle}>
-                    <Grid style={{width: '100%'}} centered verticalAlign="middle">
-                        <Grid.Column width={6}>
+            <Container>
+                    <Grid>
+                        <Item.Group>
+                            <Item>
+                              <Item.Image style={firstGuideImageStyle} src="http://localhost:8000/media/how_to_join_1.png" floated="left"/>
+                              <Item.Content>
+                                  <Item.Description>
+                                      <div>
+                                          <div style={{fontSize: '20pt'}}>1단계</div>
+                                          <div style={{fontSize: '20pt', marginTop: '10px'}}>대학인증하기</div>
+                                          <div style={descriptionStyle}>
+                                              링쿠는 대학생 전용 서비스로 보다 더 좋은 서비스를 위해
+                                              대학생 메일링 가입으로 대학생을 인증하고 있습니다.
+                                              대학 메일을 이용하여 자신이 대학생인것을 인증해주세요!
+                                          </div>
+                                      </div>
+                                  </Item.Description>
+                              </Item.Content>
+                            </Item>
+                        </Item.Group>
+                    </Grid>
+
+                    <Grid.Row>
+                        <Grid.Column width={12}>
                             <div style={{textAlign:"left"}}>
                                 <div style={{fontSize: '20pt'}}>2단계</div>
                                 <div style={{fontSize: '20pt', marginTop: '10px'}}>원하는 모임을 선택하세요</div>
@@ -82,10 +83,9 @@ class LinkUGuide extends React.Component{
                                 <Image style={secondGuideImageStyle} src="http://localhost:8000/media/how_to_join_2.png" floated="right"/>
                             </div>
                         </Grid.Column>
-                    </Grid>
-                </Container>
+                    </Grid.Row>
 
-                <Container style={containerStyle}>
+                <Container>
                     <Grid style={{width: '100%'}} centered verticalAlign="middle">
                         <Grid.Column width={3}>
                             <div>
@@ -107,7 +107,7 @@ class LinkUGuide extends React.Component{
                     </Grid>
                 </Container>
 
-                <Container style={containerStyle}>
+                <Container>
                     <Grid style={{width: '100%'}} centered verticalAlign="middle">
                         <Grid.Column width={6}>
                             <div style={{textAlign:"left"}}>
@@ -129,7 +129,13 @@ class LinkUGuide extends React.Component{
                     </Grid>
                 </Container>
             </Container>
+
             </Modal.Content>
+            <Modal.Actions style={{verticalAlign: "center", textAlign: "center"}}>
+                <Button style={{width: '100%', height: '100%', margin: "0 auto"}} color='blue' onClick={this.props.handleClose}>
+                    확인
+                </Button>
+            </Modal.Actions>
             </Modal>
         );
     }
