@@ -151,7 +151,7 @@ class MeetingCard extends React.Component
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
             }
             else {
-                const button = (<Button color='blue' fluid>신청하기</Button>);
+                const button = (<Button style={{backgroundColor:'#5FA1D7',color:'#FFFFFF'}} fluid>같이 놀자!</Button>);
                 if(localStorage.getItem('token') && this.props.loggedIn){
                     return (
                         <Apply
@@ -210,25 +210,37 @@ class MeetingCard extends React.Component
                                     <Item>
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>17:00 ~ 18:30</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
-                                            <a src="https://store.naver.com/restaurants/detail?id=85806567&tab=main">호호식당</a>
+                                            <b>호호식당</b><br/>
+                                            <a href="https://store.naver.com/restaurants/detail?id=85806567&tab=main">
+                                                링크(클릭하면 자세한 정보를 볼 수 있어요.)
+                                            </a>
                                         </Item.Description>
                                     </Item>
                                     <Item>
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>18:30 ~ 19:30</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
-                                            [Yx2 보드게임 카페]로 이동합니다.
+                                            <b>[Yx2 보드게임 카페]로 이동합니다.</b><br/>
+                                            <a href="http://www.e114.kr/local/17357">
+                                                링크(클릭하면 자세한 정보를 볼 수 있어요.)
+                                            </a>
                                         </Item.Description>
                                     </Item>
                                     <Item>
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>19:30 ~ 20:00</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
-                                            [우리 게임랜드]
+                                            <b>[우리 게임랜드]</b><br/>
+                                            <a href="https://ko.foursquare.com/v/%EC%9A%B0%EB%A6%AC%EA%B2%8C%EC%9E%84%EB%9E%9C%EB%93%9C/5045b997e4b08a16a4467aac">
+                                                링크(클릭하면 자세한 정보를 볼 수 있어요.)
+                                            </a>
                                         </Item.Description>
                                     </Item>
                                     <Item>
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>20:00 ~ </Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
-                                            [심야식당]으로 이동합니다. (조금 멀어도 칵테일이 당긴다면 [인생의 단맛]을 추천드려요.)
+                                            <b>[심야식당]으로 이동합니다. (조금 멀어도 칵테일이 당긴다면 [인생의 단맛]을 추천드려요.)</b><br/>
+                                            <a href="http://blog.naver.com/PostView.nhn?blogId=wndus508&logNo=220976731706">
+                                                링크(클릭하면 자세한 정보를 볼 수 있어요.)
+                                            </a>
                                         </Item.Description>
                                     </Item>
                                 </div>

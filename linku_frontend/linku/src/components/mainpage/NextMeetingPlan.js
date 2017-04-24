@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Dimmer, Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react'
+import {Segment, Input, Dimmer, Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -170,10 +170,12 @@ or\
                         </Grid>
 
                         <div style={bottomStyle}>
-                            내가 모임장이 되어서 모임을 하고 싶다면? <ComingSoonModal triggerButton={<a> 모임장 신청하기 ></a>} />
+                            내가 새로운 친구들과 함께 하고 싶은 활동은 &nbsp;
+                            <Input type="text" placeholder="ex) 한강에서 자전거타기" color='blue'/>
+                            &nbsp; <ComingSoonModal triggerButton={<Button color='blue' size="big" inverted >보내기</Button>} />
                         </div>
                         <div style={{marginTop: '22px', textAlign: 'center', fontSize: '16pt', marginBottom: '72px'}}>
-                            링쿠에 대한 소식을 받고 싶다면? <a href="http://plus.kakao.com/home/@linku">링쿠 카톡 추가하기 ></a>
+                            링쿠에 대한 소식을 받고 싶다면? <a href="http://plus.kakao.com/home/@linku">링쿠 플러스친구 추가하기 ></a>
                         </div>
                     </div>
                 </Container>
