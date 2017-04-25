@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Image, Button} from 'semantic-ui-react'
+import {Container, Image, Button, Modal} from 'semantic-ui-react'
 import Signup from '../signup/Signup.js'
 import Login from '../login/Login.js'
 import { connect } from 'react-redux';
@@ -66,6 +66,10 @@ class LinkUHeader extends Component {
                     ):
                     (
                         <span style={signWrapperStyle}>
+                            <Modal trigger={<Button>소개</Button>}>
+                                <Modal.Header>소개</Modal.Header>
+                                <Image centered src={DEFAULT_REQUEST_URL+'/media/introduction.jpeg'} />
+                            </Modal>
                             <Login triggerButton={<button style={signInButtonStyle}>로그인</button>}/>
                             <Signup buttonStyle={signUpButtonStyle}/>
                         </span>
