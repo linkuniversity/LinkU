@@ -119,7 +119,7 @@ class Signup extends Component {
                 else if (error.response.data['message'] == 'Time Out')
                     this.props.alertConfirm("시간이 완료되었습니다 다시 요청해주세요.", "red");
                 else if (error.response.data['message'] == 'Wrong Auth Number')
-                    this.prpops.alertConfirm("인증번호가 틀렸습니다.","red");
+                    this.props.alertConfirm("인증번호가 틀렸습니다.","red");
                 else
                     this.props.alertConfirm("인증번호 처리에 실패하였습니다.", "red");
             })
