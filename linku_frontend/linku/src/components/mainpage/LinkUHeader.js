@@ -32,16 +32,16 @@ class LinkUHeader extends Component {
         let signInButtonStyle = {
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
-            color: '#5d5d5d',
+            color: '#5fa1d7',
             backgroundColor: '#FFFFFF',
             border: '0px'
         };
 
         let signUpButtonStyle={
-            marginLeft: '20px',
+            marginLeft: '10px',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
-            color: '#5d5d5d',
+            color: '#5fa1d7',
             backgroundColor: '#FFFFFF',
             border: '0px'
         };
@@ -50,7 +50,7 @@ class LinkUHeader extends Component {
             float: 'right',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
-            color: '#5d5d5d',
+            color: '#5fa1d7',
             backgroundColor: '#FFFFFF',
             border: '0px'
         };

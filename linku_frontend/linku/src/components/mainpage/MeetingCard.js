@@ -120,7 +120,6 @@ class MeetingCard extends React.Component
         let linkFontStyle = {
             fontSize: '15px',
             marginTop: '3px',
-            underline: 'ture'
         };
         let meetingDateOptions = [];
 
