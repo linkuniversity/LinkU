@@ -2,6 +2,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Button, Form } from 'semantic-ui-react';
 
+import { buttonStyle } from '../utils/style/Button';
+
 
 const emailRequired = value => value ? undefined : '이메일을 입력해주세요'
 const passwordRequired = value => value ? undefined : '비밀번호를 입력해주세요'
@@ -28,7 +30,7 @@ const LoginForm = ({handleSubmit, submitting}) => {
         <Form onSubmit={handleSubmit}>
             <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
             <Field name="password" component={renderField} htmlFor="password" labelText="비밀번호" type="password" validate={passwordRequired}/>
-            <Button type="submit" disabled={submitting} fluid>로그인</Button>
+            <Button style={buttonStyle} type="submit" disabled={submitting} fluid>로그인</Button>
         </Form>
     );
 }

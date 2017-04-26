@@ -5,6 +5,8 @@ import { Form, Button} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { buttonStyle } from '../utils/style/Button';
+
 const verificationNumberLength = value =>
     (value >= 1000 && value <= 9999) ? undefined: '올바른 숫자를 입력해주세요'
 
@@ -33,10 +35,10 @@ class UniversityVerificationNumberSendForm extends Component{
 
         let formSubmitButton = null;
         if(this.props.is_verify_auth_number_done){
-            formSubmitButton = <Form.Button fluid disabled>인증 완료</Form.Button>
+            formSubmitButton = <Form.Button style={buttonStyle} fluid disabled>인증 완료</Form.Button>
         }
         else{
-            formSubmitButton = <Form.Button fluid>인증 요청</Form.Button>
+            formSubmitButton = <Form.Button style={buttonStyle} fluid>인증 요청</Form.Button>
         }
 
         return (
