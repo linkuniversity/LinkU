@@ -29,7 +29,7 @@ class LinkUHeader extends Component {
             float: 'right',
         };
 
-        let signInButtonStyle = {
+        let leftButtonStyle = {
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
             color: '#5fa1d7',
@@ -37,7 +37,7 @@ class LinkUHeader extends Component {
             border: '0px'
         };
 
-        let signUpButtonStyle={
+        let rightButtonStyle={
             marginLeft: '10px',
             fontFamily: '../res/assets/KoPubDotumMedium.ttf',
             fontSize: '14pt',
@@ -66,12 +66,12 @@ class LinkUHeader extends Component {
                     ):
                     (
                         <span style={signWrapperStyle}>
-                            <Modal trigger={<Button>소개</Button>}>
+                            <Modal trigger={<button style={leftButtonStyle}>소개</button>}>
                                 <Modal.Header>소개</Modal.Header>
                                 <Image centered src={DEFAULT_REQUEST_URL+'/media/introduction.jpeg'} />
                             </Modal>
-                            <Login triggerButton={<button style={signInButtonStyle}>로그인</button>}/>
-                            <Signup buttonStyle={signUpButtonStyle}/>
+                            <Login triggerButton={<button style={rightButtonStyle}>로그인</button>}/>
+                            <Signup buttonStyle={rightButtonStyle}/>
                         </span>
                     )
                 }
