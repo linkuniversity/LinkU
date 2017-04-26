@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 
 import axios from 'axios';
 
+import { buttonStyle } from '../utils/style/Button';
+
 const emailRequired = value => value ? undefined : '이메일을 입력해주세요'
 const emailCorrectForm = value =>
     value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
@@ -70,7 +72,7 @@ class SignupForm extends Component{
                     <label htmlFor="password_check">비밀번호 확인</label>
                     <Field name="password_check" component="input" type="password"/>
                 </Form.Field>
-                <Form.Button fluid>가입 완료</Form.Button>
+                <Form.Button style={buttonStyle} fluid>가입 완료</Form.Button>
             </Form>
         );
     }

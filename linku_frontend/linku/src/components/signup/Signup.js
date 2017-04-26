@@ -7,7 +7,8 @@ import { bindActionCreators } from 'redux';
 import { alertConfirm } from '../../actions/Common';
 import SignupForm from './SignupForm';
 import UniversityVerificationMailSendForm from './UniversityVerificationMailSendForm';
-import UniversityVerificationNumberSendForm from './UniversityVerificationNumberSendForm'
+import UniversityVerificationNumberSendForm from './UniversityVerificationNumberSendForm';
+import { buttonStyle } from '../utils/style/Button';
 
 import axios from 'axios';
 
@@ -128,7 +129,7 @@ class Signup extends Component {
     }
 
     render() {
-        let triggerButton = <Button onClick={this.handleOpen} content="회원가입" fluid />;
+        let triggerButton = <Button style={buttonStyle} onClick={this.handleOpen} content="회원가입" fluid />;
         if(this.props.buttonStyle!=null) {
             triggerButton = <button onClick={this.handleOpen} style={this.props.buttonStyle}>회원가입</button>;
         }
@@ -137,15 +138,9 @@ class Signup extends Component {
                 <Modal.Header>링쿠 회원가입</Modal.Header>
                 <Modal.Content>
                     <Modal.Description >
-                        <Header style={{color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</Header>
-                    </Modal.Description>
-                    <Modal.Description>
+                        <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</p>
                         <UniversityVerificationMailSendForm onSubmit={this._handleUniversityVerificationMailSendFormSubmit} is_university_email_verification_request_done={this.state.is_university_email_verification_request_done} is_loading={this.state.is_loading}/>
-                    </Modal.Description>
-                    <Modal.Description>
                         {this.state.is_university_email_verification_request_done ? <UniversityVerificationNumberSendForm onSubmit={this._handleUniversityVerificationNumberSendFormSubmit} is_verify_auth_number_done={this.state.is_verify_auth_number_done}/> : null}
-                    </Modal.Description>
-                    <Modal.Description>
                         {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : null}
                     </Modal.Description>
                 </Modal.Content>

@@ -5,6 +5,8 @@ import { Form, Button} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { buttonStyle } from '../utils/style/Button';
+
 const emailRequired = value => value ? undefined : '이메일을 입력해주세요'
 const emailCorrectForm = value =>
     value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
@@ -37,10 +39,10 @@ class UniversityVerificationMailSendForm extends Component{
 
         let formSubmitButton = null;
         if(this.props.is_university_email_verification_request_done){
-            formSubmitButton = <Form.Button fluid disabled>인증번호 발송 완료</Form.Button>
+            formSubmitButton = <Form.Button style={buttonStyle} fluid disabled>인증번호 발송 완료</Form.Button>
         }
         else{
-            formSubmitButton = <Form.Button fluid>인증번호 발송</Form.Button>
+            formSubmitButton = <Form.Button style={buttonStyle} fluid>인증번호 발송</Form.Button>
         }
 
         return (
