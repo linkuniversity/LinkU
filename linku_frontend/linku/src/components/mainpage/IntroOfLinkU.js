@@ -9,9 +9,6 @@ import LinkUGuide from '../guide_page/LinkUGuide';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class IntroOfLinkU extends React.Component {
-
-
-
     constructor(props) {
         super(props);
         this.state = { modalOpen: false }
@@ -28,15 +25,15 @@ class IntroOfLinkU extends React.Component {
     render() {
 
         let containerStyle = {
-            marginTop: '80px',
+            marginTop: '5%',
         }
 
         let promotionWordStyle = {
             width: "100%",
             textAlign: "center",
-            fontSize: '20pt',
+            fontSize: '19pt',
+            lineHeight: '40px',
         };
-
 
         let serviceIntroImageStyle = {
             marginTop: "25%",
@@ -50,6 +47,7 @@ class IntroOfLinkU extends React.Component {
         }
 
         let guideButtonStyle = {
+            marginTop: '5px',
             color: '#5fa1d7',
             backgroundColor: '#FFFFFF',
             border: '0px',
@@ -59,11 +57,10 @@ class IntroOfLinkU extends React.Component {
         return (
             <Container centered style={containerStyle}>
                 <div style={promotionWordStyle}>
-                    <div> 링쿠는 <b>대학생</b>들이 만나서</div>
-                    <div style={{marginTop: '16px'}}><b>놀고 웃고 친해질 수 있는</b></div>
-                    <div style={{marginTop: '16px'}}><b>대학생 놀이모임</b> 연결서비스입니다<br/><br/>
-                         <LinkUGuide modalTrigger = {<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내  ></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
-                    </div>
+                    링쿠는 <b>대학생</b>들이 만나서<br/>
+                    <b>놀고 웃고 친해질 수 있는</b><br/>
+                    <b>대학생 놀이모임</b> 연결서비스입니다<br/>
+                    <LinkUGuide modalTrigger = {<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
                 </div>
                 <Grid centered style={{marginTop: '1px'}}>
                         <Grid.Column textAlign="center" mobile={12} computer={5}>
