@@ -1,5 +1,5 @@
 const buttonStyle = {
-    marginTop: '15px',
+    marginTop: '5px',
     color: '#FFFFFF',
     backgroundColor: '#5FA1D7'
 };
