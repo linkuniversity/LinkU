@@ -23,8 +23,8 @@ const App = () => (
     <div >
         <ConfirmModal />
         <LinkUHeader />
-        <MeetingCardBox />
         <IntroOfLinkU />
+        <MeetingCardBox />
         <NextMeetingPlan />
         <Review />
         <Statistics />
