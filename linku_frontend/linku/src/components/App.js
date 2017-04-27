@@ -25,7 +25,6 @@ const App = () => (
         <LinkUHeader />
         <IntroOfLinkU />
         <MeetingCardBox />
-        <NextMeetingPlan />
         <Review />
         <Statistics />
         <LinkUContact />
