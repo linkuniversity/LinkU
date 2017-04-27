@@ -179,6 +179,11 @@ class MeetingCard extends React.Component
                     );
                 }
                 else {
+                    const button = (<Button onClick={ () => {
+                            var ReactGA = require('react-ga');
+                            ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
+                        }
+                    } color='blue' fluid>신청하기</Button>);
                     return (<Login triggerButton={button}/>);
                 }
             }

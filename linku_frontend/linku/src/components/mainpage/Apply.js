@@ -88,7 +88,7 @@ class Apply extends React.Component{
     render(){
         return(
             <Modal
-                trigger={(<Button onClick={this.handleOpen} color='blue' fluid>신청하기</Button>)}
+                trigger={(<Button onClick={this.handleOpen} color='blue' fluid>같이 놀자!</Button>)}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
                 closeIcon='close'
