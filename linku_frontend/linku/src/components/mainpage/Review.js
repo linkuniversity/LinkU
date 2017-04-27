@@ -67,7 +67,7 @@ const Review = () => {
 
             <div style={promotionWordStyle}>
                 더 많은 후기가 궁금하다면?<br/>
-            <a href="https://www.facebook.com/LinkUandU/">링쿠 페이스북으로 이동 > </a>
+            <a href="https://goo.gl/xSzaUY">링쿠 페이스북으로 이동 > </a>
             </div>
 
         </Container>
