@@ -39,6 +39,7 @@ export default class ApplicationCompletionModal extends Component{
     render() {
         return (
             <Modal
+                closeIcon='close'
                 trigger = {<Button onClick={this.handleOpen}>안내 문자 신청하기</Button>}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}

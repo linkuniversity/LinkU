@@ -134,7 +134,7 @@ class Signup extends Component {
             triggerButton = <button onClick={this.handleOpen} style={this.props.buttonStyle}>회원가입</button>;
         }
         return (
-            <Modal trigger={triggerButton} open={this.state.modalOpen} onClose={this.handleClose} size='small'>
+            <Modal closeIcon='close' trigger={triggerButton} open={this.state.modalOpen} onClose={this.handleClose} size='small'>
                 <Modal.Header>링쿠 회원가입</Modal.Header>
                 <Modal.Content>
                     <Modal.Description >

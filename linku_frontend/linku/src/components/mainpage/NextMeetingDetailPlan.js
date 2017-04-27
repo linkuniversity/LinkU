@@ -17,7 +17,7 @@ class NextMeetingDetailPlan extends React.Component{
     }
     render(){
         return (
-            <Modal trigger = {this.props.trigger}>
+            <Modal closeIcon='close' trigger = {this.props.trigger}>
                 <Modal.Header>모임 상세 정보</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>

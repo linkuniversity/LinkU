@@ -5,7 +5,7 @@ import { Modal, Button, Icon } from 'semantic-ui-react';
 import { hideConfirmAlert } from '../../actions/Common';
 
 const ConfirmModal = (props) => (
-    <Modal id="confirm_modal" open={props.confirmModalIsVisible} size='small'>
+    <Modal id="confirm_modal" closeIcon='close' open={props.confirmModalIsVisible} size='small'>
         <Modal.Header>{props.message}</Modal.Header>
         <Modal.Actions>
             <Button color={props.color} onClick={props.hideConfirmAlert} inverted>

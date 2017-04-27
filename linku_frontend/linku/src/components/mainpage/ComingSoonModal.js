@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal} from 'semantic-ui-react'
 
 const ComingSoonModal = ({triggerButton}) => (
-    <Modal size = 'small' trigger = {triggerButton}>
+    <Modal closeIcon='close' size = 'small' trigger = {triggerButton}>
         <Modal.Header>보내기 완료</Modal.Header>
         <Modal.Content>
             <Modal.Description>

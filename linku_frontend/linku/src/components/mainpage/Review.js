@@ -28,6 +28,14 @@ const Review = () => {
 
     }
 
+    const promotionWordStyle = {
+        width: "100%",
+        textAlign: "center",
+        fontSize: '19pt',
+        lineHeight: '40px',
+        marginTop: "40px"
+    };
+
     const mapToComponent = (datas) => {
         return datas.map( ({title,content}, i) => (
             <Grid style={{marginTop: '50px', marginLeft: '2px'}} textAlign="left" key={i}>
@@ -44,9 +52,6 @@ const Review = () => {
         <Container style={{marginTop: '72px'}}>
             <Grid textAlign="left">
                 <Grid.Column mobile={16} computer={8}>
-                    <Image src={DEFAULT_REQUEST_URL+'/media/review.png'} verticalAlign="middle"/>
-                </Grid.Column>
-                <Grid.Column mobile={16} computer={8}>
 
                     <Header style={{fontSize: '20pt', color: '#5fa1d7', marginTop: '112px'}}>
                         링쿠 참여자들이 들려주는 리얼 생생후기
@@ -55,7 +60,16 @@ const Review = () => {
                     {mapToComponent(datas)}
 
                 </Grid.Column>
+                <Grid.Column textAlign="center" mobile={16} computer={8}>
+                    <Image src={DEFAULT_REQUEST_URL+'/media/review.png'} verticalAlign="middle"/>
+                </Grid.Column>
             </Grid>
+
+            <div style={promotionWordStyle}>
+                더 많은 후기가 궁금하다면?<br/>
+            <a href="https://www.facebook.com/LinkUandU/">링쿠 페이스북으로 이동 > </a>
+            </div>
+
         </Container>
     );
 }

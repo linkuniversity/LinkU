@@ -206,7 +206,7 @@ class MeetingCard extends React.Component
                                 </div>
                                 <Item.Group>
                                     <Item>
-                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_profile.png'} />
+                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_image_woman.png'} />
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>
@@ -233,26 +233,23 @@ class MeetingCard extends React.Component
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>17:00 ~ 18:30</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
                                             혜화역 3번 출구에서 첫 만남<br/>
-                                            <a style={linkFontStyle} href="https://store.naver.com/restaurants/detail?id=85806567&tab=main">
                                                 <u>호호식당 </u>
-                                            </a>에서 맛있는 식사를 해요 :D<br/>
+                                            에서 맛있는 식사를 해요 :D<br/>
                                         </Item.Description>
                                     </Item>
                                     <Item>
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>18:30 ~ 19:30</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
-                                            <a style={linkFontStyle} href="http://www.e114.kr/local/17357">
-                                                <u>Yx2 보드게임 카페 </u>
-                                            </a>로 이동 <br/>
+                                                <u>Yx2 보드게임 카페 </u>로 이동 <br/>
                                             다 같이 즐거운 보드게임을 하면서 친해져요<br/>
                                         </Item.Description>
                                     </Item>
                                     <Item>
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>19:30 ~ 20:00</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
-                                            근처에 있는 <a style={linkFontStyle} href="https://ko.foursquare.com/v/%EC%9A%B0%EB%A6%AC%EA%B2%8C%EC%9E%84%EB%9E%9C%EB%93%9C/5045b997e4b08a16a4467aac">
+                                            근처에 있는
                                                 <u>우리 게임랜드 </u>
-                                            </a>에 들러서 <br/>
+                                            에 들러서 <br/>
                                             미션과 함께 오락도 하고 스트레스를 날려봐요!<br/>
                                         </Item.Description>
                                     </Item>
@@ -260,12 +257,12 @@ class MeetingCard extends React.Component
                                         <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>선택 사항</Item.Header>
                                         <Item.Description style={{marginLeft: '20px'}}>
                                             새로운 친구들과의 모임이 즐거웠다면,<br/>
-                                            2차 장소로 <a style={linkFontStyle} href="http://blog.naver.com/PostView.nhn?blogId=wndus508&logNo=220976731706">
+                                            2차 장소로
                                                 <u>심야식당 </u>
-                                            </a>을 추천드려요!<br/>
-                                            (칵테일이 당긴다면 조금 멀어도 <a style={linkFontStyle} href="http://egloos.zum.com/redfish/v/1428919">
+                                            을 추천드려요!<br/>
+                                            (칵테일이 당긴다면 조금 멀어도
                                                 <u>인생의 단맛 </u>
-                                            </a>을 추천드려요)<br/>
+                                            을 추천드려요)<br/>
                                         </Item.Description>
                                     </Item>
                                 </div>

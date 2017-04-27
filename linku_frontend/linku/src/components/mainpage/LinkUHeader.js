@@ -57,24 +57,10 @@ class LinkUHeader extends Component {
 
         return (
             <Container style={containerStyle}>
-                <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} verticalAlign='top'/>
-                <span style={titleStyle}>Link U Link University</span>
-                {
-                    (localStorage.getItem('token') && this.props.loggedIn) ?
-                    (
-                        <button style={signOutButtonStyle} onClick={this.props.logout}>로그아웃</button>
-                    ):
-                    (
-                        <span style={signWrapperStyle}>
-                            <Modal trigger={<button style={leftButtonStyle}>소개</button>}>
-                                <Modal.Header>소개</Modal.Header>
-                                <Image centered src={DEFAULT_REQUEST_URL+'/media/introduction.jpeg'} />
-                            </Modal>
-                            <Login triggerButton={<button style={rightButtonStyle}>로그인</button>}/>
-                            <Signup buttonStyle={rightButtonStyle}/>
-                        </span>
-                    )
-                }
+                <div style={{textAlign: "center"}}>
+                    <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} verticalAlign='top'/>
+                    <span style={titleStyle}>Link U Link University</span>
+                </div>
             </Container>
         );
     }
