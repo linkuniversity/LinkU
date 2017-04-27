@@ -28,6 +28,14 @@ const Review = () => {
 
     }
 
+    const promotionWordStyle = {
+        width: "100%",
+        textAlign: "center",
+        fontSize: '19pt',
+        lineHeight: '40px',
+        marginTop: "40px"
+    };
+
     const mapToComponent = (datas) => {
         return datas.map( ({title,content}, i) => (
             <Grid style={{marginTop: '50px', marginLeft: '2px'}} textAlign="left" key={i}>
@@ -56,6 +64,12 @@ const Review = () => {
                     <Image src={DEFAULT_REQUEST_URL+'/media/review.png'} verticalAlign="middle"/>
                 </Grid.Column>
             </Grid>
+
+            <div style={promotionWordStyle}>
+                더 많은 후기가 궁금하다면?<br/>
+            <a href="https://www.facebook.com/LinkUandU/">링쿠 페이스북으로 이동 > </a>
+            </div>
+
         </Container>
     );
 }
