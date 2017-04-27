@@ -37,7 +37,7 @@ const LinkUContact = () => (
                     <Image src={DEFAULT_REQUEST_URL + '/media/facebook_icon.png'} href="https://www.facebook.com/LinkUandU/"/>
                     <Image style={{marginLeft: '20px'}} src={DEFAULT_REQUEST_URL + '/media/kakaotalk_icon.png'} href="http://plus.kakao.com/home/@linku"/><br/>
                     <h5 style={{marginTop: '10px'}}>team.uniculture@gmail.com</h5>
-                    취소, 환불, 모임 날짜 변경 혹은 문의사항 있으시면 여기로 연락주시면 됩니다.
+                    취소, 환불, 모임 날짜 변경, 문의사항은 카톡 혹은 메일로 연락 주시면됩니다.
                 </Grid.Column>
             </Grid.Row>
         </Grid>
