@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon } from 'semantic-ui-react'
+import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon, Image } from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux';
 
@@ -80,7 +80,7 @@ class MeetingCard extends React.Component
             paddingTop: '35px',
             paddingLeft: '35px',
             paddingRight: '35px',
-            paddingBottom: '210px'
+            paddingBottom: '210px',
         };
         let meetingDetailInfoStyle = {
             margin: '5%',
@@ -91,7 +91,7 @@ class MeetingCard extends React.Component
             marginLeft: '10px',
             marginRight: '20px',
             width: '80px',
-            height: '80px'
+            height: '80px',
         };
         let meetingDetailHeaderStyle = {
             marginLeft: '12px',
