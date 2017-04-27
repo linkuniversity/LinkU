@@ -30,7 +30,7 @@ class Login extends Component {
 
     render() {
         return (
-            <Modal trigger = {this.props.triggerButton} size='small'>
+            <Modal closeIcon='close' trigger = {this.props.triggerButton} size='small'>
                 <Modal.Header>링쿠 로그인</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>

@@ -66,7 +66,7 @@ class LinkUHeader extends Component {
                     ):
                     (
                         <span style={signWrapperStyle}>
-                            <Modal trigger={<button style={leftButtonStyle}>소개</button>}>
+                            <Modal closeIcon='close' trigger={<button style={leftButtonStyle}>소개</button>}>
                                 <Modal.Header>소개</Modal.Header>
                                 <Image centered src={DEFAULT_REQUEST_URL+'/media/introduction.jpeg'} />
                             </Modal>
