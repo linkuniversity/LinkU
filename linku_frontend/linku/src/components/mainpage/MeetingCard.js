@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon } from 'semantic-ui-react'
+import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon, Image } from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux';
 
@@ -80,7 +80,7 @@ class MeetingCard extends React.Component
             paddingTop: '35px',
             paddingLeft: '35px',
             paddingRight: '35px',
-            paddingBottom: '210px'
+            paddingBottom: '210px',
         };
         let meetingDetailInfoStyle = {
             margin: '5%',
@@ -91,7 +91,7 @@ class MeetingCard extends React.Component
             marginLeft: '10px',
             marginRight: '20px',
             width: '80px',
-            height: '80px'
+            height: '80px',
         };
         let meetingDetailHeaderStyle = {
             marginLeft: '12px',
@@ -215,11 +215,11 @@ class MeetingCard extends React.Component
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>
-                                                    더 즐거운 하루를 보낼 수 있도록 혜화를 직접 돌아다니며<br/>
-                                                    모임을 계획했어요.<br/>
-                                                    혹시 처음 만나는 사람들이랑 어색하면 어쩌나 걱정하지마세요!<br/>
-                                                    어색함을 깨는 아이스브레이킹부터 집으로 돌아가기 전까지<br/>
-                                                    모임을 이끌어드릴게요 :D<br/>
+                                                    호호식당은 봄, 여름, 가을, 겨울 자연의 맛을 고스란히 담은 20여 가지 일본 가정식 메뉴와 곁들임 음식이 정성껏 준비되어 있는 곳이에요.<br/>
+                                                    깔끔하고 분위기 좋은 곳에서 같이 밥을 먹고 보드게임하러 고고! <br/>
+                                                    혹시 처음 만나는 사람들이랑 어색하면 어쩌나 걱정하지마세요! <br/>
+                                                    집으로 돌아가기 전까지 모임을 이끌어드릴게요 :D<br/>
+                                                    모임이 재밌다면? 2차도 함께 해요~<br/>
                                                 </div>
                                             </Item.Description>
                                         </Item.Content>
@@ -254,8 +254,8 @@ class MeetingCard extends React.Component
                                         <Item.Description style={{marginLeft: '20px'}}>
                                             근처에 있는
                                                 <u>우리 게임랜드 </u>
-                                            에 들러서 <br/>
-                                            미션과 함께 오락도 하고 스트레스를 날려봐요!<br/>
+                                            에 들러서<br/>
+                                            추억의 오락게임도 하고 스트레스를 날려봐요!<br/>
                                         </Item.Description>
                                     </Item>
                                     <Item>

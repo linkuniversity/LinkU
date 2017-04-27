@@ -103,9 +103,7 @@ class LinkUGuide extends React.Component{
                                           <div style={{fontSize: '20pt'}}>4단계</div>
                                           <div style={{fontSize: '20pt', marginTop: '20px'}}>두근두근 첫만남!</div>
                                           <div style={descriptionStyle}>
-                                              약속 장소에 모여 모임장과 함께 모임장이 안내하는
-                                              놀이 코스대로 새로운 사람들과 맛집과 다양한 활동을 함께해요.
-                                              링쿠에서 제공하는 미션과 이벤트들로 재미 up up!
+                                              약속 장소에 모여 모임장과 함께 새로운 사람들과 맛집에 가서 식사를 하고 다양한 활동을 함께해요.
                                               맘이 잘맞으면 2차도 같이~!
                                           </div>
                                       </div>

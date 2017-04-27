@@ -62,7 +62,6 @@ const PaymentDescription = () => (
             <a>*모임 진행 중 미션 진행</a><br/>
             <a>질 높은 서비스 운영</a><br/>
             을 위해 참가비(<a>3,500원</a>) 결제가 필요합니다.
-            <p style = {{fontSize:'13px'}}>*모임 진행 중 소소한 이벤트나 미션을 달성하면 많은 혜택이 있습니다. </p>
         </Container>
     </Container>
 );
