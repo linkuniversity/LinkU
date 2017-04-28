@@ -25,7 +25,7 @@ class IntroOfLinkU extends React.Component {
     render() {
 
         let containerStyle = {
-            marginTop: '5%',
+            marginTop: '3%',
         }
 
         let promotionWordStyle = {
