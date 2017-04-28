@@ -56,11 +56,15 @@ class LinkUHeader extends Component {
         };
 
         return (
-            <Container style={containerStyle}>
+            <Container text textAlign="center" style={containerStyle}>
                 <div style={{textAlign: "center"}}>
                     <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} verticalAlign='top'/>
                     <span style={titleStyle}>Link U Link University</span>
                 </div>
+                <p style={{marginTop: '15px', fontSize:'13px',color: '#60a2d9'}}>
+                    링쿠는 현재 베타 서비스입니다. <br/>
+                    본 서비스에서 더 좋은 모습 보여드릴게요
+                </p>
             </Container>
         );
     }
