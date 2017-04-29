@@ -133,15 +133,42 @@ class Signup extends Component {
         if(this.props.buttonStyle!=null) {
             triggerButton = <button onClick={this.handleOpen} style={this.props.buttonStyle}>회원가입</button>;
         }
+
+        const renderUniversityAuthentication = () => {
+
+            if(this.state.is_university_email_verification_request_done){
+                return(
+                    <div>
+                    <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</p>
+                    <UniversityVerificationMailSendForm
+                        onSubmit={this._handleUniversityVerificationMailSendFormSubmit}
+                        is_university_email_verification_request_done={this.state.is_university_email_verification_request_done}
+                        is_loading={this.state.is_loading}
+                    />
+                    <UniversityVerificationNumberSendForm
+                        onSubmit={this._handleUniversityVerificationNumberSendFormSubmit}
+                        is_verify_auth_number_done={this.state.is_verify_auth_number_done}
+                    />
+            </div>
+                );
+            }
+            else{
+                return(
+                    <div>
+                    <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</p>
+                    <UniversityVerificationMailSendForm onSubmit={this._handleUniversityVerificationMailSendFormSubmit} is_university_email_verification_request_done={this.state.is_university_email_verification_request_done} is_loading={this.state.is_loading}/>
+                    </div>
+            );
+            }
+
+        }
+
         return (
             <Modal closeIcon='close' trigger={triggerButton} open={this.state.modalOpen} onClose={this.handleClose} size='small'>
                 <Modal.Header>링쿠 회원가입</Modal.Header>
                 <Modal.Content>
                     <Modal.Description >
-                        <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</p>
-                        <UniversityVerificationMailSendForm onSubmit={this._handleUniversityVerificationMailSendFormSubmit} is_university_email_verification_request_done={this.state.is_university_email_verification_request_done} is_loading={this.state.is_loading}/>
-                        {this.state.is_university_email_verification_request_done ? <UniversityVerificationNumberSendForm onSubmit={this._handleUniversityVerificationNumberSendFormSubmit} is_verify_auth_number_done={this.state.is_verify_auth_number_done}/> : null}
-                        {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : null}
+                        {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : renderUniversityAuthentication()}
                     </Modal.Description>
                 </Modal.Content>
             </Modal>
