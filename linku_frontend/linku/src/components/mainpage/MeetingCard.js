@@ -74,14 +74,6 @@ class MeetingCard extends React.Component
             width: '620px',
             textAlign: 'left',
         };
-        let meetingMainInfoStyle = {
-            backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/meeting_card.jpg)',
-            height: '360px',
-            paddingTop: '35px',
-            paddingLeft: '35px',
-            paddingRight: '35px',
-            paddingBottom: '210px',
-        };
         let meetingDetailInfoStyle = {
             margin: '5%',
             backgroundColor: '#FFFFFF'
@@ -193,17 +185,8 @@ class MeetingCard extends React.Component
             <Container style={meetingInfoBackgroundStyle}>
                 <Grid centered>
                     <Card style={meetingInfoStyle}>
+                        <Image src={DEFAULT_REQUEST_URL +'/media/meeting_card.jpg'}></Image>
                         <Card.Content>
-                        <div style={meetingMainInfoStyle}>
-                            <div style={{color: "#FFFFFF"}}>
-                                <div style={{color: '#FFFFFF', fontSize: '26px'}}>다 같이 게임 한 판 어때?</div>
-                                <div style={{marginTop: '22px', fontSize: '13pt', lineHeight: '25px'}}>
-                                    대학생이니까 대학로!<br/>
-                                    젊음과 문화, 자유를 만끽할 수 있는 대학로에서 모임 시작합니다<br/>
-                                    가까운 장소들을 엮어서 피로는 덜하게 맜있는 것도 골라먹고 즐겁게 게임도 하면서 하루쯤은 시험과 과제로 쌓인 스트레스를 풀어봐요!<br/>
-                                </div>
-                            </div>
-                        </div>
                         <div style={meetingDetailInfoStyle}>
                             <div>
                                 <div style={meetingDetailHeaderStyle}>
