@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Grid, Card, Image, Modal, Button, Item} from 'semantic-ui-react'
+import {Header, Container, Grid, Card, Image, Modal, Button, Item} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
@@ -23,10 +23,6 @@ class LinkUGuide extends React.Component{
 
 
         return(
-            <Modal trigger={this.props.modalTrigger} closeIcon='close' open={this.props.modalOpen} onClose={this.props.handleClose}>
-            <Modal.Header>이용안내</Modal.Header>
-            <Modal.Content>
-
             <Container>
                     <Grid>
                         <Item.Group style={{padding:"10%"}}>
@@ -114,16 +110,6 @@ class LinkUGuide extends React.Component{
                     </Grid>
 
                 </Container>
-
-
-
-            </Modal.Content>
-            <Modal.Actions style={{verticalAlign: "center", textAlign: "center"}}>
-                <Button style={{width: '100%', height: '100%', margin: "0 auto"}} color='blue' onClick={this.props.handleClose}>
-                    확인
-                </Button>
-            </Modal.Actions>
-            </Modal>
         );
     }
 

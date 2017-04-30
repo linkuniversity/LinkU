@@ -10,8 +10,10 @@ import Signup from '../signup/Signup';
 
 import { loginRequest } from '../../actions/Login';
 import { hideLoginAlert } from '../../actions/Common';
+import { buttonStyle } from '../utils/style/Button';
 
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
 
 class Login extends Component {
     state = { modalOpen: false }
@@ -27,7 +29,6 @@ class Login extends Component {
     _handleLoginSubmit = (values) => {
         this.props.loginRequest(values.username, values.password);
     }
-
     render() {
         return (
             <Modal closeIcon='close' trigger = {this.props.triggerButton} size='small'>
@@ -36,7 +37,7 @@ class Login extends Component {
                     <Modal.Description>
                         <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
                         <LoginForm onSubmit = {this._handleLoginSubmit}/>
-                        <Signup />
+                        <Button style={buttonStyle} onClick={() => {this.props.history.push('/signup')}} content="회원가입" fluid />
                     </Modal.Description>
                 </Modal.Content>
              </Modal>
@@ -52,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default withRouter(connect(null, mapDispatchToProps)(Login));
