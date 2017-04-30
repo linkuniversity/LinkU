@@ -19,7 +19,6 @@ const phoneCorrectForm = value =>
     value && value.length != 11 ?
     "'-' 을 제외하고 11자리를 입력해주세요" : undefined
 const passwordRequired = value => value ? undefined : '비밀번호를 입력해주세요'
-const genderRequired = value => value ? undefined : '성별을 선택해주세요'
 const universityEmailFormRequired = value =>
     value.substr(value.length - 5) == "ac.kr" ? undefined : '대학교 메일을 입력해주세요.'
 const verificationNumberLength = value =>
@@ -28,7 +27,7 @@ const verificationNumberLength = value =>
 
 const spanErrorStyle ={
     color: "#FF5A5A",
-}
+};
 
 const renderField = ({ input, label, type, htmlFor, labelText, ref ,meta: { touched, error, warning } }) => (
     <div style={{marginTop: "20px"}}>
@@ -47,7 +46,6 @@ class SignupForm extends Component{
     }
 
     render() {
-
         return (
             <Form onSubmit={this.props.handleSubmit}>
                 <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
@@ -55,7 +53,7 @@ class SignupForm extends Component{
                 <Form.Group inline>
                     <label htmlFor="gender">성별</label>
                     <Form.Field>
-                        <Field name="gender" component="input" type="radio" value="F" checked/>
+                        <Field name="gender" component="input" type="radio" value="F"/>
                         <label htmlFor="gender">여자</label>
                     </Form.Field>
                     <Form.Field>

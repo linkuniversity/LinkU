@@ -40,7 +40,7 @@ class Signup extends Component {
         console.log(values);
 
         if(values.gender == undefined) {
-            values.gender = 'F'
+            this.props.alertConfirm("성별을 입력해 주세요.", "red");
         }
         if(values.password != values.password_check) {
             this.props.alertConfirm("비밀번호가 다릅니다.", "red");
