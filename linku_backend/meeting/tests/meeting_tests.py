@@ -160,18 +160,50 @@ def test_apply_meeting_with_api(client):
     response = client.post('/meetings/%d/apply/' % meeting.id, apply_data)
     assert response.data == 'success'
 
-    login_data = {
-        'username': 'test@test.com',
-        'password': 'test password',
-    }
-    login_response = client.post('/login/', login_data)
-    login_token = login_response.data['token']
-    auth_headers = {
-        'HTTP_AUTHORIZATION': 'Token ' + login_token
-    }
-
     user = User.objects.get(username='test@test.com')
     status = user.statusbyday_set.all()[0]
-    participated_response = client.get('/participated-dates/', {}, **auth_headers)
-    assert [status.start_time] == participated_response.data
+    assert status.start_time == StatusByDay.objects.filter(meeting=meeting)[1].start_time
+
+
+@pytest.mark.django_db
+def test_leave_meeting_with_api(client):
+    signup_data = {
+        'username': 'test@test.com',
+        'name': 'test name',
+        'gender': 'M',
+        'password': 'test password',
+        'phone_number': '01000000000',
+        'authenticated_university_email': 'test@authenticated.ac.kr'
+    }
+    client.post('/users/', signup_data)
+
+    MEETING_STATUS_INDEX = 1
+
+    apply_data = {
+        'username': 'test@test.com',
+        'status_index': MEETING_STATUS_INDEX,
+    }
+
+    meeting = Meeting.objects.get(title='test title')
+    client.post('/meetings/%d/apply/' % meeting.id, apply_data)
+
+    user = User.objects.get(username='test@test.com')
+    assert user.statusbyday_set.all().count() == 1
+
+    wrong_leave_data = {
+        'username': 'test@test.com',
+        'status_index': MEETING_STATUS_INDEX - 1
+    }
+
+    response = client.post('/meetings/%d/leave/' % meeting.id, wrong_leave_data)
+    assert response.data == "fail"
+    assert user.statusbyday_set.all().count() == 1
+
+    correct_leave_data = {
+        'username': 'test@test.com',
+        'status_index': MEETING_STATUS_INDEX
+    }
+    response = client.post('/meetings/%d/leave/' % meeting.id, correct_leave_data)
+    assert response.data == "success"
+    assert user.statusbyday_set.all().count() == 0
 

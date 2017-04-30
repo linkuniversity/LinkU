@@ -42,6 +42,20 @@ class MeetingViewSet(viewsets.ModelViewSet):
         status_list[status_index].save()
         return Response("success")
 
+    @detail_route(methods=['post'], url_path='leave')
+    def leave(self, request, pk=None):
+        meeting = Meeting.objects.get(pk=pk)
+        status_list = StatusByDay.objects.filter(meeting=meeting)
+        status_index = int(request.data['status_index'])
+
+        user = User.objects.get(username=request.data['username'])
+        status = status_list[status_index]
+        if user.statusbyday_set.filter(id=status.id).exists():
+            status.appliers.remove(user)
+            return Response("success")
+
+        return Response("fail")
+
 
 class ActivityNeedsViewSet(viewsets.ModelViewSet):
     queryset = ActivityNeeds.objects.all()
