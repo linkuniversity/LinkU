@@ -75,6 +75,9 @@ def send_verification_email(request):
             mail_setting = json.load(data_file)
             email = request.POST['university_email']
 
+            if UniversityAuthenticationLog.objects.filter(email=email).exists():
+                return Response({"message": "University Mail Already Exist"}, status=status.HTTP_400_BAD_REQUEST)
+
             email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
             match_result = email_regex.match(email)
             if match_result is False:
