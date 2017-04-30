@@ -96,6 +96,8 @@ class Signup extends Component {
                     this.props.alertConfirm("이메일 형식이 맞지 않습니다.", "red");
                 else if (error.response.data['message'] == 'Invalid University Mail Form')
                     this.props.alertConfirm("대학교 이메일 형식에 맞지 않습니다.", "red");
+                else if (error.response.data['message'] == 'University Mail Already Exist')
+                    this.props.alertConfirm("이미 존재하는 대학교 이메일입니다.", "red");
                 else
                     this.props.alertConfirm("이메일 전송에 실패했습니다.", "red");
             })
