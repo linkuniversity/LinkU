@@ -47,7 +47,7 @@ class MeetingCard extends React.Component
     getDateStr(date) {
         const WEEK_DAY = ["일", "월", "화", "수", "목", "금", "토"];
         const meeting_date = new Date(date);
-        return (meeting_date.getMonth() + 1)+ "월 " + meeting_date.getDate() + "일 " + WEEK_DAY[meeting_date.getDay()] + "요일";
+        return (meeting_date.getUTCMonth() + 1)+ "월 " + meeting_date.getUTCDate() + "일 " + WEEK_DAY[meeting_date.getUTCDay()] + "요일";
     }
 
     getStartTimeStr(date) {
