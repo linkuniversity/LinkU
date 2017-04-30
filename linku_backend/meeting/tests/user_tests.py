@@ -33,8 +33,8 @@ def test_get_participated_meeting_list(client):
 
     status_list[0].appliers.add(user)
     status_list[0].save()
-    status_list[2].appliers.add(user)
-    status_list[2].save()
+    status_list[1].appliers.add(user)
+    status_list[1].save()
 
     auth_headers = {
         'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
@@ -42,14 +42,14 @@ def test_get_participated_meeting_list(client):
 
     participated_response = client.get('/participated-dates/', {}, **auth_headers)
 
-    expected_data = [status_list[0].start_time, status_list[2].start_time]
+    expected_data = [status_list[0].start_time, status_list[1].start_time]
     assert expected_data == participated_response.data
 
 
 @pytest.mark.django_db
 def test_apply_alarm_POST_request(client):
     user = create_test_user(client)
-    user.participated_ids = json.dumps([1, 3])
+    user.participated_ids = json.dumps([1, 2])
     user.save()
 
     auth_headers = {
@@ -61,10 +61,10 @@ def test_apply_alarm_POST_request(client):
     assert apply_alarm_response.status_code == 200
     assert '[0]' == User.objects.get(username='test@test.com').apply_alarm_indexes
 
-    apply_alarm_response2 = client.post('/apply-alarm/', {'apply_alarm_index': 2}, **auth_headers)
+    apply_alarm_response2 = client.post('/apply-alarm/', {'apply_alarm_index': 1}, **auth_headers)
 
     assert apply_alarm_response2.status_code == 200
-    assert '[0, 2]' == User.objects.get(username='test@test.com').apply_alarm_indexes
+    assert '[0, 1]' == User.objects.get(username='test@test.com').apply_alarm_indexes
 
 
 @pytest.mark.django_db
