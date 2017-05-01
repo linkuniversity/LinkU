@@ -62,7 +62,11 @@ class MeetingCard extends React.Component
 
     isParticipated(selected_date) {
         const dates = localStorage.getItem('participated_dates');
-        return dates.includes(selected_date);
+        if(dates.length > 20)
+            return true;
+        else if(dates==selected_date)
+            return true;
+        return false;
     }
 
     render() {
