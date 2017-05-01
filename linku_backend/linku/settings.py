@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'raven.contrib.django.raven_compat',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -83,6 +85,13 @@ DATABASES = {
     }
 }
 
+# raven configuration
+RAVEN_CONFIG = {
+    'dsn': 'https://'+os.environ['SENTRY_KEY']+":"+os.environ['SENTRY_SECRET']+'@sentry.io/163297',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.dirname(BASE_DIR)),
+}
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
