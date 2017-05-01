@@ -266,7 +266,7 @@ class MeetingCard extends React.Component
                                 </Menu>
                             </Card.Header>
                             <Card.Description>
-                                <div style={meetingApplyFontStyle}><strong>시간</strong> : {this.state.start_time_str}</div>
+                                <div style={meetingApplyFontStyle}><strong>시간</strong> : 17시</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
                                 <div style={meetingApplyFontStyle}>
