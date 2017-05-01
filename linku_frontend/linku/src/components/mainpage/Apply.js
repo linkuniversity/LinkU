@@ -8,19 +8,16 @@ const getAccount = (selectedValue) => {
     if(selectedValue == 0)
         return (<span>신한 110-374-439288 장선혁</span>);
     else if(selectedValue == 1)
-        return (<span>우리 1002-941-021806 김성국</span>);
-    else if(selectedValue == 2)
         return (<span>신한 110-365-994395 이태우</span>);
 }
 
 const getDeadLine = (selectedValue) => {
     if(selectedValue == 0)
-        return (<span>5월 1일 23:59</span>);
-    if(selectedValue == 1)
-        return (<span>5월 3일 23:59</span>);
-    if(selectedValue == 0)
         return (<span>5월 4일 23:59</span>);
+    if(selectedValue == 1)
+        return (<span>5월 5일 23:59</span>);
 }
+
 const PaymentApplyContents = ({selectedValue, paymentInfo}) => (
     <Container>
         <Container text>
