@@ -60,6 +60,11 @@ class MeetingCard extends React.Component
        return start_time_str;
     }
 
+    isParticipated(selected_date) {
+        const dates = localStorage.getItem('participated_dates');
+        return dates.includes(selected_date);
+    }
+
     render() {
         const statisticsNumberStyle = {
             color : '#FFFFFF',
@@ -153,7 +158,7 @@ class MeetingCard extends React.Component
             else
                 participant_num_by_gender = this.state.participant_man_num;
 
-            if((localStorage.getItem('participated_dates')==selected_meeting.start_time) && this.props.loggedIn){
+            if(this.isParticipated(selected_meeting.start_time) && this.props.loggedIn){
                 return (<Button disabled color='blue' fluid>신청완료</Button>);
             }
 
