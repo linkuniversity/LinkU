@@ -132,7 +132,7 @@ def send_verification_email(request):
                                                        , sent_to_user_time=datetime.datetime.now()
                                                        ,
                                                        auth_number_expiration_time=datetime.datetime.now() + datetime.timedelta(
-                                                           minutes=2))
+                                                           minutes=5))
 
             return Response({"message": "Success"})
 
