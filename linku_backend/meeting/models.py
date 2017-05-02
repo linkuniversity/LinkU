@@ -28,6 +28,7 @@ class User(AbstractUser):
     authenticated_university_email = models.EmailField(unique=True, null=False, max_length=254)
     profile_image_path = models.ImageField(blank=True)
     apply_alarm_indexes = models.CharField(max_length=200, default='[]')
+    next_meeting_alarm = models.BooleanField(default=False)
 
 
 @receiver(post_save, sender=User)
