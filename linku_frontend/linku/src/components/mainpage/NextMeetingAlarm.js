@@ -12,19 +12,18 @@ import Login from '../login/Login';
 import { alertConfirm } from '../../actions/Common';
 
 class NextMeetingAlarm extends React.Component{
-    activityNeedRequest = async (_contents) => {
-        const info = await Promise.all([axios.post('http://127.0.0.1:8000/activity-needs/','contents='+_contents)
+    handleClick = async () => {
+        const config = {
+            headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
+        };
+        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/next-meeting-alarm/', undefined, config)
             .then( response => {
-
-            })
-            .catch(e => {
-                console.log(e);
+                console.log(response);
+                this.props.alertConfirm("신청이 완료되었어요 :D", "blue");
+            }).catch(e => {
+                this.props.alertConfirm("이미 신청되었어요 :D", "blue");
             })
         ]);
-    }
-
-    handleClick = (e) => {
-        this.props.alertConfirm("알림받기 신청이 완료되었습니다!", "blue");
     }
 
     render(){
@@ -71,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
         alertConfirm : (message, color) => {
             return dispatch(alertConfirm(message, color));
         }
-    };
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm);
