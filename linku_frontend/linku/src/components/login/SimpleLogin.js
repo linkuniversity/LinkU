@@ -22,7 +22,7 @@ export default class SimpleLogin extends Component {
     render() {
         const mapToSimpleLoginButtonComponent = (simpleLoginButtonInfoList) => {
             return simpleLoginButtonInfoList.map((simpleLoginButtonInfo, i) => {
-                return ( <SimpleLoginButton simpleLoginButtonInfo = { simpleLoginButtonInfo } key = {i} /> );
+                return ( <SimpleLoginButton simpleLoginButtonInfo={ simpleLoginButtonInfo } key={i} /> );
             });
         };
         return (

@@ -1,12 +1,7 @@
-import React, {Component} from 'react';
-import {Container, Grid, Card, Image, Button} from 'semantic-ui-react'
+import React from 'react';
+import {Container, Button} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as actions from '../../actions/Common';
 import LinkUGuide from '../guide_page/LinkUGuide';
-
-import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class IntroOfLinkU extends React.Component {
     constructor(props) {
@@ -35,17 +30,6 @@ class IntroOfLinkU extends React.Component {
             lineHeight: '40px',
         };
 
-        let serviceIntroImageStyle = {
-            marginTop: "25%",
-            width: '75px',
-            hegith: '75px',
-        }
-
-        let serviceIntroHeaderStyle={
-            marginTop: '30px',
-            fontSize: '20pt',
-        }
-
         let guideButtonStyle = {
             marginTop: '5px',
             color: '#5fa1d7',
@@ -60,7 +44,7 @@ class IntroOfLinkU extends React.Component {
                     링쿠는 <b>대학생</b>들이 만나서<br/>
                     <b>놀고 웃고 친해질 수 있는</b><br/>
                     <b>대학생 놀이모임</b> 연결서비스입니다<br/>
-                    <LinkUGuide modalTrigger = {<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
+                    <LinkUGuide modalTrigger={<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
                 </div>
             </Container>
 

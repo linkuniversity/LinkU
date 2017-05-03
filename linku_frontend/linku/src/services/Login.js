@@ -12,7 +12,7 @@ export function login(username, password){
 }
 
 export function user(token) {
-    if(token == undefined) {
+    if(token === undefined) {
         console.log('token is undefined');
         return;
     }
@@ -28,7 +28,7 @@ export function user(token) {
 
 
 export function participated_dates(token) {
-    if(token == undefined) {
+    if(token === undefined) {
         console.log('token is undefined');
         return;
     }

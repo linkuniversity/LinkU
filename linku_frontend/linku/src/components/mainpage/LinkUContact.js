@@ -9,13 +9,6 @@ const containerStyle = {
     paddingLeft: '20px',
     paddingRight: '20px'
 };
-const buttonStyle = {
-    marginRight: '10px',
-    border: '0',
-    color: '#5fa1d7',
-    backgroundColor: '#FFFFFF',
-    fontSize: '17px',
-};
 
 const LinkUContact = () => (
     <Container style={containerStyle}>
