@@ -173,6 +173,20 @@ def apply_alarm(request, format=None):
 
 
 @api_view(['POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def next_meeting_alarm(request, format=None):
+    if request.method == 'POST':
+        user = request.user
+        if user.next_meeting_alarm:
+            return Response({"Message": "Already Done"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            user.next_meeting_alarm = True
+            user.save()
+            return Response({"Message": "Success"})
+
+
+@api_view(['POST'])
 def check_university_verification_auth_number(request):
     if request.method == 'POST':
         auth_number = int(request.POST['auth_number'])

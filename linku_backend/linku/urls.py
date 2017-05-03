@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^user/', views.get_user_info, name='get_user_info'),
     url(r'^participated-dates/', views.get_participated_dates, name='get_participated_dates'),
     url(r'^apply-alarm/', views.apply_alarm, name='apply_alarm'),
+    url(r'^next-meeting-alarm/', views.next_meeting_alarm, name='next_meeting_alarm'),
     url(r'^university-verification-email/', views.send_verification_email, name="send_verification_email"),
     url(r'^university-verification-number/', views.check_university_verification_auth_number,
         name="check_university_verification_auth_number")

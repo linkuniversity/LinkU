@@ -12,7 +12,7 @@ import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroVideo from './mainpage/IntroVideo';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
-import NextMeetingPlan from './mainpage/NextMeetingPlan'
+import NextMeetingAlarm from './mainpage/NextMeetingAlarm';
 import Review from './mainpage/Review';
 import LinkUGuide from './guide_page/LinkUGuide';
 import Statistics from './mainpage/Statistics';
@@ -25,6 +25,7 @@ const App = () => (
         <LinkUHeader />
         <IntroOfLinkU />
         <MeetingCardBox />
+        <NextMeetingAlarm />
         <Review />
         <Statistics />
         <LinkUContact />

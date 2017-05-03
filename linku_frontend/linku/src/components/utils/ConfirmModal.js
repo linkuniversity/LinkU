@@ -1,17 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button, Icon } from 'semantic-ui-react';
+import { Modal, Button, Icon, Container } from 'semantic-ui-react';
 
 import { hideConfirmAlert } from '../../actions/Common';
 
 const ConfirmModal = (props) => (
-    <Modal id="confirm_modal" closeIcon='close' open={props.confirmModalIsVisible} size='small'>
-        <Modal.Header>{props.message}</Modal.Header>
-        <Modal.Actions>
+    <Modal id="confirm_modal" closeIcon='close' open={props.confirmModalIsVisible}>
+        <Modal.Header style={{textAlign: 'center', lineHeight: '50px'}}>{props.message}<br/>
             <Button color={props.color} onClick={props.hideConfirmAlert} inverted>
                 <Icon name='checkmark' /> Got it
             </Button>
-        </Modal.Actions>
+        </Modal.Header>
     </Modal>
 );
 

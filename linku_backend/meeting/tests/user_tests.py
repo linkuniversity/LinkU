@@ -79,3 +79,23 @@ def test_response_gender_if_request_user_info_with_authenticated_token(client):
 
     assert response.status_code == 200
     assert response.data['gender'] == user.gender
+
+
+@pytest.mark.django_db
+def test_next_meeting_alarm_request(client):
+    user = create_test_user(client)
+
+    auth_headers = {
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
+    }
+
+    response = client.post('/next-meeting-alarm/', {}, **auth_headers)
+    assert response.status_code == 200
+    assert response.data['Message'] == "Success"
+
+    result_user = User.objects.get(username=user.username)
+    assert result_user.next_meeting_alarm
+
+    response = client.post('/next-meeting-alarm/', {}, **auth_headers)
+    assert response.status_code == 400
+    assert response.data['Message'] == "Already Done"
