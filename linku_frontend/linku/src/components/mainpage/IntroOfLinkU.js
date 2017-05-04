@@ -18,7 +18,6 @@ class IntroOfLinkU extends React.Component {
     })
 
     render() {
-
         let containerStyle = {
             marginTop: '3%',
         }
@@ -39,7 +38,7 @@ class IntroOfLinkU extends React.Component {
         }
 
         return (
-            <Container centered style={containerStyle}>
+            <Container style={containerStyle}>
                 <div style={promotionWordStyle}>
                     링쿠는 <b>대학생</b>들이 만나서<br/>
                     <b>놀고 웃고 친해질 수 있는</b><br/>
@@ -47,7 +46,6 @@ class IntroOfLinkU extends React.Component {
                     <LinkUGuide modalTrigger={<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
                 </div>
             </Container>
-
         );
     }
 

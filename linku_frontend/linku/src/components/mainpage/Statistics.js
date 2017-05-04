@@ -32,8 +32,8 @@ class Statistics extends React.Component{
         const mapToComponent = (datas) => {
             return datas.map( (data, i) => {
                 return (
-                    <div style={{height:'100%'}}>
-                        <Grid style={{height:'100%'}} key={i} centered verticalAlign="middle">
+                    <div style={{height:'100%'}} key={i}>
+                        <Grid style={{height:'100%'}} centered verticalAlign="middle">
                             <Grid.Column mobile={12} computer={4} textAlign="center">
                                 <Image style={cardStyle} src={DEFAULT_REQUEST_URL + '/media/statistics_num_of_appliers.png'} centered />
                             </Grid.Column>
