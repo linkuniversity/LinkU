@@ -9,13 +9,6 @@ const containerStyle = {
     paddingLeft: '20px',
     paddingRight: '20px'
 };
-const buttonStyle = {
-    marginRight: '10px',
-    border: '0',
-    color: '#5fa1d7',
-    backgroundColor: '#FFFFFF',
-    fontSize: '17px',
-};
 
 const LinkUContact = () => (
     <Container style={containerStyle}>
@@ -32,7 +25,7 @@ const LinkUContact = () => (
                     대학생들의 새로운 문화를 선도합니다
                     </p>
                 </Grid.Column>
-                <Grid.Column float='right'>
+                <Grid.Column>
                     <Header style={{color:'#5fa1d7'}}>문의</Header>
                     <Image src={DEFAULT_REQUEST_URL + '/media/facebook_icon.png'} href="https://www.facebook.com/LinkUandU/"/>
                     <Image style={{marginLeft: '20px'}} src={DEFAULT_REQUEST_URL + '/media/kakaotalk_icon.png'} href="http://plus.kakao.com/home/@linku"/><br/>

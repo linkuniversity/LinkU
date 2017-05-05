@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Button} from 'semantic-ui-react';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
+import { Form } from 'semantic-ui-react';
 import { buttonStyle } from '../utils/style/Button';
 
 const verificationNumberLength = value =>
@@ -27,12 +23,7 @@ const renderField = ({ input, label, type, htmlFor, labelText, ref, isInActive,m
 
 
 class UniversityVerificationNumberSendForm extends Component{
-    constructor(props) {
-        super(props);
-    }
-
     render() {
-
         let formSubmitButton = null;
         if(this.props.is_verify_auth_number_done){
             formSubmitButton = <Form.Button style={buttonStyle} fluid disabled>인증 완료</Form.Button>

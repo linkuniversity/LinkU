@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Image, Button, Modal} from 'semantic-ui-react'
-import Signup from '../signup/Signup.js'
-import Login from '../login/Login.js'
+import {Container, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import * as actions from '../../actions/Login';
 import { bindActionCreators } from 'redux';
@@ -9,10 +7,6 @@ import { bindActionCreators } from 'redux';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class LinkUHeader extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let containerStyle = {
             marginTop: "40px",
@@ -23,36 +17,6 @@ class LinkUHeader extends Component {
             fontSize: '14pt',
             marginLeft: '12px',
             color: '#60a2d9'
-        };
-
-        let signWrapperStyle = {
-            float: 'right',
-        };
-
-        let leftButtonStyle = {
-            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
-            fontSize: '14pt',
-            color: '#5fa1d7',
-            backgroundColor: '#FFFFFF',
-            border: '0px'
-        };
-
-        let rightButtonStyle={
-            marginLeft: '10px',
-            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
-            fontSize: '14pt',
-            color: '#5fa1d7',
-            backgroundColor: '#FFFFFF',
-            border: '0px'
-        };
-
-        let signOutButtonStyle={
-            float: 'right',
-            fontFamily: '../res/assets/KoPubDotumMedium.ttf',
-            fontSize: '14pt',
-            color: '#5fa1d7',
-            backgroundColor: '#FFFFFF',
-            border: '0px'
         };
 
         return (

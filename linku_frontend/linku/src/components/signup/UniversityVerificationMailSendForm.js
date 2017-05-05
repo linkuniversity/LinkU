@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { Form, Button} from 'semantic-ui-react';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
+import { Form } from 'semantic-ui-react';
 import { buttonStyle } from '../utils/style/Button';
 
 const emailRequired = value => value ? undefined : '이메일을 입력해주세요'
@@ -12,10 +8,10 @@ const emailCorrectForm = value =>
     value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
     '올바른 이메일 형식이 아닙니다' : undefined
 const universityEmailFormRequired = value =>
-    value.substr(value.length - 5) == "ac.kr" ? undefined : '대학교 메일을 입력해주세요.'
+    value.substr(value.length - 5) === "ac.kr" ? undefined : '대학교 메일을 입력해주세요.'
 
 
-const spanErrorStyle ={
+const spanErrorStyle = {
     color: "#FF5A5A",
 }
 
@@ -31,10 +27,6 @@ const renderField = ({ input, label, type, htmlFor, labelText, ref , isInActive,
 
 
 class UniversityVerificationMailSendForm extends Component{
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         let formSubmitButton = null;

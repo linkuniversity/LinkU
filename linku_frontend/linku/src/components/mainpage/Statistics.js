@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Container, Grid, Image} from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { fetchStatisticsInfos } from '../../actions/Statistics';
@@ -6,9 +6,6 @@ import { fetchStatisticsInfos } from '../../actions/Statistics';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class Statistics extends React.Component{
-    constructor(props){
-        super(props);
-    }
     componentDidMount(){
         this.props.fetchStatisticsInfos();
     }
@@ -32,30 +29,18 @@ class Statistics extends React.Component{
             marginBottom: "30px",
         };
 
-        const statisticsNumberStyle = {
-            color : '#FFFFFF',
-            marginTop : '35px',
-            fontSize: '20pt'
-        };
-
-        const statisticsCategoryStyle = {
-            color : '#FFFFFF',
-            fontSize : '20pt'
-        };
-
-
         const mapToComponent = (datas) => {
             return datas.map( (data, i) => {
                 return (
-                    <div style={{height:'100%'}}>
-                        <Grid style={{height:'100%'}} key = {i} centered verticalAlign="middle">
-                            <Grid.Column mobile={12} computer = {4} textAlign="center">
+                    <div style={{height:'100%'}} key={i}>
+                        <Grid style={{height:'100%'}} centered verticalAlign="middle">
+                            <Grid.Column mobile={12} computer={4} textAlign="center">
                                 <Image style={cardStyle} src={DEFAULT_REQUEST_URL + '/media/statistics_num_of_appliers.png'} centered />
                             </Grid.Column>
-                            <Grid.Column mobile={12} computer = {4} textAlign="center">
+                            <Grid.Column mobile={12} computer={4} textAlign="center">
                                 <Image style={middleCardStyle} src={DEFAULT_REQUEST_URL + '/media/statistics_num_of_meetings.png'} centered/>
                             </Grid.Column>
-                            <Grid.Column mobile={12} computer = {4} textAlign="center">
+                            <Grid.Column mobile={12} computer={4} textAlign="center">
                                 <Image style={cardStyle} src={DEFAULT_REQUEST_URL + '/media/statistics_num_of_newly_met.png'} centered/>
                             </Grid.Column>
                         </Grid>

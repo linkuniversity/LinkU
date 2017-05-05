@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Modal, Button, Icon, Container } from 'semantic-ui-react';
+import { Modal, Button, Icon } from 'semantic-ui-react';
 
 import { hideConfirmAlert } from '../../actions/Common';
 
