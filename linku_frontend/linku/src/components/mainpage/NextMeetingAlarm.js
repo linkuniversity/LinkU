@@ -1,11 +1,8 @@
-import React, {Component} from 'react';
-import {Form, Segment, Input, Dimmer, Container, Grid, Card, Image, Button, Modal} from 'semantic-ui-react';
+import React from 'react';
+import { Container, Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import axios from 'axios';
-
-import * as actions from '../../actions/Common';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 import Login from '../login/Login';
@@ -16,7 +13,7 @@ class NextMeetingAlarm extends React.Component{
         const config = {
             headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
         };
-        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/next-meeting-alarm/', undefined, config)
+        await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/next-meeting-alarm/', undefined, config)
             .then( response => {
                 console.log(response);
                 this.props.alertConfirm("신청이 완료되었어요 :D", "blue");

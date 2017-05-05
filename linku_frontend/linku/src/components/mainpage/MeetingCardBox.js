@@ -1,16 +1,11 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react'
 import MeetingCard from './MeetingCard';
-import jQuery from 'jquery';
-import CategoriesInMainPage from './CategoriesInMainPage';
 import {fetchMeetingCardInfos} from '../../actions/meetingcard';
 
 import { connect } from 'react-redux';
 
 class MeetingCardBox extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     componentDidMount() {
         this.props.fetchMeetingCardInfos();
     }
@@ -18,7 +13,7 @@ class MeetingCardBox extends React.Component {
     render() {
         const mapToComponents = (data) => {
             return data.map((meeting_infos, i) => {
-                return ( <MeetingCard meetingInfo = { meeting_infos } key = {i}/>);
+                return ( <MeetingCard meetingInfo={ meeting_infos } key={i}/>);
             });
         };
 
@@ -26,7 +21,6 @@ class MeetingCardBox extends React.Component {
             marginTop: '67px',
         }
 
-        let receivedData;
         return (
             <Container style={containerStyle}>
                 <br/>

@@ -29,7 +29,7 @@ class LinkUHeader extends Component {
 const mapStateToProps = (state) => {
     return {
         loggedIn : state.login.loggedIn
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
