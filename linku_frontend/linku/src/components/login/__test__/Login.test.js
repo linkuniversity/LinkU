@@ -21,15 +21,6 @@ const initialState = {
 const store = mockStore(initialState);
 
 describe('<Login />', () => {
-    const wrapper = mount(
-        <Provider store = {store}>
-            <Login />
-        </Provider>
-    );
-
-    it('renders without exploding', () => {
-        expect(wrapper.length).toEqual(1);
-    });
 });
 
 describe('<SimpleLogin />', () => {

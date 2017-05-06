@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Header, Container, Grid, Card, Image, Modal, Button, Item} from 'semantic-ui-react'
+import React from 'react';
+import {Container, Grid, Modal, Button, Item} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
@@ -108,7 +108,7 @@ class LinkUGuide extends React.Component{
                             </Item>
                         </Item.Group>
                     </Grid>
-
+                    <Button onClick={() => this.props.history.push('/')} fluid color='blue'>돌아가기</Button>
                 </Container>
         );
     }
