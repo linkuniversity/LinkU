@@ -8,9 +8,9 @@ def test_create_user_model():
     User.objects.create(email='test email',
                         authenticated_university_email='authenticated@university.com',
                         password='test password',
-                        gender='test gender',
+                        gender='M',
                         name='test name',
-                        phone_number='test phone_number')
+                        phone_number='01012341234')
     User.objects.get(email='test email')
 
 
