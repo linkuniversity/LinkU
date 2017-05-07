@@ -87,6 +87,7 @@ class LinkUGuide extends React.Component{
                                           약속 장소에 모여 모임장과 함께 새로운 사람들과 맛집에 가서 식사를 하고 다양한 활동을 함께해요.
                                           맘이 잘맞으면 2차도 같이~!
                                       </div>
+                                  </div>
                                   </Item.Description>
                               </Item.Content>
                             </Item>
