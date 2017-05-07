@@ -1,12 +1,14 @@
 import React from 'react';
 import {Container, Button} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+
+import {Link} from 'react-router-dom';
 import LinkUGuide from '../guide_page/LinkUGuide';
 
 class IntroOfLinkU extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { modalOpen: false }
+        this.state = { modalOpen: true }
     }
 
     handleOpen = (e) => this.setState({
@@ -48,7 +50,7 @@ class IntroOfLinkU extends React.Component {
                     링쿠는 <b>대학생</b>들이 만나서<br/>
                     <b>놀고 웃고 친해질 수 있는</b><br/>
                     <b>대학생 놀이모임</b> 연결서비스입니다<br/>
-                    <LinkUGuide modalTrigger={<Button style={guideButtonStyle} onClick={this.handleOpen}>이용안내></Button>} modalOpen={this.state.modalOpen} handleClose={this.handleClose} />
+                    <Link to='/about' style={guideButtonStyle}>이용안내></Link>
                 </div>
             </Container>
         );

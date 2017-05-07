@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'semantic-ui-react';
+import { Modal, Button, Container } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 
@@ -12,6 +12,7 @@ import { buttonStyle } from '../utils/style/Button';
 import axios from 'axios';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+import {withRouter} from 'react-router-dom';
 
 class Signup extends Component {
     state = {
@@ -26,13 +27,15 @@ class Signup extends Component {
         modalOpen: true,
     })
 
-    handleClose = (e) => this.setState({
-        modalOpen: false,
-        is_loading: false,
-        is_university_email_verification_request_done: false,
-        is_verify_auth_number_done: false,
-        university_email: "",
-    })
+    handleClose = (e) => {
+        this.setState({
+            modalOpen: false,
+            is_loading: false,
+            is_university_email_verification_request_done: false,
+            is_verify_auth_number_done: false,
+            university_email: "",
+        });
+    }
 
     _handleSignupSubmit = async (values) => {
 
@@ -49,6 +52,7 @@ class Signup extends Component {
             values['authenticated_university_email'] = this.state.university_email;
             await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/users/',values)
                 .then(response => {
+                    this.props.history.push('/');
                     this.props.alertConfirm("회원가입이 완료되었습니다.", "blue");
                     this.handleClose();
                     console.log(response.data);
@@ -163,14 +167,9 @@ class Signup extends Component {
         }
 
         return (
-            <Modal closeIcon='close' trigger={triggerButton} open={this.state.modalOpen} onClose={this.handleClose} size='small'>
-                <Modal.Header>링쿠 회원가입</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description >
-                        {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : renderUniversityAuthentication()}
-                    </Modal.Description>
-                </Modal.Content>
-            </Modal>
+            <Container text>
+                {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : renderUniversityAuthentication()}
+            </Container>
         );
     }
 }
@@ -184,4 +183,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default withRouter(connect(null, mapDispatchToProps)(Signup));

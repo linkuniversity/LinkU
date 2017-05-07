@@ -11,10 +11,6 @@ class LinkUGuide extends React.Component{
         }
 
         return(
-            <Modal trigger={this.props.modalTrigger} closeIcon='close' open={this.props.modalOpen} onClose={this.props.handleClose}>
-            <Modal.Header>이용안내</Modal.Header>
-            <Modal.Content>
-
             <Container>
                 <Grid>
                     <Item.Group style={{padding:"10%"}}>
@@ -92,19 +88,13 @@ class LinkUGuide extends React.Component{
                                           맘이 잘맞으면 2차도 같이~!
                                       </div>
                                   </div>
-                              </Item.Description>
-                          </Item.Content>
-                        </Item>
-                    </Item.Group>
-                </Grid>
-            </Container>
-            </Modal.Content>
-            <Modal.Actions style={{verticalAlign: "center", textAlign: "center"}}>
-                <Button style={{width: '100%', height: '100%', margin: "0 auto"}} color='blue' onClick={this.props.handleClose}>
-                    확인
-                </Button>
-            </Modal.Actions>
-            </Modal>
+                                  </Item.Description>
+                              </Item.Content>
+                            </Item>
+                        </Item.Group>
+                    </Grid>
+                    <Button onClick={() => this.props.history.push('/')} fluid color='blue'>돌아가기</Button>
+                </Container>
         );
     }
 
