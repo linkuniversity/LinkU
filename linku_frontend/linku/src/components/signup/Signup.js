@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Button, Header, Container } from 'semantic-ui-react';
+import { Modal, Button, Container } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { alertConfirm } from '../../actions/Common';
 import SignupForm from './SignupForm';
@@ -42,17 +41,16 @@ class Signup extends Component {
 
         console.log(values);
 
-
-        if(values.gender == undefined) {
-            values.gender = 'F'
+        if(values.gender === undefined) {
+            this.props.alertConfirm("성별을 입력해 주세요.", "red");
         }
-        if(values.password != values.password_check) {
+        if(values.password !== values.password_check) {
             this.props.alertConfirm("비밀번호가 다릅니다.", "red");
             console.log("password is not equal");
         }
         else {
             values['authenticated_university_email'] = this.state.university_email;
-            const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/users/',values)
+            await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/users/',values)
                 .then(response => {
                     this.props.history.push('/');
                     this.props.alertConfirm("회원가입이 완료되었습니다.", "blue");
@@ -61,7 +59,7 @@ class Signup extends Component {
                 })
                 .catch(error => {
                     console.log(error.response.data);
-                    if(error.response.data['username'][0] == 'user with this username already exists.')
+                    if(error.response.data['username'][0] === 'user with this username already exists.')
                         this.props.alertConfirm("이미 존재하는 이메일 입니다.", "red");
                     else
                         this.props.alertConfirm("회원가입에 실패했습니다.", "red");
@@ -79,8 +77,7 @@ class Signup extends Component {
     };
 
     __handleUniversityVerificationMailSendFormSubmit = async (value) => {
-
-        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/university-verification-email/',"university_email="+value.university_email)
+        await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/university-verification-email/',"university_email="+value.university_email)
             .then(response => {
                 this.setState({
                     ...this.state,
@@ -97,10 +94,12 @@ class Signup extends Component {
                     ...this.state,
                     is_loading: false,
                 });
-                if(error.response.data['message'] == 'Invalid Mail Form')
+                if(error.response.data['message'] === 'Invalid Mail Form')
                     this.props.alertConfirm("이메일 형식이 맞지 않습니다.", "red");
-                else if (error.response.data['message'] == 'Invalid University Mail Form')
+                else if (error.response.data['message'] === 'Invalid University Mail Form')
                     this.props.alertConfirm("대학교 이메일 형식에 맞지 않습니다.", "red");
+                else if (error.response.data['message'] === 'University Mail Already Exist')
+                    this.props.alertConfirm("이미 존재하는 대학교 이메일입니다.", "red");
                 else
                     this.props.alertConfirm("이메일 전송에 실패했습니다.", "red");
             })
@@ -109,8 +108,7 @@ class Signup extends Component {
     }
 
     _handleUniversityVerificationNumberSendFormSubmit = async (value) => {
-
-        const info = await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/university-verification-number/',"university_email="+this.state.university_email + "&" + "auth_number=" + value.auth_number)
+        await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/university-verification-number/',"university_email="+this.state.university_email + "&auth_number=" + value.auth_number)
             .then(response => {
                 this.setState({
                     is_verify_auth_number_done: true,
@@ -120,11 +118,11 @@ class Signup extends Component {
             })
             .catch(error => {
                 console.log(error.response.data);
-                if(error.response.data['message'] == 'No such email')
+                if(error.response.data['message'] === 'No such email')
                     this.props.alertConfirm("해당 메일로 인증번호가 요청되지 않았습니다.", "red");
-                else if (error.response.data['message'] == 'Time Out')
+                else if (error.response.data['message'] === 'Time Out')
                     this.props.alertConfirm("시간이 완료되었습니다 다시 요청해주세요.", "red");
-                else if (error.response.data['message'] == 'Wrong Auth Number')
+                else if (error.response.data['message'] === 'Wrong Auth Number')
                     this.props.alertConfirm("인증번호가 틀렸습니다.","red");
                 else
                     this.props.alertConfirm("인증번호 처리에 실패하였습니다.", "red");

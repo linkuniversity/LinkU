@@ -42,6 +42,20 @@ class MeetingViewSet(viewsets.ModelViewSet):
         status_list[status_index].save()
         return Response("success")
 
+    @detail_route(methods=['post'], url_path='leave')
+    def leave(self, request, pk=None):
+        meeting = Meeting.objects.get(pk=pk)
+        status_list = StatusByDay.objects.filter(meeting=meeting)
+        status_index = int(request.data['status_index'])
+
+        user = User.objects.get(username=request.data['username'])
+        status = status_list[status_index]
+        if user.statusbyday_set.filter(id=status.id).exists():
+            status.appliers.remove(user)
+            return Response("success")
+
+        return Response("fail")
+
 
 class ActivityNeedsViewSet(viewsets.ModelViewSet):
     queryset = ActivityNeeds.objects.all()
@@ -74,6 +88,9 @@ def send_verification_email(request):
         with open('mail_setting.json') as data_file:
             mail_setting = json.load(data_file)
             email = request.POST['university_email']
+
+            if User.objects.filter(authenticated_university_email=email).exists():
+                return Response({"message": "University Mail Already Exist"}, status=status.HTTP_400_BAD_REQUEST)
 
             email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
             match_result = email_regex.match(email)
@@ -115,7 +132,7 @@ def send_verification_email(request):
                                                        , sent_to_user_time=datetime.datetime.now()
                                                        ,
                                                        auth_number_expiration_time=datetime.datetime.now() + datetime.timedelta(
-                                                           minutes=2))
+                                                           minutes=5))
 
             return Response({"message": "Success"})
 
@@ -153,6 +170,20 @@ def apply_alarm(request, format=None):
         return Response({"Message": "Success"})
 
     return Response({"Message": "Bad Request"})
+
+
+@api_view(['POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def next_meeting_alarm(request, format=None):
+    if request.method == 'POST':
+        user = request.user
+        if user.next_meeting_alarm:
+            return Response({"Message": "Already Done"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            user.next_meeting_alarm = True
+            user.save()
+            return Response({"Message": "Success"})
 
 
 @api_view(['POST'])

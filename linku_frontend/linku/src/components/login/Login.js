@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Header, Modal } from 'semantic-ui-react'
-
+import { Modal } from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import SimpleLogin from './SimpleLogin';
 import LoginForm from './LoginForm';
 import Signup from '../signup/Signup';
 
@@ -31,7 +27,7 @@ class Login extends Component {
     }
     render() {
         return (
-            <Modal closeIcon='close' trigger = {this.props.triggerButton} size='small'>
+            <Modal closeIcon='close' trigger={this.props.triggerButton} size='small'>
                 <Modal.Header>링쿠 로그인</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>

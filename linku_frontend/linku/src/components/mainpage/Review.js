@@ -21,24 +21,25 @@ const Review = () => {
 
     const titleStyle = {
         color:'#5fa1d7',
-        fontSize: 20
+        fontSize: 20,
     };
 
     const contentStyle = {
-
-    }
+        fontSize: 16,
+        lineHeight: '27px',
+    };
 
     const promotionWordStyle = {
         width: "100%",
         textAlign: "center",
-        fontSize: '19pt',
+        fontSize: '20pt',
         lineHeight: '40px',
         marginTop: "40px"
     };
 
     const mapToComponent = (datas) => {
         return datas.map( ({title,content}, i) => (
-            <Grid style={{marginTop: '50px', marginLeft: '2px'}} textAlign="left" key={i}>
+            <Grid style={{marginTop: '50px', marginLeft: '2px', marginRight: '2px'}} textAlign="left" key={i}>
                 <Grid.Row textAlign="left" style={titleStyle}>
                     {title}
                 </Grid.Row>
@@ -49,11 +50,11 @@ const Review = () => {
         ));
     }
     return (
-        <Container style={{marginTop: '72px'}}>
+        <Container style={{marginTop: '52px', padding: '12px'}}>
             <Grid textAlign="left">
                 <Grid.Column mobile={16} computer={8}>
 
-                    <Header style={{fontSize: '20pt', color: '#5fa1d7', marginTop: '112px'}}>
+                    <Header style={{fontSize: '22pt', color: '#5fa1d7', paddingTop: '30px'}}>
                         링쿠 참여자들이 들려주는 리얼 생생후기
                     </Header>
 

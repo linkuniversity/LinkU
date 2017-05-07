@@ -9,8 +9,8 @@ export default class SimpleLoginButton extends Component {
         };
         return (
             <div
-                className = { this.props.simpleLoginButtonInfo.className } style = { simpleLoginButtonStyle }
-                onClick = { this.props.simpleLoginButtonInfo.loginFunction } >
+                className={ this.props.simpleLoginButtonInfo.className } style={ simpleLoginButtonStyle }
+                onClick={ this.props.simpleLoginButtonInfo.loginFunction } >
                 { this.props.simpleLoginButtonInfo.buttonName }
             </div>
         );

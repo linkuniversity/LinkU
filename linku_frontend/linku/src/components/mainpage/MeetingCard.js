@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container,Card, Button, Dropdown, Menu, Grid, Header, Item, Divider, Icon, Image } from 'semantic-ui-react'
+import { Container,Card, Button, Dropdown, Menu, Grid, Item, Divider, Icon, Image } from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux';
 
@@ -8,12 +8,10 @@ import * as actions from '../../actions/Common';
 
 import Apply from './Apply';
 import Login from '../login/Login';
-import axios from 'axios';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
-class MeetingCard extends React.Component
-{
+class MeetingCard extends React.Component{
     constructor(props){
         super(props);
 
@@ -47,24 +45,29 @@ class MeetingCard extends React.Component
     getDateStr(date) {
         const WEEK_DAY = ["일", "월", "화", "수", "목", "금", "토"];
         const meeting_date = new Date(date);
-        return (meeting_date.getMonth() + 1)+ "월 " + meeting_date.getDate() + "일 " + WEEK_DAY[meeting_date.getDay()] + "요일";
+        return (meeting_date.getUTCMonth() + 1)+ "월 " + meeting_date.getUTCDate() + "일 " + WEEK_DAY[meeting_date.getUTCDay()] + "요일";
     }
 
     getStartTimeStr(date) {
        let start_time_str = "";
        start_time_str += date.getUTCHours() + "시 ";
        const minutes = date.getUTCMinutes();
-       if(minutes!=0)
+       if(minutes!==0)
            start_time_str += (minutes + "분");
 
        return start_time_str;
     }
 
-    render() {
-        const statisticsNumberStyle = {
-            color : '#FFFFFF',
-        };
+    isParticipated(selected_date) {
+        const dates = localStorage.getItem('participated_dates');
+        if(dates.length > 20)
+            return true;
+        else if(dates===selected_date)
+            return true;
+        return false;
+    }
 
+    render() {
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
             paddingTop: '3%',
@@ -95,14 +98,6 @@ class MeetingCard extends React.Component
             marginTop: '30px',
             marginLeft: '5%'
         };
-        let meetingDetailButtonStyle = {
-            padding: '20px',
-            backgroundColor: '#5FA1D7',
-            fontSize: '14pt',
-            height: '60px' ,
-            color: '#FFFFFF',
-            textAlign: 'center'
-        };
         let meetingApplyStyle = {
             marginTop: '0px',
             marginLeft: '1%',
@@ -121,10 +116,6 @@ class MeetingCard extends React.Component
             paddingTop: '20px',
             fontSize: '12pt',
         };
-        let linkFontStyle = {
-            fontSize: '15px',
-            marginTop: '3px',
-        };
         let meetingDateOptions = [];
 
         if(this.props.meetingInfo.status_by_days)
@@ -138,22 +129,22 @@ class MeetingCard extends React.Component
         }
 
         const getBtnByState = () => {
-            if(this.state.selectedValue == undefined)
+            if(this.state.selectedValue === undefined)
                 return (<Button disabled color='blue' fluid>날짜를 선택해주세요</Button>);
 
-            if(this.props.meetingInfo.status_by_days == undefined || this.props.meetingInfo.status_by_days.length == 0)
+            if(this.props.meetingInfo.status_by_days === undefined || this.props.meetingInfo.status_by_days.length === 0)
                 return;
 
             const selected_meeting = this.props.meetingInfo.status_by_days[this.state.selectedValue];
             const user_gender = localStorage.getItem('user_gender');
             let participant_num_by_gender = undefined;
 
-            if(localStorage.getItem('user_gender')=='F')
+            if(user_gender==='F')
                 participant_num_by_gender = this.state.participant_woman_num;
             else
                 participant_num_by_gender = this.state.participant_man_num;
 
-            if((localStorage.getItem('participated_dates')==selected_meeting.start_time) && this.props.loggedIn){
+            if(this.isParticipated(selected_meeting.start_time) && this.props.loggedIn){
                 return (<Button disabled color='blue' fluid>신청완료</Button>);
             }
 
@@ -161,8 +152,7 @@ class MeetingCard extends React.Component
                 return (<Button disabled color='blue' fluid>마감되었습니다.</Button>);
             }
             else {
-                const button = (<Button style={{backgroundColor:'#5FA1D7',color:'#FFFFFF'}} fluid>같이 놀자!</Button>);
-                if(localStorage.getItem('token') && this.props.loggedIn){
+                if(user_gender && this.props.loggedIn){
                     return (
                         <Apply
                             selectedValue={this.state.selectedValue}
@@ -175,7 +165,7 @@ class MeetingCard extends React.Component
                             var ReactGA = require('react-ga');
                             ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
                         }
-                    } color='blue' fluid>신청하기</Button>);
+                    } color='blue' fluid>같이 놀자!</Button>);
                     return (<Login triggerButton={button}/>);
                 }
             }
@@ -262,11 +252,11 @@ class MeetingCard extends React.Component
                         <Card.Content>
                             <Card.Header>
                                 <Menu compact style={{marginBottom: '10px', width: '240px'}}>
-                                    <Dropdown placeholder='클릭해서 날짜 선택하기' onChange = {this._participatedSelectionChange} selection options={meetingDateOptions} fluid/>
+                                    <Dropdown placeholder='클릭해서 날짜 선택하기' onChange={this._participatedSelectionChange} selection options={meetingDateOptions} fluid/>
                                 </Menu>
                             </Card.Header>
                             <Card.Description>
-                                <div style={meetingApplyFontStyle}><strong>시간</strong> : {this.state.start_time_str}</div>
+                                <div style={meetingApplyFontStyle}><strong>시간</strong> : 17시</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
                                 <div style={meetingApplyFontStyle}>

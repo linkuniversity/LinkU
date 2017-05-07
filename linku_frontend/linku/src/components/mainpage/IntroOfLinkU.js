@@ -1,15 +1,9 @@
-import React, {Component} from 'react';
-import {Container, Grid, Card, Image, Button} from 'semantic-ui-react'
+import React from 'react';
+import {Container, Button} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
-
-import * as actions from '../../actions/Common';
 import LinkUGuide from '../guide_page/LinkUGuide';
-
-import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class IntroOfLinkU extends React.Component {
     constructor(props) {
@@ -26,28 +20,17 @@ class IntroOfLinkU extends React.Component {
     })
 
     render() {
-
         let containerStyle = {
-            marginTop: '3%',
+            marginTop: '5%',
+            textAlign: "center",
         }
 
         let promotionWordStyle = {
+            marginTop: '3%',
             width: "100%",
-            textAlign: "center",
             fontSize: '19pt',
             lineHeight: '40px',
         };
-
-        let serviceIntroImageStyle = {
-            marginTop: "25%",
-            width: '75px',
-            hegith: '75px',
-        }
-
-        let serviceIntroHeaderStyle={
-            marginTop: '30px',
-            fontSize: '20pt',
-        }
 
         let guideButtonStyle = {
             marginTop: '5px',
@@ -59,6 +42,10 @@ class IntroOfLinkU extends React.Component {
 
         return (
             <Container centered style={containerStyle}>
+                <div style={{marginTop: '15px', fontSize:'15px',color: '#60a2d9'}}>
+                    링쿠는 현재 베타 서비스입니다. <br/>
+                    본 서비스에서 더 좋은 모습 보여드릴게요 :D
+                </div>
                 <div style={promotionWordStyle}>
                     링쿠는 <b>대학생</b>들이 만나서<br/>
                     <b>놀고 웃고 친해질 수 있는</b><br/>
@@ -66,7 +53,6 @@ class IntroOfLinkU extends React.Component {
                     <Link to='/about' style={guideButtonStyle}>이용안내></Link>
                 </div>
             </Container>
-
         );
     }
 

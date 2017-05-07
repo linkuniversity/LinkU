@@ -1,26 +1,23 @@
-import React,{Component} from 'react';
-import { Grid, Button, Header, Modal, Image, Container } from 'semantic-ui-react';
+import React from 'react';
+import {Button, Modal, Image, Container } from 'semantic-ui-react';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 
 const getAccount = (selectedValue) => {
-    if(selectedValue == 0)
+    if(selectedValue === 0)
         return (<span>신한 110-374-439288 장선혁</span>);
-    else if(selectedValue == 1)
-        return (<span>우리 1002-941-021806 김성국</span>);
-    else if(selectedValue == 2)
+    else if(selectedValue === 1)
         return (<span>신한 110-365-994395 이태우</span>);
 }
 
 const getDeadLine = (selectedValue) => {
-    if(selectedValue == 0)
-        return (<span>5월 1일 23:59</span>);
-    if(selectedValue == 1)
-        return (<span>5월 3일 23:59</span>);
-    if(selectedValue == 0)
+    if(selectedValue === 0)
         return (<span>5월 4일 23:59</span>);
+    if(selectedValue === 1)
+        return (<span>5월 5일 23:59</span>);
 }
+
 const PaymentApplyContents = ({selectedValue, paymentInfo}) => (
     <Container>
         <Container text>
@@ -58,12 +55,12 @@ const textContainerStyle = {
 const PaymentDescription = () => (
     <Container>
         <br/><br/>
-        <Container style = { {fontSize: '30px'} } text textAlign="center">
+        <Container style={{fontSize: '30px'}} text textAlign="center">
             <a>새로운 친구들도 만나고 <br/>
             재밌게 놀 수 있는 링쿠 서비스!</a><br/>
         </Container>
 
-        <Container text textAlign="center" style = {textContainerStyle}>
+        <Container text textAlign="center" style={textContainerStyle}>
             저희는 <br/>
             <a style={{fontSize: '25px'}}>무단 불참 방지</a><br/>
             를 위해 *보증금(<a>5,000원</a>)을 받고 있습니다.<br />
@@ -96,31 +93,21 @@ class Apply extends React.Component{
                 trigger={(<Button onClick={this.handleOpen} color='blue' fluid>같이 놀자!</Button>)}
                 open={this.state.modalOpen}
                 onClose={this.handleClose}
-                closeIcon='close'
-                >
-
-                 <Modal.Content>
-                    {
-                        (this.state.isWantedPayment) ?
-                         <PaymentApplyContents
-                             selectedValue = {this.props.selectedValue}
-                             paymentInfo = {this.props.paymentInfo}
-                             />
-                         : <PaymentDescription />
-                    }
-                    {
-                        (this.state.isWantedPayment) ?
-                        <Button
-                            onClick={this.handleClose}
-                            style={ {marginBottom: '10px'} }
-                            fluid color='blue'
-                            >
-                            결제 완료
-                        </Button>
-                            :
-                        <Button onClick={this.handlePayment} style={ {marginBottom: '10px'} } fluid color='blue'>결제 진행하기</Button>
-                    }
-                 </Modal.Content>
+                closeIcon='close'>
+                <Modal.Content>{
+                    (this.state.isWantedPayment) ?
+                    <PaymentApplyContents selectedValue={this.props.selectedValue} paymentInfo={this.props.paymentInfo}/>
+                    :
+                    <PaymentDescription />
+                }{
+                    (this.state.isWantedPayment) ?
+                    <Button onClick={this.handleClose} style={{marginBottom: '10px'}} fluid color='blue'>
+                        결제 완료
+                    </Button>
+                    :
+                    <Button onClick={this.handlePayment} style={{marginBottom: '10px'}} fluid color='blue'>결제 진행하기</Button>
+                }
+                </Modal.Content>
             </Modal>
         );
     }

@@ -1,5 +1,3 @@
-import * as types from '../actiontypes/Login';
-
 export function fetchStatisticsInfos(){
     return {
         type : 'FETCH_STATISTICS_INFOS',
