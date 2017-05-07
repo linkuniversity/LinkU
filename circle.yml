@@ -5,6 +5,9 @@ machine:
     version: 3.5.2
   node:
     version: 5.11.0
+  services:
+    - mysql
+
 
 dependencies:
   cache_directories:

@@ -83,8 +83,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'linku',
-        'USER': 'linku',
-        'PASSWORD': os.getenv('LINKU_MYSQL_PASSWORD', 'password'),
+        #'USER': 'linku',
+        #'PASSWORD': os.getenv('LINKU_MYSQL_PASSWORD', 'password'),
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
