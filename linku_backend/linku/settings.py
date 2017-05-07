@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'linku.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'linku',
+        'USER': 'linku',
+        'PASSWORD': os.getenv('LINKU_MYSQL_PASSWORD', 'password'),
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
