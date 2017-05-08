@@ -47,9 +47,8 @@ class IntroOfLinkU extends React.Component {
                     본 서비스에서 더 좋은 모습 보여드릴게요 :D
                 </div>
                 <div style={promotionWordStyle}>
-                    링쿠는 <b>대학생</b>들이 만나서<br/>
-                    <b>놀고 웃고 친해질 수 있는</b><br/>
-                    <b>대학생 놀이모임</b> 연결서비스입니다<br/>
+                    링쿠는 다같이 <b style={{color:'#60a2d9'}}>먹고 놀며 친해지는</b><br/>
+                    <b style={{color:'#60a2d9'}}>대학생</b> 친구/모임 연결 서비스 입니다.<br/>
                     <Link to='/about' style={guideButtonStyle}>이용안내></Link>
                 </div>
             </Container>

@@ -49,8 +49,8 @@ class NextMeetingAlarm extends React.Component{
 
         return(
             <Container style={containerStyle}>
-                이번 모임이 시간에 맞지 않는다면 ?<br/>
-                앞으로 진행될 모임의 일정을 문자로 알려드려요 :D<br/>
+                이번 모임에 참석하기 힘드세요 ?<br/>
+                앞으로 진행될 모임의 일정을 문자로 알려드릴게요 :D<br/>
                 {getBtnByState()}
             </Container>
         );
