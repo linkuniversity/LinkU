@@ -31,7 +31,7 @@ class NextMeetingAlarm extends React.Component{
             paddingBottom: '33px',
             paddingLeft: '12px',
             paddingRight: '12px',
-            backgroundColor: '#f8f8f9',
+            width: '100%',
             textAlign: 'center',
             fontSize: '16pt',
             lineHeight: '30pt'

@@ -18,8 +18,10 @@ class MeetingCardBox extends React.Component {
         };
 
         let containerStyle = {
-            marginTop: '67px',
-        }
+            marginTop: '30px',
+            width: '100%',
+            backgroundColor: '#F8F8F9',
+        };
 
         return (
             <Container style={containerStyle}>
