@@ -184,7 +184,7 @@ class MeetingCard extends React.Component{
                                 </div>
                                 <Item.Group>
                                     <Item>
-                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_image_woman_small.png'} />
+                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_profile_image.png'} />
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>
