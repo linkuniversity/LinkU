@@ -142,7 +142,7 @@ class Signup extends Component {
             if(this.state.is_university_email_verification_request_done){
                 return(
                     <div>
-                    <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</p>
+                    <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생 인증을 부탁드려요!</p>
                     <UniversityVerificationMailSendForm
                         onSubmit={this._handleUniversityVerificationMailSendFormSubmit}
                         is_university_email_verification_request_done={this.state.is_university_email_verification_request_done}
@@ -158,7 +158,7 @@ class Signup extends Component {
             else{
                 return(
                     <div>
-                    <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생인증을 필수로 하고 있습니다.</p>
+                    <p style={{fontSize: "17px", color: "#60a2d9", textAlign: "center"}}>링쿠는 대학생들을 위한 서비스입니다.<br/> 보다 안전한 서비스 이용을 위해 대학생 인증을 부탁드려요!</p>
                     <UniversityVerificationMailSendForm onSubmit={this._handleUniversityVerificationMailSendFormSubmit} is_university_email_verification_request_done={this.state.is_university_email_verification_request_done} is_loading={this.state.is_loading}/>
                     </div>
             );
