@@ -7,6 +7,7 @@ import axios from 'axios';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 import Login from '../login/Login';
 import { alertConfirm } from '../../actions/Common';
+import {withRouter} from 'react-router-dom';
 
 class NextMeetingAlarm extends React.Component{
     handleClick = async () => {
@@ -38,19 +39,24 @@ class NextMeetingAlarm extends React.Component{
         };
 
         const getBtnByState = () => {
-            const button = (<Button style={{marginTop: '20px', width: '120px'}} color='blue' content='알림받기' />);
             if(this.props.loggedIn) {
                 return (<Button style={{marginTop: '20px', width: '120px'}} color='blue' content='알림받기'
                     onClick={this.handleClick}/>);
             }
             else
-                return (<Login triggerButton={button}/>);
+                return (
+                    <Button
+                        onClick={()=>this.props.history.push('/login')}
+                        style={{marginTop: '20px', width: '120px'}}
+                        color='blue'
+                        content='알림받기'
+                        />);
         };
 
         return(
             <Container style={containerStyle}>
-                이번 모임이 시간에 맞지 않는다면 ?<br/>
-                앞으로 진행될 모임의 일정을 문자로 알려드려요 :D<br/>
+                이번 모임에 참석하기 힘드세요 ?<br/>
+                앞으로 진행될 모임의 일정을 문자로 알려드릴게요 :D<br/>
                 {getBtnByState()}
             </Container>
         );
@@ -70,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm));

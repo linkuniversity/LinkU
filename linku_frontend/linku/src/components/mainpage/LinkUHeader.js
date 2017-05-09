@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
+import {withRouter} from 'react-router-dom';
+
 class LinkUHeader extends Component {
     render() {
         let containerStyle = {
@@ -32,4 +34,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(actions, dispatch);
 };
 
-export default connect( mapStateToProps, mapDispatchToProps )(LinkUHeader);
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )(LinkUHeader));
