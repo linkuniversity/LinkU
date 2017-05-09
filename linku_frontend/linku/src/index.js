@@ -14,6 +14,7 @@ import createSagaMiddleware from 'redux-saga';
 import LinkUHeader from './components/mainpage/LinkUHeader';
 import LinkUGuide from './components/guide_page/LinkUGuide';
 import Signup from './components/signup/Signup';
+import Login from './components/login/Login';
 
 var ReactGA = require('react-ga');
 ReactGA.initialize('UA-97944196-1');
@@ -44,6 +45,7 @@ ReactDOM.render(
                         <Route exact path="/" component={App}/>
                         <Route path="/about" component={LinkUGuide} />
                         <Route path="/signup" component={Signup} />
+                        <Route path="/login" component={Login} />
                     </Switch>
                 </div>
             </div>

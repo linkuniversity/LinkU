@@ -7,6 +7,7 @@ import axios from 'axios';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 import Login from '../login/Login';
 import { alertConfirm } from '../../actions/Common';
+import {withRouter} from 'react-router-dom';
 
 class NextMeetingAlarm extends React.Component{
     handleClick = async () => {
@@ -38,13 +39,18 @@ class NextMeetingAlarm extends React.Component{
         };
 
         const getBtnByState = () => {
-            const button = (<Button style={{marginTop: '20px', width: '120px'}} color='blue' content='알림받기' />);
             if(this.props.loggedIn) {
                 return (<Button style={{marginTop: '20px', width: '120px'}} color='blue' content='알림받기'
                     onClick={this.handleClick}/>);
             }
             else
-                return (<Login triggerButton={button}/>);
+                return (
+                    <Button
+                        onClick={()=>this.props.history.push('/login')}
+                        style={{marginTop: '20px', width: '120px'}}
+                        color='blue'
+                        content='알림받기'
+                        />);
         };
 
         return(
@@ -70,4 +76,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm));
