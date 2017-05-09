@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'semantic-ui-react'
+import { Header, Button, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import Signup from '../signup/Signup';
@@ -27,16 +27,14 @@ class Login extends Component {
     }
     render() {
         return (
-            <Modal closeIcon='close' trigger={this.props.triggerButton} size='small'>
-                <Modal.Header>링쿠 로그인</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description>
-                        <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
-                        <LoginForm onSubmit = {this._handleLoginSubmit}/>
-                        <Button style={buttonStyle} onClick={() => {this.props.history.push('/signup')}} content="회원가입" fluid />
-                    </Modal.Description>
-                </Modal.Content>
-             </Modal>
+            <Container text>
+                <Header style={{marginTop: '30px'}}>링쿠 로그인</Header>
+                <p>
+                    <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
+                    <LoginForm onSubmit = {this._handleLoginSubmit}/>
+                    <Button style={buttonStyle} onClick={() => {this.props.history.push('/signup')}} content="회원가입" fluid />
+                </p>
+            </Container>
         );
     }
 }

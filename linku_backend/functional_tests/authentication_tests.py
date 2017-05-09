@@ -9,7 +9,7 @@ import time
 
 BASE_URL = "http://localhost:3000"
 
-"""
+
 @pytest.fixture(scope="module")
 def browser():
     if sys.platform == 'darwin':
@@ -31,6 +31,20 @@ def browser():
     driver.close()
 
 
+def login_with(browser, username, password):
+    browser.get(BASE_URL)
+    browser.find_element_by_xpath("//button[text()='로그인']").click()
+    browser.find_element_by_xpath("//input[@name='username']").send_keys(username)
+    browser.find_element_by_xpath("//input[@name='password']").send_keys(password)
+    browser.find_element_by_xpath("//button[text()='로그인' and @type='submit']").click()
+
+
+@pytest.mark.django_db
+def test_login(browser):
+    login_with(browser, 'testman@email.com', '1234')
+
+
+"""
 @pytest.mark.django_db
 def test_authentication(browser):
     browser.get(BASE_URL)

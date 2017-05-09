@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
+import {withRouter} from 'react-router-dom';
+
 class LinkUHeader extends Component {
     render() {
         let containerStyle = {
@@ -19,7 +21,7 @@ class LinkUHeader extends Component {
                 {
                     (localStorage.getItem('token') && this.props.loggedIn) ?
                     (<Button onClick={this.props.logout} basic color='blue' floated='right'>로그아웃</Button>) :
-                    (<Login triggerButton={<Button basic color='blue' floated='right'>로그인</Button>}/>)
+                    (<Button onClick={() => this.props.history.push('/login')}basic color='blue' floated='right'>로그인</Button>)
                 }
             </div>
         );
@@ -36,4 +38,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(actions, dispatch);
 };
 
-export default connect( mapStateToProps, mapDispatchToProps )(LinkUHeader);
+export default withRouter(connect( mapStateToProps, mapDispatchToProps )(LinkUHeader));
