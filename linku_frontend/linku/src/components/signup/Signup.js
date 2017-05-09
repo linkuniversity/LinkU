@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Modal, Button, Container } from 'semantic-ui-react';
+import { Modal, Button, Container, Icon } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 
-import { alertConfirm } from '../../actions/Common';
 import SignupForm from './SignupForm';
 import UniversityVerificationMailSendForm from './UniversityVerificationMailSendForm';
 import UniversityVerificationNumberSendForm from './UniversityVerificationNumberSendForm';
@@ -17,11 +16,19 @@ import {withRouter} from 'react-router-dom';
 class Signup extends Component {
     state = {
         modalOpen: false,
+        modalMessage: "",
+        modalButtonColor: "green",
         is_loading: false,
         is_university_email_verification_request_done: false,
         is_verify_auth_number_done: false,
         university_email: "",
     }
+
+    alertConfirm = (message, color) => this.setState({
+        modalOpen: true,
+        modalMessage: message,
+        modalButtonColor: color,
+    });
 
     handleOpen = (e) => this.setState({
         modalOpen: true,
@@ -42,10 +49,10 @@ class Signup extends Component {
         console.log(values);
 
         if(values.gender === undefined) {
-            this.props.alertConfirm("성별을 입력해 주세요.", "red");
+            this.alertConfirm("성별을 입력해 주세요.", "red");
         }
         if(values.password !== values.password_check) {
-            this.props.alertConfirm("비밀번호가 다릅니다.", "red");
+            this.alertConfirm("비밀번호가 다릅니다.", "red");
             console.log("password is not equal");
         }
         else {
@@ -53,16 +60,16 @@ class Signup extends Component {
             await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/users/',values)
                 .then(response => {
                     this.props.history.push('/');
-                    this.props.alertConfirm("회원가입이 완료되었습니다.", "blue");
+                    this.alertConfirm("회원가입이 완료되었습니다.", "blue");
                     this.handleClose();
                     console.log(response.data);
                 })
                 .catch(error => {
                     console.log(error.response.data);
                     if(error.response.data['username'][0] === 'user with this username already exists.')
-                        this.props.alertConfirm("이미 존재하는 이메일 입니다.", "red");
+                        this.alertConfirm("이미 존재하는 이메일 입니다.", "red");
                     else
-                        this.props.alertConfirm("회원가입에 실패했습니다.", "red");
+                        this.alertConfirm("회원가입에 실패했습니다.", "red");
                 })
             ]);
         }
@@ -85,7 +92,7 @@ class Signup extends Component {
                     university_email: value.university_email,
                     is_loading: false,
                 });
-                this.props.alertConfirm("이메일이 전송되었습니다.", "blue");
+                this.alertConfirm("이메일이 전송되었습니다.", "blue");
                 console.log(response.data);
             })
             .catch(error => {
@@ -95,13 +102,13 @@ class Signup extends Component {
                     is_loading: false,
                 });
                 if(error.response.data['message'] === 'Invalid Mail Form')
-                    this.props.alertConfirm("이메일 형식이 맞지 않습니다.", "red");
+                    this.alertConfirm("이메일 형식이 맞지 않습니다.", "red");
                 else if (error.response.data['message'] === 'Invalid University Mail Form')
-                    this.props.alertConfirm("대학교 이메일 형식에 맞지 않습니다.", "red");
+                    this.alertConfirm("대학교 이메일 형식에 맞지 않습니다.", "red");
                 else if (error.response.data['message'] === 'University Mail Already Exist')
-                    this.props.alertConfirm("이미 존재하는 대학교 이메일입니다.", "red");
+                    this.alertConfirm("이미 존재하는 대학교 이메일입니다.", "red");
                 else
-                    this.props.alertConfirm("이메일 전송에 실패했습니다.", "red");
+                    this.alertConfirm("이메일 전송에 실패했습니다.", "red");
             })
         ]);
 
@@ -113,19 +120,19 @@ class Signup extends Component {
                 this.setState({
                     is_verify_auth_number_done: true,
                 });
-                this.props.alertConfirm("인증이 완료되었습니다.", "blue");
+                this.alertConfirm("인증이 완료되었습니다.", "blue");
                 console.log(response.data);
             })
             .catch(error => {
                 console.log(error.response.data);
                 if(error.response.data['message'] === 'No such email')
-                    this.props.alertConfirm("해당 메일로 인증번호가 요청되지 않았습니다.", "red");
+                    this.alertConfirm("해당 메일로 인증번호가 요청되지 않았습니다.", "red");
                 else if (error.response.data['message'] === 'Time Out')
-                    this.props.alertConfirm("시간이 완료되었습니다 다시 요청해주세요.", "red");
+                    this.alertConfirm("시간이 완료되었습니다 다시 요청해주세요.", "red");
                 else if (error.response.data['message'] === 'Wrong Auth Number')
-                    this.props.alertConfirm("인증번호가 틀렸습니다.","red");
+                    this.alertConfirm("인증번호가 틀렸습니다.","red");
                 else
-                    this.props.alertConfirm("인증번호 처리에 실패하였습니다.", "red");
+                    this.alertConfirm("인증번호 처리에 실패하였습니다.", "red");
             })
         ]);
 
@@ -169,18 +176,24 @@ class Signup extends Component {
         return (
             <Container text>
                 {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : renderUniversityAuthentication()}
+                <Modal
+                    open={this.state.modalOpen}
+                    onClose={this.handleClose}
+                >
+                    <Modal.Content>
+                        {this.state.modalMessage}
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button color={this.state.modalButtonColor} onClick={this.handleClose}>
+                            <Icon name='checkmark' /> 확인
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
             </Container>
         );
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        alertConfirm : (message, color) => {
-            return dispatch(alertConfirm(message, color));
-        }
-    };
-};
 
 
-export default withRouter(connect(null, mapDispatchToProps)(Signup));
+export default withRouter(Signup);

@@ -9,7 +9,8 @@ import { hideLoginAlert } from '../../actions/Common';
 import { buttonStyle } from '../utils/style/Button';
 
 import axios from 'axios';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Redirect} from 'react-router-dom';
+import ConfirmModal from '../utils/ConfirmModal';
 
 class Login extends Component {
     state = { modalOpen: false }
@@ -28,6 +29,8 @@ class Login extends Component {
     render() {
         return (
             <Container text>
+                { this.props.loggedIn && <Redirect to="/"/> }
+                <ConfirmModal />
                 <Header style={{marginTop: '30px'}}>링쿠 로그인</Header>
                 <p>
                     <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
@@ -38,6 +41,12 @@ class Login extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        loggedIn : state.login.loggedIn,
+        payload : state.login.payload
+    }
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -47,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
