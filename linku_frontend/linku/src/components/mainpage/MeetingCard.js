@@ -199,52 +199,6 @@ class MeetingCard extends React.Component{
                                     </Item>
                                 </Item.Group>
                             </div>
-                            <div style={{marginTop: '50px', marginBottom: '50px'}}>
-                                <Divider />
-                            </div>
-                            <div>
-                                <div style={meetingDetailHeaderStyle}>
-                                    일정
-                                </div>
-                                <div style={meetingDetailPlanStyle}>
-                                    <Item>
-                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>17:00 ~ 18:30</Item.Header>
-                                        <Item.Description style={{marginLeft: '20px'}}>
-                                            혜화역 3번 출구에서 첫 만남<br/>
-                                                <u>호호식당 </u>
-                                            에서 맛있는 식사를 해요 :D<br/>
-                                        </Item.Description>
-                                    </Item>
-                                    <Item>
-                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>18:30 ~ 19:30</Item.Header>
-                                        <Item.Description style={{marginLeft: '20px'}}>
-                                                <u>Yx2 보드게임 카페 </u>로 이동 <br/>
-                                            다 같이 즐거운 보드게임을 하면서 친해져요<br/>
-                                        </Item.Description>
-                                    </Item>
-                                    <Item>
-                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>19:30 ~ 20:00</Item.Header>
-                                        <Item.Description style={{marginLeft: '20px'}}>
-                                            근처에 있는
-                                                <u>우리 게임랜드 </u>
-                                            에 들러서<br/>
-                                            추억의 오락게임도 하고 스트레스를 날려봐요!<br/>
-                                        </Item.Description>
-                                    </Item>
-                                    <Item>
-                                        <Item.Header style={{marginTop:'20px', marginBottom:'5px'}} as='h4'>선택 사항</Item.Header>
-                                        <Item.Description style={{marginLeft: '20px'}}>
-                                            새로운 친구들과의 모임이 즐거웠다면,<br/>
-                                            2차 장소로
-                                                <u>심야식당 </u>
-                                            을 추천드려요!<br/>
-                                            (칵테일이 당긴다면 조금 멀어도
-                                                <u>인생의 단맛 </u>
-                                            을 추천드려요)<br/>
-                                        </Item.Description>
-                                    </Item>
-                                </div>
-                            </div>
                         </div>
                         </Card.Content>
                     </Card>
