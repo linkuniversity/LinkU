@@ -10,7 +10,7 @@ const getAccount = (selectedValue) => {
     else if(selectedValue === 1)
         return (<span>우리 1002-750-301942 최지훈</span>);
     else if(selectedValue === 2)
-        reutnr (<span>신한 110-365-994395 이태우</span>);
+        return (<span>신한 110-365-994395 이태우</span>);
 }
 
 const getDeadLine = (selectedValue) => {
