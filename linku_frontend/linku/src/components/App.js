@@ -12,7 +12,6 @@ import LinkUFooter from './mainpage/LinkUFooter';
 
 const App = () => (
     <div >
-        <ConfirmModal />
         <IntroOfLinkU />
         <MeetingCardBox />
         <NextMeetingAlarm />

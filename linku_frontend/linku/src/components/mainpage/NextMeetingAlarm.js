@@ -1,14 +1,17 @@
 import React from 'react';
-import { Container, Button } from 'semantic-ui-react';
+import { Container, Button, Modal, Icon } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import {connect} from 'react-redux';
 import axios from 'axios';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 import Login from '../login/Login';
-import { alertConfirm } from '../../actions/Common';
 
 class NextMeetingAlarm extends React.Component{
+    state = { modalOpen: false, isApplyed: false }
+
+    handleCloseModal = () => this.setState({modalOpen: false})
+
     handleClick = async () => {
         const config = {
             headers: { 'Authorization': 'Token ' + localStorage.getItem('token') }
@@ -16,9 +19,10 @@ class NextMeetingAlarm extends React.Component{
         await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/next-meeting-alarm/', undefined, config)
             .then( response => {
                 console.log(response);
-                this.props.alertConfirm("신청이 완료되었어요 :D", "blue");
+                this.setState({modalOpen: true, isApplyed: false});
             }).catch(e => {
-                this.props.alertConfirm("이미 신청되었어요 :D", "blue");
+                console.log(e);
+                this.setState({modalOpen: true, isApplyed: true});
             })
         ]);
     }
@@ -51,6 +55,19 @@ class NextMeetingAlarm extends React.Component{
             <Container style={containerStyle}>
                 이번 모임이 시간에 맞지 않는다면 ?<br/>
                 앞으로 진행될 모임의 일정을 문자로 알려드려요 :D<br/>
+                <Modal
+                    open={this.state.modalOpen}
+                    onClose={this.handleCloseModal}
+                >
+                    <Modal.Content>
+                        {(this.state.isApplyed) ? '이미 신청되었어요 :D' : '신청이 완료되었어요 :D' }
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button color='green' onClick={this.handleCloseModal}>
+                            <Icon name='checkmark' /> 확인
+                        </Button>
+                    </Modal.Actions>
+                </Modal>
                 {getBtnByState()}
             </Container>
         );
@@ -62,12 +79,5 @@ const mapStateToProps = (state) => {
         loggedIn : state.login.loggedIn
     }
 };
-const mapDispatchToProps = (dispatch) => {
-    return {
-        alertConfirm : (message, color) => {
-            return dispatch(alertConfirm(message, color));
-        }
-    }
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm);
+export default connect(mapStateToProps)(NextMeetingAlarm);
