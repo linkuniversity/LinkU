@@ -191,7 +191,6 @@ class MeetingCard extends React.Component{
                                                 <div style={{lineHeight: '23px'}}>
                                                     목살 스테이크로 유명한 서가앤쿡에 한상 메뉴가 땡겨서 모임을 만들었어요.<br/>
                                                     새우 필라프, 베이컨 까르보나라… 혼자서는 다 못 먹을 것 같은 다양한 메뉴들.. 같이 먹어요!<br/>
-                                                    모임 진행은 제가 이끌어 드릴게요.<br/>
                                                     다같이 즐거운 저녁시간 보내고 더 친해질 수 있는 2차도 함께 가요 :)<br/>
                                                 </div>
                                             </Item.Description>
