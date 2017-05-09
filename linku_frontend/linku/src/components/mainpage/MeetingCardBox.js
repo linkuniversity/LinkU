@@ -13,7 +13,7 @@ class MeetingCardBox extends React.Component {
     render() {
         const mapToComponents = (data) => {
             return data.map((meeting_infos, i) => {
-                if(i===1)
+                if(i===0)
                     return ( <MeetingCard meetingInfo={ meeting_infos } key={i}/>);
             });
         };
