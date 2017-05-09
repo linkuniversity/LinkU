@@ -72,6 +72,9 @@ const PaymentDescription = () => (
 class Apply extends React.Component{
     state = {modalOpen: false, isWantedPayment: false}
 
+    handleJoin = (e) => {
+        this.handleOpen(e);
+    }
     handleOpen = (e) => this.setState({
         modalOpen: true
     })
@@ -89,26 +92,28 @@ class Apply extends React.Component{
     }
     render(){
         return(
-            <Modal
-                trigger={(<Button onClick={this.handleOpen} color='blue' fluid>같이 놀자!</Button>)}
-                open={this.state.modalOpen}
-                onClose={this.handleClose}
-                closeIcon='close'>
-                <Modal.Content>{
-                    (this.state.isWantedPayment) ?
-                    <PaymentApplyContents selectedValue={this.props.selectedValue} paymentInfo={this.props.paymentInfo}/>
-                    :
-                    <PaymentDescription />
-                }{
-                    (this.state.isWantedPayment) ?
-                    <Button onClick={this.handleClose} style={{marginBottom: '10px'}} fluid color='blue'>
-                        결제 완료
-                    </Button>
-                    :
-                    <Button onClick={this.handlePayment} style={{marginBottom: '10px'}} fluid color='blue'>결제 진행하기</Button>
-                }
-                </Modal.Content>
-            </Modal>
+            <div>
+                <Button onClick={this.handleJoin} color='blue' fluid>같이 놀자!</Button>
+                <Modal
+                    open={this.state.modalOpen}
+                    onClose={this.handleClose}
+                    closeIcon='close'>
+                    <Modal.Content>{
+                        (this.state.isWantedPayment) ?
+                        <PaymentApplyContents selectedValue={this.props.selectedValue} paymentInfo={this.props.paymentInfo}/>
+                        :
+                        <PaymentDescription />
+                    }{
+                        (this.state.isWantedPayment) ?
+                        <Button onClick={this.handleClose} style={{marginBottom: '10px'}} fluid color='blue'>
+                            결제 완료
+                        </Button>
+                        :
+                        <Button onClick={this.handlePayment} style={{marginBottom: '10px'}} fluid color='blue'>결제 진행하기</Button>
+                    }
+                    </Modal.Content>
+                </Modal>
+            </div>
         );
     }
 }

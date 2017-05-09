@@ -6,11 +6,7 @@ import axios from 'axios';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 import Login from '../login/Login';
-<<<<<<< HEAD
-=======
-import { alertConfirm } from '../../actions/Common';
 import {withRouter} from 'react-router-dom';
->>>>>>> 8b730969835454f9c5c23894937f8f9b22f4489a
 
 class NextMeetingAlarm extends React.Component{
     state = { modalOpen: false, isApplyed: false }
@@ -90,8 +86,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-<<<<<<< HEAD
-export default connect(mapStateToProps)(NextMeetingAlarm);
-=======
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NextMeetingAlarm));
->>>>>>> 8b730969835454f9c5c23894937f8f9b22f4489a
+export default withRouter(connect(mapStateToProps)(NextMeetingAlarm));

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ConfirmModal from './utils/ConfirmModal';
 import MeetingCardBox from './mainpage/MeetingCardBox';
 import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';

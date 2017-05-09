@@ -10,6 +10,7 @@ import Apply from './Apply';
 import Login from '../login/Login';
 
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+import {withRouter} from 'react-router-dom';
 
 class MeetingCard extends React.Component{
     constructor(props){
@@ -161,12 +162,12 @@ class MeetingCard extends React.Component{
                     );
                 }
                 else {
-                    const button = (<Button onClick={ () => {
+                    return (<Button onClick={ () => {
                             var ReactGA = require('react-ga');
                             ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
+                            this.props.history.push('/login');
                         }
                     } color='blue' fluid>같이 놀자!</Button>);
-                    return (<Login triggerButton={button}/>);
                 }
             }
         };
@@ -286,4 +287,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(actions, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MeetingCard);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MeetingCard));
