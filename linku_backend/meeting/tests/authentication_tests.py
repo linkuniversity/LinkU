@@ -162,3 +162,27 @@ def test_correct_login(client):
 
     assert response.status_code == 200
     assert 'token' in response.data.keys()
+
+
+@pytest.mark.django_db
+def test_university_authentication_already_exist(client):
+    login_data = {
+        'username': 'test@test.com',
+        'password': 'test password',
+    }
+
+    signup_data = {
+        'username': 'test@test.com',
+        'name': 'test name',
+        'gender': 'M',
+        'password': 'test password',
+        'phone_number': '01000000000',
+        'authenticated_university_email': 'test@authenticated.ac.kr'
+    }
+
+    client.post('/users/', signup_data)
+    response = client.post('/login/', login_data)
+    assert response.status_code == 200
+
+    response = client.post('/university-verification-email/', {'university_email': 'test@authenticated.ac.kr'})
+    assert response.status_code == 400
