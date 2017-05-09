@@ -12,17 +12,13 @@ import {withRouter} from 'react-router-dom';
 class LinkUHeader extends Component {
     render() {
         let containerStyle = {
-            padding: '5px'
+            marginTop: '40px',
+            textAlign: 'center'
         };
 
         return (
             <div style={containerStyle}>
-                <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} verticalAlign='top'/>
-                {
-                    (localStorage.getItem('token') && this.props.loggedIn) ?
-                    (<Button onClick={this.props.logout} basic color='blue' floated='right'>로그아웃</Button>) :
-                    (<Button onClick={() => this.props.history.push('/login')}basic color='blue' floated='right'>로그인</Button>)
-                }
+                <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} centered />
             </div>
         );
     }

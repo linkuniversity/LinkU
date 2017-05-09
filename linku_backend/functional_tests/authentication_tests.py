@@ -33,7 +33,7 @@ def browser():
 
 def login_with(browser, username, password):
     browser.get(BASE_URL)
-    browser.find_element_by_xpath("//button[text()='로그인']").click()
+    browser.find_element_by_xpath("//button[text()='알림받기']").click()
     browser.find_element_by_xpath("//input[@name='username']").send_keys(username)
     browser.find_element_by_xpath("//input[@name='password']").send_keys(password)
     browser.find_element_by_xpath("//button[text()='로그인' and @type='submit']").click()
