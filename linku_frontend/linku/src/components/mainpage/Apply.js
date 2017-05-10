@@ -8,7 +8,7 @@ const getAccount = (selectedValue) => {
     if(selectedValue === 0)
         return (<span>신한 110-374-439288 장선혁</span>);
     else if(selectedValue === 1)
-        return (<span>우리 1002-750-301942 최지훈</span>);
+        return (<span>우리 1002-750-309142 최지훈</span>);
     else if(selectedValue === 2)
         return (<span>신한 110-365-994395 이태우</span>);
 }
