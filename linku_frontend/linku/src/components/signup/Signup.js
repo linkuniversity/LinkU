@@ -178,13 +178,14 @@ class Signup extends Component {
                 {this.state.is_verify_auth_number_done ? <SignupForm onSubmit={this._handleSignupSubmit}/> : renderUniversityAuthentication()}
                 <Modal
                     open={this.state.modalOpen}
-                    onClose={this.handleClose}
+                    onClose={() => this.setState({modalOpen: false})}
                 >
                     <Modal.Content>
                         {this.state.modalMessage}
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color={this.state.modalButtonColor} onClick={this.handleClose}>
+                        <Button color={this.state.modalButtonColor}
+                            onClick={() => this.setState({modalOpen: false})}>
                             <Icon name='checkmark' /> 확인
                         </Button>
                     </Modal.Actions>
