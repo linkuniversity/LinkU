@@ -30,6 +30,9 @@ class MeetingViewSet(viewsets.ModelViewSet):
     queryset = Meeting.objects.all()
     serializer_class = MeetingSerializer
 
+    def create(self, request):
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
     @detail_route(methods=['post'], url_path='apply')
     def apply(self, request, pk=None):
         meeting = Meeting.objects.get(pk=pk)
