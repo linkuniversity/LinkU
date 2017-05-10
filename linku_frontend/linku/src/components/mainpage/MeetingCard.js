@@ -37,12 +37,6 @@ class MeetingCard extends React.Component{
         });
     }
 
-    componentWillMount(){
-        localStorage.setItem('token', undefined);
-        localStorage.setItem('user_gender', undefined);
-        localStorage.setItem('participated_dates', undefined);
-    }
-
     getDateStr(date) {
         const WEEK_DAY = ["일", "월", "화", "수", "목", "금", "토"];
         const meeting_date = new Date(date);
@@ -61,6 +55,8 @@ class MeetingCard extends React.Component{
 
     isParticipated(selected_date) {
         const dates = localStorage.getItem('participated_dates');
+        if(dates===null)
+            return false;
         if(dates.length > 20)
             return true;
         else if(dates===selected_date)
