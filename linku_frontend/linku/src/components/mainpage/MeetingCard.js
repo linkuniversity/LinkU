@@ -208,13 +208,7 @@ class MeetingCard extends React.Component{
                                 <div style={meetingApplyFontStyle}><strong>시간</strong> : 19시</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
-                                <div style={meetingApplyFontStyle}>
-                                    <strong>현재 참여인원 </strong>
-                                    <div style={meetingMemberStyle}>
-                                        <Icon style={{paddingBottom:'30px'}} name='woman' color='pink' size='large'/> {this.state.participant_woman_num} 명 <br/>
-                                        <Icon name='man' color='blue' size='large'/>  {this.state.participant_man_num} 명
-                                    </div>
-                                </div>
+
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
