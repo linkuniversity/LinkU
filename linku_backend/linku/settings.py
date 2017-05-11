@@ -81,6 +81,7 @@ WSGI_APPLICATION = 'linku.wsgi.application'
 
 mysql_user = 'linku'
 mysql_password = os.getenv('LINKU_MYSQL_PASSWORD', '')
+
 if os.getenv('LINKU_SERVER_ENVIRONMENT', 'local') == 'ci':
     mysql_user = 'root'
     mysql_password = ''
