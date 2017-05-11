@@ -54,6 +54,9 @@ class Meeting(models.Model):
     category = models.CharField(max_length=30)
     specific_link = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.title
+
 
 class StatusByDay(models.Model):
     start_time = models.DateTimeField()
@@ -61,6 +64,8 @@ class StatusByDay(models.Model):
     appliers = models.ManyToManyField(settings.AUTH_USER_MODEL)
     meeting = models.ForeignKey('Meeting', null=True, related_name="status_by_days", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.meeting.title + ' | ' + str(self.start_time)
 
 class SubImage(models.Model):
     path = models.ImageField(default=SAVED_MEETING_DEFAULT_IMAGE_NAME)
