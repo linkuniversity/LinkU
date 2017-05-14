@@ -16,7 +16,7 @@ name |  value | description
 `SENTRY_KEY` |  | linku server sentry key
 `LINKU_MYSQL_PASSWORD` |  | linku MySQL password
 `LINKU_SERVER_ENVIRONMENT` | local | linku local(for developer) personal computer
- | development | linku development server
- | production | linku production server
- | ci | circle ci
+ 　| development | linku development server
+ 　| production | linku production server
+ 　| ci | circle ci
 `REACT_APP_LINKU_SERVER_ENVIRONMENT` | local | local environment used in linku_frontend
