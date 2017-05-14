@@ -97,10 +97,10 @@ DATABASES = {
     }
 }
 
-if sys.platform == "linux2" or sys.platform == "linux":
+if os.environ['LINKU_SERVER_ENVIRONMENT'] == "development" or os.environ['LINKU_SERVER_ENVIRONMENT'] == "production":
     # raven configuration
     RAVEN_CONFIG = {
-        'dsn': 'https://'+os.environ['SENTRY_KEY']+":"+os.environ['SENTRY_SECRET']+'@sentry.io/163297',
+        'dsn': 'https://'+os.environ['SENTRY_KEY']+":"+os.environ['SENTRY_SECRET'],
         # If you are using git, you can also automatically configure the
         # release based on the git info.
         'release': raven.fetch_git_sha(os.path.dirname(BASE_DIR)),
