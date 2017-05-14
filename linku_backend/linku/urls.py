@@ -43,5 +43,11 @@ urlpatterns = [
         name="check_university_verification_auth_number")
 ]
 
+urlpatterns += [
+    # match the root
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    # match all other pages
+    url(r'^.*$', views.IndexView.as_view(), name='index'),
+]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
