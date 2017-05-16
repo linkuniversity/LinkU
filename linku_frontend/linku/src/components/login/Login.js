@@ -35,7 +35,7 @@ class Login extends Component {
                 <p>
                     <h>링쿠는 대학생만 이용할 수 있는 서비스입니다.</h>
                     <LoginForm onSubmit = {this._handleLoginSubmit}/>
-                    <Button style={buttonStyle} onClick={() => {this.props.history.push('/signup')}} content="회원가입" fluid />
+                    <Button style={buttonStyle} onClick={() => {this.props.history.push('/singup_selection')}} content="회원가입" fluid />
                 </p>
             </Container>
         );
