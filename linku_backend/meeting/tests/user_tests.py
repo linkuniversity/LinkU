@@ -27,7 +27,7 @@ def get_login_token(user):
 
 @pytest.mark.django_db
 def test_get_participated_meeting_list(client):
-    meeting = Meeting.objects.get(title='test title')
+    meeting = Meeting.objects.get(title='test current meeting title')
     user = create_test_user(client)
     status_list = StatusByDay.objects.filter(meeting=meeting)
 
