@@ -5,10 +5,10 @@ import * as actions from '../actions/meetingcard';
 function* fetchMeetingCardInfos(action){
     try{
         yield put(actions.requestMeetingCardInfos());
-        const [meeting] = yield [
-            call(service.getMeetingInfos)
-        ];
-        yield put(actions.receiveMeetingCardInfos(meeting));
+        let meetings = [];
+        meetings.push(yield [call(service.getCurrentMeetingInfos)]);
+        meetings.push(yield [call(service.getPrearrangedMeetingInfos)]);
+        yield put(actions.receiveMeetingCardInfos(meetings));
     }catch(e){
         console.log(e);
         yield put(actions.receiveMeetingCardInfosFailed());

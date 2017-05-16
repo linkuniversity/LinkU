@@ -169,7 +169,7 @@ class MeetingCard extends React.Component{
         };
 
         return(
-            <Container style={meetingInfoBackgroundStyle}>
+            <Container id='meeting-card' style={meetingInfoBackgroundStyle}>
                 <Grid centered>
                     <Card style={meetingInfoStyle}>
                         <Image src={DEFAULT_REQUEST_URL +'/media/meeting_card_second.jpg'}></Image>
