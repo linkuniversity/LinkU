@@ -8,16 +8,11 @@ import Review from './mainpage/Review';
 import Statistics from './mainpage/Statistics';
 import LinkUContact from './mainpage/LinkUContact';
 import LinkUFooter from './mainpage/LinkUFooter';
+import AmendingPage from './ameding_page/AmendingPage'
 
 const App = () => (
     <div >
-        <IntroOfLinkU />
-        <MeetingCardBox />
-        <NextMeetingAlarm />
-        <Review />
-        <Statistics />
-        <LinkUContact />
-        <LinkUFooter />
+        <AmendingPage/>
     </div>
 );
 
