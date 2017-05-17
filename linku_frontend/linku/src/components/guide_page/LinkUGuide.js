@@ -5,6 +5,14 @@ import 'semantic-ui-css/semantic.min.css';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class LinkUGuide extends React.Component{
+
+    componentDidMount() {
+        if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
+            var ReactGA = require('react-ga');
+            ReactGA.pageview(window.location.pathname);
+        }
+    }
+
     render(){
         let descriptionStyle = {
             marginTop: "20px",

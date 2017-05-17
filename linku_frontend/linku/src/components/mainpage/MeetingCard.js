@@ -22,6 +22,7 @@ class MeetingCard extends React.Component{
             participant_man_num : undefined,
             participant_woman_num : undefined,
             start_time : undefined,
+            max_num_of_members : undefined,
         };
     }
 
@@ -34,6 +35,7 @@ class MeetingCard extends React.Component{
             participant_man_num : current_status.participant_num.man,
             participant_woman_num : current_status.participant_num.woman,
             start_time_str : this.getStartTimeStr(new Date(current_status.start_time)),
+            max_num_of_members : current_status.max_num_of_members,
         });
     }
 
@@ -113,6 +115,15 @@ class MeetingCard extends React.Component{
             paddingTop: '20px',
             fontSize: '12pt',
         };
+
+        let imminentDeadlineTextStyle = {
+            color: '#5fa1d7',
+            fontSize: '12pt',
+            marginTop: '17px',
+            textAlign:"left",
+            marginLeft:"6px"
+        }
+
         let meetingDateOptions = [];
 
         if(this.props.meetingInfo.status_by_days)
@@ -159,16 +170,32 @@ class MeetingCard extends React.Component{
                 }
                 else {
                     return (<Button onClick={ () => {
+                        if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
                             var ReactGA = require('react-ga');
                             ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
 
-                            localStorage.setItem("redirectUrlOnCompletion", "/payment-description");
                             this.props.history.push('/login');
+                        }
+                        localStorage.setItem("redirectUrlOnCompletion", "/payment-description");
+                        this.props.history.push('/login');
                         }
                     } color='blue' fluid>같이 놀자!</Button>);
                 }
             }
         };
+
+        const getImminentDeadlineByAppliers = () => {
+            if(this.state.participant_num === this.state.max_num_of_members - 1){
+                return(
+                    <p style={imminentDeadlineTextStyle}>
+                        마감임박~!
+                    </p>
+                )
+            }
+            else {
+                return null;
+            }
+        }
 
         return(
             <Container style={meetingInfoBackgroundStyle}>
@@ -210,7 +237,7 @@ class MeetingCard extends React.Component{
                                 <div style={meetingApplyFontStyle}><strong>시간</strong> : 19시</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
-
+                                {getImminentDeadlineByAppliers()}
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
