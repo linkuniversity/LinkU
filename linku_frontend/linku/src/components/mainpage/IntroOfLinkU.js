@@ -5,6 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import {Link} from 'react-router-dom';
 import LinkUGuide from '../guide_page/LinkUGuide';
 import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
+import {withRouter} from 'react-router-dom';
 
 class IntroOfLinkU extends React.Component {
     constructor(props) {
@@ -27,7 +28,8 @@ class IntroOfLinkU extends React.Component {
             textAlign: 'center',
             backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/header_background.png)',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
+            backgroundPosition: 'center top',
+            backgroundAttachment: 'fixed',
             width: '100%',
             height: '480px',
             color: '#FFFFFF',
@@ -37,13 +39,16 @@ class IntroOfLinkU extends React.Component {
             marginTop: '20px',
             marginBottom: '26px',
             fontSize: '33px',
-            lineHeight: '50px'
+            lineHeight: '50px',
+            textShadow: '0.0em 0.1em 0.15em #666'
         }
+
         let promotionSmallWordStyle = {
             marginTop: '20px',
             marginBottom: '20px',
             fontSize: '23px',
-            lineHeight: '40px'
+            lineHeight: '40px',
+            textShadow: '0.0em 0.1em 0.15em #666'
         }
 
         let guideButtonLargeStyle = {
@@ -62,17 +67,19 @@ class IntroOfLinkU extends React.Component {
                 <MediaQuery minDeviceWidth={1}>
                     <MediaQuery minWidth={600}>
                         <div style={promotionLargeWordStyle}>
-                            링쿠는 다같이 먹고 놀고 친해지는 <br/>
-                            대학생 밥모임 연결 서비스입니다. <br/>
+                            <b>링쿠</b>는 다같이 <b>먹고 놀고 친해지는</b> <br/>
+                            <b>대학생 밥모임</b> 연결 서비스입니다. <br/>
                         </div>
-                        <Link to='/about' style={guideButtonLargeStyle}>이용안내></Link>
+                        <Button style={{backgroundColor: '#5fa1d7', width: '150px', fontSize: '16px'}} color='blue' content='이용안내'
+                            onClick={() => this.props.history.push('/about')} />
                     </MediaQuery>
                     <MediaQuery maxWidth={600}>
                         <div style={promotionSmallWordStyle}>
-                            링쿠는 다같이 먹고 놀고 친해지는 <br/>
-                            대학생 밥모임 연결 서비스입니다. <br/>
+                            <b>링쿠</b>는 다같이 <b>먹고 놀고 친해지는</b> <br/>
+                            <b>대학생 밥모임</b> 연결 서비스입니다. <br/>
                         </div>
-                        <Link to='/about' style={guideButtonSmallStyle}>이용안내></Link>
+                        <Button style={{backgroundColor: '#5fa1d7', width: '150px', fontSize: '16px'}} color='blue' content='이용안내'
+                            onClick={() => this.props.history.push('/about')} />
                     </MediaQuery>
                 </MediaQuery>
             </Container>
@@ -81,4 +88,4 @@ class IntroOfLinkU extends React.Component {
 
 }
 
-export default IntroOfLinkU;
+export default withRouter(IntroOfLinkU);
