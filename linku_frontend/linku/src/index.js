@@ -39,7 +39,6 @@ ReactDOM.render(
     <Provider store = {store} >
         <Router onUpdate={logPageView}>
             <div>
-                <LinkUHeader />
                 <div>
                     <Switch>
                         <Route exact path="/" component={App}/>

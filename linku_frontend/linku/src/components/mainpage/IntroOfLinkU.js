@@ -1,9 +1,10 @@
 import React from 'react';
-import {Container, Button} from 'semantic-ui-react'
+import {Container, Button, Image} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 
 import {Link} from 'react-router-dom';
 import LinkUGuide from '../guide_page/LinkUGuide';
+import {DEFAULT_REQUEST_URL} from '../utils/RequestUrlSetting';
 
 class IntroOfLinkU extends React.Component {
     constructor(props) {
@@ -20,32 +21,60 @@ class IntroOfLinkU extends React.Component {
     })
 
     render() {
+        let MediaQuery = require('react-responsive');
         let containerStyle = {
-            marginTop: '30px',
-            textAlign: "center",
+            paddingTop: '100px',
+            textAlign: 'center',
+            backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/header_background.png)',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '480px',
+            color: '#FFFFFF',
         }
 
-        let promotionWordStyle = {
-            width: "100%",
-            fontSize: '19pt',
-            lineHeight: '40px',
-        };
+        let promotionLargeWordStyle = {
+            marginTop: '20px',
+            marginBottom: '26px',
+            fontSize: '33px',
+            lineHeight: '50px'
+        }
+        let promotionSmallWordStyle = {
+            marginTop: '20px',
+            marginBottom: '20px',
+            fontSize: '23px',
+            lineHeight: '40px'
+        }
 
-        let guideButtonStyle = {
-            marginTop: '5px',
-            color: '#5fa1d7',
-            backgroundColor: '#FFFFFF',
-            border: '0px',
-            fontSize: '23px'
+        let guideButtonLargeStyle = {
+            color: '#FFFFFF',
+            fontSize: '32px'
+        }
+
+        let guideButtonSmallStyle = {
+            color: '#FFFFFF',
+            fontSize: '26px'
         }
 
         return (
             <Container centered style={containerStyle}>
-                <div style={promotionWordStyle}>
-                    링쿠는 다같이 <b style={{color:'#60a2d9'}}>먹고 놀며 친해지는</b><br/>
-                    <b style={{color:'#60a2d9'}}>대학생</b> 친구/모임 연결 서비스 입니다.<br/>
-                    <Link to='/about' style={guideButtonStyle}>이용안내></Link>
-                </div>
+                <Image src={DEFAULT_REQUEST_URL+"/media/logo_top.png"} centered />
+                <MediaQuery minDeviceWidth={1}>
+                    <MediaQuery minWidth={600}>
+                        <div style={promotionLargeWordStyle}>
+                            링쿠는 다같이 먹고 놀고 친해지는 <br/>
+                            대학생 밥모임 연결 서비스입니다. <br/>
+                        </div>
+                        <Link to='/about' style={guideButtonLargeStyle}>이용안내></Link>
+                    </MediaQuery>
+                    <MediaQuery maxWidth={600}>
+                        <div style={promotionSmallWordStyle}>
+                            링쿠는 다같이 먹고 놀고 친해지는 <br/>
+                            대학생 밥모임 연결 서비스입니다. <br/>
+                        </div>
+                        <Link to='/about' style={guideButtonSmallStyle}>이용안내></Link>
+                    </MediaQuery>
+                </MediaQuery>
             </Container>
         );
     }
