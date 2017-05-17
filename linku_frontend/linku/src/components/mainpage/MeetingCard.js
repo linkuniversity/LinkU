@@ -161,6 +161,8 @@ class MeetingCard extends React.Component{
                     return (<Button onClick={ () => {
                             var ReactGA = require('react-ga');
                             ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
+
+                            localStorage.setItem("redirectUrlOnCompletion", "/payment-description");
                             this.props.history.push('/login');
                         }
                     } color='blue' fluid>같이 놀자!</Button>);

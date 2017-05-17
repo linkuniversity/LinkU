@@ -15,6 +15,8 @@ import LinkUHeader from './components/mainpage/LinkUHeader';
 import LinkUGuide from './components/guide_page/LinkUGuide';
 import Signup from './components/signup/Signup';
 import Login from './components/login/Login';
+import PaymentDescription from './components/payment/PaymentDescription';
+import PaymentApplyContents from './components/payment/PaymentApplyContents';
 
 var ReactGA = require('react-ga');
 ReactGA.initialize('UA-97944196-1');
@@ -43,6 +45,8 @@ ReactDOM.render(
                 <div>
                     <Switch>
                         <Route exact path="/" component={App}/>
+                        <Route path="/payment-description" component={PaymentDescription} />
+                        <Route path="/payment-apply-contents" component={PaymentApplyContents} />
                         <Route path="/about" component={LinkUGuide} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/login" component={Login} />
