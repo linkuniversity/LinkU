@@ -27,3 +27,14 @@ test:
     - ./linku_frontend/run_tests.sh
   post:
     - codecov
+
+deployment:
+  development:
+    branch: develop
+    commands:
+      - ./deploy_to_development_server.sh
+
+  production: 
+    branch: master
+    commands:
+      - ./deploy_to_production_server.sh
