@@ -29,7 +29,7 @@ def test_signup(browser):
     browser.find_element_by_xpath("//button[text()='인증번호 발송']").click()
 
     # 발송 될 때까지 로딩하는 장면이 보였고 철수는 기다리다가
-    modal_elem = WebDriverWait(browser, 10).until(
+    modal_elem = WebDriverWait(browser, 30).until(
         EC.presence_of_element_located((By.XPATH, "//div[@class='ui modal transition visible active']"))
     )
 
@@ -47,7 +47,7 @@ def test_signup(browser):
     browser.find_element_by_xpath("//button[text()='인증 요청']").click()
 
     # 인증이 완료되었습니다 라는 메세지를 가진 모달창이 나와서
-    cmp_modal = WebDriverWait(browser, 10).until(
+    cmp_modal = WebDriverWait(browser, 30).until(
         EC.presence_of_element_located((By.XPATH, "//div[@class='ui page modals dimmer transition visible active']"))
     )
     assert '인증이 완료되었습니다' in cmp_modal.text
@@ -68,7 +68,7 @@ def test_signup(browser):
     browser.find_element_by_xpath("//button[text()='가입 완료']").click()
 
     # 회원가입이 완료되었습니다 라는 모달 창이 떴고
-    verfi_modal = WebDriverWait(browser, 10).until(
+    verfi_modal = WebDriverWait(browser, 30).until(
         EC.presence_of_element_located((By.XPATH, "//div[@class='ui page modals dimmer transition visible active']"))
     )
     assert '회원가입이 완료되었습니다' in verfi_modal.text
