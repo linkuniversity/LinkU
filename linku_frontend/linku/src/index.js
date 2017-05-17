@@ -10,6 +10,7 @@ import { reducers } from './reducers';
 import { Provider } from 'react-redux';
 
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {browserHistory} from 'react-router';
 import createSagaMiddleware from 'redux-saga';
 import LinkUHeader from './components/mainpage/LinkUHeader';
 import LinkUGuide from './components/guide_page/LinkUGuide';
@@ -37,12 +38,12 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store = {store} >
-        <Router onUpdate={logPageView}>
+        <Router>
             <div>
                 <LinkUHeader />
                 <div>
                     <Switch>
-                        <Route exact path="/" component={App}/>
+                        <Route exact path="/" component={App} />
                         <Route path="/about" component={LinkUGuide} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/login" component={Login} />

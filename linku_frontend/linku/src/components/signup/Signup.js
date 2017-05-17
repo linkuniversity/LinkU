@@ -24,6 +24,13 @@ class Signup extends Component {
         university_email: "",
     }
 
+    componentDidMount() {
+        if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
+            var ReactGA = require('react-ga');
+            ReactGA.pageview(window.location.pathname);
+        }
+    }
+
     alertConfirm = (message, color) => this.setState({
         modalOpen: true,
         modalMessage: message,

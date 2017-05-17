@@ -13,6 +13,14 @@ import {withRouter, Redirect} from 'react-router-dom';
 import ConfirmModal from '../utils/ConfirmModal';
 
 class Login extends Component {
+
+    componentDidMount() {
+        if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
+            var ReactGA = require('react-ga');
+            ReactGA.pageview(window.location.pathname);
+        }
+    }
+
     state = { modalOpen: false }
 
     handleOpen = (e) => this.setState({

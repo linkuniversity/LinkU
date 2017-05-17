@@ -20,3 +20,4 @@ name |  value | description
  　| production | linku production server
  　| ci | circle ci
 `REACT_APP_LINKU_SERVER_ENVIRONMENT` | local | local environment used in linku_frontend
+　 | production | production environment used in linku_frontend
