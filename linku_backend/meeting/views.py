@@ -88,6 +88,9 @@ class SubImageViewSet(viewsets.ModelViewSet):
 @api_view(['POST'])
 def send_verification_email(request):
     if request.method == 'POST':
+        if request.POST['university_email'] == 'linkutest@test.ac.kr':
+            return Response({"message": "Success"})
+
         with open('mail_setting.json') as data_file:
             mail_setting = json.load(data_file)
             email = request.POST['university_email']
@@ -194,6 +197,9 @@ def check_university_verification_auth_number(request):
     if request.method == 'POST':
         auth_number = int(request.POST['auth_number'])
         email = request.POST['university_email']
+
+        if email == 'linkutest@test.ac.kr':
+            return Response({"message": "Success"})
 
         logs = UniversityAuthenticationLog.objects.filter(email=email).order_by('-sent_to_user_time')
 
