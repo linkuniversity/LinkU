@@ -70,7 +70,7 @@ class MeetingCard extends React.Component{
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
             paddingTop: '3%',
-            paddingBottom: '9%'
+            paddingBottom: '4%'
         };
         let meetingInfoStyle = {
             width: '620px',
