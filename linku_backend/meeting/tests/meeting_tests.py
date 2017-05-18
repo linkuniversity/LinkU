@@ -6,28 +6,7 @@ from meeting.serializer import MeetingSerializer
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
 SAVED_TEST_IMAGE_NAME2 = 'test_image2.jpg'
-
-
-@pytest.fixture(scope="module")
-def temp_meeting_data():
-    temp_meeting = Meeting.objects.create(maker_name='test maker_name',
-                                          title='test current meeting title',
-                                          place='test place',
-                                          price=5000,
-                                          meeting_specific_info='test meeting_specific_info',
-                                          restaurant_name='test restaurant_name',
-                                          category='tes category',
-                                          specific_link='test specific_link',
-                                          main_image=SAVED_TEST_IMAGE_NAME,
-                                          )
-
-    StatusByDay.objects.create(start_time=datetime.datetime.now(),
-                               num_of_joined_members=1,
-                               max_num_of_members=6,
-                               meeting=temp_meeting)
-
-    return temp_meeting
-
+MEETING_LEADER_TEST_IMAGE = 'test_meeting_leader.png'
 
 @pytest.mark.django_db
 def test_json_header_when_meetings_GET_request(client):
@@ -39,7 +18,10 @@ def test_json_header_when_meetings_GET_request(client):
 
 @pytest.mark.django_db
 def test_create_meeting_model():
-    Meeting.objects.get(title='test current meeting title')
+    Meeting.objects.create(
+        place="테스트역 2번툴구",
+        leader_image=MEETING_LEADER_TEST_IMAGE,
+        leader_talk="test meeting1 specific info")
 
 
 @pytest.mark.django_db
@@ -56,7 +38,7 @@ def test_correct_json_data_when_meetings_GET_request(client):
         origin_data = MeetingSerializer(instance=meeting).data
         api_response_data = response.data[index]
         for key in origin_data.keys():
-            if key == "main_image":
+            if key == "main_image" or key == "leader_image":
                 assert origin_data[key] in api_response_data[key]
             else:
                 assert origin_data[key] == api_response_data[key]
@@ -72,7 +54,7 @@ def test_correct_json_data_when_meeting_GET_request(client):
 
     api_response_data = response.data
     for key in origin_data.keys():
-        if key == "main_image":
+        if key == "main_image" or key == "leader_image":
             assert origin_data[key] in api_response_data[key]
         else:
             assert origin_data[key] == api_response_data[key]

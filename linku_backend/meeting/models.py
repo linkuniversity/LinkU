@@ -8,7 +8,7 @@ from rest_framework.authtoken.models import Token
 
 
 SAVED_MEETING_DEFAULT_IMAGE_NAME = 'meeting_default_image.jpg'
-
+MEETING_LEADER_DEFAULT_IMAGE = 'meeting_leader_default.png'
 
 class ActivityNeeds(models.Model):
     contents = models.CharField(max_length=255)
@@ -44,15 +44,11 @@ class Statistics(models.Model):
 
 
 class Meeting(models.Model):
-    maker_name = models.CharField(max_length=20)
     title = models.CharField(max_length=30)
     main_image = models.ImageField(default=SAVED_MEETING_DEFAULT_IMAGE_NAME)
     place = models.CharField(max_length=30)
-    price = models.IntegerField(blank=True)
-    meeting_specific_info = models.TextField()
-    restaurant_name = models.CharField(max_length=20)
-    category = models.CharField(max_length=30)
-    specific_link = models.CharField(max_length=30)
+    leader_image = models.ImageField(default=MEETING_LEADER_DEFAULT_IMAGE)
+    leader_talk = models.TextField(default='안녕하세요 :D')
     is_current = models.BooleanField(default=False)
     is_prearranged = models.BooleanField(default=False)
 
