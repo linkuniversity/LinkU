@@ -210,13 +210,11 @@ class MeetingCard extends React.Component{
                                 </div>
                                 <Item.Group>
                                     <Item>
-                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_profile_image.png'} />
+                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL + this.props.meetingInfo.leader_image} />
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>
-                                                    목살 스테이크로 유명한 서가앤쿡에 한상 메뉴가 땡겨서 모임을 만들었어요.<br/>
-                                                    새우 필라프, 베이컨 까르보나라… 혼자서는 다 못 먹을 것 같은 다양한 메뉴들.. 같이 먹어요!<br/>
-                                                    다같이 즐거운 저녁시간 보내고 더 친해질 수 있는 2차도 함께 가요 :)<br/>
+                                                    {this.props.meetingInfo.leader_talk}
                                                 </div>
                                             </Item.Description>
                                         </Item.Content>
