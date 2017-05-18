@@ -70,7 +70,7 @@ class MeetingCard extends React.Component{
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
             paddingTop: '3%',
-            paddingBottom: '9%'
+            paddingBottom: '4%'
         };
         let meetingInfoStyle = {
             width: '620px',
@@ -192,7 +192,7 @@ class MeetingCard extends React.Component{
             <Container id='meeting-card' style={meetingInfoBackgroundStyle}>
                 <Grid centered>
                     <Card style={meetingInfoStyle}>
-                        <Image src={DEFAULT_REQUEST_URL +'/media/meeting_card_second.jpg'}></Image>
+                        <Image src={DEFAULT_REQUEST_URL + this.props.meetingInfo.main_image}></Image>
                         <Card.Content>
                         <div style={meetingDetailInfoStyle}>
                             <div>
@@ -201,13 +201,11 @@ class MeetingCard extends React.Component{
                                 </div>
                                 <Item.Group>
                                     <Item>
-                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_profile_image.png'} />
+                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL + this.props.meetingInfo.leader_image} />
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>
-                                                    다음주 주말, 26/27/28일에 시간 있는 사람~ <br/>
-                                                    가로수길 근처에서 같이 놀 친구들을 구해요 :-)<br/>
-                                                    모임이 성사되면 식당 예약이 되며, 하루전에 다시 연락을 드릴 예정이니 미리 참고해주세요 :)<br/>
+                                                    {this.props.meetingInfo.leader_talk}
                                                 </div>
                                             </Item.Description>
                                         </Item.Content>
