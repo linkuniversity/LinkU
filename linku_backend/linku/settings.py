@@ -81,15 +81,17 @@ WSGI_APPLICATION = 'linku.wsgi.application'
 
 mysql_user = 'linku'
 mysql_password = os.getenv('LINKU_MYSQL_PASSWORD', '')
+mysql_name = 'linku'
 
 if os.getenv('LINKU_SERVER_ENVIRONMENT', 'local') == 'ci':
-    mysql_user = 'root'
+    mysql_user = 'ubuntu'
     mysql_password = ''
+    mysql_name = 'circle_test'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'linku',
+        'NAME': mysql_name,
         'USER': mysql_user,
         'PASSWORD': mysql_password,
         'HOST': 'localhost',
