@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Header, Button, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
@@ -12,6 +12,11 @@ import axios from 'axios';
 import {withRouter, Redirect} from 'react-router-dom';
 import ConfirmModal from '../utils/ConfirmModal';
 
+const propTypes = {
+};
+
+const defaultProps = {
+};
 class Login extends Component {
 
     componentDidMount() {
@@ -34,10 +39,20 @@ class Login extends Component {
     _handleLoginSubmit = (values) => {
         this.props.loginRequest(values.username, values.password);
     }
+    _handleRedirect = () => {
+        let item = localStorage.getItem("redirectUrlOnCompletion");
+
+        if(item == "undefined")
+            item = "/";
+
+        localStorage.setItem("redirectUrlOnCompletion", undefined);
+        
+        return item;
+    }
     render() {
         return (
             <Container text>
-                { this.props.loggedIn && <Redirect to="/"/> }
+                { this.props.loggedIn && <Redirect to={this._handleRedirect()}/> }
                 <ConfirmModal />
                 <Header style={{marginTop: '30px'}}>링쿠 로그인</Header>
                 <p>
@@ -49,6 +64,10 @@ class Login extends Component {
         );
     }
 }
+
+Login.propTypes = propTypes;
+Login.defaultProps = defaultProps;
+
 const mapStateToProps = (state) => {
     return {
         loggedIn : state.login.loggedIn,

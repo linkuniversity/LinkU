@@ -173,7 +173,10 @@ class MeetingCard extends React.Component{
                         if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
                             var ReactGA = require('react-ga');
                             ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
+
+                            this.props.history.push('/login');
                         }
+                        localStorage.setItem("redirectUrlOnCompletion", "/payment-description");
                         this.props.history.push('/login');
                         }
                     } color='blue' fluid>같이 놀자!</Button>);
