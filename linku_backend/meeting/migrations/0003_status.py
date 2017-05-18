@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('meeting', '0002_meeting_initial'),
+        ('meeting', '0001_initial'),
     ]
 
     operations = [
