@@ -10,11 +10,16 @@ import { reducers } from './reducers';
 import { Provider } from 'react-redux';
 
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {browserHistory} from 'react-router';
 import createSagaMiddleware from 'redux-saga';
 import LinkUHeader from './components/mainpage/LinkUHeader';
 import LinkUGuide from './components/guide_page/LinkUGuide';
 import Signup from './components/signup/Signup';
 import Login from './components/login/Login';
+import PaymentDescription from './components/payment/PaymentDescription';
+import PaymentApplyContents from './components/payment/PaymentApplyContents';
+import SignupSelection from './components/signup/SignupSelection';
+
 
 var ReactGA = require('react-ga');
 ReactGA.initialize('UA-97944196-1');
@@ -37,15 +42,18 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
     <Provider store = {store} >
-        <Router onUpdate={logPageView}>
+        <Router>
             <div>
                 <LinkUHeader />
                 <div>
                     <Switch>
                         <Route exact path="/" component={App}/>
+                        <Route path="/payment-description" component={PaymentDescription} />
+                        <Route path="/payment-apply-contents" component={PaymentApplyContents} />
                         <Route path="/about" component={LinkUGuide} />
                         <Route path="/signup" component={Signup} />
                         <Route path="/login" component={Login} />
+                        <Route paht="/singup_selection" component={SignupSelection} />
                     </Switch>
                 </div>
             </div>
