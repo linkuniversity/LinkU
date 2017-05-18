@@ -12,7 +12,7 @@ class Statistics extends React.Component{
     render() {
         const containerStyle = {
             backgroundImage: 'url('+ DEFAULT_REQUEST_URL +'/media/container_background.jpg)',
-            marginTop: '100px',
+            marginTop: '70px',
             width: '100%',
             padding: '50px',
         };
