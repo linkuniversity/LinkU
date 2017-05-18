@@ -40,7 +40,7 @@ class IntroOfLinkU extends React.Component {
             marginBottom: '26px',
             fontSize: '33px',
             lineHeight: '50px',
-            textShadow: '0.0em 0.1em 0.15em #666'
+            textShadow: '0.0em 0.02em 0.15em #666'
         }
 
         let promotionSmallWordStyle = {
