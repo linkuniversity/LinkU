@@ -48,7 +48,8 @@ class MeetingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meeting
         fields = ('id', 'maker_name', 'title', 'main_image', 'sub_images', 'place', 'price',
-                  'meeting_specific_info', 'restaurant_name', 'category', 'specific_link', 'status_by_days')
+                  'meeting_specific_info', 'restaurant_name', 'category', 'specific_link',
+                  'status_by_days', 'is_current', 'is_prearranged')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

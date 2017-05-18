@@ -11,10 +11,9 @@ class MeetingCardBox extends React.Component {
     }
 
     render() {
-        const mapToComponents = (data) => {
-            return data.map((meeting_infos, i) => {
-                if(i===0)
-                    return ( <MeetingCard meetingInfo={ meeting_infos } key={i}/>);
+        const mapToComponents = (meeting_infos) => {
+            return meeting_infos.map((meeting_info, i) => {
+                return ( <MeetingCard meetingInfo={ meeting_info[0].data } key={i}/>);
             });
         };
 
@@ -27,7 +26,7 @@ class MeetingCardBox extends React.Component {
         return (
             <Container style={containerStyle}>
                 <br/>
-                {mapToComponents(this.props.all_meeting_infos.data ? this.props.all_meeting_infos.data : [])}
+                {mapToComponents(this.props.all_meeting_infos ? this.props.all_meeting_infos : [])}
             </Container>
         );
     }
