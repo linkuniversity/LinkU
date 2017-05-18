@@ -21,8 +21,8 @@ const LinkUContact = () => (
                         </Grid.Column>
                     </Grid.Row>
                     <p style={{marginTop: "10px"}}>
-                    대학생이 놀고 웃고 친해질 수 있는 곳 링쿠<br/>
-                    대학생들의 새로운 문화를 선도합니다
+                        대학생이 놀고 웃고 친해질 수 있는 곳<br/>
+                        좋은 친구와 좋은 추억, 함께 만들어요
                     </p>
                 </Grid.Column>
                 <Grid.Column>
