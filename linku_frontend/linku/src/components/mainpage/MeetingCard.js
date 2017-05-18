@@ -129,8 +129,12 @@ class MeetingCard extends React.Component{
         if(this.props.meetingInfo.status_by_days)
         {
             meetingDateOptions = this.props.meetingInfo.status_by_days.map((status, index) => {
-                const button_message = this.getDateStr(status.start_time) + " (" + (status.participant_num.man + status.participant_num.woman)
+                let button_message = this.getDateStr(status.start_time) + " (" + (status.participant_num.man + status.participant_num.woman)
                                         + "/" + status.max_num_of_members + ")명";
+
+                if((status.participant_num.man + status.participant_num.woman) == status.max_num_of_members - 1){
+                    button_message += " " + "(마감임박)"
+                }
 
                 return { key: index, text: button_message, value: index };
             });
@@ -184,19 +188,6 @@ class MeetingCard extends React.Component{
             }
         };
 
-        const getImminentDeadlineByAppliers = () => {
-            if(this.state.participant_num === this.state.max_num_of_members - 1){
-                return(
-                    <p style={imminentDeadlineTextStyle}>
-                        마감임박~!
-                    </p>
-                )
-            }
-            else {
-                return null;
-            }
-        }
-
         return(
             <Container id='meeting-card' style={meetingInfoBackgroundStyle}>
                 <Grid centered>
@@ -237,7 +228,6 @@ class MeetingCard extends React.Component{
                                 <div style={meetingApplyFontStyle}><strong>시간</strong> : 19시</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
-                                {getImminentDeadlineByAppliers()}
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>
