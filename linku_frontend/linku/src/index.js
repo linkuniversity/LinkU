@@ -44,7 +44,6 @@ ReactDOM.render(
     <Provider store = {store} >
         <Router>
             <div>
-                <LinkUHeader />
                 <div>
                     <Switch>
                         <Route exact path="/" component={App}/>
