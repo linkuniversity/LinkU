@@ -22,6 +22,7 @@ class MeetingCard extends React.Component{
             participant_man_num : undefined,
             participant_woman_num : undefined,
             start_time : undefined,
+            max_num_of_members : undefined,
         };
     }
 
@@ -34,6 +35,7 @@ class MeetingCard extends React.Component{
             participant_man_num : current_status.participant_num.man,
             participant_woman_num : current_status.participant_num.woman,
             start_time_str : this.getStartTimeStr(new Date(current_status.start_time)),
+            max_num_of_members : current_status.max_num_of_members,
         });
     }
 
@@ -68,7 +70,7 @@ class MeetingCard extends React.Component{
         let meetingInfoBackgroundStyle = {
             backgroundColor: '#F8F8F9',
             paddingTop: '3%',
-            paddingBottom: '9%'
+            paddingBottom: '4%'
         };
         let meetingInfoStyle = {
             width: '620px',
@@ -113,13 +115,26 @@ class MeetingCard extends React.Component{
             paddingTop: '20px',
             fontSize: '12pt',
         };
+
+        let imminentDeadlineTextStyle = {
+            color: '#5fa1d7',
+            fontSize: '12pt',
+            marginTop: '17px',
+            textAlign:"left",
+            marginLeft:"6px"
+        }
+
         let meetingDateOptions = [];
 
         if(this.props.meetingInfo.status_by_days)
         {
             meetingDateOptions = this.props.meetingInfo.status_by_days.map((status, index) => {
-                const button_message = this.getDateStr(status.start_time) + " (" + (status.participant_num.man + status.participant_num.woman)
+                let button_message = this.getDateStr(status.start_time) + " (" + (status.participant_num.man + status.participant_num.woman)
                                         + "/" + status.max_num_of_members + ")명";
+
+                if((status.participant_num.man + status.participant_num.woman) == status.max_num_of_members - 1){
+                    button_message += " " + "(마감임박)"
+                }
 
                 return { key: index, text: button_message, value: index };
             });
@@ -159,9 +174,14 @@ class MeetingCard extends React.Component{
                 }
                 else {
                     return (<Button onClick={ () => {
+                        if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
                             var ReactGA = require('react-ga');
                             ReactGA.ga('send', 'event', 'apply_button', 'first_click', 'apply_button');
+
                             this.props.history.push('/login');
+                        }
+                        localStorage.setItem("redirectUrlOnCompletion", "/payment-description");
+                        this.props.history.push('/login');
                         }
                     } color='blue' fluid>같이 놀자!</Button>);
                 }
@@ -169,10 +189,10 @@ class MeetingCard extends React.Component{
         };
 
         return(
-            <Container style={meetingInfoBackgroundStyle}>
+            <Container id='meeting-card' style={meetingInfoBackgroundStyle}>
                 <Grid centered>
                     <Card style={meetingInfoStyle}>
-                        <Image src={DEFAULT_REQUEST_URL +'/media/meeting_card_second.jpg'}></Image>
+                        <Image src={DEFAULT_REQUEST_URL + this.props.meetingInfo.main_image}></Image>
                         <Card.Content>
                         <div style={meetingDetailInfoStyle}>
                             <div>
@@ -181,13 +201,11 @@ class MeetingCard extends React.Component{
                                 </div>
                                 <Item.Group>
                                     <Item>
-                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL+'/media/meeting_leader_profile_image.png'} />
+                                        <Item.Image style={meetingDetailImageLogoStyle} src={DEFAULT_REQUEST_URL + this.props.meetingInfo.leader_image} />
                                         <Item.Content>
                                             <Item.Description>
                                                 <div style={{lineHeight: '23px'}}>
-                                                    목살 스테이크로 유명한 서가앤쿡에 한상 메뉴가 땡겨서 모임을 만들었어요.<br/>
-                                                    새우 필라프, 베이컨 까르보나라… 혼자서는 다 못 먹을 것 같은 다양한 메뉴들.. 같이 먹어요!<br/>
-                                                    다같이 즐거운 저녁시간 보내고 더 친해질 수 있는 2차도 함께 가요 :)<br/>
+                                                    {this.props.meetingInfo.leader_talk}
                                                 </div>
                                             </Item.Description>
                                         </Item.Content>
@@ -208,7 +226,6 @@ class MeetingCard extends React.Component{
                                 <div style={meetingApplyFontStyle}><strong>시간</strong> : 19시</div>
                                 <div style={meetingApplyFontStyle}><strong>장소</strong> : {this.props.meetingInfo.place}</div>
                                 <div style={meetingApplyFontStyle}><strong>인원</strong> : 한 모임당 6명(모임장 1명 포함)</div>
-
                             </Card.Description>
                         </Card.Content>
                         <Card.Content extra>

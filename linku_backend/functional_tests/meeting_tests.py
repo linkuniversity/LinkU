@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+import sys
+import os
+
+from selenium import webdriver
 import pytest
 from fixture_tests import browser, BASE_URL
 
@@ -13,5 +17,7 @@ def login_with(browser, username, password):
 
 
 @pytest.mark.django_db
-def test_login(browser):
-    login_with(browser, 'testman@email.com', '1234')
+def test_show_meeting_infos(browser):
+    browser.get(BASE_URL)
+    meeting_card = browser.find_elements_by_xpath("//div[@id='meeting-card']")
+    assert len(meeting_card) == 2

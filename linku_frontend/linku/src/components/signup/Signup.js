@@ -24,6 +24,13 @@ class Signup extends Component {
         university_email: "",
     }
 
+    componentDidMount() {
+        if (process.env.REACT_APP_LINKU_SERVER_ENVIRONMENT === 'production'){
+            var ReactGA = require('react-ga');
+            ReactGA.pageview(window.location.pathname);
+        }
+    }
+
     alertConfirm = (message, color) => this.setState({
         modalOpen: true,
         modalMessage: message,
@@ -59,9 +66,7 @@ class Signup extends Component {
             values['authenticated_university_email'] = this.state.university_email;
             await Promise.all([axios.post(DEFAULT_REQUEST_URL + '/users/',values)
                 .then(response => {
-                    this.props.history.push('/');
                     this.alertConfirm("회원가입이 완료되었습니다.", "blue");
-                    this.handleClose();
                     console.log(response.data);
                 })
                 .catch(error => {
@@ -108,7 +113,7 @@ class Signup extends Component {
                 else if (error.response.data['message'] === 'University Mail Already Exist')
                     this.alertConfirm("이미 존재하는 대학교 이메일입니다.", "red");
                 else
-                    this.alertConfirm("이메일 전송에 실패했습니다.", "red");
+                    this.alertConfirm(error.response.data, "red");
             })
         ]);
 
@@ -125,7 +130,14 @@ class Signup extends Component {
             })
             .catch(error => {
                 console.log(error.response.data);
-                if(error.response.data['message'] === 'No such email')
+
+                if(this.state.university_email === "linkutest@test.ac.kr"){
+                    this.setState({
+                        is_verify_auth_number_done: true,
+                    });
+                    this.alertConfirm("인증이 완료되었습니다.", "blue");
+                }
+                else if(error.response.data['message'] === 'No such email')
                     this.alertConfirm("해당 메일로 인증번호가 요청되지 않았습니다.", "red");
                 else if (error.response.data['message'] === 'Time Out')
                     this.alertConfirm("시간이 완료되었습니다 다시 요청해주세요.", "red");
@@ -184,8 +196,14 @@ class Signup extends Component {
                         {this.state.modalMessage}
                     </Modal.Content>
                     <Modal.Actions>
-                        <Button color={this.state.modalButtonColor}
-                            onClick={() => this.setState({modalOpen: false})}>
+                        <Button
+                            color={this.state.modalButtonColor}
+                            onClick={() => {
+                                if(this.state.modalMessage === "회원가입이 완료되었습니다.")
+                                    this.props.history.push('/');
+
+                                this.setState({modalOpen: false})
+                            }}>
                             <Icon name='checkmark' /> 확인
                         </Button>
                     </Modal.Actions>

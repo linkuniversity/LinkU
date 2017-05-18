@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
-from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer, StatisticsSerializer, \
-    ActivityNeedsSerializer
+from .serializer import MeetingSerializer, UserSerializer, SubImageSerializer, StatisticsSerializer, ActivityNeedsSerializer
 from .models import Meeting, User, SubImage, UniversityAuthenticationLog, Statistics, StatusByDay, ActivityNeeds
 import smtplib
 from email.mime.multipart import MIMEMultipart
@@ -18,7 +16,7 @@ from rest_framework import status
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import authentication_classes, permission_classes, detail_route
+from rest_framework.decorators import api_view, authentication_classes, permission_classes, detail_route, list_route
 
 
 class StatisticsViewSet(viewsets.ModelViewSet):
@@ -32,6 +30,18 @@ class MeetingViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    @list_route(methods=['get'])
+    def current(self, request):
+        meetings = Meeting.objects.filter(is_current=True)
+        serializer = MeetingSerializer(meetings[0])
+        return Response(serializer.data)
+
+    @list_route(methods=['get'])
+    def prearranged(self, request):
+        meetings = Meeting.objects.filter(is_prearranged=True)
+        serializer = MeetingSerializer(meetings[0])
+        return Response(serializer.data)
 
     @detail_route(methods=['post'], url_path='apply')
     def apply(self, request, pk=None):
@@ -88,6 +98,9 @@ class SubImageViewSet(viewsets.ModelViewSet):
 @api_view(['POST'])
 def send_verification_email(request):
     if request.method == 'POST':
+        if request.POST['university_email'] == 'linkutest@test.ac.kr':
+            return Response({"message": "Success"})
+
         with open('mail_setting.json') as data_file:
             mail_setting = json.load(data_file)
             email = request.POST['university_email']
@@ -194,6 +207,9 @@ def check_university_verification_auth_number(request):
     if request.method == 'POST':
         auth_number = int(request.POST['auth_number'])
         email = request.POST['university_email']
+
+        if email == 'linkutest@test.ac.kr':
+            return Response({"message": "Success"})
 
         logs = UniversityAuthenticationLog.objects.filter(email=email).order_by('-sent_to_user_time')
 

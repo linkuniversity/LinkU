@@ -42,13 +42,14 @@ class StatusByDaySerializer(serializers.ModelSerializer):
 
 class MeetingSerializer(serializers.ModelSerializer):
     main_image = serializers.ImageField(use_url=True)
+    leader_image = serializers.ImageField(use_url=True)
     sub_images = SubImageSerializer(many=True, read_only=True)
     status_by_days = StatusByDaySerializer(many=True, read_only=True)
 
     class Meta:
         model = Meeting
-        fields = ('id', 'maker_name', 'title', 'main_image', 'sub_images', 'place', 'price',
-                  'meeting_specific_info', 'restaurant_name', 'category', 'specific_link', 'status_by_days')
+        fields = ('id', 'title', 'main_image', 'sub_images', 'place', 'leader_talk', 'leader_image',
+                  'status_by_days', 'is_current', 'is_prearranged')
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):

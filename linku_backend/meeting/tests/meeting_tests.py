@@ -6,28 +6,7 @@ from meeting.serializer import MeetingSerializer
 
 SAVED_TEST_IMAGE_NAME = 'test_image.jpg'
 SAVED_TEST_IMAGE_NAME2 = 'test_image2.jpg'
-
-
-@pytest.fixture(scope="module")
-def temp_meeting_data():
-    temp_meeting = Meeting.objects.create(maker_name='test maker_name',
-                                          title='test title',
-                                          place='test place',
-                                          price=5000,
-                                          meeting_specific_info='test meeting_specific_info',
-                                          restaurant_name='test restaurant_name',
-                                          category='tes category',
-                                          specific_link='test specific_link',
-                                          main_image=SAVED_TEST_IMAGE_NAME,
-                                          )
-
-    StatusByDay.objects.create(start_time=datetime.datetime.now(),
-                               num_of_joined_members=1,
-                               max_num_of_members=6,
-                               meeting=temp_meeting)
-
-    return temp_meeting
-
+MEETING_LEADER_TEST_IMAGE = 'test_meeting_leader.png'
 
 @pytest.mark.django_db
 def test_json_header_when_meetings_GET_request(client):
@@ -39,14 +18,17 @@ def test_json_header_when_meetings_GET_request(client):
 
 @pytest.mark.django_db
 def test_create_meeting_model():
-    Meeting.objects.get(title='test title')
+    Meeting.objects.create(
+        place="테스트역 2번툴구",
+        leader_image=MEETING_LEADER_TEST_IMAGE,
+        leader_talk="test meeting1 specific info")
 
 
 @pytest.mark.django_db
 def test_correct_json_data_when_meetings_GET_request(client):
     meetings = []
 
-    temp_meeting = Meeting.objects.get(title='test title')
+    temp_meeting = Meeting.objects.get(title='test current meeting title')
 
     meetings.append(temp_meeting)
 
@@ -56,7 +38,7 @@ def test_correct_json_data_when_meetings_GET_request(client):
         origin_data = MeetingSerializer(instance=meeting).data
         api_response_data = response.data[index]
         for key in origin_data.keys():
-            if key == "main_image":
+            if key == "main_image" or key == "leader_image":
                 assert origin_data[key] in api_response_data[key]
             else:
                 assert origin_data[key] == api_response_data[key]
@@ -64,7 +46,7 @@ def test_correct_json_data_when_meetings_GET_request(client):
 
 @pytest.mark.django_db
 def test_correct_json_data_when_meeting_GET_request(client):
-    temp_meeting = Meeting.objects.get(title='test title')
+    temp_meeting = Meeting.objects.get(title='test current meeting title')
 
     response = client.get('/meetings/%d/' % temp_meeting.id)
 
@@ -72,7 +54,7 @@ def test_correct_json_data_when_meeting_GET_request(client):
 
     api_response_data = response.data
     for key in origin_data.keys():
-        if key == "main_image":
+        if key == "main_image" or key == "leader_image":
             assert origin_data[key] in api_response_data[key]
         else:
             assert origin_data[key] == api_response_data[key]
@@ -82,7 +64,7 @@ def test_correct_json_data_when_meeting_GET_request(client):
 def test_meeting_has_many_sub_images(client):
     sub_images = []
 
-    temp_meeting = Meeting.objects.get(title='test title')
+    temp_meeting = Meeting.objects.get(title='test current meeting title')
 
     sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME, meeting=temp_meeting))
     sub_images.append(SubImage.objects.create(path=SAVED_TEST_IMAGE_NAME2, meeting=temp_meeting))
@@ -101,7 +83,7 @@ def test_meeting_has_many_sub_images(client):
 
 @pytest.mark.django_db
 def test_update_participation_info_when_someone_apply_meeting(client):
-    meeting = Meeting.objects.get(title='test title')
+    meeting = Meeting.objects.get(title='test current meeting title')
 
     response = client.get('/meetings/%d/' % meeting.id)
     status_by_days_data_list = response.data['status_by_days']
@@ -156,7 +138,7 @@ def test_apply_meeting_with_api(client):
         'status_index': MEETING_STATUS_INDEX,
     }
 
-    meeting = Meeting.objects.get(title='test title')
+    meeting = Meeting.objects.get(title='test current meeting title')
     response = client.post('/meetings/%d/apply/' % meeting.id, apply_data)
     assert response.data == 'success'
 
@@ -184,7 +166,7 @@ def test_leave_meeting_with_api(client):
         'status_index': MEETING_STATUS_INDEX,
     }
 
-    meeting = Meeting.objects.get(title='test title')
+    meeting = Meeting.objects.get(title='test current meeting title')
     client.post('/meetings/%d/apply/' % meeting.id, apply_data)
 
     user = User.objects.get(username='test@test.com')
@@ -206,4 +188,17 @@ def test_leave_meeting_with_api(client):
     response = client.post('/meetings/%d/leave/' % meeting.id, correct_leave_data)
     assert response.data == "success"
     assert user.statusbyday_set.all().count() == 0
+
+
+@pytest.mark.django_db
+def test_get_current_meeting_info(client):
+    response = client.get('/meetings/current/')
+    assert response.data['title'] == 'test current meeting title'
+
+
+@pytest.mark.django_db
+def test_get_prearranged_meeting_info(client):
+    response = client.get('/meetings/prearranged/')
+    assert response.data['title'] == 'test prearranged meeting title'
+
 
