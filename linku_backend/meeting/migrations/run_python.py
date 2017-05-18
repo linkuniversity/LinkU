@@ -19,12 +19,10 @@ def forwards_func(apps, schema_editor):
                                          meeting_specific_info="test meeting1 specific info", is_current=True)
 
         StatusByDay.objects.create(start_time=datetime.datetime(2017, 5, 5, 17, 0),
-                                   num_of_joined_members=0,
                                    max_num_of_members=6,
                                    meeting=current_meeting),
 
         StatusByDay.objects.create(start_time=datetime.datetime(2017, 5, 6, 17, 0),
-                                   num_of_joined_members=0,
                                    max_num_of_members=6,
                                    meeting=current_meeting)
 
@@ -32,12 +30,10 @@ def forwards_func(apps, schema_editor):
                                          meeting_specific_info="test meeting2 specific info", is_prearranged=True)
 
         StatusByDay.objects.create(start_time=datetime.datetime(2017, 5, 20, 19, 0),
-                                   num_of_joined_members=0,
                                    max_num_of_members=6,
                                    meeting=prearranged_meeting),
 
         StatusByDay.objects.create(start_time=datetime.datetime(2017, 5, 21, 19, 0),
-                                   num_of_joined_members=0,
                                    max_num_of_members=6,
                                    meeting=prearranged_meeting)
 
