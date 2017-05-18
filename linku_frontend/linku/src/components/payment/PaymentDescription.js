@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Container } from 'semantic-ui-react';
+import {Button, Container, Icon } from 'semantic-ui-react';
 import RedirectToLoginCheck from '../utils/RedirectToLoginCheck';
 
 const textContainerStyle = {
@@ -8,7 +8,7 @@ const textContainerStyle = {
 };
 
 const PaymentDescription = ({history}) => (
-    <Container>
+    <Container text>
         <RedirectToLoginCheck redirectUrlOnCompletion="/payment-description"/>
         <br/><br/>
         <Container style={{fontSize: '30px'}} text textAlign="center">
@@ -22,7 +22,14 @@ const PaymentDescription = ({history}) => (
             를 위해 *보증금(<a>5,000원</a>)을 받고 있습니다.<br />
             * 보증금은 모임 참석 시 모임장이 현금으로 환불 해드리며, 불참 시 환불되지 않습니다.
         </Container>
-        <Button onClick={() => history.push('/payment-apply-contents')} style={{marginBottom: '10px'}} fluid color='blue'>결제 진행하기</Button>
+        <Button
+            onClick={() => history.push('/payment-apply-contents')}
+            style={{marginBottom: '10px'}}
+            fluid color='blue'
+            size='big'>
+            <Icon inverted color='white' name='lock'/>
+                결제 진행하기
+        </Button>
     </Container>
 );
 
