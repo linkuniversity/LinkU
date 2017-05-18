@@ -32,9 +32,9 @@ const Review = () => {
     const promotionWordStyle = {
         width: "100%",
         textAlign: "center",
-        fontSize: '20pt',
+        fontSize: '16pt',
         lineHeight: '40px',
-        marginTop: "40px"
+        marginTop: "60px"
     };
 
     const mapToComponent = (datas) => {
@@ -67,8 +67,8 @@ const Review = () => {
             </Grid>
 
             <div style={promotionWordStyle}>
-                더 많은 후기가 궁금하다면?<br/>
-            <a href="https://goo.gl/xSzaUY">링쿠 페이스북으로 이동 > </a>
+                <a href="https://goo.gl/xSzaUY">후기 인터뷰 보기 ></a><br/>
+                더 많은 후기가 궁금하다면? LinkU 페이스북에서 확인하세요
             </div>
 
         </Container>
