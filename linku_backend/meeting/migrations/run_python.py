@@ -11,7 +11,7 @@ def forwards_func(apps, schema_editor):
     StatusByDay = apps.get_model("meeting", "StatusByDay")
     User = apps.get_model("meeting", "User")
 
-    if os.environ['LINKU_SERVER_ENVIRONMENT'] != 'local':
+    if os.environ['LINKU_SERVER_ENVIRONMENT'] != 'production':
         hashed_password = make_password("1234")
         User.objects.create(username="testman@email.com", password=hashed_password, name="test name", gender="M", phone_number="01099998888", authenticated_university_email="test@univ.ac.kr")
 
