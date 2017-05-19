@@ -1,6 +1,9 @@
 const initialState = {
     fetching : false,
-    meeting_infos : []
+    meeting_infos : [],
+    selectedValue : undefined,
+    isCurrent: true,
+    meetingDateInfo: undefined,
 };
 
 export default function meetingCardInfos(state = initialState, action){
@@ -20,6 +23,13 @@ export default function meetingCardInfos(state = initialState, action){
         return {
             ...state,
             fetching: false
+        };
+        case 'SELECT_DATE':
+        return {
+            ...state,
+            selectedValue: action.selectedValue,
+            isCurrent: action.isCurrent,
+            meetingDateInfo: action.meetingDateInfo
         };
         default:
         return state;

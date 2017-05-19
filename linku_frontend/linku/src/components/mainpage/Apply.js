@@ -12,12 +12,7 @@ class Apply extends React.Component{
     render(){
 
         return(
-            <Button onClick={() => this.props.history.push('/payment-description'
-                + '?'
-                + 'selectedValue=' + this.props.selectedValue + "&"
-                + 'paymentInfo=' + this.props.paymentInfo + "&"
-                + 'isCurrent=' + this.props.isCurrent + "&"
-                + 'isPrearranged=' + this.props.isPrearranged)} color='blue' fluid>같이 놀자!</Button>
+            <Button onClick={() => this.props.history.push('/payment-description')} color='blue' fluid>같이 놀자!</Button>
         )
     }
 
