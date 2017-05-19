@@ -43,19 +43,18 @@ sagaMiddleware.run(rootSaga);
 ReactDOM.render(
     <Provider store = {store} >
         <Router>
-            <div>
+            <Switch>
+                <Route exact path="/" component={App}/>
                 <div>
-                    <Switch>
-                        <Route exact path="/" component={App}/>
-                        <Route path="/payment-description" component={PaymentDescription} />
-                        <Route path="/payment-apply-contents" component={PaymentApplyContents} />
-                        <Route path="/about" component={LinkUGuide} />
-                        <Route path="/signup" component={Signup} />
-                        <Route path="/login" component={Login} />
-                        <Route paht="/singup_selection" component={SignupSelection} />
-                    </Switch>
+                    <LinkUHeader/>
+                    <Route path="/payment-description" component={PaymentDescription} />
+                    <Route path="/payment-apply-contents" component={PaymentApplyContents} />
+                    <Route path="/about" component={LinkUGuide} />
+                    <Route path="/signup" component={Signup} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/singup_selection" component={SignupSelection} />
                 </div>
-            </div>
+            </Switch>
         </Router>
     </Provider>,
     document.getElementById('root')

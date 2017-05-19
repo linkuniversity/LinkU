@@ -7,7 +7,7 @@ const textContainerStyle = {
     fontSize: '20px',
 };
 
-const PaymentDescription = ({history}) => (
+const PaymentDescription = ({location, history}) => (
     <Container text>
         <RedirectToLoginCheck redirectUrlOnCompletion="/payment-description"/>
         <br/><br/>
@@ -23,7 +23,12 @@ const PaymentDescription = ({history}) => (
             * 보증금은 모임 참석 시 모임장이 현금으로 환불 해드리며, 불참 시 환불되지 않습니다.
         </Container>
         <Button
-            onClick={() => history.push('/payment-apply-contents')}
+            onClick={() => history.push('/payment-apply-contents'
+            + '?'
+            + 'selectedValue=' + new URLSearchParams(location.search).get('selectedValue') + "&"
+            + 'paymentInfo=' + new URLSearchParams(location.search).get('paymentInfo') + "&"
+            + 'isCurrent=' + new URLSearchParams(location.search).get('isCurrent') + "&"
+            + 'isPrearranged=' + new URLSearchParams(location.search).get('isPrearranged'))}
             style={{marginBottom: '10px'}}
             fluid color='blue'
             size='big'>

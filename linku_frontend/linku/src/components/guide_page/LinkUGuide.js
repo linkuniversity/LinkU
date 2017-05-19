@@ -14,18 +14,31 @@ class LinkUGuide extends React.Component{
     }
 
     render(){
-        let descriptionStyle = {
+        const iconStyle = {
+            marginLeft: "50px",
+            marginRight: "50px"
+        }
+
+        const textStyle = {
+            marginTop: "30px",
+        }
+
+        const descriptionStyle = {
             marginTop: "20px",
+        }
+
+        const itemGroupStyle = {
+            padding: "25px"
         }
 
         return(
             <Container>
                 <Grid>
-                    <Item.Group style={{padding:"10%"}}>
+                    <Item.Group style={itemGroupStyle}>
                         <Item>
-                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_1.png"} floated="left"/>
+                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_1.png"} style={iconStyle} floated="left"/>
                           <Item.Content>
-                              <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
+                              <Item.Description style={textStyle}>
                                   <div>
                                       <div style={{fontSize: '20pt'}}>1단계</div>
                                       <div style={{fontSize: '20pt', marginTop: '20px'}}>대학인증하기</div>
@@ -41,11 +54,11 @@ class LinkUGuide extends React.Component{
                     </Item.Group>
                 </Grid>
                 <Grid>
-                    <Item.Group style={{padding:"10%"}}>
+                    <Item.Group style={itemGroupStyle}>
                         <Item>
-                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_2.png"} floated="left"/>
+                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_2.png"} style={iconStyle} floated="left"/>
                           <Item.Content>
-                              <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
+                              <Item.Description style={textStyle}>
                                   <div>
                                       <div style={{fontSize: '20pt'}}>2단계</div>
                                       <div style={{fontSize: '20pt', marginTop: '20px'}}>원하는 모임을 선택하세요</div>
@@ -62,11 +75,11 @@ class LinkUGuide extends React.Component{
                     </Item.Group>
                 </Grid>
                 <Grid>
-                    <Item.Group style={{padding:"10%"}}>
+                    <Item.Group style={itemGroupStyle}>
                         <Item>
-                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_3.png"} floated="left"/>
+                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_3.png"} style={iconStyle} floated="left"/>
                           <Item.Content>
-                              <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
+                              <Item.Description style={textStyle}>
                                   <div>
                                       <div style={{fontSize: '20pt'}}>3단계</div>
                                       <div style={{fontSize: '20pt', marginTop: '20px'}}>오픈채팅방으로 모이세요!</div>
@@ -83,11 +96,11 @@ class LinkUGuide extends React.Component{
                     </Item.Group>
                 </Grid>
                 <Grid>
-                    <Item.Group style={{padding:"10%"}}>
+                    <Item.Group style={itemGroupStyle}>
                         <Item>
-                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_4.png"} floated="left"/>
+                          <Item.Image src={DEFAULT_REQUEST_URL+"/media/how_to_join_4.png"} style={iconStyle} floated="left"/>
                           <Item.Content>
-                              <Item.Description style={{paddingLeft:"10%", paddingRight:"10%"}}>
+                              <Item.Description style={textStyle}>
                                   <div>
                                       <div style={{fontSize: '20pt'}}>4단계</div>
                                       <div style={{fontSize: '20pt', marginTop: '20px'}}>두근두근 첫만남!</div>
@@ -105,7 +118,6 @@ class LinkUGuide extends React.Component{
                 </Container>
         );
     }
-
 }
 
 export default LinkUGuide;

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import sys
-import os
-
-from selenium import webdriver
 import pytest
 from fixture_tests import browser, BASE_URL
 
