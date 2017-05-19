@@ -99,6 +99,8 @@ DATABASES = {
     }
 }
 
+DATABASE_OPTIONS = {'charset': 'utf8'}
+
 if os.environ['LINKU_SERVER_ENVIRONMENT'] == "development" or os.environ['LINKU_SERVER_ENVIRONMENT'] == "production":
     # raven configuration
     RAVEN_CONFIG = {
