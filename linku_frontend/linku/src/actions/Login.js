@@ -7,9 +7,9 @@ export function login(){
 }
 
 export function logout(){
-    localStorage.setItem('token', undefined);
-    localStorage.setItem('user_gender', undefined);
-    localStorage.setItem('participated_dates', undefined);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_gender');
+    localStorage.removeItem('participated_dates');
     return {
         type : types.LOGOUT
     };
