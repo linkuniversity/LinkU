@@ -52,7 +52,7 @@ ReactDOM.render(
                     <Route path="/about" component={LinkUGuide} />
                     <Route path="/signup" component={Signup} />
                     <Route path="/login" component={Login} />
-                    <Route path="/singup_selection" component={SignupSelection} />
+                    <Route path="/signup_selection" component={SignupSelection} />
                 </div>
             </Switch>
         </Router>
