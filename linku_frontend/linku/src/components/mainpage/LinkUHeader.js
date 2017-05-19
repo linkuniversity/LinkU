@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Image, Button } from 'semantic-ui-react'
+import { Image, Button, Container } from 'semantic-ui-react'
 import Login from '../login/Login.js'
 import { connect } from 'react-redux';
 import * as actions from '../../actions/Login';
@@ -15,10 +15,17 @@ class LinkUHeader extends Component {
             marginTop: '40px',
             textAlign: 'center'
         };
+        let wordStyle = {
+            color: "#5fa1d7",
+            marginTop: "10px",
+        }
 
         return (
             <div style={containerStyle}>
-                <Image src={DEFAULT_REQUEST_URL+'/media/logo_top.png'} centered />
+                <Image onClick={() => this.props.history.push('/')} src={DEFAULT_REQUEST_URL+'/media/logo_bottom.png'} centered />
+                <Container style={wordStyle} text>
+                    <p>Link U Link University</p>
+                </Container>
             </div>
         );
     }
