@@ -18,3 +18,10 @@ export const receiveMeetingCardInfos = (meeting_infos) => ({
 export const receiveMeetingCardInfosFailed = () => ({
     type: 'RECEIVE_MEETING_CARD_INFOS_FAIL',
 });
+
+export const selectDate = (selectedValue, isCurrent, meetingDateInfo) => ({
+    type: 'SELECT_DATE',
+    selectedValue,
+    isCurrent,
+    meetingDateInfo
+});

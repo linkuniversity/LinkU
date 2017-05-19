@@ -4,7 +4,7 @@ import { Container,Card, Button, Dropdown, Menu, Grid, Item, Divider, Icon, Imag
 
 import { bindActionCreators } from 'redux';
 
-import * as actions from '../../actions/Common';
+import {selectDate} from '../../actions/meetingcard';
 
 import Apply from './Apply';
 import Login from '../login/Login';
@@ -28,6 +28,11 @@ class MeetingCard extends React.Component{
 
     _participatedSelectionChange = (e, data) => {
         const current_status = this.props.meetingInfo.status_by_days[data.value];
+
+        let message = this.getDateStr(current_status.start_time) + " 19:00";
+
+        this.props.selectDate(data.value, this.props.meetingInfo.is_current, message);
+
         this.setState({
             ...this.state,
             selectedValue : data.value,
@@ -166,12 +171,7 @@ class MeetingCard extends React.Component{
             else {
                 if(user_gender && this.props.loggedIn){
                     return (
-                        <Apply
-                            selectedValue={this.state.selectedValue}
-                            paymentInfo={this.getDateStr(selected_meeting.start_time)}
-                            isCurrent={this.props.meetingInfo.is_current}
-                            isPrearranged={this.props.meetingInfo.is_prearranged}
-                        />
+                        <Apply />
                     );
                 }
                 else {
@@ -245,8 +245,4 @@ const mapStateToProps = (state) => {
         loggedIn : state.login.loggedIn
     }
 };
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(actions, dispatch);
-};
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MeetingCard));
+export default withRouter(connect(mapStateToProps, {selectDate})(MeetingCard));
