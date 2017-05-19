@@ -45,7 +45,7 @@ class Login extends Component {
         if(item == "undefined")
             item = "/";
 
-        localStorage.setItem("redirectUrlOnCompletion", undefined);
+        localStorage.removeItem("redirectUrlOnCompletion");
 
         return item;
     }
