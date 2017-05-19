@@ -5,7 +5,7 @@ const loginInitialState = {
     password : 'undefined',
     fetching : false,
     payload : null,
-    loggedIn : localStorage.getItem('token') ? true : false
+    loggedIn : localStorage.hasOwnProperty('token') ? true : false
 };
 
 export default function login(state = loginInitialState, action){
