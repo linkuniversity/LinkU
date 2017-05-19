@@ -169,6 +169,8 @@ class MeetingCard extends React.Component{
                         <Apply
                             selectedValue={this.state.selectedValue}
                             paymentInfo={this.getDateStr(selected_meeting.start_time)}
+                            isCurrent={this.props.meetingInfo.is_current}
+                            isPrearranged={this.props.meetingInfo.is_prearranged}
                         />
                     );
                 }
