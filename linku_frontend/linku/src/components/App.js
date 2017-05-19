@@ -5,9 +5,9 @@ import IntroOfLinkU from './mainpage/IntroOfLinkU';
 import LinkUHeader from './mainpage/LinkUHeader';
 import NextMeetingAlarm from './mainpage/NextMeetingAlarm';
 import Review from './mainpage/Review';
-import Statistics from './mainpage/Statistics';
 import LinkUContact from './mainpage/LinkUContact';
 import LinkUFooter from './mainpage/LinkUFooter';
+import Statistics from './mainpage/Statistics';
 
 class App extends React.Component{
 
