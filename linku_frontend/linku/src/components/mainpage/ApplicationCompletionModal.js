@@ -10,7 +10,7 @@ export default class ApplicationCompletionModal extends Component{
     _applyAlarm = async (applicationIndex) => {
         const token = localStorage.getItem('token');
 
-        if(token === undefined)
+        if(!localStorage.hasOwnProperty('token'))
             return;
 
         const config = {
