@@ -10,7 +10,7 @@ class NextMeetingDetailPlan extends React.Component{
     _handleApplicationButton = (index) => {
         const applyButton = (<Button>안내 문자 신청하기</Button>);
 
-        if(localStorage.getItem('token') && this.props.loggedIn) //로그인 되어있으면
+        if(this.props.loggedIn) //로그인 되어있으면
             return (<ApplicationCompletionModal applicationIndex = {this.props.index}/>);
         else
             return (<Login triggerButton={applyButton}/>);

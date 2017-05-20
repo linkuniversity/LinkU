@@ -42,7 +42,7 @@ class Login extends Component {
     _handleRedirect = () => {
         let item = localStorage.getItem("redirectUrlOnCompletion");
 
-        if(item == "undefined")
+        if(!localStorage.hasOwnProperty("redirectUrlOnCompletion"))
             item = "/";
 
         localStorage.removeItem("redirectUrlOnCompletion");
