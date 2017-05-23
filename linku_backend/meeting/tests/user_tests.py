@@ -4,6 +4,7 @@ import json
 from rest_framework.authtoken.models import Token
 
 from meeting.models import User, Meeting, StatusByDay
+from django.core.exceptions import ObjectDoesNotExist
 
 
 @pytest.mark.django_db
@@ -99,3 +100,23 @@ def test_next_meeting_alarm_request(client):
     response = client.post('/next-meeting-alarm/', {}, **auth_headers)
     assert response.status_code == 400
     assert response.data['Message'] == "Already Done"
+
+
+@pytest.mark.django_db
+def test_leave_user(client):
+    user = create_test_user(client)
+
+    auth_headers = {
+        'HTTP_AUTHORIZATION': 'Token ' + get_login_token(user)
+    }
+
+    response = client.post('/leave-user/', {}, **auth_headers)
+
+    assert response.status_code == 200
+    assert response.data['Message'] == "Success"
+
+    try:
+        User.objects.get(username=user.username)
+        raise Exception
+    except ObjectDoesNotExist:
+        pass

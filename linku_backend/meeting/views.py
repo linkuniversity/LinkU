@@ -203,6 +203,16 @@ def next_meeting_alarm(request, format=None):
 
 
 @api_view(['POST'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated,))
+def leave_user(request):
+    if request.method == 'POST':
+        request.user.delete()
+        return Response({"Message": "Success"})
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
 def check_university_verification_auth_number(request):
     if request.method == 'POST':
         auth_number = int(request.POST['auth_number'])
