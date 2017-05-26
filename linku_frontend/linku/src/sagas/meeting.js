@@ -6,7 +6,6 @@ function* fetchMeetingCardInfos(action){
     try{
         yield put(actions.requestMeetingCardInfos());
         let meetings = [];
-        meetings.push(yield [call(service.getCurrentMeetingInfos)]);
         meetings.push(yield [call(service.getPrearrangedMeetingInfos)]);
         yield put(actions.receiveMeetingCardInfos(meetings));
     }catch(e){

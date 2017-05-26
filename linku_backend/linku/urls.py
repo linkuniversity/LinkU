@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^login/', obtain_auth_token),
     url(r'^user/', views.get_user_info, name='get_user_info'),
+    url(r'^leave-user/', views.leave_user, name='leave_user'),
     url(r'^participated-dates/', views.get_participated_dates, name='get_participated_dates'),
     url(r'^apply-alarm/', views.apply_alarm, name='apply_alarm'),
     url(r'^next-meeting-alarm/', views.next_meeting_alarm, name='next_meeting_alarm'),
