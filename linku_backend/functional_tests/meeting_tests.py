@@ -16,4 +16,4 @@ def login_with(browser, username, password):
 def test_show_meeting_infos(browser):
     browser.get(BASE_URL)
     meeting_card = browser.find_elements_by_xpath("//div[@id='meeting-card']")
-    assert len(meeting_card) == 2
+    assert len(meeting_card) == 1
